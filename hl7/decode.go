@@ -11,7 +11,7 @@ import (
 func Unmarshal(data []byte) (values Values, err error) {
   fmt.Println(string(data))
   if !bytes.HasPrefix(data, []byte("MSH")) {
-    return Values{}, errors.New("Could not find MHS header")
+    return Values{}, errors.New("Could not find MSH header")
   }
 
   segments := bytes.Split(data, []byte{0x0D})
