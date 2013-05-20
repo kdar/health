@@ -3,7 +3,7 @@ package ncpdp
 import (
   "errors"
   //"log"
-  "github.com/kdar/edi/edifact"
+  "github.com/kdar/health/edifact"
   //"time"
 )
 

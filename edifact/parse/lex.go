@@ -4,7 +4,7 @@ package parse
 
 import (
   "fmt"
-  "github.com/kdar/edi/edifact/token"
+  "github.com/kdar/health/edifact/token"
   "strings"
   "unicode"
   "unicode/utf8"

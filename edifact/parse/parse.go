@@ -8,8 +8,8 @@ package parse
 import (
   "errors"
   "fmt"
+  "github.com/kdar/health/edifact/token"
   "regexp"
-  "github.com/kdar/edi/edifact/token"
 )
 
 // A function used to take the latest node off the stack,

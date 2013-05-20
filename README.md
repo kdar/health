@@ -1,5 +1,5 @@
-EDI
----
+HEALTH
+------
 
 A library for marshaling and unmarshaling various EDI formats (NCPDP, EDIFACT, ...).
 

@@ -2,7 +2,7 @@ package ncpdp
 
 import (
   //"log"
-  "github.com/kdar/edi/edifact"
+  "github.com/kdar/health/edifact"
   "strconv"
   "time"
 )

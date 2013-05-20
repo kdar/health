@@ -1,7 +1,7 @@
 package ncpdp
 
 import (
-  "github.com/kdar/edi/edifact"
+  "github.com/kdar/health/edifact"
   "time"
 )
 

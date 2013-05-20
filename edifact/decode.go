@@ -2,7 +2,7 @@ package edifact
 
 import (
   "errors"
-  "github.com/kdar/edi/edifact/parse"
+  "github.com/kdar/health/edifact/parse"
 )
 
 // unmarshals passed byte data
