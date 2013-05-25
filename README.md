@@ -1,7 +1,7 @@
 HEALTH
 ------
 
-A library for marshaling and unmarshaling various EDI formats (NCPDP, EDIFACT, ...).
+A library for marshaling and unmarshaling various EDI formats (NCPDP, EDIFACT, ...) and CCDs.
 
 This is used in our medical backends, so it will be actively developed.
 
