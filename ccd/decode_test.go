@@ -32,12 +32,12 @@ func TestUnmarshal(t *testing.T) {
     }
     file.Close()
 
-    _, err = Unmarshal(data)
+    _, errs := Unmarshal(data)
     shouldfail := strings.HasPrefix(info.Name(), "fail_")
-    if shouldfail && err == nil {
+    if shouldfail && errs == nil {
       t.Fatalf("%s: Expected failure, instead received success.", path)
-    } else if !shouldfail && err != nil {
-      t.Fatalf("%s: Failed: %s", path, err)
+    } else if !shouldfail && errs != nil {
+      t.Fatalf("%s: Failed: %v", path, errs)
     }
 
     return nil

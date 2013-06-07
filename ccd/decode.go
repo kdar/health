@@ -1,6 +1,7 @@
 package ccd
 
 import (
+  "fmt"
   "github.com/jteeuwen/go-pkg-xmlx"
   "strings"
   "time"
@@ -40,15 +41,19 @@ func nsget(node *xmlx.Node, args ...string) *xmlx.Node {
   return n
 }
 
-func Unmarshal(data []byte) (*CCD, error) {
+// Unmarshals a CCD into a CCD struct.
+func Unmarshal(data []byte) (*CCD, []error) {
+  var errs, errs_ []error
+
   doc := xmlx.New()
   err := doc.LoadBytes(data, nil)
   if err != nil {
-    return nil, err
+    return nil, []error{err}
   }
 
   ccd := &CCD{}
-  ccd.Patient = parsePatient(doc.Root)
+  ccd.Patient, errs_ = parsePatient(doc.Root)
+  errs = append(errs, errs_...)
 
   componentNode := nget(doc.Root, "component", "structuredBody")
   if componentNode != nil {
@@ -57,10 +62,11 @@ func Unmarshal(data []byte) (*CCD, error) {
       sectionNode := componentNode.SelectNode("*", "section")
       switch templateId(sectionNode) {
       case "2.16.840.1.113883.10.20.1.8":
-        ccd.Meds = parseMeds(sectionNode)
+        ccd.Meds, errs = parseMeds(sectionNode)
       case "2.16.840.1.113883.10.20.1.11":
-        ccd.Problems = parseProblems(sectionNode)
+        ccd.Problems, errs_ = parseProblems(sectionNode)
       }
+      errs = append(errs, errs_...)
     }
   }
 
@@ -85,10 +91,12 @@ type Patient struct {
 
 // parses patient information from the CCD and returns
 // a Patient struct
-func parsePatient(root *xmlx.Node) *Patient {
+func parsePatient(root *xmlx.Node) (*Patient, []error) {
   node := nget(root, "ClinicalDocument", "recordTarget", "patientRole", "patient")
   if node == nil {
-    return nil
+    return nil, []error{
+      fmt.Errorf("Could not find the node in CCD: ClinicalDocument > recordTarget > patientRole > patient"),
+    }
   }
 
   patient := &Patient{}
@@ -136,7 +144,7 @@ func parsePatient(root *xmlx.Node) *Patient {
     patient.Ethnicity = ethnicNode.As("*", "code")
   }
 
-  return patient
+  return patient, nil
 }
 
 type Med struct {
@@ -151,8 +159,9 @@ type Med struct {
   }
 }
 
-func parseMeds(node *xmlx.Node) []Med {
+func parseMeds(node *xmlx.Node) ([]Med, []error) {
   var meds []Med
+  var errs []error
 
   entryNodes := node.SelectNodes("*", "entry")
   for _, entryNode := range entryNodes {
@@ -187,18 +196,17 @@ func parseMeds(node *xmlx.Node) []Med {
 
     codeNode := nget(manNode, "code")
     if codeNode != nil {
-      switch codeNode.As("*", "codeSystem") {
+      codeSystem := codeNode.As("*", "codeSystem")
+      switch codeSystem {
       case "2.16.840.1.113883.6.69": // NDC
         med.Id.Type = "NDC"
       case "2.16.840.1.113883.6.88": // RxNorm
         med.Id.Type = "RxNorm"
       default:
-        // "Warning: Unknown codeSystem value of '".
-        //              $mp->{manufacturedMaterial}{code}{codeSystem}
-        //              ."'\n"
+        errs = append(errs, fmt.Errorf(`Unknown codeSystem value of "%s"`, codeSystem))
       }
     } else {
-      // "Warning: No codeSystem supplied for med!\n"
+      errs = append(errs, fmt.Errorf(`No codeSystem supplied for med`))
     }
     med.Id.Value = codeNode.As("*", "code")
 
@@ -213,11 +221,11 @@ func parseMeds(node *xmlx.Node) []Med {
     meds = append(meds, med)
   }
 
-  return meds
+  return meds, errs
 }
 
-func parseProblems(node *xmlx.Node) []Problem {
-  return nil
+func parseProblems(node *xmlx.Node) ([]Problem, []error) {
+  return nil, nil
 }
 
 func templateId(node *xmlx.Node) string {
