@@ -253,6 +253,7 @@ type Med struct {
   }
 }
 
+// http://wiki.ihe.net/index.php?title=1.3.6.1.4.1.19376.1.5.3.1.4.7
 func parseMeds(node *xmlx.Node) ([]Med, []error) {
   var meds []Med
   var errs []error
