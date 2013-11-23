@@ -8,19 +8,38 @@ import (
   "time"
 )
 
-type Problem struct {
+const (
+  // Found both these formats in the wild
+  TimeDecidingIndex = 14
+  TimeFormat        = "20060102150405-0700"
+  TimeFormat2       = "20060102150405.000-0700"
+)
+
+// Dates and times in a CCD can be partial. Meaning they can be:
+//   2006, 200601, 20060102, etc...
+// This function helps us parse all cases.
+func ParseTime(value string) (time.Time, error) {
+  l := len(value)
+  tmfmt := TimeFormat
+  if l > TimeDecidingIndex && value[TimeDecidingIndex] == '.' {
+    tmfmt = TimeFormat2
+  }
+  return time.Parse(tmfmt[:l], value)
 }
 
 type CCD struct {
-  Patient  Patient
-  Meds     []Med
-  Problems []Problem
+  Patient       Patient
+  Medications   []Medication
+  Problems      []Problem
+  VitalSigns    []VitalSign
+  Immunizations []Immunization
+  Extra         interface{}
 }
 
 // Node get.
 // helper function to continually transverse down the
 // xml nodes in args, and return the last one.
-func nget(node *xmlx.Node, args ...string) *xmlx.Node {
+func Nget(node *xmlx.Node, args ...string) *xmlx.Node {
   for _, a := range args {
     if node == nil {
       return nil
@@ -33,9 +52,9 @@ func nget(node *xmlx.Node, args ...string) *xmlx.Node {
 }
 
 // Node Safe get.
-// just like nget, but returns a node no matter what.
-func nsget(node *xmlx.Node, args ...string) *xmlx.Node {
-  n := nget(node, args...)
+// just like Nget, but returns a node no matter what.
+func Nsget(node *xmlx.Node, args ...string) *xmlx.Node {
+  n := Nget(node, args...)
   if n == nil {
     return xmlx.NewNode(0)
   }
@@ -72,27 +91,112 @@ func Unmarshal(data []byte) (*CCD, error) {
   return UnmarshalDoc(doc)
 }
 
+type ParseType int
+
+const (
+  PARSE_DOC ParseType = iota
+  PARSE_SECTION
+)
+
+var (
+  // Right now doc_parsers will only have one map entry "*"
+  doc_parsers     = make(map[string]Parsers)
+  section_parsers = make(map[string]Parsers)
+)
+
+type ParseFunc func(root *xmlx.Node, ccd *CCD) []error
+
+type Parser struct {
+  Type         ParseType
+  Value        string
+  Organization string
+  Priority     int
+  Func         ParseFunc
+}
+
+type Parsers []Parser
+
+func insertSortParser(p Parser, parsers Parsers) Parsers {
+  i := len(parsers) - 1
+  for ; i >= 0; i-- {
+    if p.Priority > parsers[i].Priority {
+      i += 1
+      break
+    }
+  }
+
+  if i < 0 {
+    i = 0
+  }
+
+  parsers = append(parsers, p) // this just expands storage.
+  copy(parsers[i+1:], parsers[i:])
+  parsers[i] = p
+
+  return parsers
+}
+
+func Register(p Parser) {
+  if p.Organization == "" {
+    p.Organization = "*"
+  }
+
+  p.Organization = strings.ToLower(p.Organization)
+
+  if p.Type == PARSE_DOC {
+    if p.Value == "" {
+      p.Value = "*"
+    }
+
+    doc_parsers[p.Value] = insertSortParser(p, doc_parsers[p.Value])
+  } else if p.Type == PARSE_SECTION {
+    if p.Value == "" {
+      panic("ccd: Section parser cannot have an empty Value.")
+    }
+
+    section_parsers[p.Value] = insertSortParser(p, section_parsers[p.Value])
+  } else {
+    panic("ccd: Unknown parser type.")
+  }
+}
+
 // Unmarshals a CCD into a CCD struct.
 func UnmarshalDoc(doc *xmlx.Document) (*CCD, error) {
   var errs_ []error
   // var errs []error
 
   ccd := &CCD{}
-  ccd.Patient, errs_ = parsePatient(doc.Root)
-  //errs = append(errs, errs_...)
 
-  componentNode := nget(doc.Root, "component", "structuredBody")
+  org := Nget(doc.Root, "recordTarget", "providerOrganization", "name")
+  orgName := "*"
+  if org != nil {
+    orgName = strings.ToLower(org.S("*", "name"))
+  }
+
+  for _, p := range doc_parsers["*"] {
+    if orgName == "*" || p.Organization == "*" || orgName == p.Organization {
+      errs_ = p.Func(doc.Root, ccd)
+      //errs = append(errs, errs_...)
+    }
+
+  }
+
+  componentNode := Nget(doc.Root, "component", "structuredBody")
   if componentNode != nil {
     componentNodes := componentNode.SelectNodes("*", "component")
     for _, componentNode := range componentNodes {
       sectionNode := componentNode.SelectNode("*", "section")
-      switch templateId(sectionNode) {
-      case "2.16.840.1.113883.10.20.1.8":
-        ccd.Meds, errs_ = parseMeds(sectionNode)
-      case "2.16.840.1.113883.10.20.1.11":
-        ccd.Problems, errs_ = parseProblems(sectionNode)
+
+      tid := templateId(sectionNode)
+
+      if parsers, ok := section_parsers[tid]; ok {
+        for _, p := range parsers {
+          if orgName == "*" || p.Organization == "*" || orgName == p.Organization {
+            errs_ = p.Func(sectionNode, ccd)
+            //errs = append(errs, errs_...)
+          }
+        }
       }
-      //errs = append(errs, errs_...)
     }
   }
 
@@ -147,30 +251,28 @@ func (p Patient) IsZero() bool {
 
 // parses patient information from the CCD and returns
 // a Patient struct
-func parsePatient(root *xmlx.Node) (Patient, []error) {
-  patient := Patient{}
-
-  anode := nget(root, "ClinicalDocument", "recordTarget", "patientRole", "addr")
+func parsePatient(root *xmlx.Node, ccd *CCD) []error {
+  anode := Nget(root, "ClinicalDocument", "recordTarget", "patientRole", "addr")
   // address isn't always present
   if anode != nil {
-    patient.Address.Type = anode.As("*", "use")
+    ccd.Patient.Address.Type = anode.As("*", "use")
     lines := anode.SelectNodes("*", "streetAddressLine")
     if len(lines) > 0 {
-      patient.Address.Line1 = lines[0].Value
+      ccd.Patient.Address.Line1 = lines[0].Value
     }
     if len(lines) > 1 {
-      patient.Address.Line2 = lines[1].Value
+      ccd.Patient.Address.Line2 = lines[1].Value
     }
-    patient.Address.City = anode.S("*", "city")
-    patient.Address.County = anode.S("*", "county")
-    patient.Address.State = anode.S("*", "state")
-    patient.Address.Zip = anode.S("*", "postalCode")
-    patient.Address.Country = anode.S("*", "country")
+    ccd.Patient.Address.City = anode.S("*", "city")
+    ccd.Patient.Address.County = anode.S("*", "county")
+    ccd.Patient.Address.State = anode.S("*", "state")
+    ccd.Patient.Address.Zip = anode.S("*", "postalCode")
+    ccd.Patient.Address.Country = anode.S("*", "country")
   }
 
-  pnode := nget(root, "ClinicalDocument", "recordTarget", "patientRole", "patient")
+  pnode := Nget(root, "ClinicalDocument", "recordTarget", "patientRole", "patient")
   if pnode == nil {
-    return patient, []error{
+    return []error{
       fmt.Errorf("Could not find the node in CCD: ClinicalDocument/recordTarget/patientRole/patient"),
     }
   }
@@ -180,82 +282,123 @@ func parsePatient(root *xmlx.Node) (Patient, []error) {
     // This is a NickName if it's the second <name><given> tag block or the
     // given tag has the qualifier CM.
     if n == 1 || (len(given) > 0 && given[0].As("*", "qualifier") == "CM") {
-      patient.Name.NickName = given[0].Value
+      ccd.Patient.Name.NickName = given[0].Value
       continue
     }
 
-    patient.Name.Type = nameNode.As("*", "use")
+    ccd.Patient.Name.Type = nameNode.As("*", "use")
     if len(given) > 0 {
-      patient.Name.First = given[0].Value
+      ccd.Patient.Name.First = given[0].Value
     }
     if len(given) > 1 {
-      patient.Name.Middle = given[1].Value
+      ccd.Patient.Name.Middle = given[1].Value
     }
-    patient.Name.Last = nameNode.S("*", "family")
-    patient.Name.Prefix = nameNode.S("*", "prefix")
+    ccd.Patient.Name.Last = nameNode.S("*", "family")
+    ccd.Patient.Name.Prefix = nameNode.S("*", "prefix")
     suffixes := nameNode.SelectNodes("*", "suffix")
     for n, suffix := range suffixes {
       // if it's the second suffix, or it has the qualifier TITLE
-      if n == 1 || (len(patient.Name.Prefix) == 0 && suffix.As("*", "qualifier") == "TITLE") {
-        patient.Name.Prefix = suffix.Value
+      if n == 1 || (len(ccd.Patient.Name.Prefix) == 0 && suffix.As("*", "qualifier") == "TITLE") {
+        ccd.Patient.Name.Prefix = suffix.Value
       } else {
-        patient.Name.Suffix = suffix.Value
+        ccd.Patient.Name.Suffix = suffix.Value
       }
     }
   }
 
   birthNode := pnode.SelectNode("*", "birthTime")
   if birthNode != nil {
-    patient.Dob, _ = time.Parse("20060102", birthNode.As("*", "value"))
+    ccd.Patient.Dob, _ = ParseTime(birthNode.As("*", "value"))
   }
 
   genderNode := pnode.SelectNode("*", "administrativeGenderCode")
   if genderNode != nil && genderNode.As("*", "codeSystem") == "2.16.840.1.113883.5.1" {
     switch genderNode.As("*", "code") {
     case "M":
-      patient.Gender = "Male"
+      ccd.Patient.Gender = "Male"
     case "F":
-      patient.Gender = "Female"
+      ccd.Patient.Gender = "Female"
     case "UN":
-      patient.Gender = "Undifferentiated"
+      ccd.Patient.Gender = "Undifferentiated"
     default:
-      patient.Gender = "Unknown"
+      ccd.Patient.Gender = "Unknown"
     }
   }
 
   maritalNode := pnode.SelectNode("*", "maritalStatusCode")
   if maritalNode != nil && maritalNode.As("*", "codeSystem") == "2.16.840.1.113883.5.2" {
-    patient.MaritalStatus = maritalNode.As("*", "code")
+    ccd.Patient.MaritalStatus = maritalNode.As("*", "code")
   }
 
   raceNode := pnode.SelectNode("*", "raceCode")
   if raceNode != nil && raceNode.As("*", "codeSystem") == "2.16.840.1.113883.6.238" {
-    patient.Race = raceNode.As("*", "code")
+    ccd.Patient.Race = raceNode.As("*", "code")
   }
 
   ethnicNode := pnode.SelectNode("*", "ethnicGroupCode")
   if ethnicNode != nil && ethnicNode.As("*", "codeSystem") == "2.16.840.1.113883.6.238" {
-    patient.Ethnicity = ethnicNode.As("*", "code")
+    ccd.Patient.Ethnicity = ethnicNode.As("*", "code")
   }
 
-  return patient, nil
+  return nil
 }
 
-type Med struct {
-  Name      string
+type MedicationId struct {
+  Type  string
+  Value string
+}
+
+type MedicationDose struct {
+  LowValue  string
+  LowUnit   string
+  HighValue string
+  HighUnit  string
+}
+
+func (m MedicationDose) ValueUnit() (string, string) {
+  unit := m.LowUnit
+  if len(unit) == 0 {
+    unit = m.HighUnit
+  }
+
+  if len(m.HighValue) == 0 {
+    return m.LowValue, unit
+  }
+
+  return fmt.Sprintf("%s-%s", m.LowValue, m.HighValue), unit
+}
+
+func (m MedicationDose) String() string {
+  unit := m.LowUnit
+  if len(unit) == 0 {
+    unit = m.HighUnit
+  }
+
+  if len(unit) > 0 {
+    unit = " " + unit
+  }
+
+  if len(m.HighValue) == 0 {
+    return fmt.Sprintf("%s%s", m.LowValue, m.LowUnit)
+  }
+
+  return fmt.Sprintf("%s-%s%s", m.LowValue, m.HighValue, unit)
+}
+
+type Medication struct {
+  Name           string
+  DisplayName    string
+  Administration string
+  //Instructions   string // this is calulated and not specifically in the CCD
+  Dose      MedicationDose
   Status    string
   StartDate time.Time
   StopDate  time.Time
-
-  Id struct {
-    Type  string
-    Value string
-  }
+  Id        MedicationId
 }
 
 // http://wiki.ihe.net/index.php?title=1.3.6.1.4.1.19376.1.5.3.1.4.7
-func parseMeds(node *xmlx.Node) ([]Med, []error) {
-  var meds []Med
+func parseMedications(node *xmlx.Node, ccd *CCD) []error {
   var errs []error
 
   entryNodes := node.SelectNodes("*", "entry")
@@ -264,36 +407,62 @@ func parseMeds(node *xmlx.Node) ([]Med, []error) {
       continue
     }
 
-    mpNode := nget(entryNode, "substanceAdministration", "consumable", "manufacturedProduct")
+    medication := Medication{}
+
+    saNode := Nget(entryNode, "substanceAdministration")
+
+    doseNode := Nget(saNode, "doseQuantity")
+    if doseNode != nil {
+      medication.Dose.LowValue = doseNode.As("*", "value")
+      medication.Dose.LowUnit = doseNode.As("*", "unit")
+      doseLowNode := Nget(doseNode, "low")
+      doseHighNode := Nget(doseNode, "high")
+      if doseLowNode != nil {
+        medication.Dose.LowValue = doseLowNode.As("*", "value")
+        medication.Dose.LowUnit = doseLowNode.As("*", "unit")
+      }
+      if doseHighNode != nil {
+        medication.Dose.HighValue = doseHighNode.As("*", "value")
+        medication.Dose.HighUnit = doseHighNode.As("*", "unit")
+      }
+    }
+
+    routeCodeNode := Nget(saNode, "routeCode")
+    if routeCodeNode != nil {
+      if routeCodeNode.As("*", "codeSystemName") == "RouteOfAdministration" {
+        medication.Administration = routeCodeNode.As("*", "displayName")
+      }
+    }
+
+    mpNode := Nget(saNode, "consumable", "manufacturedProduct")
     if mpNode == nil {
       continue
     }
 
-    med := Med{}
-    med.Status = nsget(entryNode, "substanceAdministration", "statusCode").As("*", "code")
+    medication.Status = Nsget(saNode, "statusCode").As("*", "code")
 
-    etimeNodes := nget(entryNode, "substanceAdministration").SelectNodes("*", "effectiveTime")
+    etimeNodes := saNode.SelectNodes("*", "effectiveTime")
     for _, etimeNode := range etimeNodes {
       if strings.ToLower(etimeNode.As("*", "type")) == "ivl_ts" {
         lowNode := etimeNode.SelectNode("*", "low")
         if lowNode != nil {
-          med.StartDate, _ = time.Parse("20060102", lowNode.As("*", "value"))
+          medication.StartDate, _ = ParseTime(lowNode.As("*", "value"))
         }
 
         highNode := etimeNode.SelectNode("*", "high")
         if highNode != nil {
-          med.StopDate, _ = time.Parse("20060102", highNode.As("*", "value"))
+          medication.StopDate, _ = ParseTime(highNode.As("*", "value"))
         }
       }
     }
 
-    manNode := nget(mpNode, "manufacturedMaterial")
+    manNode := Nget(mpNode, "manufacturedMaterial")
 
-    codeNode := nget(manNode, "code")
+    codeNode := Nget(manNode, "code")
     if codeNode != nil {
       codeSystem := codeNode.As("*", "codeSystem")
       var err error
-      med.Id.Type, err = codeSystemToMedType(codeSystem)
+      medication.Id.Type, err = codeSystemToMedType(codeSystem)
       if err != nil {
         // Sometimes the attributes for "code" are completely missing.
         // try to see if there is a translation node and get it from there
@@ -301,7 +470,7 @@ func parseMeds(node *xmlx.Node) ([]Med, []error) {
         if transNode != nil {
           codeSystem = transNode.As("*", "codeSystem")
           var err2 error
-          med.Id.Type, err2 = codeSystemToMedType(codeSystem)
+          medication.Id.Type, err2 = codeSystemToMedType(codeSystem)
           if err2 != nil {
             errs = append(errs, err)
           }
@@ -310,24 +479,132 @@ func parseMeds(node *xmlx.Node) ([]Med, []error) {
         }
       }
     }
-    med.Id.Value = codeNode.As("*", "code")
+    medication.Id.Value = codeNode.As("*", "code")
 
     if displayName := codeNode.As("*", "displayName"); displayName != "" {
-      med.Name = displayName
-    } else if nameNode := manNode.SelectNode("*", "name"); nameNode != nil {
-      med.Name = nameNode.Value
-    } else if originalNode := codeNode.SelectNode("*", "originalText"); originalNode != nil {
-      med.Name = originalNode.Value
+      medication.Name = displayName
+      medication.DisplayName = displayName
     }
 
-    meds = append(meds, med)
+    if nameNode := manNode.SelectNode("*", "name"); nameNode != nil {
+      medication.Name = nameNode.Value
+    } else if originalNode := codeNode.SelectNode("*", "originalText"); originalNode != nil {
+      medication.Name = originalNode.Value
+    }
+
+    ccd.Medications = append(ccd.Medications, medication)
   }
 
-  return meds, errs
+  return errs
 }
 
-func parseProblems(node *xmlx.Node) ([]Problem, []error) {
-  return nil, nil
+type Problem struct {
+  Name     string
+  Date     time.Time
+  Duration time.Duration
+  Status   string
+}
+
+func parseProblems(node *xmlx.Node, ccd *CCD) []error {
+  entryNodes := node.SelectNodes("*", "entry")
+  for _, entryNode := range entryNodes {
+    problem := Problem{}
+
+    observationNode := Nget(entryNode, "act", "entryRelationship", "observation")
+    problem.Name = Nget(observationNode, "value").As("*", "displayName")
+
+    effectiveTimeNode := Nget(observationNode, "effectiveTime")
+    lowNode := Nget(effectiveTimeNode, "low")
+    if lowNode != nil {
+      problem.Date, _ = ParseTime(lowNode.As("*", "value"))
+    }
+    highNode := Nget(effectiveTimeNode, "high")
+    if highNode != nil {
+      highDate, _ := ParseTime(highNode.As("*", "value"))
+      problem.Duration = highDate.Sub(problem.Date)
+    }
+
+    observationNode2 := Nget(observationNode, "entryRelationship", "observation")
+    if observationNode2 != nil {
+      problem.Status = Nget(observationNode2, "value").As("*", "displayName")
+    }
+
+    ccd.Problems = append(ccd.Problems, problem)
+  }
+
+  return nil
+}
+
+type VitalSignResult struct {
+  Type  string
+  Value string
+  Unit  string
+}
+
+type VitalSign struct {
+  Name   string
+  Result VitalSignResult
+  Date   time.Time
+}
+
+func parseVitalSigns(node *xmlx.Node, ccd *CCD) []error {
+  componentNodes := Nget(node, "entry", "organizer").SelectNodes("*", "component")
+
+  for _, componentNode := range componentNodes {
+    vitalsign := VitalSign{}
+
+    codeNode := Nget(componentNode, "code")
+    vitalsign.Name = codeNode.As("*", "displayName")
+
+    effectiveTimeNode := Nget(componentNode, "effectiveTime")
+    vitalsign.Date, _ = ParseTime(effectiveTimeNode.As("*", "value"))
+
+    valueNode := Nget(componentNode, "value")
+    vitalsign.Result = VitalSignResult{
+      Type:  valueNode.As("*", "type"),
+      Value: valueNode.As("*", "value"),
+      Unit:  valueNode.As("*", "unit"),
+    }
+
+    ccd.VitalSigns = append(ccd.VitalSigns, vitalsign)
+  }
+
+  return nil
+}
+
+type Immunization struct {
+  Name           string
+  Administration string
+  Date           time.Time
+  Status         string
+}
+
+func parseImmunizations(node *xmlx.Node, ccd *CCD) []error {
+  entryNodes := node.SelectNodes("*", "entry")
+  for _, entryNode := range entryNodes {
+    immunization := Immunization{}
+
+    saNode := Nget(entryNode, "substanceAdministration")
+    immunization.Status = Nget(saNode, "statusCode").As("*", "code")
+
+    immunization.Date, _ = ParseTime(Nget(saNode, "effectiveTime", "center").As("*", "value"))
+
+    routeCodeNode := Nget(saNode, "routeCode")
+    if routeCodeNode != nil {
+      if routeCodeNode.As("*", "codeSystemName") == "RouteOfAdministration" {
+        immunization.Administration = routeCodeNode.As("*", "displayName")
+      }
+    }
+
+    codeNode := Nget(saNode, "manufacturedProduct", "manufacturedMaterial", "code")
+    if codeNode != nil {
+      immunization.Name = codeNode.As("*", "displayName")
+    }
+
+    ccd.Immunizations = append(ccd.Immunizations, immunization)
+  }
+
+  return nil
 }
 
 func templateId(node *xmlx.Node) string {
@@ -351,4 +628,41 @@ func codeSystemToMedType(codeSystem string) (string, error) {
     return "RxNorm", nil
   }
   return "", fmt.Errorf(`Unknown med codeSystem value of "%s"`, codeSystem)
+}
+
+func init() {
+  Register(Parser{
+    Type:     PARSE_DOC,
+    Value:    "*",
+    Priority: 0,
+    Func:     parsePatient,
+  })
+
+  Register(Parser{
+    Type:     PARSE_SECTION,
+    Value:    "2.16.840.1.113883.10.20.1.6",
+    Priority: 0,
+    Func:     parseImmunizations,
+  })
+
+  Register(Parser{
+    Type:     PARSE_SECTION,
+    Value:    "2.16.840.1.113883.10.20.1.8",
+    Priority: 0,
+    Func:     parseMedications,
+  })
+
+  Register(Parser{
+    Type:     PARSE_SECTION,
+    Value:    "2.16.840.1.113883.10.20.1.11",
+    Priority: 0,
+    Func:     parseProblems,
+  })
+
+  Register(Parser{
+    Type:     PARSE_SECTION,
+    Value:    "2.16.840.1.113883.10.20.1.16",
+    Priority: 0,
+    Func:     parseVitalSigns,
+  })
 }
