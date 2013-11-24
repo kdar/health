@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="vhitg-cda-v3.xsl"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:sciphox="urn::sciphox-org/sciphox"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd">
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+  <id extension="6014161089" root="1.2.276.0.76.3645.239"/>
+  <code code="11488-4" codeSystem="2.16.840.1.113883.6.1" displayName="Consultation note"/>
+  <title>Arztbrief auf der Basis von CDA Release 2</title>
+  <effectiveTime value="20050829"/>
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+  <languageCode code="de-DE"/>
+  <recordTarget>
+    <!--- Patienten-Daten -->
+    <patientRole>
+      <id extension="6245" root="2.16.840.1.113883.3.933"/>
+      <id extension="1543627549" root="1.2.276.0.76.4.1"/>
+      <addr>
+        <streetAddressLine>Riedemannweg 59</streetAddressLine>
+        <postalCode>13627</postalCode>
+        <city>Berlin</city>
+      </addr>
+      <telecom use="HP" value="tel:030.456.345345"/>
+      <patient>
+        <name>
+          <given>Paul</given>
+          <family>Pappel</family>
+        </name>
+        <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+        <birthTime value="19551217"/>
+        <birthplace>
+          <place>
+            <addr>
+              <city>Sassnitz</city>
+            </addr>
+          </place>
+        </birthplace>
+      </patient>
+      <providerOrganization>
+        <telecom use="WP" value="tel:0214.2127070"/>
+        <telecom use="WP" value="tel:0214.212707122"/>
+        <addr>
+          <streetName>Krankenhausstraße</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>51371</postalCode>
+          <city>Leverkusen</city>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+  <author>
+    <!--- author -->
+    <time value="20050829"/>
+    <assignedAuthor>
+      <id extension="ied8984938" root="2.16.840.1.113883.3.67.933"/>
+      <assignedPerson>
+        <name>
+          <prefix qualifier="AC">Dr. med.</prefix>
+          <given>Theo</given>
+          <family>Phyllin</family>
+        </name>
+      </assignedPerson>
+      <representedOrganization>
+        <name>Praxis Dr. med. Phyllin</name>
+        <telecom use="WP" value="tel:0214.2127070"/>
+        <telecom use="WP" value="tel:0214.212707122"/>
+        <addr>
+          <streetName>Krankenhausstraße</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>51371</postalCode>
+          <city>Leverkusen</city>
+        </addr>
+      </representedOrganization>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id extension="M345" root="1.2.276.0.58"/>
+        <name>Praxis Dr. med. Phyllin</name>
+        <telecom use="WP" value="tel:0214.2127070"/>
+        <addr>
+          <streetName>Krankenhausstraße</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>51371</postalCode>
+          <city>Leverkusen</city>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <informationRecipient typeCode="PRCP">
+    <intendedRecipient>
+      <id extension="POS4736437" root="2.16.840.1.113883.3.67.933"/>
+      <informationRecipient>
+        <name>
+          <prefix>Dr.med.</prefix>
+          <given>Kai</given>
+          <family>Heitmann</family>
+        </name>
+      </informationRecipient>
+      <receivedOrganization>
+        <name>Gemeinschaftspraxis Dr. Heitmann</name>
+        <telecom use="WP" value="fax:02473.54637.2938"/>
+        <addr>
+          <streetAddressLine>Mühlenweg 1a</streetAddressLine>
+          <postalCode>52152</postalCode>
+          <city>Simmerath</city>
+        </addr>
+      </receivedOrganization>
+    </intendedRecipient>
+  </informationRecipient>
+  <legalAuthenticator>
+    <!--- legalAuthenticator -->
+    <time value="20050829"/>
+    <signatureCode code="S"/>
+    <assignedEntity>
+      <id extension="KP00017" root="2.16.840.1.113883.3.67.933"/>
+      <assignedPerson>
+        <name>
+          <prefix qualifier="AC">Dr. med.</prefix>
+          <given>Theo</given>
+          <family>Phyllin</family>
+        </name>
+      </assignedPerson>
+      <representedOrganization>
+        <name>Praxis Dr. med. Phyllin</name>
+        <telecom use="WP" value="tel:0214.2127070"/>
+        <addr>
+          <streetName>Krankenhausstraße</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>51371</postalCode>
+          <city>Leverkusen</city>
+        </addr>
+      </representedOrganization>
+    </assignedEntity>
+  </legalAuthenticator>
+  <relatedDocument typeCode="APND">
+    <parentDocument>
+      <id extension="463957847" root="1.2.276.0.58"/>
+    </parentDocument>
+  </relatedDocument>
+  <authorization>
+    <consent>
+      <id extension="cs856727-298784" root="1.2.276.0.76.3645.239"/>
+      <code code="3-00d" codeSystem="1.2.276.0.76.5.310"/>
+      <statusCode code="completed"/>
+    </consent>
+  </authorization>
+  <component>
+    <structuredBody>
+      <component>
+        <!-- Anamnese Komponente -->
+        <section>
+          <code code="10164-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC">
+            <translation code="XYZ" codeSystem="1.2.3.4.5.6.7.8"/>
+          </code>
+          <title>29.08.2005: Anamnese</title>
+          <text>Sei Jahren wiederholt <content styleCode="Bold">chronische Bronchitiden</content> besonders bei kalter Luft. Bei
+            Anstrengung expiratorische Atemnot. Kontakt mit Haustieren.</text>
+        </section>
+      </component>
+      <component>
+        <!-- Befund Komponente -->
+        <section>
+          <code code="12223-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>29.08.2005: Befund</title>
+          <text>
+            <list>
+              <item>Pulmo: Basal diskrete RGs</item>
+              <item>Cor: oB</item>
+              <item>Abdomen: weich, Peristaltik: +++</item>
+              <item>Muskulatur: atrophisch</item>
+              <item>Mundhöhle: Soor, Haarleukoplakie</item>
+              <item>Haut blass, seborrhoisches Ekzem, Schleimhäute blass, Hauttrurgor herabgesetzt</item>
+              <item>Neuro: herabgesetztes Vibrationsempfinden der Beine, distal betont, Parästesien der Beine, PSR, AST oB und
+                seitengleich.</item>
+            </list>
+          </text>
+        </section>
+      </component>
+      <component>
+        <!-- Allergien -->
+        <section>
+          <code code="27564-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>29.08.2005: Pricktest</title>
+          <text>
+            <list>
+              <item>Birke +++</item>
+              <item>Haselstrauch ++</item>
+              <item>Erle ++</item>
+              <item>
+                <content styleCode="Italics">Keine Reaktion auf weitere Pollen, Katzen-/Hundehaare, Schimmelpilze</content>
+              </item>
+            </list>
+          </text>
+        </section>
+      </component>
+      <component>
+        <!-- Diagnose mit ICD Komponente -->
+        <section>
+          <code code="27754-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>29.08.2005: Diagnosen mit ICD 10</title>
+          <text>
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>Diagnose</th>
+                  <th>ICD Code</th>
+                  <th>Lokalisation</th>
+                  <th>Zusatz</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <content ID="diag-1">Allergisches Asthma</content>
+                  </td>
+                  <td>J45.0</td>
+                  <td>--</td>
+                  <td>G</td>
+                </tr>
+                <tr>
+                  <td>
+                    <content ID="diag-2" styleCode="Italics">Ausschluss Lungenemphysem</content>
+                  </td>
+                  <td>J43.9</td>
+                  <td>--</td>
+                  <td>A</td>
+                </tr>
+                <tr>
+                  <td>
+                    <content ID="diag-3">V.a. Allergische Rhinopathie durch Pollen</content>
+                  </td>
+                  <td>J31.1</td>
+                  <td>--</td>
+                  <td>V</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <code code="DISDX" codeSystem="2.16.840.1.113883.3.7.1.16" codeSystemName="LOINC" displayName="Entlassdiagnosen"/>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20050829"/>
+              </effectiveTime>
+              <value xsi:type="CD" code="J45.0" codeSystem="1.2.276.0.76.5.311" codeSystemName="ICD10gm2006"
+                displayName="Allergisches Asthma ">
+                <originalText>
+                  <reference value="#diag-1"/>
+                </originalText>
+                <qualifier>
+                  <name code="8" codeSystem="2.16.840.1.113883.3.7.1" displayName="Diagnosesicherheit"/>
+                  <value code="G" codeSystem="2.16.840.1.113883.3.7.1.8" displayName="Gesichert"/>
+                </qualifier>
+              </value>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN" negationInd="true">
+              <code code="DISDX" codeSystem="2.16.840.1.113883.3.7.1.16" codeSystemName="LOINC" displayName="Entlassdiagnosen"/>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20050829"/>
+              </effectiveTime>
+              <value xsi:type="CD" code="J43.9" codeSystem="1.2.276.0.76.5.311" codeSystemName="ICD10gm2006"
+                displayName="Ausschluss Lungenemphysem ">
+                <originalText>
+                  <reference value="#diag-2"/>
+                </originalText>
+                <qualifier>
+                  <name code="8" codeSystem="2.16.840.1.113883.3.7.1" displayName="Diagnosesicherheit"/>
+                  <value code="A" codeSystem="2.16.840.1.113883.3.7.1.8" displayName="Ausgeschlossene Erkrankung"/>
+                </qualifier>
+              </value>
+            </observation>
+          </entry>
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <code code="DISDX" codeSystem="2.16.840.1.113883.3.7.1.16" codeSystemName="LOINC" displayName="Entlassdiagnosen"/>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20050829"/>
+              </effectiveTime>
+              <value xsi:type="CD" code="J31.1" codeSystem="1.2.276.0.76.5.311" codeSystemName="ICD10gm2006"
+                displayName="V.a.
+                Allergische Rhinopathie durch Pollen ">
+                <originalText>
+                  <reference value="#diag-3"/>
+                </originalText>
+                <qualifier>
+                  <name code="8" codeSystem="2.16.840.1.113883.3.7.1" displayName="Diagnosesicherheit"/>
+                  <value code="V" codeSystem="2.16.840.1.113883.3.7.1.8" displayName="Verdachtsdiagnose"/>
+                </qualifier>
+              </value>
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <!-- Laborwerte Komponente -->
+        <section>
+          <code code="34079-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>25.06.2005: Laborwerte</title>
+          <text>
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>Bezeichnung</th>
+                  <th>Test (LOINC Code)</th>
+                  <th>Wert</th>
+                  <th>Einheit</th>
+                  <th>Normwert</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Hämoglobin</td>
+                  <td>HB (718-7)</td>
+                  <td>8.7</td>
+                  <td>mmol/l</td>
+                  <td>8.7 - 11.2</td>
+                </tr>
+                <tr>
+                  <td>Thrombozyten</td>
+                  <td>THRO (777-3)</td>
+                  <td>196</td>
+                  <td>10*9/l</td>
+                  <td>143 - 400</td>
+                </tr>
+                <tr>
+                  <td>Leukozyten</td>
+                  <td>LEUKO (6690-2)</td>
+                  <td>7.98</td>
+                  <td>10*9/l</td>
+                  <td>3 - 9.6</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

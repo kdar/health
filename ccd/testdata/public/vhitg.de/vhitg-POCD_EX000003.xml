@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="vhitg-cda-v3.xsl"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:sciphox="urn::sciphox-org/sciphox"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3
+    CDA.xsd">
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+  <id extension="60248,76548" root="1.2.276.0.58"/>
+  <code code="34106-5" codeSystem="2.16.840.1.113883.6.1" displayName="Zusammenfassung bei
+        Entlassung aus Krankenhaus"/>
+  <title>Endgültiger Arztbrief</title>
+  <effectiveTime value="200512142115"/>
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+  <languageCode code="de-DE"/>
+  <setId extension="D1" root="2.16.840.1.113883.3.933"/>
+  <versionNumber value="2"/>
+  <recordTarget>
+    <!--- Patienten-Daten -->
+    <patientRole>
+      <id extension="71" root="2.16.840.1.113883.3.933"/>
+      <addr>
+        <streetName>Heideweg</streetName>
+        <houseNumber>12</houseNumber>
+        <postalCode>52351</postalCode>
+        <city>Düren</city>
+      </addr>
+      <patient>
+        <name>
+          <given>Emma</given>
+          <family>Erle</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+        <birthTime value="19750612"/>
+      </patient>
+      <providerOrganization>
+        <telecom use="WP" value="tel:02421.27070"/>
+        <telecom use="WP" value="fax:02421.2707120"/>
+        <addr>
+          <streetName>Kölner Landstr.</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>52351</postalCode>
+          <city>Düren</city>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+  <author>
+    <!--- author -->
+    <time value="20051214"/>
+    <assignedAuthor>
+      <id extension="9812345" root="2.16.840.1.113883.3.933"/>
+      <assignedPerson>
+        <name>
+          <prefix>Dr. med.</prefix>
+          <given>Theo</given>
+          <family>Maier</family>
+        </name>
+      </assignedPerson>
+      <representedOrganization>
+        <name>Praxis Dr. Maier</name>
+        <telecom use="WP" value="tel:02421.27070"/>
+        <telecom use="WP" value="fax:02421.2707120"/>
+        <addr>
+          <streetName>Kölner Landstr.</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>52351</postalCode>
+          <city>Düren</city>
+        </addr>
+      </representedOrganization>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <!--- Organisation von der das Dokument stammt -->
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id extension="M345" root="1.2.276.0.58"/>
+        <name>Praxis Dr. Maier</name>
+        <telecom use="WP" value="tel:02421.27070"/>
+        <addr>
+          <streetName>Kölner Landstr.</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>52351</postalCode>
+          <city>Düren</city>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <informationRecipient typeCode="PRCP">
+    <!--- Empfaenger -->
+    <intendedRecipient>
+      <id extension="2134567" root="2.16.840.1.113883.3.933"/>
+      <informationRecipient>
+        <name>
+          <prefix>Dr.med.</prefix>
+          <given>Jochen</given>
+          <family>Schulze</family>
+        </name>
+      </informationRecipient>
+      <receivedOrganization>
+        <name>Praxis Dr. Schulze</name>
+        <telecom nullFlavor="UNK"/>
+        <addr>
+          <streetName>Waldweg</streetName>
+          <houseNumber>12</houseNumber>
+          <postalCode>52351</postalCode>
+          <city>Düren</city>
+        </addr>
+      </receivedOrganization>
+    </intendedRecipient>
+  </informationRecipient>
+  <informationRecipient typeCode="PRCP">
+    <!--- Empfaenger -->
+    <intendedRecipient>
+      <informationRecipient>
+        <name>
+          <given>Emma</given>
+          <family>Erle</family>
+        </name>
+      </informationRecipient>
+      <receivedOrganization>
+        <telecom nullFlavor="UNK"/>
+        <addr>
+          <streetName>Heideweg</streetName>
+          <houseNumber>12</houseNumber>
+          <postalCode>52351</postalCode>
+          <city>Düren</city>
+        </addr>
+      </receivedOrganization>
+    </intendedRecipient>
+  </informationRecipient>
+  <legalAuthenticator>
+    <!--- legalAuthenticator -->
+    <time value="20051214"/>
+    <signatureCode code="S"/>
+    <assignedEntity>
+      <id extension="9812345" root="2.16.840.1.113883.3.933"/>
+      <assignedPerson>
+        <name>
+          <prefix>Dr. med.</prefix>
+          <given>Theo</given>
+          <family>Maier</family>
+        </name>
+      </assignedPerson>
+      <representedOrganization>
+        <name>Krankenhaus Düren</name>
+        <telecom use="WP" value="fax:02421.2707120"/>
+        <addr>
+          <streetName>Kölner Landstr.</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>52351</postalCode>
+          <city>Düren</city>
+        </addr>
+      </representedOrganization>
+    </assignedEntity>
+  </legalAuthenticator>
+  <participant typeCode="HLD">
+    <!--- Versicherungsangaben participant -->
+    <time>
+      <low value="20051001"/>
+      <high value="20051231" inclusive="true"/>
+    </time>
+    <associatedEntity classCode="POLHOLD">
+      <id extension="1341341324" root="2.16.840.1.113883.2.6.234.93345"/>
+      <telecom nullFlavor="UNK"/>
+      <associatedPerson>
+        <name>
+          <given>Emma</given>
+          <family>Erle</family>
+        </name>
+      </associatedPerson>
+      <scopingOrganization>
+        <id extension="4112014" root="2.16.840.1.113883.2.6.234"/>
+        <name>AOK Rheinland Die Gesundheitskasse</name>
+        <telecom nullFlavor="UNK"/>
+        <addr>
+          <streetName>Kasernenstr.</streetName>
+          <houseNumber>61</houseNumber>
+          <postalCode>40213</postalCode>
+          <city>Düsseldorf</city>
+        </addr>
+      </scopingOrganization>
+    </associatedEntity>
+  </participant>
+  <relatedDocument typeCode="RPLC">
+    <parentDocument>
+      <id extension="60248,76389" root="1.2.276.0.58"/>
+    </parentDocument>
+  </relatedDocument>
+  <component>
+    <structuredBody>
+      <component>
+        <!-- Anamnese Komponente -->
+        <section>
+          <code code="10164-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>12.12.2005: Anamnese</title>
+          <text> Seit der Geburt ihres Kindes vor 5 Monaten klagte die Patientin über Schmerzen im LWS-Bereich mit Ausstrahlung in
+            das rechte Bein bis hin zur Großzehe. Eine konservative ambulante Therapie habe bisher keinen Erfolg gebracht. Die
+            allgemeine Vorgeschichte ist unauffällig.</text>
+        </section>
+      </component>
+      <component>
+        <!-- Befund Komponente -->
+        <section>
+          <code code="00000-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>12.12.2005: Befund</title>
+          <text> Bei der Untersuchung zeigte die Patientin eine aufrechte Haltung, sowie einen zügigen, sicheren und koordinierten
+            Gang, ohne Gehhilfsmittel. Ein leicht schmerzbetontes Hinken bei Vollbelastung beider Beine war rechtsseitig zu
+            beobachten. <paragraph/>Die WS war gerade aufgebaut, bei einer deutlichen Hyperlodose der LWS. Die paravertebrale
+            Rumpfmuskulatur war beidseitig kräftig entwickelt. Ein Druck- oder Klopfschmerz war nicht auszulösen. Der
+            Zehenspitzen- und Hackengang war beidseitig normal durchführbar, ebenso wie der Einbeinstand beidseits. Die
+            Seitwärtsneigung nach rechts war endgradig schmerzhaft, nach links unauffällig durchführbar und die Rotation
+            beidseitig unauffällig möglich. Die Reklination war ohne Schmerzen durchzuführen, die Inklination jedoch deutlich mit
+            Schmerzen verbunden, der FBA reichte bis zu den Kniegelenken. Das Laseguèsche Phänomen war rechts bei 60° positiv,
+            links endgradig positiv. Der PSR war beidseits seitengleich, ebenso der ASR seitengleich und normal auslösbar.
+            <paragraph/> Sensibilitätsstörungen fanden sich nicht, ebenso wenig motorische Störungen. <paragraph/>Die
+            Beweglichkeit der unteren Extremitätengelenke war in allen Ebenen frei möglich und die Beinlänge seitengleich.</text>
+        </section>
+      </component>
+      <component>
+        <!-- Diagnose mit ICD Komponente auf CDA Level 2-->
+        <section>
+          <code code="27754-1" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>12.12.2005: Diagnosen mit ICD 10</title>
+          <text>
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>Diagnose</th>
+                  <th>ICD Code</th>
+                  <th>Lokalisation</th>
+                  <th>Zusatz</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <content ID="DIAG200512121">Sonstige näher bezeichnete Bandscheibendegeneration</content>
+                  </td>
+                  <td>M51.3</td>
+                  <td>--</td>
+                  <td>G</td>
+                </tr>
+                <tr>
+                  <td>
+                    <content ID="DIAG200512122">Entzündung des Ganglion geniculi</content>
+                  </td>
+                  <td>G51.1</td>
+                  <td>--</td>
+                  <td>G</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <!-- Diagnosedarstellung auf Level 3 -->
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <code code="DISDX" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosen"/>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20051212"/>
+              </effectiveTime>
+              <value xsi:type="CD" code="M51.3" codeSystem="1.2.276.0.76.5.311" codeSystemName="ICD10gm2006"
+                displayName="Sonstige näher bezeichnete Bandscheibendegeneration ">
+                <originalText>
+                  <reference value="#DIAG200512121"/>
+                </originalText>
+                <qualifier>
+                  <name code="8" codeSystem="2.16.840.1.113883.3.7.1" displayName="Diagnosesicherheit"/>
+                  <value code="G" codeSystem="2.16.840.1.113883.3.7.1.8" displayName="gesicherte Diagnose"/>
+                </qualifier>   
+              </value>
+            </observation>
+          </entry>
+          <!-- Diagnosedarstellung auf Level 3 -->
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <code code="DISDX" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosen"/>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20051212"/>
+              </effectiveTime>
+              <value xsi:type="CD" code="G51.1" codeSystem="1.2.276.0.76.5.311" codeSystemName="ICD10gm2006"
+                displayName="Entzündung des Ganglion geniculi ">
+                <originalText>
+                  <reference value="#DIAG200512122"/>
+                </originalText>
+                <qualifier>
+                  <name code="8" codeSystem="2.16.840.1.113883.3.7.1" displayName="Diagnosesicherheit"/>
+                  <value code="G" codeSystem="2.16.840.1.113883.3.7.1.8" displayName="gesicherte Diagnose"/>
+                </qualifier>
+              </value>
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <!-- Laborergebnisse Komponente -->
+        <section>
+          <code code="00000-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>14.12.2005: Laborparameter</title>
+          <text>Der CHOL-Wert war mit 294 mg% leicht erhöht, sowie die BSG mit 18/42 leicht erhöht. Normalwertig waren rotes und
+            weißes Blutbild, harnpfl. Substanzen, Transamiasen, LDH, GGT, TG, RF, CRP, ASL, Elektrolyte, BZ-nüchtern und der
+            Quick-Wert. In Urinsediment fanden sich 70-80 Leucos.</text>
+        </section>
+      </component>
+      <component>
+        <!-- Röntgenbefund Komponente -->
+        <section>
+          <code code="11522-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>12.12.2005: Röntgenbefund</title>
+          <text>Kernspintomographie der LWS:<paragraph/><list listType="ordered"><item>Im Segment L4/5 mäßige Höhenminderung des Zwischenraums mit
+                Signalabsenkung innerhalb des Bandscheibengewebes als Zeichen der Degeneration. Es resultiert eine tropfenförmige,
+                noch subligamentär situierte Bandscheibenherniation, die zu einer ovalären Impression des Duralsacks führt. Die
+                intraformalinaren Nervenwurzeln kommen symmetrisch regelrecht zur Darstellung.</item><item>Im Segment L4/S1 ebenfalls
+                Signalabsenkung innerhalb des Bandscheibengewebes, bei noch erhaltener Höhe des Zwischenwirbelraums: Dehydralation
+                des Nucleus pulposo. Schmale kragenförmige Protrusion mit angedeuteter Parottierung des Duralsacks.</item><item>In L
+                3/4 "bulging disc".</item><item>In den übrigen Etagen keine Besonderheiten</item></list></text>
+        </section>
+      </component>
+      <component>
+        <!-- Entlassbefund Komponente -->
+        <section>
+          <code code="0000-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>12.12.2005: Entlassbefund</title>
+          <text> Keine sensomotorischen Ausfälle</text>
+        </section>
+      </component>
+      <component>
+        <!-- Therapien Komponente -->
+        <section>
+          <code code="0000-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>12.12.2005: Therapien</title>
+          <text> OP am 12.12.2005: Nach Einleitung der Intubationsnarkose Lagerung der Patientin in Bauchlage und
+            Kniehockstellung. Palpatorische Höhenlokalisation über den Dornfortsätzen von L WK 5/ SW 1 von links und Anlage eines
+            medialen Hautschnittes. Präparation der subkutanen Fettschicht, Darstellung der muskulären Fascie. lncision derselben
+            und Abschieben der langen Rückenmuskulatur vom medialen Fascienblatt nach lateral. Nochmals Überprüfung der korrekten
+            Höhe. Nachcaudal lässt sich kein weiteres interlaminäres Fenster mehr tasten. Nach Einsetzen des selbsthaltenden
+            Williamssperres erfolgt unter Zuhilfenahme des Operationsmikroskopes die erweiterte interlaminäre Fensterung.
+            Intraspinal findet sich epidurales Fettgewebe, nach vorsichtiger Präparation und Darstellung der nach dorso-medial
+            deutlich verlagerten komprimierten Nervenwurzel stellt sich in Höhe des Bandscheibenraumes ein großer, breitbasiger
+            subligamentär sequestrierter Bandscheibenvorfall dar. Nach vorsichtiger Medialisierung der nervalen Strukturen und
+            nochmals Erweiterung der interlaminären Fensterung scharfe lncision des hinteren Längsbandes. Es lässt sich ein
+            sequestierter Bandscheibenvorfall problemlos entfernen. Danach sind die nervalen Strukturen bereits deutlich
+            entspannt, jetzt Eingehen in den dazugehörigen Bandscheibenraum. Es erfolgt die Nukleotomie. Es lässt sich jede Menge
+            degenerativ verändertes Bandscheibengewebe entfernen. Von medio-caudal her findet sich noch subligamentär ein weiterer
+            kleinerer Bandscheibensequester. Nach kranial hin scheint das hintere Längsband angehoben, es lässt sich jedoch auch
+            von medio-caudal her vom festen Osteosacrum eine kleine osteochondrotische Randzacke tasten. Diese kann teilweise auch
+            entfernt werden. Nach mehrmals Spülen mit physiologischer Kochsalzlösung finden sich keine freien
+            Bandscheibensequestermaterialen mehr. Nochmals Darstellung der freien nervalen Strukturen mit Hilfe des gebogenen
+            Dissektors. Anschließend kann die Operation beendet werden durch schichtweisen Wundverschluss, Muskelfasciennaht,
+            Subcutannaht, lntracutannaht. Steriler Verband.</text>
+        </section>
+      </component>
+      <component>
+        <!-- Empfehlung Komponente -->
+        <section>
+          <code code="00000-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>12.12.2005: Empfehlung</title>
+          <text>Um die Rumpfmuskulatur nach der OP zu stärken, die Haltung zu verbessern und weiteren Beschwerden vorzubeugen
+            empfehlen wir krankengymnastische und muskelkräftigende Übungen in Einzeltherapie, eine Haltungsschulung,
+            Bewegungsbäder, Rückenschwimmen, Fango und Massage für die LWS, aussparend den S1-Bereich, sowie Massagen für
+            Schulter- und Nackenbereich.</text>
+        </section>
+      </component>
+      <component>
+        <!-- Fremdbefund Komponente -->
+        <section>
+          <title>Fremdbefund</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Histologie Komponente -->
+        <section>
+          <title>Histologie</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Medikamente Komponente -->
+        <section>
+          <title>Medikamente</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Hinweise Komponente -->
+        <section>
+          <title>Hinweise</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Sono Komponente -->
+        <section>
+          <title>Sono</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Allergien Komponente -->
+        <section>
+          <title>Allergien</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Verlauf Komponente -->
+        <section>
+          <title>Verlauf</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Prognose Komponente -->
+        <section>
+          <title>Prognose</title>
+          <text>-</text>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

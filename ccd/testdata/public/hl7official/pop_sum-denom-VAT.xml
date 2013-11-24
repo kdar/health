@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hai-display.xsl"?>
+<!--
+ Title: Denominator for Dialysis Summary Report
+        sample report
+ Original Filename: pop_sum-denom-DIAL.xml
+ Version: 1.0
+ Revision History:
+
+  Specification: HL7 CDAR2L3_IG_HAIRPT_DSTU_R7_BALLOT
+
+  This sample document was created by Lantana Consulting Group,
+  on behalf of the Center for Disease Control and Prevention
+  to meet the needs of the National Healthcare Safety Network (NHSN)
+  Healthcare Associated Infection reporting.
+
+  For more information on NHSN please contact nhsn@cdc.gov (http://www.cdc.gov/nhsn/)
+  For more information on the "HL7 Implementation Guide for CDA Release 2:
+  NHSN Healthcare Associated Infection (HAI) Reports"
+  see www.hl7.org, Structured Documents Working Group
+-->
+
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <!-- Comments precede their subject -->
+  <!-- This is a population-summary report. -->
+
+   <realmCode code="US"/>
+
+   <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+
+   <!-- Conformant to NHSN R7 Generic Constraints -->
+   <templateId root="2.16.840.1.113883.10.20.5.4.22"/>
+
+   <!-- Conformant to the NHSN Constraints for Population Summary Report -->
+   <templateId root="2.16.840.1.113883.10.20.5.23"/>
+
+   <!-- Document ID (extension) is scoped by vendor/software -->
+   <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.2" extension="20202201"/>
+
+   <code codeSystem="2.16.840.1.113883.6.1"
+         codeSystemName="LOINC"
+         code="51897-7"
+         displayName="Healthcare Associated Infection Report"/>
+
+   <title>Denominator for Dialysis Report</title>
+
+   <!-- Document-creation date -->
+   <effectiveTime value="20080701"/>
+
+   <confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N"/>
+
+   <languageCode code="en-US"/>
+
+   <!-- succession management -->
+   <setId root="2.16.840.1.113883.3.117.1.1.5.2.1.1.1" extension="33"/>
+   <!-- the original -->
+   <versionNumber value="1"/>
+
+   <recordTarget>
+      <patientRole>
+         <!-- This is a population summary report -->
+         <id nullFlavor="NA"/>
+      </patientRole>
+   </recordTarget>
+
+  <!-- The author of a population summary report is the software forming the message. -->
+  <author>
+    <time value="20080701"/>
+    <assignedAuthor>
+      <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1" extension="aSoftwareID"/>
+    </assignedAuthor>
+  </author>
+
+  <!-- The custodian of the CDA document is NHSN -->
+   <custodian>
+      <assignedCustodian>
+         <representedCustodianOrganization>
+            <id root="2.16.840.1.114222.4.3.2.11"/>
+         </representedCustodianOrganization>
+      </assignedCustodian>
+   </custodian>
+
+  <!-- Legal authenticator is scoped by facility -->
+   <legalAuthenticator>
+      <time value="20080701"/>
+      <signatureCode code="S"/>
+      <assignedEntity>
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="aLegalAuthenticatorID"/>
+      </assignedEntity>
+   </legalAuthenticator>
+
+  <!-- In a population summary report, a participant element SHALL be present
+       representing that the report documents a group -->
+   <participant typeCode="SBJ" contextControlCode="OP">
+      <associatedEntity classCode="PRS">
+         <code codeSystem="2.16.840.1.113883.6.96" code="389109008" displayName="group"/>
+      </associatedEntity>
+   </participant>
+
+  <!-- The location participant (facility) -->
+   <participant typeCode="LOC" contextControlCode="OP">
+      <associatedEntity classCode="SDLOC">
+      <!--ID of facility -->
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1"/>
+      </associatedEntity>
+   </participant>
+
+   <documentationOf>
+        <serviceEvent classCode="CASE">
+           <code codeSystem="2.16.840.1.113883.6.277"
+                 codeSystemName="cdcNHSN"
+                 code="2316-8"
+                 displayName="Summary data reporting vascular access types for chronic hemodialysis patients"/>
+           <effectiveTime>
+              <!-- the first day of the period reported -->
+              <low value="20080601"/>
+              <!-- the last day of the period reported -->
+              <high value="20080602"/>
+         </effectiveTime>
+      </serviceEvent>
+   </documentationOf>
+
+<!-- ********************************************************
+     Structured Body
+     ******************************************************** -->
+
+   <component>
+      <structuredBody>
+
+<!-- ********************************************************
+     Population Summary Section
+     ******************************************************** -->
+
+
+         <component>
+            <section>
+               <templateId root="2.16.840.1.113883.10.20.5.5.23"/>
+               <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51900-9" displayName="Summary Section"/>
+               <title>Summary Data</title>
+
+               <text>
+                  <table>
+                     <tbody>
+                        <tr>
+                           <td valign="top">Number of Chronic Hemodialysis Patients, vascular access type is fistula</td>
+                           <td valign="top">100</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Number of Chronic Hemodialysis Patients, vascular access type is graft</td>
+                           <td valign="top">25</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Number of Chronic Hemodialysis Patients, vascular access type is tunneled central line, dialysis</td>
+                           <td valign="top">26</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Number of Chronic Hemodialysis Patients, vascular access type is non-tunnelled central line, dialysis</td>
+                           <td valign="top">27</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Number of Chronic Hemodialysis Patients, vascular access type is Other</td>
+                           <td valign="top">0</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+
+               <entry typeCode="DRIV"><!-- Template for Entry - Summary Data -->
+                  <encounter classCode="ENC" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.10.20.5.6.70"/>
+
+                     <!-- the in-facility location ID and type -->
+                     <participant typeCode="LOC">
+                        <participantRole classCode="SDLOC">
+                           <!-- the facility OID scopes the in-facility location ID -->
+                           <id root="2.16.840.1.113883.3.117.1.1.5.1.1" extension="9W"/>
+                              <code codeSystem="2.16.840.1.113883.6.259"
+                                    codeSystemName="HL7 Healthcare Service Location Code"
+                                    code="1153-6"
+                                    displayName="Outpatient Hemodialysis Clinic"/>
+                        </participantRole>
+                     </participant>
+
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+                           <code codeSystem="2.16.840.1.113883.6.277"
+                                 codeSystemName="cdcNHSN"
+                                 code="2310-1"
+                                 displayName="Number of Chronic Hemodialysis Patients, vascular access type is fistula"/>
+                           <statusCode code="completed"/>
+                           <value xsi:type="INT" value="100"/>
+
+                          <entryRelationship typeCode="COMP">
+                            <observation classCode="OBS" moodCode="EVN">
+                              <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+                              <code codeSystem="2.16.840.1.113883.6.277"
+                                    codeSystemName="cdcNHSN"
+                                    code="2311-9"
+                                    displayName="Number of chronic hemodialysis patients, vascular access type is fistula, buttonhole cannulation"/>
+                              <statusCode code="completed"/>
+                              <value xsi:type="INT" value="100"/>
+                            </observation>
+                          </entryRelationship>
+
+                        </observation>
+                     </entryRelationship>
+
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+                           <code codeSystem="2.16.840.1.113883.6.277"
+                                 codeSystemName="cdcNHSN"
+                                 code="2312-7"
+                                 displayName="Number of Chronic Hemodialysis Patients, vascular access type is graft"/>
+                           <statusCode code="completed"/>
+                           <value xsi:type="INT" value="25"/>
+                        </observation>
+                     </entryRelationship>
+
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+                           <code codeSystem="2.16.840.1.113883.6.277"
+                                 codeSystemName="cdcNHSN"
+                                 code="2313-5"
+                                 displayName="Number of Chronic Hemodialysis Patients, vascular access type is tunneled central line, dialysis"/>
+                           <statusCode code="completed"/>
+                           <value xsi:type="INT" value="26"/>
+                        </observation>
+                     </entryRelationship>
+
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+                           <code codeSystem="2.16.840.1.113883.6.277"
+                                 codeSystemName="cdcNHSN"
+                                 code="2314-3"
+                                 displayName="Number of Chronic Hemodialysis Patients, vascular access type is non-tunneled central line, dialysis"/>
+                           <statusCode code="completed"/>
+                           <value xsi:type="INT" value="27"/>
+                        </observation>
+                     </entryRelationship>
+
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+                           <code codeSystem="2.16.840.1.113883.6.277"
+                                 codeSystemName="cdcNHSN"
+                                 code="2315-0"
+                                 displayName="Number of Chronic Hemodialysis Patients, vascular access type is Other"/>
+                           <statusCode code="completed"/>
+                           <value xsi:type="INT" value="0"/>
+                        </observation>
+                     </entryRelationship>
+
+                  </encounter>
+               </entry>
+            </section>
+         </component>
+
+      </structuredBody>
+   </component>
+
+</ClinicalDocument>

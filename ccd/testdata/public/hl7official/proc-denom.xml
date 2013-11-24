@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hai-display.xsl"?>
+<!--
+ Title: Denominator for Procedure sample report
+ Original Filename: proc-denom.xml
+ Version: 1.10
+ Revision History:
+ 7/23/2009 bam updated to new cdcNHSN codeSytem for R3 publication
+ 11/10/2009 bam new general HAI header templateId for R4
+ 11/23/2009 kah regenerated narrative blocks
+ 4/05/2010 bam updated for May 2010 ballot
+ 6/28/2010 bam updated for May 2010 ballot reconciliation
+ 7/15/2010 kah regenerated narrative blocks
+ 8/16/2010 seh updated top-level templateId for r6
+ 12/28/2010 seh updated a couple of sample id OIDs; checked for missing codes
+ 12/29/2010 and 12/30/2010 seh updated additional sample OIDs to match pattern in IG
+ 08/01/2011 ldw updated templateID to match R7
+ 02/21/2012 ldw commented out inconsistent entries
+
+ Specification: HL7 CDAR2L3_IG_HAIRPT_DSTU_R7_D1_2011SEP
+
+ This sample document was created by Lantana Consulting Group
+ on behalf of the Center for Disease Control and Prevention
+ to meet the needs of the National Healthcare Safety Network (NHSN)
+ Healthcare Associated Infection reporting.
+
+ For more information on NHSN please contact nhsn@cdc.gov (http://www.cdc.gov/nhsn/)
+ For more information on the "HL7 Implementation Guide for CDA Release 2:
+ NHSN Healthcare Associated Infection (HAI) Reports"
+ see www.hl7.org, Structured Documents Working Group
+-->
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <!-- Comments precede their subject -->
+  <!-- This is a single-patient record. -->
+
+   <realmCode code="US"/>
+
+   <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+
+   <!-- Conformant to NHSN R6 Generic Constraints -->
+  <templateId root="2.16.840.1.113883.10.20.5.4.22"/>
+
+   <!-- Conformant to the NHSN Constraints for Procedure Denominator Report -->
+   <templateId root="2.16.840.1.113883.10.20.5.22"/>
+
+   <!-- Document ID (extension) is scoped by vendor/software -->
+   <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.2" extension="20202201"/>
+
+   <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+         code="51897-7" displayName="Healthcare Associated Infection Report"/>
+
+   <title>Denominator for Procedure Report</title>
+
+   <effectiveTime value="20080801"/>
+
+   <confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N"/>
+
+   <languageCode code="en-US"/>
+
+   <setId root="2.16.840.1.113883.3.117.1.1.5.2.1.1.1" extension="31"/>
+   <!-- the original -->
+    <versionNumber value="1"/>
+
+
+   <recordTarget>
+      <patientRole>
+         <!-- Patient ID - scoped by facility -->
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.1" extension="123456"/>
+         <!-- Secondary ID - scoped by facility -->
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.1" extension="987654321"/>
+         <patient>
+            <name>
+               <family>Nuclear</family>
+               <given>Ned</given>
+            </name>
+            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+            <birthTime value="19541125"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+
+  <!-- scoped by facility. -->
+   <author>
+      <time value="20061213"/>
+      <assignedAuthor>
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="anAuthorID"/>
+      </assignedAuthor>
+   </author>
+
+  <!-- The custodian of the CDA document is NHSN -->
+   <custodian>
+      <assignedCustodian>
+         <representedCustodianOrganization>
+            <id root="2.16.840.1.114222.4.3.2.11"/>
+         </representedCustodianOrganization>
+      </assignedCustodian>
+   </custodian>
+
+  <!-- Scoped by facility - is the ICP -->
+   <legalAuthenticator>
+      <time value="20061224"/>
+      <signatureCode code="S"/>
+      <assignedEntity>
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="aLegalAuthenticatorID"/>
+      </assignedEntity>
+   </legalAuthenticator>
+
+   <componentOf>
+      <encompassingEncounter>
+         <!-- Facility-generated Event/Procedure number -->
+         <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.3" extension="31"/>
+         <code codeSystem="2.16.840.1.113883.5.4" codeSystemName="actEncounterCode"
+               code="AMB" displayName="Outpatient"/>
+         <effectiveTime>
+            <!-- Date Admitted to Facility -->
+            <low value="20080805"/>
+         </effectiveTime>
+         <location>
+            <healthCareFacility>
+               <!-- Facility ID -->
+               <id root="2.16.840.1.113883.3.117.1.1.5.1.1"/>
+            </healthCareFacility>
+         </location>
+      </encompassingEncounter>
+   </componentOf>
+
+<!-- ********************************************************
+     Structured Body
+     ******************************************************** -->
+
+   <component>
+      <structuredBody>
+
+<!-- ********************************************************
+     Risk Factors Section
+     ******************************************************** -->
+
+         <component>
+            <section>
+               <templateId root="2.16.840.1.113883.10.20.5.5.22"/>
+               <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+                     code="51898-5" displayName="Risk Factors"/>
+               <title>Risk Factors</title>
+
+               <text>
+                  <table>
+                     <tbody>
+                        <tr>
+                           <td valign="top">ASA class</td>
+                           <td valign="top">ASA physical status class 1 ((Normally healthy patient)</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Trauma</td>
+                           <td valign="top">Yes</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Diabetes mellitus</td>
+                           <td valign="top">No</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Body Height</td>
+                           <td valign="top">180 cm</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Body weight</td>
+                           <td valign="top">130 lbs</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Duration of labor</td>
+                           <td valign="top">6 h</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Estimated maternal blood loss</td>
+                           <td valign="top">15 ml</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+
+               <!-- Procedure Risk Factors  -->
+               <entry typeCode="DRIV">
+                  <procedure classCode="PROC" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.10.20.5.6.68"/>
+                     <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.4" extension="92"/>
+
+                     <!-- Emergency procedure-->
+                     <methodCode codeSystem="2.16.840.1.113883.6.96"
+                                 code="373110003" displayName="emergency"/>
+
+                     <!-- Wound Class Observation -->
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.10.20.5.2.1.2"/>
+                           <code codeSystem="2.16.840.1.113883.6.96"
+                                 code="420089007" displayName="Wound Classification Category"/>
+                           <statusCode code="completed"/>
+                           <value xsi:type="CD"
+                                  codeSystem="2.16.840.1.113883.6.96"
+                                  code="418115006" displayName="CDC Wound Class II/Clean Contaminated"/>
+                        </observation>
+                     </entryRelationship>
+
+                     <!-- Endoscope (not negated = was used) -->
+                     <entryRelationship typeCode="COMP">
+                        <procedure classCode="PROC" moodCode="EVN" negationInd="false">
+                           <templateId root="2.16.840.1.113883.10.20.5.2.1.3"/>
+                           <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED"
+                                 code="423827005" displayName="Endoscopy"/>
+                        </procedure>
+                     </entryRelationship>
+                  </procedure>
+               </entry>
+
+               <!-- required for an inpatient -->
+               <!--
+               <entry typeCode="DRIV">
+                  <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                     <templateId root="2.16.840.1.113883.10.20.5.2.2.7.4"/>
+                     <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+                     <statusCode code="completed"/>
+                     <value xsi:type="CD"
+                            codeSystem="2.16.840.1.113883.6.96"
+                            code="413495001" displayName="Normally healthy patient"/>
+                  </observation>
+               </entry>
+               -->
+
+               <entry typeCode="DRIV">
+                  <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                     <templateId root="2.16.840.1.113883.10.20.5.2.2.7.5"/>
+                     <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                     <statusCode code="completed"/>
+                     <value xsi:type="CD"
+                            codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED"
+                            code="417746004" displayName="Trauma"/>
+                  </observation>
+               </entry>
+
+               <entry typeCode="DRIV">
+                  <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                     <templateId root="2.16.840.1.113883.10.20.5.2.2.7.7"/>
+                     <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                     <statusCode code="completed"/>
+                     <value xsi:type="CD"
+                            codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED"
+                            code="73211009" displayName="Diabetes mellitus"/>
+                  </observation>
+               </entry>
+
+               <entry typeCode="DRIV">
+                  <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                     <templateId root="2.16.840.1.113883.10.20.5.2.2.7.9"/>
+                     <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED"
+                           code="50373000" displayName="Body Height"/>
+                     <statusCode code="completed"/>
+                     <value xsi:type="PQ" value="180" unit="cm"/>
+                  </observation>
+               </entry>
+
+               <entry typeCode="DRIV">
+                  <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                     <templateId root="2.16.840.1.113883.10.20.5.2.2.7.10"/>
+                     <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED"
+                           code="27113001" displayName="Body Weight"/>
+                     <statusCode code="completed"/>
+                     <value xsi:type="PQ" value="130" unit="lbs"/>
+                  </observation>
+               </entry>
+
+               <entry typeCode="DRIV">
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.10.20.5.2.2.7.11"/>
+                     <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED"
+                           code="289248003" displayName="Duration of Labor"/>
+                     <statusCode code="completed"/>
+                     <value xsi:type="IVL_TS">
+                          <width value="6" unit="h"/>
+                     </value>
+                  </observation>
+               </entry>
+
+               <entry typeCode="DRIV">
+                  <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                     <templateId root="2.16.840.1.113883.10.20.5.2.2.7.12"/>
+                     <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED"
+                           code="409086003" displayName="Estimated blood loss"/>
+                     <statusCode code="completed"/>
+                     <value xsi:type="PQ" value="15" unit="ml"/>
+                  </observation>
+               </entry>
+            </section>
+         </component>
+
+<!-- ********************************************************
+     Details Section
+     ******************************************************** -->
+
+         <component>
+            <section>
+               <templateId root="2.16.840.1.113883.10.20.5.5.14"/>
+               <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"
+                     code="51899-3" displayName="Details"/>
+               <title>Procedure Details</title>
+
+               <text>
+                  <table>
+                     <tbody>
+                        <tr>
+                           <td valign="top">Type of procedure</td>
+                           <td valign="top">Limb amputation</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Procedure date</td>
+                           <td valign="top">December 23, 2006</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Procedure duration</td>
+                           <td valign="top">3 h</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">NHSNHipReplacementCode </td>
+                           <td valign="top">total primary</td>
+                        </tr>
+ <!--                       <tr>
+                           <td valign="top">NHSNKneeReplacementCode </td>
+                           <td valign="top">primary (total)</td>
+                        </tr>
+ -->
+<!--                       <tr>
+                           <td valign="top">NHSNSpinalFusionApproachCode</td>
+                           <td valign="top">anterior posterior</td>
+                        </tr>
+                        
+                        <tr>
+                           <td valign="top">NHSNSpinalFusionLevelCode</td>
+                           <td valign="top">atlas-axis (C1-C2 only)</td>
+                        </tr>
+-->                        <tr>
+                           <td valign="top">General anesthesia</td>
+                           <td valign="top">Yes</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Implantation</td>
+                           <td valign="top">No</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Non-autologous transplant</td>
+                           <td valign="top">Yes</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+
+               <entry typeCode="DRIV">
+
+               <!-- Procedure Details -->
+                  <procedure classCode="PROC" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.10.20.5.6.33"/>
+                     <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.4" extension="92"/>
+                     <code codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN"
+                           code="2126-1" displayName="Limb amputation"/>
+
+                    <!-- The procedure date -->
+                     <effectiveTime>
+                        <low value="20061223"/>
+                        <width value="3" unit="h"/>
+                     </effectiveTime>
+
+                     <!-- Hip replacement Type -->
+                     <!-- if the limb amputation included a hip replacement -->
+                     <methodCode codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN"
+                                 code="1320-1" displayName="total primary"/>
+
+                     <!-- Knee replacement Type -->
+<!--                     <methodCode codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN"
+                                 code="1410-0" displayName="total primary"/>
+-->
+                     <!-- Spinal fusion approach site and level  -->
+                     <!-- if procedure was a fusion or refusion (code/@code is either 2137-8 or 2135-2) -->
+ <!--                    <approachSiteCode codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN"
+                                       code="1205-4" displayName="anterior posterior"/>
+
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN">
+                           <templateId root="2.16.840.1.113883.10.20.5.2.2.7.8"/>
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+                           <statusCode code="completed"/>
+                           <value xsi:type="CD"
+                                  codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN"
+                                  code="1101-5" displayName="Spinal Fusion of Atlas-Axis"/>
+                        </observation>
+                     </entryRelationship>
+-->
+                     <!-- general anesthesia? not negated = was used -->
+                     <entryRelationship typeCode="COMP">
+                        <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
+                           <templateId root="2.16.840.1.113883.10.20.5.2.2.7.3"/>
+                           <consumable>
+                              <manufacturedProduct>
+                                 <manufacturedLabeledDrug>
+                                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED"
+                                          code="84451006" displayName="General anesthesia"/>
+                                 </manufacturedLabeledDrug>
+                              </manufacturedProduct>
+                           </consumable>
+                        </substanceAdministration>
+                     </entryRelationship>
+
+                     <!-- Implant Observation -->
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                           <templateId root="2.16.840.1.113883.10.20.5.6.20"/>
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+                           <statusCode code="completed"/>
+                           <value xsi:type="CD"
+                                  code="71861002" codeSystem="2.16.840.1.113883.6.96"
+                                  codeSystemName="SNOMED" displayName="Implant"/>
+                        </observation>
+                     </entryRelationship>
+
+                     <!-- Non-autologous Transplant -->
+                     <entryRelationship typeCode="COMP">
+                        <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                           <templateId root="2.16.840.1.113883.10.20.5.6.25"/>
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+                           <statusCode code="completed"/>
+                           <value xsi:type="CD"
+                                  code="3189-8" codeSystem="2.16.840.1.113883.6.277"
+                                  codeSystemName="cdcNHSN" displayName="Non-autologous Transplant"/>
+                        </observation>
+                     </entryRelationship>
+                  </procedure>
+               </entry>
+            </section>
+         </component>
+
+      </structuredBody>
+   </component>
+
+
+</ClinicalDocument>

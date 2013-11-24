@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hai-display.xsl"?>
+
+<!--
+     Title: Hemovigilance Incident (HI) sample report
+     Original Filename: HV-incident.xml
+     Version: 1.7
+     Revision History:
+     04/05/2010 kah Created
+     06/04/2010 kah updated for May 2010 ballot reconciliation
+     06/28/2010 kah updated for May publication
+     7/15/2010 kah regenerated narrative blocks
+     8/16/2010 seh updated top-level templateId for r6
+     12/30/2010 seh updated sample OIDs to match pattern in IG
+     5/31/2011 kah updated to include approximate time sample
+     08/01/2011 ldw updated templateID to match R7
+     12/21/2011 ldw updated comment in effectiveTime to record approximate time
+ 
+Specification: HL7 CDAR2L3_IG_HAIRPT_DSTU_R7_D1_2011SEP
+     This sample document was created by Lantana Consulting Group 
+     on behalf of the Center for Disease Control and Prevention 
+     to meet the needs of the National Healthcare Safety Network (NHSN) 
+     Healthcare Associated Infection reporting.
+ 
+     For more information on NHSN please contact 
+     nhsn@cdc.gov (http://www.cdc.gov/nhsn/)
+     For more information on the "HL7 Implementation Guide for CDA Release 2: 
+     NHSN Healthcare Associated Infection (HAI) Reports" 
+     see www.hl7.org, Structured Documents Working Group
+-->
+
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  
+  <!-- Comments precede their subject -->
+  <!-- The header conforms to the constraints of a population-summary report. -->
+  
+  <realmCode code="US"/>
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+  <!-- Conformant to NHSN R6 Generic Constraints -->
+  <templateId root="2.16.840.1.113883.10.20.5.4.22"/>
+  <!-- Conformant to the NHSN Constraints for Hemovigilance Incident Report -->
+  <templateId root="2.16.840.1.113883.10.20.5.21"/>
+  <!-- Document ID (extension) is scoped by vendor/software -->
+  <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.2" extension="20202201"/>
+  <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51897-7"
+    displayName="Healthcare Associated Infection Report"/>
+  <title>Hemovigilance Incident Report</title>
+  <!-- Document-creation date -->
+  <effectiveTime value="20080701"/>
+  <confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N"/>
+  <languageCode code="en-US"/>
+  <!-- succession management -->
+  <setId root="2.16.840.1.113883.3.117.1.1.5.2.1.1.1" extension="33"/>
+  <!-- the original -->
+  <versionNumber value="1"/>
+  <!-- This is not a single-person report. -->
+  <recordTarget>
+    <patientRole>
+      <id nullFlavor="NA"/>
+    </patientRole>
+  </recordTarget>
+  <!-- Author/authenticator may be software or may be
+       someone in the role of "infection control professional".
+       This author is scoped by facility. -->
+  <author>
+    <time value="20080701"/>
+    <assignedAuthor>
+      <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.2" extension="anAuthorID"/>
+    </assignedAuthor>
+  </author>
+  <!-- The custodian of the CDA document is NHSN -->
+  <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id root="2.16.840.1.114222.4.3.2.11"/>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <!-- Legal authenticator is scoped by facility -->
+  <legalAuthenticator>
+    <time value="20080701"/>
+    <signatureCode code="S"/>
+    <assignedEntity>
+      <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="aLegalAuthenticatorID"/>
+    </assignedEntity>
+  </legalAuthenticator>
+  <!-- In a population summary type of report, a participant element 
+       SHALL be present representing that the report documents a group -->
+  <participant typeCode="SBJ" contextControlCode="OP">
+    <associatedEntity classCode="PRS">
+      <code codeSystem="2.16.840.1.113883.6.96"
+            codeSystemName="SNOMEDCT"
+            code="389109008"
+            displayName="group"/>
+    </associatedEntity>
+  </participant>
+  <!-- The location participant (facility) -->
+  <participant typeCode="LOC" contextControlCode="OP">
+    <associatedEntity classCode="SDLOC">
+      <!--ID of facility -->
+      <id root="2.16.840.1.113883.3.117.1.1.5.1.1"/>
+    </associatedEntity>
+  </participant>
+  <documentationOf>
+    <serviceEvent classCode="CASE">
+      <!-- This report uses population-summary header constraints,
+           which expect a code differentiating the data sets.-->
+      <code nullFlavor="NA"/>
+      <!-- To record that a time is approximate and the degree of approximation is unknown, 
+           use effectiveTime/center with width unknown. -->
+      <effectiveTime>
+        <center value="20090910"/>
+        <width nullFlavor="UNK"/>
+      </effectiveTime>
+    </serviceEvent>
+  </documentationOf>
+  
+  <!-- ********************************************************
+      Structured Body
+      ******************************************************** -->
+  
+  <component>
+    <structuredBody>
+      
+    <!-- ********************************************************
+     Incident Detail Section
+     ******************************************************** -->
+      
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.5.5.20"/>
+          <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51899-3"
+            displayName="Incident Detail"/>
+          <title>Incident Detail</title>
+          <text>
+             <table>
+                <tbody>
+                   <tr>
+                      <td valign="top">Product check-in - Shipment incomplete/incorrect</td>
+                      <td>September 10, 2009<br/>Location ID 9W<br/>Incident ID 927</td>
+                   </tr>
+                   <tr>
+                      <td valign="top">Adverse reaction</td>
+                      <td valign="top">Yes<br/>Patient ID 12345</td>
+                   </tr>
+                   <tr>
+                      <td valign="top">(Non-product) Actions taken</td>
+                      <td valign="top">Floor/clinic notified: Yes<br/>Attending physician notified: Yes<br/>Record corrected: Yes<br/>Additional testing: No<br/>Patient sample re-collected: No<br/>
+                      </td>
+                   </tr>
+                   <tr>
+                      <td valign="top">Root causes identified</td>
+                      <td valign="top">Technical cause: Yes<br/>Organizational cause: No<br/>Human cause: No<br/>Patient-related cause: No<br/>
+                      </td>
+                   </tr>
+                   <tr>
+                      <td valign="top">
+                         <content styleCode="Bold">First Discovery of the Incident</content>
+                      </td>
+                      <td valign="top"/>
+                   </tr>
+                   <tr>
+                      <td valign="top">First discovery</td>
+                      <td valign="top">Product/test request</td>
+                   </tr>
+                   <tr>
+                      <td valign="top">When first discovered?</td>
+                      <td>September 9, 2009</td>
+                   </tr>
+                   <tr>
+                      <td valign="top">Where first discovered?</td>
+                      <td>Location ID 9W<br/>Medical/Surgical Critical Care</td>
+                   </tr>
+                   <tr>
+                      <td valign="top">How first discovered?</td>
+                      <td valign="top">Communication from lab to floor</td>
+                   </tr>
+                   <tr>
+                      <td valign="top">Recovery type?</td>
+                      <td>Planned recovery</td>
+                   </tr>
+                   <tr>
+                      <td valign="top">Product Disposition</td>
+                      <td valign="top">Product destroyed<br/>3 unit(s) RED BLOOD CELLS|CPD/450mL/refg</td>
+                   </tr>
+                </tbody>
+             </table>
+          </text>
+          <entry typeCode="DRIV">
+            <!-- Incident Detail clinical statement -->
+            <act classCode="INC" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.5.6.61"/>
+              <id root="2.16.840.1.113883.3.117.1.1.5.1.1.5" extension="11987654321"/>
+              <code codeSystem="2.16.840.1.113883.6.277"
+                    codeSystemName="cdcNHSN"
+                    code="5003-9"
+                    displayName="Product check-in: shipment incomplete/incorrect"/>
+              <statusCode code="completed"/>
+              
+              <!-- the in-facility location -->
+              <!-- conforms to CCD participant loc template 2.16.840.1.113883.10.20.1.45 -->
+              <participant typeCode="LOC">
+                <participantRole classCode="SDLOC">
+                  <!-- facility OID scopes the in-facility location -->
+                  <id root="2.16.840.1.113883.3.117.1.1.5.1.1" extension="9W"/>
+                  <playingEntity classCode="PLC">
+                    <code codeSystem="2.16.840.1.113883.6.259"
+                          codeSystemName="HL7 Healthcare Service Location Code"
+                          code="1029-8"
+                          displayName="Medical/Surgical Critical Care"/>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+              <!-- The first three entryRelationships are about the incident. -->
+              <!-- (If there was an actual transfusion) Was there an adverse reaction? -->
+              <entryRelationship typeCode="CAUS">
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                  <templateId root="2.16.840.1.113883.10.20.5.6.62"/>
+                  <code codeSystem="2.16.840.1.113883.5.4"
+                        code="ASSERTION"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD"
+                         codeSystem="2.16.840.1.113883.6.96"
+                         codeSystemName="SNOMED CT"
+                         code="281647001"
+                         displayName="Adverse reaction"/>
+                  <!-- If negationInd="false", i.e., there was an adverse reaction,
+                       record the ids of the patients who experienced this reaction. -->
+                  <participant typeCode="SBJ" contextControlCode="OP">
+                    <participantRole classCode="PRS">
+                      <id root="2.16.840.1.113883.3.117.1.1.5.1.1.1" extension="123456"/>
+                    </participantRole>
+                  </participant>
+                </observation>
+              </entryRelationship>
+              <!-- Non-product Actions taken as a result of the incident.
+                   One observation for each value in the value-set, with negationInd -->
+              <entryRelationship typeCode="CAUS">
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                  <templateId root="2.16.840.1.113883.10.20.5.6.63"/>
+                  <code codeSystem="2.16.840.1.113883.5.4"
+                        code="ASSERTION"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD"
+                         codeSystem="2.16.840.1.113883.6.277"
+                         codeSystemName="cdcNHSN"
+                         code="3437-1"
+                         displayName="Floor/clinic notified"/>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="CAUS">
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                  <templateId root="2.16.840.1.113883.10.20.5.6.63"/>
+                  <code codeSystem="2.16.840.1.113883.5.4"
+                        code="ASSERTION"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD"
+                         codeSystem="2.16.840.1.113883.6.277"
+                         codeSystemName="cdcNHSN"
+                         code="3438-9"
+                         displayName="Attending physician notified"/>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="CAUS">
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                  <templateId root="2.16.840.1.113883.10.20.5.6.63"/>
+                  <code codeSystem="2.16.840.1.113883.5.4"
+                        code="ASSERTION"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD"
+                         codeSystem="2.16.840.1.113883.6.277"
+                         codeSystemName="cdcNHSN"
+                         code="3439-7"
+                         displayName="Record corrected"/>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="CAUS">
+                <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                  <templateId root="2.16.840.1.113883.10.20.5.6.63"/>
+                  <code codeSystem="2.16.840.1.113883.5.4"
+                        code="ASSERTION"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD"
+                         codeSystem="2.16.840.1.113883.6.277"
+                         codeSystemName="cdcNHSN"
+                         code="3440-5"
+                         displayName="Additional Testing"/>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="CAUS">
+                <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                  <templateId root="2.16.840.1.113883.10.20.5.6.63"/>
+                  <code codeSystem="2.16.840.1.113883.5.4"
+                        code="ASSERTION"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD"
+                         codeSystem="2.16.840.1.113883.6.277"
+                         codeSystemName="cdcNHSN"
+                         code="3441-3"
+                         displayName="Patient sample re-collected"/>
+                </observation>
+              </entryRelationship>
+              <!-- (If root-cause analysis was done: Root-cause Type identified
+                   One observation for each value in the value-set, with negationInd
+                   OR
+                   One observation with value nullFlavor NA not asked. -->
+              <entryRelationship typeCode="RSON" inversionInd="true">
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                  <templateId root="2.16.840.1.113883.10.20.5.6.64"/>
+                  <code codeSystem="2.16.840.1.113883.6.96"
+                        codeSystemName="SNOMED CT"
+                        code="405534009"
+                        displayName="Adverse incident contributing factor"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD"
+                         codeSystem="2.16.840.1.113883.6.277"
+                         codeSystemName="cdcNHSN"
+                         code="3459-5"
+                         displayName="Technical cause"/>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="RSON" inversionInd="true">
+                <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                  <templateId root="2.16.840.1.113883.10.20.5.6.64"/>
+                  <code codeSystem="2.16.840.1.113883.6.96"
+                        codeSystemName="SNOMED CT"
+                        code="405534009"
+                        displayName="Adverse incident contributing factor"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD"
+                         codeSystem="2.16.840.1.113883.6.277"
+                         codeSystemName="cdcNHSN"
+                         code="3460-3"
+                         displayName="Organizational cause"/>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="RSON" inversionInd="true">
+                <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                  <templateId root="2.16.840.1.113883.10.20.5.6.64"/>
+                  <code codeSystem="2.16.840.1.113883.6.96"
+                        codeSystemName="SNOMED CT"
+                        code="405534009"
+                        displayName="Adverse incident contributing factor"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD"
+                         codeSystem="2.16.840.1.113883.6.277"
+                         codeSystemName="cdcNHSN"
+                         code="3461-1"
+                         displayName="Human cause"/>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="RSON" inversionInd="true">
+                <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                  <templateId root="2.16.840.1.113883.10.20.5.6.64"/>
+                  <code codeSystem="2.16.840.1.113883.6.96"
+                        codeSystemName="SNOMED CT"
+                        code="405534009"
+                        displayName="Adverse incident contributing factor"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CD"
+                         codeSystem="2.16.840.1.113883.6.277"
+                         codeSystemName="cdcNHSN"
+                         code="3462-9"
+                         displayName="Patient-related cause"/>
+                </observation>
+              </entryRelationship>
+              <!-- The last entryRelationship is about the Discovery of the incident. -->
+              <entryRelationship typeCode="COMP">
+                <!-- Process Step, Date, Location, and Method of Discovery -->
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.5.6.67"/>
+                  <code codeSystem="2.16.840.1.113883.6.277"
+                        codeSystemName="cdcNHSN"
+                        code="3498-3"
+                        displayName="First Discovery"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <center value="20090910"/>
+                    <width nullFlavor="UNK"/>
+                  </effectiveTime>
+                  <value xsi:type="CD"
+                         codeSystem="2.16.840.1.113883.6.277"
+                         codeSystemName="cdcNHSN"
+                         code="3131-0"
+                         displayName="Product Test/Request"/>
+                  <!-- Method of Discovery -->
+                  <methodCode codeSystem="2.16.840.1.113883.6.277"
+                              codeSystemName="cdcNHSN"
+                              code="3442-1"
+                              displayName="Communication from lab to floor"/>
+                  <!-- In-facility location and type -->
+                  <participant typeCode="LOC">
+                    <participantRole classCode="SDLOC">
+                      <!-- facility OID scopes the in-facility location -->
+                      <id root="2.16.840.1.113883.3.117.1.1.5.1.1" extension="9W"/>
+                      <playingEntity classCode="PLC">
+                        <code codeSystem="2.16.840.1.113883.6.259"
+                              codeSystemName="HL7 Healthcare Service Location Code"
+                              code="1029-8"
+                              displayName="Medical/Surgical Critical Care"/>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <!-- If a "Near Miss", Recovery Type -->
+                  <entryRelationship typeCode="COMP">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.5.6.65"/>
+                      <code codeSystem="2.16.840.1.113883.5.4"
+                            code="ASSERTION"/>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CD"
+                             codeSystem="2.16.840.1.113883.6.277"
+                             codeSystemName="cdcNHSN"
+                             code="3457-9"
+                             displayName="Planned Recovery"/>
+                    </observation>
+                  </entryRelationship>
+                  <!-- Product Disposition  -->
+                  <entryRelationship typeCode="REFR">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.5.6.66"/>
+                      <code codeSystem="2.16.840.1.113883.6.277"
+                            codeSystemName="cdcNHSN"
+                            code="3464-5"
+                            displayName="Product destroyed"/>
+                      <statusCode code="completed"/>
+                      <!-- Number of units destroyed -->
+                      <value xsi:type="INT"
+                             value="3"/>
+                      <!-- If more than one type of blood product was destroyed, 
+                           record each in a separate Blood Product Disposition Observation. -->
+                      <participant typeCode="SBJ" contextControlCode="OP">
+                        <participantRole classCode="MANU">
+                          <playingEntity classCode="MAT">
+                            <code codeSystem="2.16.840.1.113883.6.18"
+                                  codeSystemName="ISBT-128"
+                                  code="E0150"
+                                  displayName="RED BLOOD CELLS|CPD/450mL/refg"/>
+                          </playingEntity>
+                        </participantRole>
+                      </participant>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

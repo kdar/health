@@ -1,0 +1,1075 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="hai-display.xsl"?>
+
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+ <!--
+
+    Title: Influenza Immunization Offer Numerator sample report - Healthcare worker
+
+    Original Filename: immunize-num-HEALTHCARE-WORKER.xml
+
+    Version: 1.9
+
+    Revision History:
+
+    7/23/2009 bam updated to new cdcNHSN codeSytem for R3 publication
+
+    11/10/2009 bam new general HAI header templateId for R4
+
+    11/23/2009 kah regenerated narrative blocks
+
+    4/05/2010 bam updated for May 2010 ballot
+
+    7/15/2010 kah regenerated narrative blocks
+
+    8/16/2010 seh updated top-level templateId for r6
+
+    11/18/2010 bam Updated per fall 2010 ballot
+
+        comment 21 to use NUCC code in clinical speciality observation,
+
+        comment 40 to use EVN code in place of DEF
+
+    12/30/2010 seh updated sample OIDs to match pattern in IG
+
+    08/01/2011 ldw updated templateID to match R7
+
+
+
+Specification: HL7 CDAR2L3_IG_HAIRPT_DSTU_R7_D1_2011SEP
+
+
+
+    This sample document was created by Lantana Consulting Group
+
+    on behalf of the Center for Disease Control and Prevention
+
+    to meet the needs of the National Healthcare Safety Network (NHSN)
+
+    Healthcare Associated Infection reporting.
+
+
+
+    For more information on NHSN please contact nhsn@cdc.gov (http://www.cdc.gov/nhsn/)
+
+    For more information on the "HL7 Implementation Guide for CDA Release 2:
+
+    NHSN Healthcare Associated Infection (HAI) Reports"
+
+    see www.hl7.org, Structured Documents Working Group
+
+-->
+
+   <realmCode code="US"/>
+
+
+
+   <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+
+
+
+   <!-- Conformant to NHSN R6 Generic Constraints -->
+
+   <templateId root="2.16.840.1.113883.10.20.5.4.22"/>
+
+
+
+   <!-- Conformant to the NHSN Constraints for Immunization Numerator Report -->
+
+   <templateId root="2.16.840.1.113883.10.20.5.13"/>
+
+
+
+   <!-- Document ID (extension) is scoped by vendor/software -->
+
+   <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.2" extension="20202201"/>
+
+
+
+   <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51897-7" displayName="Healthcare Associated Infection Report"/>
+
+
+
+   <title>Influenza Immunization Offer</title>
+
+
+
+   <effectiveTime value="20080515"/>
+
+
+
+   <confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N"/>
+
+
+
+   <languageCode code="en-US"/>
+
+
+
+   <setId root="2.16.840.1.113883.3.117.1.1.5.2.1.1.1" extension="31"/>
+
+
+
+   <!-- the original -->
+
+   <versionNumber value="1"/>
+
+
+
+   <recordTarget>
+
+      <patientRole>
+
+         <!-- Patient ID - scoped by facility -->
+
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.1" extension="123456"/>
+
+         <!-- Secondary ID - scoped by facility -->
+
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.1" extension="987654321"/>
+
+         <patient>
+
+            <name>
+
+               <family>Nuclear</family>
+
+               <given>Ned</given>
+
+            </name>
+
+            <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+
+            <birthTime value="19541125"/>
+
+         </patient>
+
+      </patientRole>
+
+   </recordTarget>
+
+
+
+ <!-- Author/authenticator may be software or may be
+
+      someone in the role of "infection control professional".
+
+     This author is scoped by facility. -->
+
+   <author>
+
+      <time value="20080515"/>
+
+      <assignedAuthor>
+
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="anAuthorID"/>
+
+      </assignedAuthor>
+
+   </author>
+
+
+
+ <!-- The custodian of the CDA document is NHSN -->
+
+   <custodian>
+
+      <assignedCustodian>
+
+         <representedCustodianOrganization>
+
+            <id root="2.16.840.1.114222.4.3.2.11"/>
+
+         </representedCustodianOrganization>
+
+      </assignedCustodian>
+
+   </custodian>
+
+
+
+ <!-- legal authenticator is scoped by facility -->
+
+   <legalAuthenticator>
+
+      <time value="20080515"/>
+
+      <signatureCode code="S"/>
+
+      <assignedEntity>
+
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="aLegalAuthenticatorID"/>
+
+      </assignedEntity>
+
+   </legalAuthenticator>
+
+
+
+   <componentOf>
+
+      <encompassingEncounter>
+
+         <!-- Facility-generated Event/Procedure number -->
+
+         <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.3" extension="31"/>
+
+         <effectiveTime><low nullFlavor="NI"/></effectiveTime>
+
+         <location>
+
+            <!-- just the facility: no in-facility location, no facility-type code -->
+
+            <healthCareFacility><!-- Facility ID -->
+
+               <id root="2.16.840.1.113883.3.117.1.1.5.1.1"/>
+
+            </healthCareFacility>
+
+         </location>
+
+      </encompassingEncounter>
+
+   </componentOf>
+
+
+
+<!-- ********************************************************
+
+     Structured Body
+
+     ******************************************************** -->
+
+
+
+   <component>
+
+      <structuredBody>
+
+
+
+<!-- ********************************************************
+
+     Details Section
+
+     ******************************************************** -->
+
+
+
+         <component>
+
+            <section>
+
+               <templateId root="2.16.840.1.113883.10.20.5.5.12"/>
+
+               <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51899-3" displayName="Details Section"/>
+
+               <title>Immunization Detail</title>
+
+               <text>
+
+                  <table>
+
+                     <tbody>
+
+                        <tr>
+
+                           <td valign="top">Influenza virus vaccine NOS offered</td>
+
+                           <td>Yes</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Eligibility criteria</td>
+
+                           <td>Employed (finding) as Healthcare worker (Burn Critical Care)<br/>Performs direct patient care: Yes<br/>Type of job: Nurse Practitioner<br/>Clinical specialty: Gastroenterology</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Influenza vaccination declined</td>
+
+                           <td valign="top">No</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Influenza virus vaccine NOS administered</td>
+
+                           <td>Yes</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Date of immunization</td>
+
+                           <td valign="top">May 18, 2008</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Route of administration</td>
+
+                           <td valign="top">Intramuscular injection</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Product administered</td>
+
+                           <td valign="top">Afluria® (lot number 23-b)</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Person administering immunization</td>
+
+                           <td valign="top">Nancy Nightingale, RN<br/>ID 24242424</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Location administered</td>
+
+                           <td valign="top">onsite</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">VIS type provided</td>
+
+                           <td valign="top">Live Attenuated Influenza Vaccine Information Statement</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Seasons Immunized</td>
+
+                           <td valign="top">2006-2008</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Adverse Reactions</td>
+
+                           <td valign="top">Arthralgia: No<br/>Chills: No<br/>Cough: No<br/>Fever: Yes<br/>Headache: No<br/>Hives: No<br/>Malaise/fatigue: Yes<br/>Myalgia: No<br/>Nasal congestion: Yes<br/>Pain/soreness at injection site: Yes<br/>Rash: No<br/>Rhinorrhea: No<br/>Shortness of breath/difficulty breathing: No<br/>Sore throat: No<br/>Swelling: Yes<br/>
+
+                           </td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+
+               </text>
+
+
+
+               <entry typeCode="DRIV">
+
+                  <substanceAdministration classCode="SBADM" moodCode="RQO" negationInd="false">
+
+                     <templateId root="2.16.840.1.113883.10.20.5.6.18"/>
+
+                     <code codeSystem="2.16.840.1.113883.6.59" codeSystemName="CDC Vaccine Codes" code="88" displayName="Influenza virus vaccine NOS"/>
+
+                     <statusCode code="completed"/>
+
+                     <consumable>
+
+                        <manufacturedProduct>
+
+                           <manufacturedMaterial/>
+
+                        </manufacturedProduct>
+
+                     </consumable>
+
+
+
+                     <!-- here are the reasons for offering the immunization -->
+
+                     <!-- Eligibility Criterion Observation -->
+
+                     <entryRelationship typeCode="RSON">
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.13"/>
+
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" code="224363007" displayName="Employed"/>
+
+
+
+                           <participant typeCode="SBJ">
+
+                              <participantRole>
+
+                                 <code code="223366009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" displayName="Healthcare worker"/>
+
+                              </participantRole>
+
+                           </participant>
+
+
+
+                           <participant typeCode="LOC">
+
+                              <participantRole classCode="SDLOC">
+
+                                 <code code="1026-4" codeSystem="2.16.840.1.113883.6.259" codeSystemName="HL7 HealthcareServiceLocation" displayName="Burn critical care"/>
+
+                              </participantRole>
+
+                           </participant>
+
+
+
+                           <entryRelationship typeCode="COMP">
+
+                              <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                                 <templateId root="2.16.840.1.113883.10.20.5.6.30"/>
+
+                                 <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                                 <statusCode code="completed"/>
+
+                                 <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" code="3163-3" displayName="Performs direct patient care"/>
+
+                              </observation>
+
+                           </entryRelationship>
+
+
+
+                           <!-- occupation observation -->
+
+                           <entryRelationship typeCode="COMP">
+
+                              <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                                 <templateId root="2.16.840.1.113883.10.20.5.6.28"/>
+
+                                 <code code="224361009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Type of job"/>
+
+                                 <statusCode code="completed"/>
+
+                                 <value xsi:type="CD"
+
+                                        code="363L00000X"
+
+                                        codeSystem="2.16.840.1.113883.6.101"
+
+                                        codeSystemName="NUCCProviderCodes"
+
+                                        displayName="Nurse Practitioner"/>
+
+
+
+                                 <!-- Clinical Specialty Observation -->
+
+                                 <entryRelationship typeCode="COMP">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.9"/>
+
+                                       <code code="3195-5"
+
+                                             codeSystem="2.16.840.1.113883.6.277"
+
+                                             codeSystemName="cdcNHSN"
+
+                                             displayName="Clinical Specialty"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD"
+
+                                              code="207RG0100X"
+
+                                              codeSystem="2.16.840.1.113883.6.101"
+
+                                              codeSystemName="NHSNClinicalSpecialtyCode"
+
+                                              displayName="Gastroenterology"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+                              </observation>
+
+                           </entryRelationship>
+
+                        </observation>
+
+                        <!-- end of Occupation Observation -->
+
+
+
+                     </entryRelationship>
+
+                     <!-- end of Eligibility Criteria -->
+
+
+
+                     <!-- Offer Declined/Accepted -->
+
+                     <entryRelationship typeCode="COMP"><!-- Offer Declined Observation -->
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.29"/>
+
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="315640000" displayName="Influenza vaccination declined"/>
+
+
+
+                           <!-- The offer was accepted, so we have details of the
+
+                                immunization (whether actually administered or not).
+
+                                If the offer was declined, the reasons for declining
+
+                                would be given here instead. -->
+
+                           <!-- This immunization was administered -->
+
+                           <entryRelationship typeCode="COMP">
+
+                              <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
+
+                                <!-- constraints of this DSTU -->
+
+                                <templateId root="2.16.840.1.113883.10.20.5.6.17"/>
+
+                                <!-- HITSP Immunization Entry -->
+
+                                <templateId root="2.16.840.1.113883.3.88.11.83.13"/>
+
+                                <!-- CCD Medication Template -->
+
+                                <templateId root="2.16.840.1.113883.10.20.1.24"/>
+
+
+
+                                 <id nullFlavor="NI"/>
+
+                                 <code codeSystem="2.16.840.1.113883.6.59" codeSystemName="CDC Vaccine Codes" code="88" displayName="Influenza virus vaccine NOS">
+
+                                    <originalText>Influenza virus vaccine</originalText>
+
+                                 </code>
+
+                                 <statusCode code="completed"/>
+
+                                 <effectiveTime value="20080518"/>
+
+                                 <routeCode codeSystem="2.16.840.1.113883.5.112" codeSystemName="HL7 RouteOfAdministration" code="IM" displayName="Intramuscular injection"/>
+
+                                 <consumable>
+
+                                    <manufacturedProduct>
+
+                                       <!-- CCD Product template -->
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.53"/>
+
+                                       <manufacturedMaterial>
+
+                                          <code codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" code="805510" displayName="Afluria"> </code>
+
+                                          <lotNumberText>23-b</lotNumberText>
+
+                                       </manufacturedMaterial>
+
+                                    </manufacturedProduct>
+
+                                 </consumable>
+
+
+
+                                 <performer>
+
+                                    <assignedEntity>
+
+                                       <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="24242424"/>
+
+                                       <assignedPerson>
+
+                                          <name>
+
+                                             <prefix>RN</prefix>
+
+                                             <family>Nightingale</family>
+
+                                             <given>Nancy</given>
+
+                                          </name>
+
+                                       </assignedPerson>
+
+                                    </assignedEntity>
+
+                                 </performer>
+
+
+
+                                 <participant typeCode="LOC">
+
+                                    <participantRole classCode="SDLOC">
+
+                                       <code code="9169-4" codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" displayName="onsite"/>
+
+                                    </participantRole>
+
+                                 </participant>
+
+
+
+                                 <!-- vaccine information statement -->
+
+                                 <entryRelationship typeCode="COMP">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.49"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="8178-6" codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" displayName="Live Attenuated Influenza Vaccine Information Statement"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Information within the immunization administered substAdm -->
+
+
+
+                                 <!-- Seasons Immunized Observation -->
+
+                                 <entryRelationship typeCode="COMP">
+
+                                    <observation moodCode="EVN" classCode="OBS" negationInd="false">
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.40"/>
+
+                                       <code code="3192-2" codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" displayName="Seasons immunized"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <effectiveTime>
+
+                                          <low value="2006"/>
+
+                                          <high value="2008"/>
+
+                                       </effectiveTime>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="57676002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Arthralgia"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="43724002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Chills"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="49727002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Cough"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="386661006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Fever"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="25064002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Headache"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="247472004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Hives"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="271795006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Malaise/fatigue"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="68962001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Myalgia"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="68235000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Nasal congestion"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="95388000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Pain/soreness at injection site"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="271807003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Rash"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="64531003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Rhinorrhea"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="267036007" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Shortness of breath/difficulty breathing"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="162397003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Sore throat"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                                 <!-- Adverse Reaction Observation -->
+
+                                 <entryRelationship typeCode="MFST">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.54"/>
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.2"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="65124004" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Swelling"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                              </substanceAdministration>
+
+                              <!-- end of the immunization administration (the result of the offer) -->
+
+                           </entryRelationship>
+
+
+
+                        </observation>
+
+                        <!-- end of the offer declined/accepted observation -->
+
+
+
+                     </entryRelationship>
+
+
+
+                  </substanceAdministration>
+
+                  <!-- end of the immunization offer -->
+
+               </entry>
+
+            </section>
+
+         </component>
+
+
+
+
+
+      </structuredBody>
+
+   </component>
+
+
+
+
+
+</ClinicalDocument>

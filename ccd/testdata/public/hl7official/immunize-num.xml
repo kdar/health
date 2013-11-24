@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="hai-display.xsl"?>
+
+<!--
+
+ Title: Influenza Immunization Offer Numerator sample report
+
+ Original Filename: immunize-num.xml
+
+ Version: 1.8
+
+ Revision History:
+
+ 7/23/2009 bam updated to new cdcNHSN codeSytem for R3 publication
+
+ 11/10/2009 bam new general HAI header templateId for R4
+
+ 11/23/2009 kah regenerated narrative blocks
+
+ 4/05/2010 bam updated for May 2010 ballot
+
+ 7/15/2010 kah regenerated narrative blocks
+
+ 8/16/2010 seh updated top-level templateId for r6
+
+ 12/30/2010 seh updated sample OIDs to match pattern in IG
+
+ 08/01/2011 ldw updated templateID to match R7
+
+
+
+ Specification: HL7 CDAR2L3_IG_HAIRPT_DSTU_R7_D1_2011SEP
+
+
+
+ This sample document was created by Lantana Consulting Group
+
+ on behalf of the Center for Disease Control and Prevention
+
+ to meet the needs of the National Healthcare Safety Network (NHSN)
+
+ Healthcare Associated Infection reporting.
+
+
+
+ For more information on NHSN please contact nhsn@cdc.gov (http://www.cdc.gov/nhsn/)
+
+ For more information on the "HL7 Implementation Guide for CDA Release 2:
+
+ NHSN Healthcare Associated Infection (HAI) Reports"
+
+ see www.hl7.org, Structured Documents Working Group
+
+-->
+
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+
+ <!-- Comments precede their subject -->
+
+ <!-- This is a single-patient record. -->
+
+
+
+
+
+  <realmCode code="US"/>
+
+
+
+
+
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+
+
+
+  <!-- Conformant to NHSN R6 Generic Constraints -->
+
+  <templateId root="2.16.840.1.113883.10.20.5.4.22"/>
+
+
+
+  <!-- Conformant to the NHSN Constraints for Immunization Numerator Report -->
+
+  <templateId root="2.16.840.1.113883.10.20.5.13"/>
+
+
+
+  <!-- Document ID (extension) is scoped by vendor/software -->
+
+  <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.2" extension="20202201"/>
+
+
+
+  <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51897-7" displayName="Healthcare Associated Infection Report"/>
+
+
+
+  <title>Influenza Immunization Offer</title>
+
+
+
+  <effectiveTime value="20080515"/>
+
+
+
+  <confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N"/>
+
+
+
+  <languageCode code="en-US"/>
+
+
+
+  <setId root="2.16.840.1.113883.3.117.1.1.5.2.1.1.1" extension="31"/>
+
+
+
+  <!-- the original -->
+
+  <versionNumber value="1"/>
+
+
+
+
+
+  <recordTarget>
+
+     <patientRole><!-- Patient ID - scoped by facility -->
+
+        <id root="2.16.840.1.113883.3.117.1.1.5.1.1.1" extension="123456"/><!-- Secondary ID - scoped by facility -->
+
+        <id root="2.16.840.1.113883.3.117.1.1.5.1.1.1" extension="987654321"/>
+
+        <patient>
+
+           <name>
+
+              <family>Nuclear</family>
+
+              <given>Ned</given>
+
+           </name>
+
+           <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+
+           <birthTime value="19541125"/>
+
+        </patient>
+
+     </patientRole>
+
+  </recordTarget>
+
+
+
+  <!-- Author/authenticator may be software or may be
+
+       someone in the role of "infection control professional".
+
+       This author is scoped by facility. -->
+
+  <author>
+
+    <time value="20080515"/>
+
+    <assignedAuthor>
+
+      <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="anAuthorID"/>
+
+    </assignedAuthor>
+
+  </author>
+
+
+
+  <!-- The custodian of the CDA document is NHSN -->
+
+  <custodian>
+
+    <assignedCustodian>
+
+      <representedCustodianOrganization>
+
+        <id root="2.16.840.1.114222.4.3.2.11"/>
+
+      </representedCustodianOrganization>
+
+    </assignedCustodian>
+
+  </custodian>
+
+
+
+ <!-- legal authenticator is scoped by facility -->
+
+ <legalAuthenticator>
+
+    <time value="20080515"/>
+
+    <signatureCode code="S"/>
+
+    <assignedEntity>
+
+      <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="aLegalAuthenticatorID"/>
+
+    </assignedEntity>
+
+  </legalAuthenticator>
+
+
+
+  <componentOf>
+
+     <encompassingEncounter>
+
+       <!-- Facility-generated Event/Procedure number -->
+
+       <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.3" extension="31"/>
+
+       <code codeSystem="2.16.840.1.113883.5.4" code="IMP" displayName="Inpatient"/>
+
+       <effectiveTime><low nullFlavor="NI"/></effectiveTime>
+
+       <location>
+
+         <!-- just the facility: no in-facility location, no facility-type code -->
+
+         <healthCareFacility><!-- Facility ID -->
+
+           <id root="2.16.840.1.113883.3.117.1.1.5.1.1"/>
+
+         </healthCareFacility>
+
+       </location>
+
+     </encompassingEncounter>
+
+  </componentOf>
+
+
+
+
+
+<!-- ********************************************************
+
+     Structured Body
+
+     ******************************************************** -->
+
+
+
+
+
+   <component>
+
+      <structuredBody>
+
+
+
+<!-- ********************************************************
+
+     Details Section
+
+     ******************************************************** -->
+
+
+
+         <component>
+
+            <section>
+
+               <templateId root="2.16.840.1.113883.10.20.5.5.12"/>
+
+               <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51899-3" displayName="Details Section"/>
+
+               <title>Immunization Detail</title>
+
+               <text>
+
+                  <table>
+
+                     <tbody>
+
+                        <tr>
+
+                           <td valign="top">Influenza virus vaccine NOS offered</td>
+
+                           <td>Yes</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Eligibility criteria</td>
+
+                           <td>Child/adolescent aged 6 months - 18 years: No<br/>Child/adolescent aged 6 months - 18 years AND receiving long-term aspirin therapy: No<br/>Adult aged &gt;= 50 years: No<br/>Resident of nursing home or other chronic-care facility: Yes<br/>Pregnancy: No<br/>Condition/disease/history listed in the NHSN protocol as an indication for high risk of influenza.: Yes</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Influenza vaccination declined</td>
+
+                           <td valign="top">No</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Influenza virus vaccine NOS administered</td>
+
+                           <td>Yes</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Date of immunization</td>
+
+                           <td valign="top">May 18, 2008</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Route of administration</td>
+
+                           <td valign="top">Intramuscular injection</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Product administered</td>
+
+                           <td valign="top">Afluria® (lot number 23-b)</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Person administering immunization</td>
+
+                           <td valign="top">Nancy Nightingale, RN<br/>ID 24242424</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">VIS type provided</td>
+
+                           <td valign="top">Live Attenuated Influenza Vaccine Information Statement</td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+
+               </text>
+
+
+
+               <entry typeCode="DRIV">
+
+                  <substanceAdministration classCode="SBADM" moodCode="RQO" negationInd="false">
+
+                     <templateId root="2.16.840.1.113883.10.20.5.6.18"/>
+
+                     <code codeSystem="2.16.840.1.113883.6.59" codeSystemName="CDC Vaccine Codes" code="88" displayName="Influenza virus vaccine NOS"/>
+
+                     <statusCode code="completed"/>
+
+                     <consumable>
+
+                        <manufacturedProduct>
+
+                           <manufacturedMaterial/>
+
+                        </manufacturedProduct>
+
+                     </consumable>
+
+
+
+                     <!-- here are the reasons for offering the immunization -->
+
+
+
+                     <entryRelationship typeCode="RSON">
+
+                        <!-- Eligibility Criterion Observation -->
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.13"/>
+
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" code="2180-8" displayName="Child/adolescent aged 6 months - 18 years"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="RSON">
+
+                        <!-- Eligibility Criterion Observation -->
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.13"/>
+
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" code="2181-6" displayName="Child/adolescent aged 6 months - 18 years AND receiving long-term aspirin therapy"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="RSON">
+
+                        <!-- Eligibility Criterion Observation -->
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.13"/>
+
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" code="2182-4" displayName="Adult aged &gt; 50 years"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="RSON">
+
+                        <!-- Eligibility Criterion Observation -->
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.13"/>
+
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" code="2183-2" displayName="Resident of nursing home or other chronic-care facility"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="RSON">
+
+                        <!-- Eligibility Criterion Observation -->
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.13"/>
+
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" code="2184-0" displayName="Pregnancy"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="RSON">
+
+                        <!-- Eligibility Criterion Observation -->
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.13"/>
+
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" code="2185-7" displayName="Condition/disease/history listed in the NHSN protocol as an indication for high risk of influenza"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+                     <!-- end of Eligibility Criteria -->
+
+
+
+
+
+                     <!-- Offer Declined Observation -->
+
+                     <entryRelationship typeCode="COMP">
+
+
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.29"/>
+
+                           <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="315640000" displayName="Influenza vaccination declined"/>
+
+
+
+                           <!-- The offer was accepted, so we have details of the
+
+                                immunization (whether actually administered or not).
+
+                                If the offer was declined, the reasons for declining
+
+                                would be given here instead. -->
+
+
+
+                           <!-- This immunization was administered (the usual case) -->
+
+                           <entryRelationship typeCode="COMP">
+
+                              <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
+
+                                <!-- constraints of this DSTU -->
+
+                                <templateId root="2.16.840.1.113883.10.20.5.6.17"/>
+
+                                <!-- HITSP Immunization Entry -->
+
+                                <templateId root="2.16.840.1.113883.3.88.11.83.13"/>
+
+                                <!-- CCD Medication Template -->
+
+                                <templateId root="2.16.840.1.113883.10.20.1.24"/>
+
+
+
+                                 <id nullFlavor="NI"/>
+
+                                 <code codeSystem="2.16.840.1.113883.6.59" codeSystemName="CDC Vaccine Codes" code="88" displayName="Influenza virus vaccine NOS">
+
+                                    <originalText>Influenza virus vaccine</originalText>
+
+                                 </code>
+
+                                 <statusCode code="completed"/>
+
+                                 <effectiveTime value="20080518"/>
+
+                                 <routeCode codeSystem="2.16.840.1.113883.5.112" codeSystemName="HL7 RouteOfAdministration" code="IM" displayName="Intramuscular injection"/>
+
+                                 <consumable>
+
+                                    <manufacturedProduct>
+
+                                       <!-- CCD Product template -->
+
+                                       <templateId root="2.16.840.1.113883.10.20.1.53"/>
+
+                                       <manufacturedMaterial>
+
+                                          <code xsi:type="CE" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" code="805510" displayName="Afluria"> </code>
+
+                                          <lotNumberText>23-b</lotNumberText>
+
+                                       </manufacturedMaterial>
+
+                                    </manufacturedProduct>
+
+                                 </consumable>
+
+
+
+                                 <performer>
+
+                                    <assignedEntity>
+
+                                       <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="24242424"/>
+
+                                       <assignedPerson>
+
+                                          <name>
+
+                                             <prefix>RN</prefix>
+
+                                             <family>Nightingale</family>
+
+                                             <given>Nancy</given>
+
+                                          </name>
+
+                                       </assignedPerson>
+
+                                    </assignedEntity>
+
+                                 </performer>
+
+
+
+                                 <entryRelationship typeCode="COMP">
+
+                                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                                       <templateId root="2.16.840.1.113883.10.20.5.6.49"/>
+
+                                       <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+
+                                       <statusCode code="completed"/>
+
+                                       <value xsi:type="CD" code="8178-6" codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" displayName="Live Attenuated Influenza Vaccine Information Statement"/>
+
+                                    </observation>
+
+                                 </entryRelationship>
+
+
+
+                              </substanceAdministration>
+
+                              <!-- end of the immunization detail (the result of the offer) -->
+
+
+
+                           </entryRelationship>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                  </substanceAdministration>
+
+                  <!-- end of the immunization offer -->
+
+
+
+               </entry>
+
+            </section>
+
+         </component>
+
+
+
+
+
+      </structuredBody>
+
+   </component>
+
+
+
+</ClinicalDocument>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Codes>
+  <!-- lookup table Telecom URI -->
+  <code code="tel" voc="telecomuri" display="Tel"/>
+  <code code="fax" voc="telecomuri" display="Fax"/>
+  <!-- lookup table Telecom use codes -->
+  <code code="HP" voc="TelecommunicationAddressUse" display="zu Hause"/>
+  <code code="WP" voc="TelecommunicationAddressUse" display="Arbeitsplatz"/>
+</Codes>

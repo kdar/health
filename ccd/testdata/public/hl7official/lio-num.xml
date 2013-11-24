@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="hai-display.xsl"?>
+<!--
+  Title: Laboratory-identified Organism Numerator (LIO) sample report
+  Original Filename: lio-num.xml
+  Version: 1.6
+  Revision History:
+  8/12/09 kah created for R4 publication
+  11/5/2009 bam updated location participant per ballot comment 4 and added new general HAI header template for R4
+  4/05/2010 bam updated for May 2010 ballot
+  7/15/2010 kah regenerated narrative blocks
+  8/16/2010 seh updated top-level templateId for r6
+  12/30/2010 seh updated sample OIDs to match pattern in IG
+  08/01/2011 ldw updated templateID to match R7
+Specification: HL7 CDAR2L3_IG_HAIRPT_DSTU_R7_D1_2011SEP
+  This sample document was created by Lantana Consulting Group
+  on behalf of the Center for Disease Control and Prevention
+  to meet the needs of the National Healthcare Safety Network (NHSN)
+  Healthcare Associated Infection reporting.
+  For more information on NHSN please contact nhsn@cdc.gov (http://www.cdc.gov/nhsn/)
+  For more information on the "HL7 Implementation Guide for CDA Release 2:
+  NHSN Healthcare Associated Infection (HAI) Reports"
+  see www.hl7.org, Structured Documents Working Group
+-->
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- Comments precede their subject -->
+  <!-- This is a single-person report. -->
+   <realmCode code="US"/>
+   <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+   <!-- Conformant to NHSN R6 Generic Constraints -->
+   <templateId root="2.16.840.1.113883.10.20.5.4.22"/>
+   <!-- Conformant to the NHSN Constraints for Lab-identified Organism Numerator Report -->
+   <templateId root="2.16.840.1.113883.10.20.5.17"/>
+  <!-- Document ID (extension) is scoped by vendor/software -->
+   <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.2" extension="20202201"/>
+
+   <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51897-7" displayName="Healthcare Associated Infection Report"/>
+  <title>Lab-identified Organism (LIO) Report</title>
+   <effectiveTime value="20080807"/>
+   <confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N"/>
+   <languageCode code="en-US"/>
+   <setId root="2.16.840.1.113883.3.117.1.1.5.2.1.1.1" extension="31"/>
+  <!-- the original -->
+   <versionNumber value="1"/>
+   <recordTarget>
+      <patientRole><!-- Patient ID - scoped by facility -->
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.1" extension="123456"/>
+         <patient>
+            <name>
+               <family>Nuclear</family>
+               <given>Ned</given>
+            </name>
+            <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1" code="M"/>
+            <birthTime value="19541125"/>
+         </patient>
+      </patientRole>
+   </recordTarget>
+  <!-- Author/authenticator may be software or may be
+       someone in the role of "infection control professional".
+       This author is scoped by facility. -->
+   <author>
+      <time value="20080807"/>
+      <assignedAuthor>
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="anAuthorID"/>
+      </assignedAuthor>
+   </author>
+  <!-- The custodian of the CDA document is NHSN -->
+   <custodian>
+      <assignedCustodian>
+         <representedCustodianOrganization>
+            <id root="2.16.840.1.114222.4.3.2.11"/>
+         </representedCustodianOrganization>
+      </assignedCustodian>
+   </custodian>
+  <!-- legal authenticator is scoped by facility -->
+   <legalAuthenticator>
+      <time value="20080807"/>
+      <signatureCode code="S"/>
+      <assignedEntity>
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="aLegalAuthenticatorID"/>
+      </assignedEntity>
+   </legalAuthenticator>
+   <componentOf>
+      <encompassingEncounter>
+         <code codeSystem="2.16.840.1.113883.5.4" codeSystemName="actEncounterCode" code="IMP" displayName="Inpatient"/>
+         <effectiveTime>
+            <!-- Date Admitted to Facility -->
+            <!-- Or, if outpatient, use (copy) Date Specimen Collected -->
+            <low value="20090115"/>
+         </effectiveTime>
+         <!-- facility id -->
+         <!-- (The in-facility location where specimen was collected,
+              and date specimen collected, are recorded with the
+              specimen/micro-organism information in the body.) -->
+         <location>
+            <healthCareFacility>
+               <!-- Facility ID -->
+               <id root="2.16.840.1.113883.3.117.1.1.5.1.1"/>
+            </healthCareFacility>
+         </location>
+      </encompassingEncounter>
+   </componentOf>
+<!-- ********************************************************
+     Structured Body
+     ******************************************************** -->
+   <component>
+      <structuredBody>
+<!-- ********************************************************
+     Encounters Section
+     ******************************************************** -->
+      <!-- This section will be present if the patient was
+          discharged from this facility within the previous
+          3 months. -->
+         <component>
+            <section>
+               <templateId root="2.16.840.1.113883.10.20.5.5.16"/>
+               <code code="46240-8" codeSystem="2.16.840.1.113883.6.1" displayName="Encounters"/>
+               <title>Encounters: Previous discharge from this facility</title>
+               <text>
+                  <table>
+                     <tbody>
+                        <tr>
+                           <td valign="top">Encounter</td>
+                           <td valign="top">Inpatient</td>
+                        </tr>
+                        <tr>
+                           <td valign="top">Date</td>
+                           <td valign="top">December 5, 2008</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+               <entry typeCode="DRIV">
+                  <encounter classCode="ENC" moodCode="EVN">
+                  <!-- CCD Encounter activity template -->
+                  <templateId root="2.16.840.1.113883.10.20.1.21"/>
+                  <!-- HAI Prior Discharge Encounter template -->
+                  <templateId root="2.16.840.1.113883.10.20.5.6.51"/>
+                  <id nullFlavor="NI"/>
+                  <code codeSystem="2.16.840.1.113883.5.4" code="IMP" displayName="Inpatient encounter"/>
+                     <effectiveTime>
+                        <high value="20081205"/>
+                     </effectiveTime>
+                  </encounter>
+               </entry>
+            </section>
+         </component>
+<!-- ********************************************************
+     Findings Section
+     ******************************************************** -->
+
+         <component>
+            <section>
+               <templateId root="2.16.840.1.113883.10.20.5.5.29"/>
+               <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="18769-0" displayName="Findings"/>
+               <title>Lab-identified organism</title>
+               <text>
+                  <table>
+                     <tbody>
+                        <tr>
+                           
+                           <td valign="top">Significant Pathogens</td>
+                           
+                           <td>MRSA, VRE</td>
+                           
+                        </tr>
+                        <tr>
+                           <td valign="top">Microorganism Identified</td>
+                           <td valign="top">CDIF</td>
+                        </tr>
+                        <tr>
+                           <td>Date specimen collected</td>
+                           <td>January 21, 2009</td>
+                        </tr>
+                        <tr>
+                           <td>Specimen type</td>
+                           <td>Pericardial fluid specimen</td>
+                        </tr>
+                        <tr>
+                           <td>In-facility location where patient was when specimen was drawn</td>
+                           <td>9W Medical/Surgical Critical Care</td>
+                        </tr>
+                        <tr>
+                           <td>Date admitted/transferred to the location where the specimen was drawn</td>
+                           <td>January 17, 2009</td>
+                        </tr>
+                        
+                     </tbody>
+                  </table>
+               </text>
+               <!-- The organism identified -->
+               <!-- The coding of the organism is done the same way
+                    as in infection reports, but different additional
+                    information is required in a LIO report -->
+               <entry typeCode="DRIV">
+                  <!-- Pathogen Identified Observation (LIO)  -->
+                  <observation classCode="OBS" moodCode="EVN">
+                     <templateId root="2.16.840.1.113883.10.20.5.6.52"/>
+                     <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="41852-5" displayName="Microorganism Identified"/>
+                     <statusCode code="completed"/>
+                     <value xsi:type="CD" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="5933001" displayName="Clostridium difficile (organism)"/>
+                     <!-- Specimen collection procedure
+                         contains specimen collection encounter -->
+                     <entryRelationship typeCode="COMP">
+                        <procedure classCode="PROC" moodCode="EVN">
+                           <!-- Specimen Collection Procedure (LIO)  -->
+                           <templateId root="2.16.840.1.113883.10.20.5.6.53"/>
+                           <!-- Date specimen collected -->
+                           <effectiveTime value="20090121"/><!-- Specimen type -->
+                           <participant typeCode="PRD">
+                             <participantRole classCode="SPEC">
+                                 <playingEntity>
+                                    <code codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" code="122571007" displayName="Pericardial fluid"> </code>
+                                 </playingEntity>
+                              </participantRole>
+                           </participant>
+                           <!-- if inpatient -->
+                           <!--Specimen Collection Encounter (LIO) -->
+                           <entryRelationship typeCode="COMP" inversionInd="true">
+                              <encounter classCode="ENC" moodCode="EVN">
+                                 <templateId root="2.16.840.1.113883.10.20.5.6.54"/>
+                                 <id nullFlavor="NI"/>
+                                 <!-- If person was an inpatient at the in-facility location
+                                      where the specimen was taken, this will be the date
+                                      admitted/transferred there -->
+                                 <effectiveTime>
+                                    <low value="20090117"/>
+                                 </effectiveTime>
+                                 <!-- The in-facility location where the specimen was taken -->
+                                 <!-- CCD Encounter Location Template-->
+                                 <participant typeCode="LOC">
+                                    <templateId root="2.16.840.1.113883.10.20.1.45"/>
+                                    <participantRole classCode="SDLOC">
+                                       <id root="2.16.840.1.113883.3.117.1.1.5.1.1" extension="9W"/>
+                                       <playingEntity classCode="PLC">
+                                          <code codeSystem="2.16.840.1.113883.6.259" codeSystemName="HL7 Healthcare Service Location Code" code="1029-8" displayName="Medical/Surgical Critical Care"/>
+                                       </playingEntity>
+                                    </participantRole>
+                                 </participant>
+                              </encounter>
+                           </entryRelationship>
+                        </procedure>
+                     </entryRelationship>
+                     <!-- end of information about this particular specimen -->
+                   </observation>
+               </entry>
+               
+               <!-- Significant Pathogen Observation -->
+               
+               <entry typeCode="DRIV">
+                  
+                  <observation classCode="OBS" moodCode="EVN">
+                     
+                     <templateId root="2.16.840.1.113883.10.20.5.6.41"/>
+                     
+                     <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" 
+                        
+                        code="41852-5" displayName="Microorganism identified"/>
+                     
+                     <statusCode code="completed"/>
+                     
+                     <value xsi:type="CD" 
+                        
+                        codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" 
+                        
+                        code="115329001" displayName="MRSA"/>
+                     
+                     <value xsi:type="CD" 
+                        
+                        codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED" 
+                        
+                        code="113727004" displayName="VRE"/>
+                     
+                  </observation>
+                  
+               </entry>
+            </section>
+         </component>
+      </structuredBody>
+   </component>
+
+</ClinicalDocument>

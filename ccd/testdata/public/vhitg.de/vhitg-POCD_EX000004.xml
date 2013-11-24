@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="vhitg-cda-v3.xsl"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:sciphox="urn::sciphox-org/sciphox"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3
+    CDA.xsd">
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+  <id extension="60249,85928" root="1.2.276.0.58.1"/>
+  <code code="11492-6" codeSystem="2.16.840.1.113883.6.1" displayName="Anamnese und Befund"/>
+  <title>Kurzarztbrief des Hausarztes</title>
+  <effectiveTime value="200512152352"/>
+  <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+  <languageCode code="de-DE"/>
+  <setId extension="D2" root="2.16.840.1.113883.3.933"/>
+  <versionNumber value="1"/>
+  <recordTarget>
+    <!--- Patienten-Daten -->
+    <patientRole>
+      <id extension="72" root="2.16.840.1.113883.3.933"/>
+      <addr>
+        <streetName>Kölnerstr.</streetName>
+        <houseNumber>95</houseNumber>
+        <postalCode>52351</postalCode>
+        <city>Düren</city>
+      </addr>
+      <patient>
+        <name>
+          <given>Birgit</given>
+          <family>Birke</family>
+        </name>
+        <administrativeGenderCode code="F" codeSystem="2.16.840.1.113883.5.1"/>
+        <birthTime value="19450513"/>
+      </patient>
+      <providerOrganization>
+        <telecom use="WP" value="tel:02421.27070"/>
+        <telecom use="WP" value="fax:02421.2707120"/>
+        <addr>
+          <streetName>Kölner Landstr.</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>52351</postalCode>
+          <city>Düren</city>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+  <author>
+    <!--- author -->
+    <time value="20051215"/>
+    <assignedAuthor>
+      <id extension="9812345" root="2.16.840.1.113883.3.933"/>
+      <assignedPerson>
+        <name>
+          <prefix>Dr. med.</prefix>
+          <given>Theo</given>
+          <family>Huber</family>
+        </name>
+      </assignedPerson>
+      <representedOrganization>
+        <name>Praxis Dr. Huber</name>
+        <telecom use="WP" value="tel:02421.27070"/>
+        <telecom use="WP" value="fax:02421.2707120"/>
+        <addr>
+          <streetName>Kölner Landstr.</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>52351</postalCode>
+          <city>Düren</city>
+        </addr>
+      </representedOrganization>
+    </assignedAuthor>
+  </author>
+  <custodian>
+    <!--- Organisation von der das Dokument stammt -->
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id extension="M345" root="1.2.276.0.58.1"/>
+        <name>Praxis Dr. Huber</name>
+        <telecom nullFlavor="UNK"/>
+        <addr>
+          <streetName>Kölner Landstr.</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>52351</postalCode>
+          <city>Düren</city>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+  <informationRecipient typeCode="PRCP">
+    <!--- Empfaenger -->
+    <intendedRecipient>
+      <id extension="21343434" root="2.16.840.1.113883.3.933"/>
+      <informationRecipient>
+        <name>
+          <prefix>Dr.med.</prefix>
+          <given>Herbert</given>
+          <family>Derma</family>
+        </name>
+      </informationRecipient>
+      <receivedOrganization>
+        <name>Facharztpraxis Dr. Derma</name>
+        <telecom nullFlavor="UNK"/>
+        <addr>
+          <streetName>Buchenweg</streetName>
+          <houseNumber>1</houseNumber>
+          <postalCode>52351</postalCode>
+          <city>Düren</city>
+        </addr>
+      </receivedOrganization>
+    </intendedRecipient>
+  </informationRecipient>
+  <legalAuthenticator>
+    <!--- legalAuthenticator -->
+    <time value="20051215"/>
+    <signatureCode code="S"/>
+    <assignedEntity>
+      <id extension="9812345" root="2.16.840.1.113883.3.933"/>
+      <assignedPerson>
+        <name>
+          <prefix>Dr. med.</prefix>
+          <given>Theo</given>
+          <family>Huber</family>
+        </name>
+      </assignedPerson>
+      <representedOrganization>
+        <name>Praxis Dr. Huber</name>
+        <telecom use="WP" value="fax:02421.2707120"/>
+        <addr>
+          <streetName>Kölner Landstr.</streetName>
+          <houseNumber>240</houseNumber>
+          <postalCode>52351</postalCode>
+          <city>Düren</city>
+        </addr>
+      </representedOrganization>
+    </assignedEntity>
+  </legalAuthenticator>
+  <participant typeCode="HLD">
+    <!--- Versicherungsangaben participant -->
+    <time>
+      <low value="20051001"/>
+      <high value="20051231" inclusive="true"/>
+    </time>
+    <associatedEntity classCode="POLHOLD">
+      <id extension="2452452435" root="2.16.840.1.113883.2.6.234.93345"/>
+      <telecom nullFlavor="UNK"/>
+      <associatedPerson>
+        <name>
+          <given>Birgit</given>
+          <family>Birke</family>
+        </name>
+      </associatedPerson>
+      <scopingOrganization>
+        <id extension="0177504" root="2.16.840.1.113883.2.6.234"/>
+        <name>TK Techniker Krankenkasse Mecklenburg-Vorpommern</name>
+        <telecom nullFlavor="UNK"/>
+        <addr>
+          <streetName>Bramfelder Str.</streetName>
+          <houseNumber>140</houseNumber>
+          <postalCode>22305</postalCode>
+          <city>Hamburg</city>
+        </addr>
+      </scopingOrganization>
+    </associatedEntity>
+  </participant>
+  <component>
+    <structuredBody>
+      <component>
+        <!-- Anamnese Komponente -->
+        <section>
+          <code code="10164-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>20.10.2005: Anamnese</title>
+          <text> Die 63 jährige <content styleCode="Bold">insulinpflichtige</content> Diabetikerin stellt sich im Rahmen einer
+            Borliosebehandlung mit einer Hautveränderung am Übergang zwischen Hinterkopf und Hals vor. Nach Aussage der Patientin
+            soll sie sich innerhalb der letzten 3 Monate gebildet haben.</text>
+        </section>
+      </component>
+      <component>
+        <!-- Befund Komponente -->
+        <section>
+          <code code="10210-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>20.10.2005: Befund</title>
+          <text> Oberflächlich spreitende, unregelmäßige, Hautveränderung am Übergang vom Hinterkopf zum Hals mit einem
+            Durchmesser von ca. 1 cm, Unregelmäßige, überwiegend dunkle Hautverfärbung. Verhärtet.</text>
+        </section>
+      </component>
+      <component>
+        <!-- Diagnose mit ICD Komponente auf CDA Level 2-->
+        <section>
+          <code code="29548-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>20.10.2005: Diagnosen mit ICD 10</title>
+          <text>
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>Diagnose</th>
+                  <th>ICD Code</th>
+                  <th>Lokalisation</th>
+                  <th>Zusatz</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <content ID="DIAG200510201">Nicht primär insulinabhängiger Diabetes mellitus Typ-2-Diabetes ohne
+                      Komplikationen nicht als entgleist bezeichnet</content>
+                  </td>
+                  <td>E11.90</td>
+                  <td>--</td>
+                  <td>G</td>
+                </tr>
+                <tr>
+                  <td>
+                    <content ID="DIAG200510202">Borreliose</content>
+                  </td>
+                  <td>A69.2</td>
+                  <td>--</td>
+                  <td>G</td>
+                </tr>
+                <tr>
+                  <td>
+                    <content ID="DIAG200510203">V.a. Bösartiges Melanom der behaarten Kopfhaut und des Halses</content>
+                  </td>
+                  <td>C43.4</td>
+                  <td>--</td>
+                  <td>V</td>
+                </tr>
+              </tbody>
+            </table>
+          </text>
+          <!-- Diagnosedarstellung auf Level 3 -->
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <code code="DISDX" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosen"/>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20051020"/>
+              </effectiveTime>
+              <value xsi:type="CD" code="E11.90" codeSystem="1.2.276.0.76.5.311" codeSystemName="ICD10gm2006"
+                displayName="Nicht primär insulinabhängiger Diabetes mellitus
+                                Typ-2-Diabetes ohne Komplikationen nicht als entgleist bezeichnet ">
+                <originalText>
+                  <reference value="#DIAG200510201"/>
+                </originalText>
+                <qualifier>
+                  <name code="8" codeSystem="2.16.840.1.113883.3.7.1" displayName="Diagnosesicherheit"/>
+                  <value code="G" codeSystem="2.16.840.1.113883.3.7.1.8" displayName="gesicherte Diagnose"/>
+                </qualifier>
+              </value>
+            </observation>
+          </entry>
+          <!-- Diagnosedarstellung auf Level 3 -->
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <code code="DISDX" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosen"/>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20051020"/>
+              </effectiveTime>
+              <value xsi:type="CD" code="A69.2" codeSystem="1.2.276.0.76.5.311" codeSystemName="ICD10gm2006"
+                displayName="Borreliose ">
+                <originalText>
+                  <reference value="#DIAG200510202"/>
+                </originalText>
+                <qualifier>
+                  <name code="8" codeSystem="2.16.840.1.113883.3.7.1" displayName="Diagnosesicherheit"/>
+                  <value code="G" codeSystem="2.16.840.1.113883.3.7.1.8" displayName="gesicherte Diagnose"/>
+                </qualifier>
+              </value>
+            </observation>
+          </entry>
+          <!-- Diagnosedarstellung auf Level 3 -->
+          <entry>
+            <observation classCode="OBS" moodCode="EVN">
+              <code code="DISDX" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Diagnosen"/>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20051020"/>
+              </effectiveTime>
+              <value xsi:type="CD" code="C43.4" codeSystem="1.2.276.0.76.5.311" codeSystemName="ICD10gm2006"
+                displayName="V.a. Bösartiges Melanom der behaarten Kopfhaut und des
+                                Halses ">
+                <originalText>
+                  <reference value="#DIAG200510203"/>
+                </originalText>
+                <qualifier>
+                  <name code="8" codeSystem="2.16.840.1.113883.3.7.1" displayName="Diagnosesicherheit"/>
+                  <value code="V" codeSystem="2.16.840.1.113883.3.7.1.8" displayName="Verdachtsdiagnose"/>
+                </qualifier>
+              </value>
+            </observation>
+          </entry>
+        </section>
+      </component>
+      <component>
+        <!-- Therapien Komponente -->
+        <section>
+          <code code="????" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+          <title>20.10.2005: Therapien</title>
+          <text><paragraph>Huminsulin Basal (NPH) Fertigpen 3 ml, morgens und abends, je eine Spritze</paragraph>
+          <paragraph>Penicillin V1 Mega von ct, morgens,
+            mittags und abends, je eine Filmtablette</paragraph></text>
+        </section>
+      </component>
+      <component>
+        <!-- Fremdbefund Komponente -->
+        <section>
+          <title>Fremdbefund</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Laborwerte Komponente -->
+        <section>
+          <title>Laborwerte</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Histologie Komponente -->
+        <section>
+          <title>Histologie</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Empfehlung Komponente -->
+        <section>
+          <title>Empfehlung</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Entlassbefund Komponente -->
+        <section>
+          <title>Entlassbefund</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Roentgenbefund Komponente -->
+        <section>
+          <title>Roentgenbefund</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Verlauf Komponente -->
+        <section>
+          <title>Verlauf</title>
+          <text>-</text>
+        </section>
+      </component>
+      <component>
+        <!-- Prognose Komponente -->
+        <section>
+          <title>Prognose</title>
+          <text>-</text>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

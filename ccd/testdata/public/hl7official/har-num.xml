@@ -1,0 +1,1294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="hai-display.xsl"?>
+
+<!--
+
+     Title: Hemovigilance Adverse Reaction (HAR) sample report
+
+     Original Filename: har-num.xml
+
+     Version: 1.3
+
+     Revision History:
+
+     8/1/2010   kah created
+
+     11/18/2010 bam Updated per fall 2010 ballot comment
+
+          #20, which updates blood group observation code from 112143006 SNOMED to 882-1 LOINC
+
+          #32  to use HL7 ActCode OID
+
+     12/29/2010 seh updated sample OIDs to match pattern in IG
+
+     08/01/2011 ldw updated templateID to match R7
+
+     =======
+
+Specification: HL7 CDAR2L3_IG_HAIRPT_DSTU_R7_D1_2011SEP
+
+
+
+     This sample document was created by Lantana Consulting Group
+
+     on behalf of the Center for Disease Control and Prevention
+
+     to meet the needs of the National Healthcare Safety Network (NHSN)
+
+     Healthcare Associated Infection reporting.
+
+
+
+     For more information on NHSN please contact nhsn@cdc.gov (http://www.cdc.gov/nhsn/)
+
+     For more information on the "HL7 Implementation Guide for CDA Release 2:
+
+     NHSN Healthcare Associated Infection (HAI) Reports"
+
+     see www.hl7.org, Structured Documents Working Group
+
+-->
+
+<ClinicalDocument xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+                  xmlns="urn:hl7-org:v3">
+
+
+
+  <!-- Comments precede their subject -->
+
+  <!-- This is a single-person report. -->
+
+
+
+   <realmCode code="US"/>
+
+
+
+  <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+
+
+
+  <!-- Conformant to NHSN R6 Generic Constraints -->
+
+  <templateId root="2.16.840.1.113883.10.20.5.4.22"/>
+
+
+
+  <!-- Conformant to the NHSN Constraints for HAR Numerator Report -->
+
+  <templateId root="2.16.840.1.113883.10.20.5.24"/>
+
+
+
+  <!-- Document ID (extension) is scoped by vendor/software -->
+
+  <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.2" extension="20202201"/>
+
+
+
+  <code codeSystem="2.16.840.1.113883.6.1"
+
+        codeSystemName="LOINC"
+
+        code="51897-7"
+
+        displayName="Healthcare Associated Infection Report"/>
+
+
+
+  <title>Hemovigilance Adverse Reaction Report (HAR)</title>
+
+
+
+  <effectiveTime value="20080807"/>
+
+
+
+  <confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N"/>
+
+
+
+  <languageCode code="en-US"/>
+
+
+
+  <setId root="2.16.840.1.113883.3.117.1.1.5.2.1.1.1" extension="31"/>
+
+  <!-- the original -->
+
+  <versionNumber value="1"/>
+
+
+
+
+
+  <recordTarget>
+
+    <patientRole>
+
+      <id extension="123456" root="2.16.840.1.113883.3.117.1.1.5.1.1.1"/>
+
+      <patient>
+
+        <name>
+
+          <family>Nuclear</family>
+
+          <given>Ned</given>
+
+        </name>
+
+        <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+
+        <birthTime value="19541125"/>
+
+      </patient>
+
+    </patientRole>
+
+  </recordTarget>
+
+
+
+ <!-- Author/authenticator may be software or may be
+
+      someone in the role of "infection control professional".
+
+      This author is scoped by facility. -->
+
+  <author>
+
+    <time value="20080807"/>
+
+      <assignedAuthor>
+
+        <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="anAuthorID"/>
+
+     </assignedAuthor>
+
+  </author>
+
+
+
+  <!-- The custodian of the CDA document is NHSN -->
+
+  <custodian>
+
+    <assignedCustodian>
+
+      <representedCustodianOrganization>
+
+        <id root="2.16.840.1.114222.4.3.2.11"/>
+
+      </representedCustodianOrganization>
+
+    </assignedCustodian>
+
+  </custodian>
+
+
+
+  <!-- legal authenticator is scoped by facility -->
+
+  <legalAuthenticator>
+
+    <time value="20080807"/>
+
+    <signatureCode code="S"/>
+
+    <assignedEntity>
+
+      <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="aLegalAuthenticatorID"/>
+
+    </assignedEntity>
+
+  </legalAuthenticator>
+
+
+  <componentOf>
+
+    <encompassingEncounter><!-- Facility-generated Event/Procedure number -->
+
+      <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.3" extension="31"/>
+
+      <effectiveTime><!-- Date Admitted to Facility -->
+
+        <low value="20080805"/>
+
+      </effectiveTime>
+
+      <location>
+
+        <healthCareFacility><!-- Facility ID -->
+
+          <id root="2.16.840.1.113883.3.117.1.1.5.1.1"/>
+
+          <code codeSystem="2.16.840.1.113883.6.259"
+
+                codeSystemName="HL7 Healthcare Service Location Code"
+
+                code="1029-8"
+
+                displayName="Medical/Surgical Critical Care"/>
+
+        </healthCareFacility>
+
+      </location>
+
+    </encompassingEncounter>
+
+  </componentOf>
+
+
+
+<!-- ********************************************************
+
+     Structured Body
+
+     ******************************************************** -->
+
+
+
+
+
+  <component>
+
+    <structuredBody>
+
+
+
+<!-- ********************************************************
+
+     Encounters Section (HAR)
+
+     ******************************************************** -->
+
+
+
+      <!-- This section will be present if the adverse reaction
+
+           was TA-GVHD -->
+
+
+
+      <component>
+
+        <section>
+
+          <templateId root="2.16.840.1.113883.10.20.5.5.24"/>
+
+          <code code="46240-8" codeSystem="2.16.840.1.113883.6.1" displayName="History of Encounters"/>
+
+          <title>Encounters: Transfusion History</title>
+
+
+
+         <text>
+
+            <table>
+
+               <tbody>
+
+                  <tr>
+
+                     <td>Received non-irradiated blood in the two months preceding the reaction</td>
+
+                     <td/>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+
+         </text>
+
+
+
+          <!-- Prior Transfusion Observation -->
+
+          <entry typeCode="DRIV">
+
+            <encounter classCode="ENC" moodCode="EVN">
+
+              <templateId root="2.16.840.1.113883.10.20.5.6.72"/>
+
+              <id nullFlavor="NI"/>
+
+              <code  codeSystem="2.16.840.1.113883.6.277"
+
+                     codeSystemName="cdcNHSN"
+
+                     code="2504-9"
+
+                     displayName="Received non-irradiated blood
+
+                                  in the two months preceding the reaction"/>
+
+            </encounter>
+
+          </entry>
+
+        </section>
+
+      </component>
+
+
+
+
+
+<!-- ********************************************************
+
+     Details Section (HAR)
+
+     ******************************************************** -->
+
+
+
+      <component>
+
+        <section>
+
+          <templateId root="2.16.840.1.113883.10.20.5.5.25"/>
+
+          <code codeSystem="2.16.840.1.113883.6.1"
+
+                codeSystemName="LOINC"
+
+                code="51899-3"
+
+                displayName="Details"/>
+
+          <title>Details Section</title>
+
+
+
+         <text>
+
+            <table>
+
+               <tbody>
+
+                  <tr>
+
+                     <td valign="top">Patient's blood group</td>
+
+                     <td valign="top">blood group A Rh(D) positive</td>
+
+                  </tr>
+
+                  <tr>
+
+                     <td valign="top">
+
+                        <content styleCode="Bold">Blood Product Transfused</content>
+
+                     </td>
+
+                     <td valign="top">1 unit(s)<br/>RED BLOOD CELLS|CPD/450mL/refg<br/>ID 21987654321<br/>blood group A Rh(D) positive<br/>January 1, 2010  [Expiry date: June 6, 2010]<br/>Blood product was implicated in the adverse reaction: Yes</td>
+
+                  </tr>
+
+                  <tr>
+
+                     <td valign="top">Reason for procedure</td>
+
+                     <td valign="top">Internal bleeding</td>
+
+                  </tr>
+
+                  <tr>
+
+                     <td valign="top">
+
+                        <content styleCode="Bold">Adverse Reaction</content>
+
+                        <br/>February 2, 2010<br/>Location: ID 9W<br/>Associated hemovigilance incident: ID 93</td>
+
+                     <td valign="top">Infection after transfusion<br/>Severity: Severe<br/>Outcome: Death</td>
+
+                  </tr>
+
+                  <tr>
+
+                     <td valign="top">Case definition match</td>
+
+                     <td valign="top">Definite</td>
+
+                  </tr>
+
+                  <tr>
+
+                     <td valign="top">Criteria of diagnosis</td>
+
+                     <td>Fever: Yes<br/>Hives: No<br/>Flushed complexion: Yes</td>
+
+                  </tr>
+
+                  <tr>
+
+                     <td valign="top">Microorganism identified in the patient</td>
+
+                     <td valign="top">Staphylococcus, coagulase negative (organism)</td>
+
+                  </tr>
+
+                  <tr>
+
+                     <td valign="top">Microorganism identified in blood donor (post-transfusion)</td>
+
+                     <td valign="top">Staphylococcus, coagulase negative (organism)</td>
+
+                  </tr>
+
+                  <tr>
+
+                     <td valign="top">Microorganism identified in blood donation product (post-transfusion)</td>
+
+                     <td valign="top">Staphylococcus, coagulase negative (organism)</td>
+
+                  </tr>
+
+                  <tr>
+
+                     <td valign="top">Imputability of adverse reaction to transfusion</td>
+
+                     <td valign="top">Definite</td>
+
+                  </tr>
+
+                  <tr>
+
+                     <td valign="top">Imputability of death to transfusion</td>
+
+                     <td valign="top">Definite</td>
+
+                  </tr>
+
+               </tbody>
+
+            </table>
+
+         </text>
+
+
+
+
+
+
+
+          <!-- Patient's blood group -->
+
+          <entry typeCode="DRIV">
+
+            <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+              <templateId root="2.16.840.1.113883.10.20.5.6.71"/>
+
+              <code codeSystem="2.16.840.1.113883.6.1"
+
+                    codeSystemName="LOINC"
+
+                    code="882-1"
+
+                    displayName="ABO and RH group [Type] in Blood"/>
+
+              <statusCode code="completed"/>
+
+              <!-- value set NSHNBloodGroupCode -->
+
+              <value xsi:type="CD"
+
+                     codeSystem="2.16.840.1.113883.6.96"
+
+                     codeSystemName="SNOMED CT"
+
+                     code="278149003"
+
+                     displayName="blood group A Rh(D) positive"/>
+
+            </observation>
+
+          </entry>
+
+
+
+
+
+          <!-- Transfusion Clinical Statement (HAR): a lot of detail -->
+
+          <entry typeCode="DRIV">
+
+            <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="false">
+
+              <templateId root="2.16.840.1.113883.10.20.5.6.73"/>
+
+              <code codeSystem="2.16.840.1.113883.6.96"
+
+                    codeSystemName="SNOMED CT"
+
+                    code="410652009"
+
+                    displayName="blood product"/>
+
+
+
+              <!-- required by CDA -->
+
+              <consumable>
+
+                <manufacturedProduct>
+
+                  <manufacturedMaterial/>
+
+                </manufacturedProduct>
+
+              </consumable>
+
+
+
+              <!-- Blood Product Transfused Observation (HAR): one for each component reported -->
+
+              <entryRelationship typeCode="COMP">
+
+                <observation classCode="OBS" moodCode="EVN">
+
+                  <templateId root="2.16.840.1.113883.10.20.5.6.74"/>
+
+                  <code codeSystem="2.16.840.1.113883.6.277"
+
+                        codeSystemName="cdcNHSN"
+
+                        code="3465-2"
+
+                        displayName="Product transfused"/>
+
+                  <statusCode code="completed"/>
+
+
+
+                  <!-- date this component was transfused and its expiration date -->
+
+                  <effectiveTime value="20100101">
+
+                     <high value="20100606"/>
+
+                  </effectiveTime>
+
+
+
+                  <!-- Number of units of this component type transfused -->
+
+                  <value xsi:type="INT" value="1"/>
+
+
+
+                  <!-- Codabar component code or ISBT-128 unit identifier, as in HI Report -->
+
+                  <!-- The adverse reaction was an infection, so there must be a
+
+                       participantRole/id -->
+
+                  <participant typeCode="SBJ" contextControlCode="OP">
+
+                    <participantRole classCode="MANU">
+
+                      <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.5" extension="21987654321"/>
+
+                      <playingEntity classCode="MAT">
+
+                        <code codeSystem="2.16.840.1.113883.6.18"
+
+                              codeSystemName="ISBT-128"
+
+                              code="E0150"
+
+                              displayName="RED BLOOD CELLS|CPD/450mL/refg"/>
+
+                      </playingEntity>
+
+                    </participantRole>
+
+                  </participant>
+
+
+
+                  <!-- Blood Group Observation for this transfused component -->
+
+                  <entryRelationship typeCode="SUBJ">
+
+                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                      <templateId root="2.16.840.1.113883.10.20.5.6.71"/>
+
+                      <code codeSystem="2.16.840.1.113883.6.1"
+
+                            codeSystemName="LOINC"
+
+                            code="882-1"
+
+                            displayName="AABO and RH group [type] in Blood"/>
+
+                      <statusCode code="completed"/>
+
+                      <!-- value set NSHNBloodGroupCode -->
+
+                      <value xsi:type="CD"
+
+                             codeSystem="2.16.840.1.113883.6.96"
+
+                             codeSystemName="SNOMED CT"
+
+                             code="278149003"
+
+                             displayName="blood group A Rh(D) positive"/>
+
+                    </observation>
+
+                  </entryRelationship>
+
+
+
+                  <!-- Implicated Observation - was this component implicated
+
+                       in the adverse reaction? Required if the number of units
+
+                       is 1 -->
+
+                  <entryRelationship typeCode="SUBJ">
+
+                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                      <templateId root="2.16.840.1.113883.10.20.5.6.75"/>
+
+                      <code codeSystem="2.16.840.1.113883.5.4"
+
+                            code="ASSERTION"/>
+
+                      <statusCode code="completed"/>
+
+                      <value xsi:type="CD"
+
+                             codeSystem="2.16.840.1.113883.6.277"
+
+                             codeSystemName="cdcNHSN"
+
+                             code="2500-7"
+
+                             displayName="Blood product was implicated in the adverse reaction"/>
+
+                    </observation>
+
+                  </entryRelationship>
+
+
+
+                </observation>
+
+              </entryRelationship> <!-- end of this blood-product component of the transfusion -->
+
+
+
+
+
+              <!-- Reason for Procedure Observation -->
+
+              <entryRelationship typeCode="RSON">
+
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                  <templateId root="2.16.840.1.113883.10.20.5.6.38"/>
+
+                  <code codeSystem="2.16.840.1.113883.5.4"
+
+                        code="ASSERTION"/>
+
+                  <statusCode code="completed"/>
+
+                  <value xsi:type="CD"
+
+                         codeSystem="2.16.840.1.113883.6.277"
+
+                         codeSystemName="cdcNHSN"
+
+                         code="2519-7"
+
+                         displayName="Internal bleeding"/>
+
+                </observation>
+
+              </entryRelationship>
+
+
+
+
+
+              <!-- Hemovigilance Adverse Reaction Observation  -->
+
+              <entryRelationship typeCode="MFST" inversionInd="true">
+
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                  <templateId root="2.16.840.1.113883.10.20.5.6.76"/>
+
+
+
+                  <!-- type of adverse reaction -->
+
+                  <code codeSystem="2.16.840.1.113883.6.96"
+
+                         codeSystemName="SNOMED CT"
+
+                         code="213315003"
+
+                         displayName="Infection after transfusion"/>
+
+
+
+                  <statusCode code="completed"/>
+
+
+
+                  <!-- date/time of the adverse reaction -->
+
+                  <effectiveTime value="20100202"/>
+
+
+
+                  <!-- in-facility location where the reaction occurred -->
+
+                  <participant typeCode="LOC" contextControlCode="OP">
+
+                    <participantRole classCode="SDLOC">
+
+                      <!-- scoped by facility -->
+
+                      <id root="2.16.840.1.113883.3.117.1.1.5.1.1" extension="9W"/>
+
+                    </participantRole>
+
+                  </participant>
+
+
+
+                  <!-- Hemovigilance Severity Observation -->
+
+                  <entryRelationship typeCode="SUBJ">
+
+                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                      <templateId root="2.16.840.1.113883.10.20.5.6.77"/>
+
+                      <code codeSystem="2.16.840.1.113883.5.4"
+
+                            codeSystemName="HL7 ActCode"
+
+                            code="SEV"
+
+                            displayName="Severity observation"/>
+
+                      <statusCode code="completed"/>
+
+                      <value xsi:type="CD"
+
+                             codeSystem="2.16.840.1.113883.6.96"
+
+                             codeSystemName="SNOMED CT"
+
+                             code="24484000"
+
+                             displayName="Severe"/>
+
+                    </observation>
+
+                  </entryRelationship>
+
+
+
+                  <!-- eventual outcome of the adverse reaction -->
+
+                  <entryRelationship typeCode="CAUS">
+
+                    <observation classCode="OBS" moodCode="EVN">
+
+                      <templateId root="2.16.840.1.113883.10.20.5.6.79"/>
+
+                      <code code="ASSERTION"
+
+                            codeSystem="2.16.840.1.113883.5.4"/>
+
+                      <statusCode code="completed"/>
+
+                      <value xsi:type="CD"
+
+                             codeSystem="2.16.840.1.113883.6.96"
+
+                             codeSystemName="SNOMED CT"
+
+                             code="419620001"
+
+                             displayName="Death"/>
+
+                    </observation>
+
+                  </entryRelationship>
+
+
+
+                  <!-- Case definition match: relation between reaction
+
+                       and case-definition criteria -->
+
+                  <entryRelationship typeCode="SUBJ">
+
+                    <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                      <templateId root="2.16.840.1.113883.10.20.5.6.78"/>
+
+                      <code codeSystem="2.16.840.1.113883.6.277"
+
+                            codeSystemName="cdcNHSN"
+
+                            code="2501-5"
+
+                            displayName="Case Definition Match"/>
+
+                      <statusCode code="completed"/>
+
+                      <value xsi:type="CD"
+
+                             codeSystem="2.16.840.1.113883.6.96"
+
+                             codeSystemName="SNOMED CT"
+
+                             code="255545003"
+
+                             displayName="Definite"/>
+
+                    </observation>
+
+                  </entryRelationship>
+
+
+
+                  <!-- Criteria of Diagnosis Organizer -->
+
+                  <entryRelationship typeCode="SPRT">
+
+                    <organizer classCode="CLUSTER" moodCode="EVN">
+
+                      <templateId root="2.16.840.1.113883.10.20.5.6.11"/>
+
+                      <statusCode code="completed"/>
+
+
+
+                      <!-- Criterion of Diagnosis Observations - single example given below-->
+
+                      <component>
+
+                        <!-- Criterion of Diagnosis Observation -->
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                          <templateId root="2.16.840.1.113883.10.20.5.6.10"/>
+
+                            <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                            <statusCode code="completed"/>
+
+                            <value xsi:type="CD"
+
+                                   codeSystem="2.16.840.1.113883.6.96"
+
+                                   codeSystemName="SNOMED"
+
+                                   code="386661006"
+
+                                   displayName="Fever">
+
+                            </value>
+
+                        </observation>
+
+                      </component>
+
+
+
+                      <component>
+
+                        <!-- Criterion of Diagnosis Observation -->
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="true">
+
+                          <templateId root="2.16.840.1.113883.10.20.5.6.10"/>
+
+                            <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                            <statusCode code="completed"/>
+
+                            <value xsi:type="CD"
+
+                                   codeSystem="2.16.840.1.113883.6.96"
+
+                                   codeSystemName="SNOMED"
+
+                                   code="247472004"
+
+                                   displayName="Hives">
+
+                            </value>
+
+                        </observation>
+
+                      </component>
+
+
+
+                      <component>
+
+                        <!-- Criterion of Diagnosis Observation -->
+
+                        <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+                          <templateId root="2.16.840.1.113883.10.20.5.6.10"/>
+
+                            <code codeSystem="2.16.840.1.113883.5.4" code="ASSERTION"/>
+
+                            <statusCode code="completed"/>
+
+                            <value xsi:type="CD"
+
+                                   codeSystem="2.16.840.1.113883.6.96"
+
+                                   codeSystemName="SNOMED"
+
+                                   code="248213001"
+
+                                   displayName="Flushed complexion">
+
+                            </value>
+
+                        </observation>
+
+                      </component>
+
+
+
+                    </organizer>
+
+                  </entryRelationship>
+
+
+
+
+
+                  <!-- Patient Pathogens Organizer -->
+
+                  <entryRelationship typeCode="COMP">
+
+                    <organizer classCode="CLUSTER" moodCode="EVN">
+
+                      <templateId root="2.16.840.1.113883.10.20.5.6.80"/>
+
+
+
+                      <statusCode code="completed"/>
+
+
+
+                      <!-- Pathogen Identified Observation (1-3) -->
+
+                      <component typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                          <templateId root="2.16.840.1.113883.10.20.5.2.5.1"/>
+
+                          <code  codeSystem="2.16.840.1.113883.6.1"
+
+                                 codeSystemName="LOINC"
+
+                                 code="41852-5"
+
+                                 displayName="Microorganism identified"/>
+
+                          <statusCode code="completed"/>
+
+                          <value xsi:type="CD"
+
+                                 codeSystem="2.16.840.1.113883.6.96"
+
+                                 codeSystemName="SNOMED"
+
+                                 code="116197008"
+
+                                 displayName="Staphylococcus, coagulase negative (organism)"/>
+
+                        </observation>
+
+                      </component>
+
+
+
+                    </organizer>
+
+                  </entryRelationship> <!-- end of Patient Pathogens Organizer -->
+
+
+
+
+
+                  <!-- Donor and Donation Pathogens Organizer -->
+
+                  <entryRelationship typeCode="REFR">
+
+                    <organizer classCode="CLUSTER" moodCode="EVN">
+
+                      <templateId root="2.16.840.1.113883.10.20.5.6.81"/>
+
+                      <statusCode code="completed"/>
+
+
+
+                      <!-- these pathogens are related to the blood donor -->
+
+                      <subject>
+
+                        <relatedSubject classCode="PRS">
+
+                          <code codeSystem="2.16.840.1.113883.6.96"
+
+                                codeSystemName="SNOMED CT"
+
+                                code="105470007"
+
+                                displayName="blood donor"/>
+
+                        </relatedSubject>
+
+                      </subject>
+
+
+
+                      <!-- Donor Pathogens:
+
+                           found in the donor (above) post-donation -->
+
+                      <component typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                          <templateId root="2.16.840.1.113883.10.20.5.6.83"/>
+
+                          <code  codeSystem="2.16.840.1.113883.6.1"
+
+                                 codeSystemName="LOINC"
+
+                                 code="41852-5"
+
+                                 displayName="Microorganism identified"/>
+
+                          <statusCode code="completed"/>
+
+                          <value xsi:type="CD"
+
+                                 codeSystem="2.16.840.1.113883.6.96"
+
+                                 codeSystemName="SNOMED"
+
+                                 code="116197008"
+
+                                 displayName="Staphylococcus, coagulase negative (organism)"/>
+
+                        </observation>
+
+                      </component>
+
+
+
+                      <!-- Donation Pathogens:
+
+                           detected in blood product (from the donor above) post-transfusion -->
+
+                      <component typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                          <templateId root="2.16.840.1.113883.10.20.5.6.83"/>
+
+                          <code  codeSystem="2.16.840.1.113883.6.1"
+
+                                 codeSystemName="LOINC"
+
+                                 code="41852-5"
+
+                                 displayName="Microorganism identified"/>
+
+                          <statusCode code="completed"/>
+
+                          <value xsi:type="CD"
+
+                                 codeSystem="2.16.840.1.113883.6.96"
+
+                                 codeSystemName="SNOMED"
+
+                                 code="116197008"
+
+                                 displayName="Staphylococcus, coagulase negative (organism)"/>
+
+
+
+                          <specimen>
+
+                            <specimenRole>
+
+                              <specimenPlayingEntity>
+
+                                <code codeSystem="2.16.840.1.113883.6.96"
+
+                                      codeSystemName="SNOMED CT"
+
+                                      code="410652009"
+
+                                      displayName="blood product"/>
+
+                              </specimenPlayingEntity>
+
+                            </specimenRole>
+
+                          </specimen>
+
+
+
+                        </observation>
+
+                      </component>
+
+
+
+                    </organizer>
+
+                  </entryRelationship> <!-- end of Donor and Donation Pathogens Organizer -->
+
+
+
+
+
+                  <!-- if reaction associated with a hemovigilance report,
+
+                       what is its  ID -->
+
+                  <reference typeCode="REFR">
+
+                    <externalAct>
+
+                      <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.2" extension="93"/>
+
+                    </externalAct>
+
+                  </reference>
+
+
+
+                </observation>
+
+              </entryRelationship> <!-- end of adverse reaction -->
+
+
+
+            </substanceAdministration>
+
+          </entry> <!-- end of the transfusion -->
+
+
+
+
+
+          <!-- Imputabilities -->
+
+
+
+          <!-- Imputability of adverse reaction to transfusion -->
+
+          <entry typeCode="DRIV">
+
+            <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+              <templateId root="2.16.840.1.113883.10.20.5.6.82"/>
+
+              <code codeSystem="2.16.840.1.113883.6.277"
+
+                    codeSystemName="cdcNHSN"
+
+                    code="2502-3"
+
+                    displayName="Imputability of adverse reaction to transfusion"/>
+
+              <statusCode code="completed"/>
+
+              <value xsi:type="CD"
+
+                     codeSystem="2.16.840.1.113883.6.96"
+
+                     codeSystemName="SNOMED CT"
+
+                     code="255545003"
+
+                     displayName="Definite"/>
+
+            </observation>
+
+          </entry>
+
+
+
+          <!-- Imputability of death to transfusion -->
+
+          <entry typeCode="DRIV">
+
+            <observation classCode="OBS" moodCode="EVN" negationInd="false">
+
+              <templateId root="2.16.840.1.113883.10.20.5.6.82"/>
+
+              <code codeSystem="2.16.840.1.113883.6.277"
+
+                    codeSystemName="cdcNHSN"
+
+                    code="2503-1"
+
+                    displayName="Imputability of death to transfusion"/>
+
+              <statusCode code="completed"/>
+
+              <value xsi:type="CD"
+
+                     codeSystem="2.16.840.1.113883.6.96"
+
+                     codeSystemName="SNOMED CT"
+
+                     code="255545003"
+
+                     displayName="Definite"/>
+
+            </observation>
+
+          </entry>
+
+
+
+        </section>
+
+      </component>
+
+
+
+    </structuredBody>
+
+  </component>
+
+
+
+</ClinicalDocument>

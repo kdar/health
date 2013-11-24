@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="hai-display.xsl"?>
+
+<!--
+
+ Title: Denominator for Neonatal Intensive Care Unit (NICU) Report
+
+        sample report
+
+ Original Filename: pop_sum-denom.xml
+
+ Version: 1.11
+
+ Revision History:
+
+   7/23/2009 bam updated to new cdcNHSN codeSytem for R3 publication
+
+   9/10/2009 kah updated to correct some comments and line breaks
+
+   11/10/2009 bam new general HAI header templateId for R4
+
+   11/23/2009 kah regenerated narrative blocks
+
+   4/05/2010 bam updated for May 2010 ballot
+
+   6/24/2010 bam updated facility ID in header to match facility ID in summary encounter
+
+   7/15/2010 kah regenerated narrative blocks
+
+   8/16/2010 seh updated templateIds for r6
+
+   12/20/2010 kah updated for encounter location
+
+   12/30/2010 seh updated sample OIDs to match pattern in IG
+
+   08/01/2011 ldw updated templateID to match R7
+
+
+
+Specification: HL7 CDAR2L3_IG_HAIRPT_DSTU_R7_D1_2011SEP
+
+
+
+    This sample document was created by Lantana Consulting Group
+
+    on behalf of the Center for Disease Control and Prevention
+
+    to meet the needs of the National Healthcare Safety Network (NHSN)
+
+    Healthcare Associated Infection reporting.
+
+
+
+    For more information on NHSN please contact nhsn@cdc.gov (http://www.cdc.gov/nhsn/)
+
+    For more information on the "HL7 Implementation Guide for CDA Release 2:
+
+    NHSN Healthcare Associated Infection (HAI) Reports"
+
+    see www.hl7.org, Structured Documents Working Group
+
+-->
+
+
+
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+
+ <!-- Comments precede their subject -->
+
+ <!-- This is a population-summary report. -->
+
+
+
+   <realmCode code="US"/>
+
+
+
+   <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040"/>
+
+
+
+   <!-- Conformant to NHSN R6 Generic Constraints -->
+
+   <templateId root="2.16.840.1.113883.10.20.5.4.22"/>
+
+
+
+   <!-- Conformant to the NHSN Constraints for Population Summary Report -->
+
+   <templateId root="2.16.840.1.113883.10.20.5.23"/>
+
+
+
+   <!-- Document ID (extension) is scoped by vendor/software -->
+
+   <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1.2" extension="20202201"/>
+
+
+
+   <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51897-7" displayName="Healthcare Associated Infection Report"/>
+
+
+
+   <title>Denominator for Neonatal Intensive Care Unit (NICU) Report</title>
+
+
+
+   <!-- Document-creation date -->
+
+   <effectiveTime value="20080701"/>
+
+
+
+   <confidentialityCode codeSystem="2.16.840.1.113883.5.25" code="N"/>
+
+
+
+   <languageCode code="en-US"/>
+
+
+
+   <setId root="2.16.840.1.113883.3.117.1.1.5.2.1.1.1" extension="33"/>
+
+   <!-- the original -->
+
+   <versionNumber value="1"/>
+
+
+
+   <recordTarget>
+
+      <patientRole>
+
+         <!-- This is a population summary report -->
+
+         <id nullFlavor="NA"/>
+
+      </patientRole>
+
+   </recordTarget>
+
+
+
+  <!-- The author of a population summary report is the software forming the message. -->
+
+  <author>
+
+    <time value="20080701"/>
+
+    <assignedAuthor>
+
+      <id root="2.16.840.1.113883.3.117.1.1.5.2.1.1" extension="aSoftwareID"/>
+
+    </assignedAuthor>
+
+  </author>
+
+
+
+   <!-- The custodian of the CDA document is NHSN -->
+
+   <custodian>
+
+      <assignedCustodian>
+
+         <representedCustodianOrganization>
+
+            <id root="2.16.840.1.114222.4.3.2.11"/>
+
+         </representedCustodianOrganization>
+
+      </assignedCustodian>
+
+   </custodian>
+
+
+
+  <!-- Legal authenticator is scoped by facility -->
+
+   <legalAuthenticator>
+
+      <time value="20080701"/>
+
+      <signatureCode code="S"/>
+
+      <assignedEntity>
+
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1.2" extension="aLegalAuthenticatorID"/>
+
+      </assignedEntity>
+
+   </legalAuthenticator>
+
+
+
+   <!-- In a population summary report, a participant element represents the group -->
+
+   <participant typeCode="SBJ" contextControlCode="OP">
+
+      <associatedEntity classCode="PRS">
+
+         <code codeSystem="2.16.840.1.113883.6.96" code="389109008" displayName="group"/>
+
+      </associatedEntity>
+
+   </participant>
+
+
+
+   <!-- The location participant -->
+
+   <participant typeCode="LOC" contextControlCode="OP">
+
+      <associatedEntity classCode="SDLOC">
+
+         <!--ID of facility -->
+
+         <id root="2.16.840.1.113883.3.117.1.1.5.1.1"/>
+
+      </associatedEntity>
+
+   </participant>
+
+
+
+   <documentationOf>
+
+      <serviceEvent classCode="CASE">
+
+         <code codeSystem="2.16.840.1.113883.6.277" codeSystemName="cdcNHSN" code="1881-2" displayName="Summary data reporting catheter and ventilator use in a NICU"/>
+
+         <effectiveTime>
+
+            <!-- the first day of the period reported -->
+
+            <low value="20080601"/>
+
+            <!-- the last day of the period reported -->
+
+            <high value="20080630"/>
+
+         </effectiveTime>
+
+      </serviceEvent>
+
+   </documentationOf>
+
+
+
+
+
+<!-- ********************************************************
+
+     Structured Body
+
+     ******************************************************** -->
+
+
+
+   <component>
+
+      <structuredBody>
+
+
+
+<!-- ********************************************************
+
+     Population Summary Section
+
+     ******************************************************** -->
+
+
+
+         <component>
+
+            <section>
+
+               <templateId root="2.16.840.1.113883.10.20.5.5.23"/>
+
+               <code codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" code="51900-9" displayName="Summary Section"/>
+
+               <title>Summary Data</title>
+
+
+
+               <text>
+
+                  <table>
+
+                     <tbody>
+
+                        <tr>
+
+                           <td>
+
+                              <content styleCode="Bold">In-facility Location</content>
+
+                           </td>
+
+                           <td>9W Medical/Surgical Critical Care</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td>
+
+                              <content styleCode="Bold">Sub-group</content>
+
+                           </td>
+
+                           <td>Birthweight under 750gm</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Patient Days</td>
+
+                           <td valign="top">23 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Temporary Central Line Days</td>
+
+                           <td valign="top">5 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Permanent Central Line Days</td>
+
+                           <td valign="top">6 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Urinary Catheter Days</td>
+
+                           <td valign="top">7 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Ventilator Days</td>
+
+                           <td valign="top">5 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td>
+
+                              <content styleCode="Bold">In-facility Location</content>
+
+                           </td>
+
+                           <td>9W Medical/Surgical Critical Care</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td>
+
+                              <content styleCode="Bold">Sub-group</content>
+
+                           </td>
+
+                           <td>Birthweight 751-1000gm</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Patient Days</td>
+
+                           <td valign="top">23 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Temporary Central Line Days</td>
+
+                           <td valign="top">5 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Permanent Central Line Days</td>
+
+                           <td valign="top">6 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Urinary Catheter Days</td>
+
+                           <td valign="top">7 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Ventilator Days</td>
+
+                           <td valign="top">5 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td>
+
+                              <content styleCode="Bold">In-facility Location</content>
+
+                           </td>
+
+                           <td>9W Medical/Surgical Critical Care</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td>
+
+                              <content styleCode="Bold">Sub-group</content>
+
+                           </td>
+
+                           <td>Birthweight 1001-1500gm</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Patient Days</td>
+
+                           <td valign="top">23 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Temporary Central Line Days</td>
+
+                           <td valign="top">5 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Permanent Central Line Days</td>
+
+                           <td valign="top">6 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Urinary Catheter Days</td>
+
+                           <td valign="top">7 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Ventilator Days</td>
+
+                           <td valign="top">5 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td>
+
+                              <content styleCode="Bold">In-facility Location</content>
+
+                           </td>
+
+                           <td>9W Medical/Surgical Critical Care</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td>
+
+                              <content styleCode="Bold">Sub-group</content>
+
+                           </td>
+
+                           <td>Birthweight 1501-2500gm</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Patient Days</td>
+
+                           <td valign="top">23 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Temporary Central Line Days</td>
+
+                           <td valign="top">5 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Permanent Central Line Days</td>
+
+                           <td valign="top">6 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Urinary Catheter Days</td>
+
+                           <td valign="top">7 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Ventilator Days</td>
+
+                           <td valign="top">5 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td>
+
+                              <content styleCode="Bold">In-facility Location</content>
+
+                           </td>
+
+                           <td>9W Medical/Surgical Critical Care</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td>
+
+                              <content styleCode="Bold">Sub-group</content>
+
+                           </td>
+
+                           <td>Birthweight over 2500gm</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Patient Days</td>
+
+                           <td valign="top">23 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Temporary Central Line Days</td>
+
+                           <td valign="top">5 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Permanent Central Line Days</td>
+
+                           <td valign="top">6 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Urinary Catheter Days</td>
+
+                           <td valign="top">7 d</td>
+
+                        </tr>
+
+                        <tr>
+
+                           <td valign="top">Ventilator Days</td>
+
+                           <td valign="top">5 d</td>
+
+                        </tr>
+
+                     </tbody>
+
+                  </table>
+
+               </text>
+
+
+
+               <!-- Summary Encounter -->
+
+               <entry typeCode="DRIV">
+
+                  <encounter classCode="ENC" moodCode="EVN">
+
+                    <templateId root="2.16.840.1.113883.10.20.5.6.70"/>
+
+
+
+                     <!-- the location id and type -->
+
+                     <participant typeCode="LOC">
+
+                        <participantRole classCode="SDLOC">
+
+                           <id root="2.16.840.1.113883.3.117.1.1.5.1.1" extension="9W"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.259"
+
+                                 codeSystemName="HL7 Healthcare Service Location Code"
+
+                                 code="1029-8"
+
+                                 displayName="Medical/Surgical Critical Care"/>
+
+                        </participantRole>
+
+                     </participant>
+
+
+
+                     <!-- This encounter reports on a subset of the total group -->
+
+                     <participant typeCode="SBJ" contextControlCode="OP">
+
+                        <participantRole classCode="PRS">
+
+                           <playingEntity>
+
+                              <code codeSystem="2.16.840.1.113883.6.277"
+
+                                    codeSystemName="cdcNHSN"
+
+                                    code="3300-1"
+
+                                    displayName="Birthweight under 750g"/>
+
+                           </playingEntity>
+
+                        </participantRole>
+
+                     </participant>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270"
+
+                                 codeSystemName="NHSN Summary Data"
+
+                                 code="numPtDays"
+
+                                 displayName="Patient Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="23"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="H305" displayName="Temporary Central Line Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="5"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="H306" displayName="Permanent Central Line Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="6"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtUCathDays" displayName="Urinary Catheter Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="7"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtVentDays" displayName="Ventilator Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="5"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                  </encounter>
+
+               </entry>
+
+
+
+               <!-- Summary Encounter -->
+
+               <entry typeCode="DRIV">
+
+                  <encounter classCode="ENC" moodCode="EVN">
+
+                    <templateId root="2.16.840.1.113883.10.20.5.6.70"/>
+
+
+
+                    <!-- the location id and type -->
+
+                    <participant typeCode="LOC">
+
+                        <participantRole classCode="SDLOC">
+
+                           <id root="2.16.840.1.113883.3.117.1.1.5.1.1" extension="9W"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.259"
+
+                                 codeSystemName="HL7 Healthcare Service Location Code"
+
+                                 code="1029-8"
+
+                                 displayName="Medical/Surgical Critical Care"/>
+
+                        </participantRole>
+
+                     </participant>
+
+
+
+                      <!-- This encounter reports on a subset of the total group -->
+
+                     <participant typeCode="SBJ" contextControlCode="OP">
+
+                        <participantRole classCode="PRS">
+
+                           <playingEntity>
+
+                              <code codeSystem="2.16.840.1.113883.6.277"
+
+                                    codeSystemName="cdcNHSN"
+
+                                    code="3301-9"
+
+                                    displayName="Birthweight 751-1000g"/>
+
+                           </playingEntity>
+
+                        </participantRole>
+
+                     </participant>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtDays" displayName="Patient Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="23"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="H305" displayName="Temporary Central Line Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="5"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="H306" displayName="Permanent Central Line Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="6"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtUCathDays" displayName="Urinary Catheter Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="7"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtVentDays" displayName="Ventilator Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="5"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                  </encounter>
+
+               </entry>
+
+
+
+               <!-- Summary Encounter -->
+
+               <entry typeCode="DRIV">
+
+                  <encounter classCode="ENC" moodCode="EVN">
+
+
+
+                     <templateId root="2.16.840.1.113883.10.20.5.6.70"/>
+
+
+
+                     <!-- the location id and type -->
+
+                     <participant typeCode="LOC">
+
+                        <participantRole classCode="SDLOC">
+
+                           <id root="2.16.840.1.113883.3.117.1.1.5.1.1" extension="9W"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.259"
+
+                                 codeSystemName="HL7 Healthcare Service Location Code"
+
+                                 code="1029-8"
+
+                                 displayName="Medical/Surgical Critical Care"/>
+
+                        </participantRole>
+
+                     </participant>
+
+
+
+                      <!-- a subset of the total group -->
+
+                     <participant typeCode="SBJ" contextControlCode="OP">
+
+                        <participantRole classCode="PRS">
+
+                           <playingEntity>
+
+                              <code codeSystem="2.16.840.1.113883.6.277"
+
+                                    codeSystemName="cdcNHSN"
+
+                                    code="3302-7"
+
+                                    displayName="Birthweight 1001-1500g"/>
+
+                           </playingEntity>
+
+                        </participantRole>
+
+                     </participant>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtDays" displayName="Patient Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="23"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="H305" displayName="Temporary Central Line Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="5"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="H306" displayName="Permanent Central Line Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="6"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtUCathDays" displayName="Urinary Catheter Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="7"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtVentDays" displayName="Ventilator Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="5"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+                  </encounter>
+
+               </entry>
+
+
+
+               <!-- Summary Encounter -->
+
+               <entry typeCode="DRIV">
+
+                  <encounter classCode="ENC" moodCode="EVN">
+
+                    <templateId root="2.16.840.1.113883.10.20.5.6.70"/>
+
+
+
+                     <!-- the location id and type -->
+
+                     <participant typeCode="LOC">
+
+                        <participantRole classCode="SDLOC">
+
+                           <id root="2.16.840.1.113883.3.117.1.1.5.1.1" extension="9W"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.259"
+
+                                 codeSystemName="HL7 Healthcare Service Location Code"
+
+                                 code="1029-8"
+
+                                 displayName="Medical/Surgical Critical Care"/>
+
+                        </participantRole>
+
+                     </participant>
+
+
+
+                      <!-- a subset of the group -->
+
+                     <participant typeCode="SBJ" contextControlCode="OP">
+
+                        <participantRole classCode="PRS">
+
+                           <playingEntity>
+
+                              <code codeSystem="2.16.840.1.113883.6.277"
+
+                                    codeSystemName="cdcNHSN"
+
+                                    code="3303-5"
+
+                                    displayName="Birthweight 1501-2500g"/>
+
+                           </playingEntity>
+
+                        </participantRole>
+
+                     </participant>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtDays" displayName="Patient Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="23"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="H305" displayName="Temporary Central Line Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="5"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="H306" displayName="Permanent Central Line Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="6"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtUCathDays" displayName="Urinary Catheter Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="7"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtVentDays" displayName="Ventilator Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="5"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                  </encounter>
+
+               </entry>
+
+
+
+               <!-- Summary Encounter -->
+
+               <entry typeCode="DRIV">
+
+                  <encounter classCode="ENC" moodCode="EVN">
+
+
+
+                     <templateId root="2.16.840.1.113883.10.20.5.6.70"/>
+
+
+
+                     <!-- the location id and type -->
+
+                     <participant typeCode="LOC">
+
+                        <participantRole classCode="SDLOC">
+
+                           <id root="2.16.840.1.113883.3.117.1.1.5.1.1" extension="9W"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.259"
+
+                                 codeSystemName="HL7 Healthcare Service Location Code"
+
+                                 code="1029-8"
+
+                                 displayName="Medical/Surgical Critical Care"/>
+
+                        </participantRole>
+
+                     </participant>
+
+
+
+                      <!-- a subset of the group -->
+
+                     <participant typeCode="SBJ" contextControlCode="OP">
+
+                        <participantRole classCode="PRS">
+
+                           <playingEntity>
+
+                              <code codeSystem="2.16.840.1.113883.6.277"
+
+                                    codeSystemName="cdcNHSN"
+
+                                    code="3304-3"
+
+                                    displayName="Birthweight over 2500g"/>
+
+                           </playingEntity>
+
+                        </participantRole>
+
+                     </participant>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtDays" displayName="Patient Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="23"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="H305" displayName="Temporary Central Line Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="5"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="H306" displayName="Permanent Central Line Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="6"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtUCathDays" displayName="Urinary Catheter Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="7"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                     <entryRelationship typeCode="COMP">
+
+                        <observation classCode="OBS" moodCode="EVN">
+
+                           <templateId root="2.16.840.1.113883.10.20.5.6.69"/>
+
+                           <code codeSystem="2.16.840.1.113883.6.270" codeSystemName="NHSN Summary Data" code="numPtVentDays" displayName="Ventilator Days"/>
+
+                           <statusCode code="completed"/>
+
+                           <value xsi:type="PQ" unit="d" value="5"/>
+
+                        </observation>
+
+                     </entryRelationship>
+
+
+
+                  </encounter>
+
+               </entry>
+
+            </section>
+
+         </component>
+
+
+
+      </structuredBody>
+
+   </component>
+
+
+
+</ClinicalDocument>
