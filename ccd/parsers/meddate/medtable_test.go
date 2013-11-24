@@ -7,8 +7,9 @@ import (
 )
 
 func TestMedDate(t *testing.T) {
+  cc := ccd.NewDefaultCCD()
   // first three meds missing date in xml data
-  cc, err := ccd.UnmarshalFile("testdata/ccd.xml")
+  err := cc.ParseFile("testdata/ccd.xml")
   if err != nil {
     t.Fatal(err)
   }
@@ -19,15 +20,15 @@ func TestMedDate(t *testing.T) {
     }
   }
 
-  ccd.Register(Parser())
+  cc.AddParsers(Parser())
 
   // reparse with our new parser added
-  cc2, err := ccd.UnmarshalFile("testdata/ccd.xml")
+  err = cc.ParseFile("testdata/ccd.xml")
   if err != nil {
     t.Fatal(err)
   }
 
-  for _, med := range cc2.Medications[:3] {
+  for _, med := range cc.Medications[:3] {
     if med.StartDate.IsZero() {
       t.Fatal("Expected medication StartDate to be non-zero.")
     }

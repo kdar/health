@@ -12,7 +12,7 @@ import (
   "testing"
 )
 
-func unmarshalAndRecover(t *testing.T, path string) (ccd *CCD, err error) {
+func unmarshalAndRecover(t *testing.T, c *CCD, path string) (err error) {
   defer func() {
     if e := recover(); e != nil {
       lines := bytes.Split(debug.Stack(), []byte{'\n'})
@@ -25,11 +25,11 @@ func unmarshalAndRecover(t *testing.T, path string) (ccd *CCD, err error) {
     }
   }()
 
-  ccd, err = UnmarshalFile(path)
+  err = c.ParseFile(path)
   return
 }
 
-func TestUnmarshal(t *testing.T) {
+func TestParseAllCCDs(t *testing.T) {
   filepath.Walk("testdata", func(path string, info os.FileInfo, err error) error {
     if info.IsDir() {
       if info.Name()[0] == '.' {
@@ -43,7 +43,8 @@ func TestUnmarshal(t *testing.T) {
       return nil
     }
 
-    _, err = unmarshalAndRecover(t, path)
+    c := NewDefaultCCD()
+    err = unmarshalAndRecover(t, c, path)
     shouldfail := strings.HasPrefix(info.Name(), "fail_")
     if shouldfail && err == nil {
       t.Fatalf("%s: Expected failure, instead received success.", path)
@@ -56,19 +57,20 @@ func TestUnmarshal(t *testing.T) {
 }
 
 func TestNewStuff(t *testing.T) {
-  data, err := unmarshalAndRecover(t, "testdata/private/2013-08-26T04_03_24 - 0b7fddbdc631aecc6c96090043f690204f7d0d9d.xml")
+  c := NewDefaultCCD()
+  err := unmarshalAndRecover(t, c, "testdata/private/2013-08-26T04_03_24 - 0b7fddbdc631aecc6c96090043f690204f7d0d9d.xml")
   if err != nil {
     t.Fatal(err)
   }
 
   _ = spew.Dump
-  _ = data
 
-  spew.Dump(data.Medications)
+  spew.Dump(c.Medications)
 }
 
-func TestUnmarshal_Address(t *testing.T) {
-  ccd, err := unmarshalAndRecover(t, "testdata/specific/address.xml")
+func TestParse_Address(t *testing.T) {
+  c := NewDefaultCCD()
+  err := unmarshalAndRecover(t, c, "testdata/specific/address.xml")
   if err != nil {
     t.Fatal(err)
   }
@@ -84,17 +86,18 @@ func TestUnmarshal_Address(t *testing.T) {
     Type:    "HP",
   }
 
-  if !reflect.DeepEqual(addr, ccd.Patient.Address) {
-    t.Fatalf("Expected:\n%#v, got:\n%#v", addr, ccd.Patient.Address)
+  if !reflect.DeepEqual(addr, c.Patient.Address) {
+    t.Fatalf("Expected:\n%#v, got:\n%#v", addr, c.Patient.Address)
   }
 
-  if !ccd.Patient.Name.IsZero() {
-    t.Fatalf("ccd.Patient.Name was suppose to be empty, but it's not")
+  if !c.Patient.Name.IsZero() {
+    t.Fatalf("Patient.Name was suppose to be empty, but it's not")
   }
 }
 
-func TestUnmarshal_Name(t *testing.T) {
-  ccd, err := unmarshalAndRecover(t, "testdata/specific/name.xml")
+func TestParse_Name(t *testing.T) {
+  c := NewDefaultCCD()
+  err := unmarshalAndRecover(t, c, "testdata/specific/name.xml")
   if err != nil {
     t.Fatal(err)
   }
@@ -109,7 +112,7 @@ func TestUnmarshal_Name(t *testing.T) {
     NickName: "NickName",
   }
 
-  if !reflect.DeepEqual(name, ccd.Patient.Name) {
-    t.Fatalf("Expected:\n%#v, got:\n%#v", name, ccd.Patient.Name)
+  if !reflect.DeepEqual(name, c.Patient.Name) {
+    t.Fatalf("Expected:\n%#v, got:\n%#v", name, c.Patient.Name)
   }
 }

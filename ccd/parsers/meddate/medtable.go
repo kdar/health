@@ -1,3 +1,6 @@
+// Provides a parser to help get more medication info from
+// <text> tag of the medications section.
+
 package medtable
 
 import (

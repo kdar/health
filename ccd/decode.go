@@ -8,24 +8,48 @@ import (
   "time"
 )
 
-const (
-  // Found both these formats in the wild
-  TimeDecidingIndex = 14
-  TimeFormat        = "20060102150405-0700"
-  TimeFormat2       = "20060102150405.000-0700"
-)
-
-// Dates and times in a CCD can be partial. Meaning they can be:
-//   2006, 200601, 20060102, etc...
-// This function helps us parse all cases.
-func ParseTime(value string) (time.Time, error) {
-  l := len(value)
-  tmfmt := TimeFormat
-  if l > TimeDecidingIndex && value[TimeDecidingIndex] == '.' {
-    tmfmt = TimeFormat2
+var (
+  PatientParser = Parser{
+    Type:     PARSE_DOC,
+    Value:    "*",
+    Priority: 0,
+    Func:     parsePatient,
   }
-  return time.Parse(tmfmt[:l], value)
-}
+
+  ImmunizationsParser = Parser{
+    Type:     PARSE_SECTION,
+    Value:    "2.16.840.1.113883.10.20.1.6",
+    Priority: 0,
+    Func:     parseImmunizations,
+  }
+
+  MedicationsParser = Parser{
+    Type:     PARSE_SECTION,
+    Value:    "2.16.840.1.113883.10.20.1.8",
+    Priority: 0,
+    Func:     parseMedications,
+  }
+
+  ProblemsParser = Parser{
+    Type:     PARSE_SECTION,
+    Value:    "2.16.840.1.113883.10.20.1.11",
+    Priority: 0,
+    Func:     parseProblems,
+  }
+
+  VitalSignsParser = Parser{
+    Type:     PARSE_SECTION,
+    Value:    "2.16.840.1.113883.10.20.1.16",
+    Priority: 0,
+    Func:     parseVitalSigns,
+  }
+
+  DefaultParsers = []Parser{
+    PatientParser, ImmunizationsParser,
+    MedicationsParser, ProblemsParser,
+    VitalSignsParser,
+  }
+)
 
 type CCD struct {
   Patient       Patient
@@ -34,61 +58,83 @@ type CCD struct {
   VitalSigns    []VitalSign
   Immunizations []Immunization
   Extra         interface{}
+
+  // Right now doc_parsers will only have one map entry "*"
+  doc_parsers     map[string]Parsers
+  section_parsers map[string]Parsers
 }
 
-// Node get.
-// helper function to continually transverse down the
-// xml nodes in args, and return the last one.
-func Nget(node *xmlx.Node, args ...string) *xmlx.Node {
-  for _, a := range args {
-    if node == nil {
-      return nil
+// New CCD object with no parsers. Use NewDefaultCCD()
+// or add your own parsers with AddParsers() if you want
+// to actually parse anything.
+func NewCCD() *CCD {
+  c := &CCD{}
+  c.doc_parsers = make(map[string]Parsers)
+  c.section_parsers = make(map[string]Parsers)
+  return c
+}
+
+// New CCD object with all the default parsers
+func NewDefaultCCD() *CCD {
+  c := NewCCD()
+  c.AddParsers(DefaultParsers...)
+  return c
+}
+
+func (c *CCD) AddParsers(parsers ...Parser) {
+  for _, p := range parsers {
+    if p.Organization == "" {
+      p.Organization = "*"
     }
 
-    node = node.SelectNode("*", a)
-  }
+    p.Organization = strings.ToLower(p.Organization)
 
-  return node
+    if p.Type == PARSE_DOC {
+      if p.Value == "" {
+        p.Value = "*"
+      }
+
+      c.doc_parsers[p.Value] = insertSortParser(p, c.doc_parsers[p.Value])
+    } else if p.Type == PARSE_SECTION {
+      if p.Value == "" {
+        panic("ccd: Section parser cannot have an empty Value.")
+      }
+
+      c.section_parsers[p.Value] = insertSortParser(p, c.section_parsers[p.Value])
+    } else {
+      panic("ccd: Unknown parser type.")
+    }
+  }
 }
 
-// Node Safe get.
-// just like Nget, but returns a node no matter what.
-func Nsget(node *xmlx.Node, args ...string) *xmlx.Node {
-  n := Nget(node, args...)
-  if n == nil {
-    return xmlx.NewNode(0)
-  }
-  return n
-}
-
-func UnmarshalFile(filename string) (*CCD, error) {
+func (c *CCD) ParseFile(filename string) error {
   doc := xmlx.New()
   err := doc.LoadFile(filename, nil)
   if err != nil {
-    return nil, err
+    return err
   }
 
-  return UnmarshalDoc(doc)
+  return c.ParseDoc(doc)
 }
 
-func UnmarshalStream(r io.Reader) (*CCD, error) {
+func (c *CCD) ParseStream(r io.Reader) error {
   doc := xmlx.New()
   err := doc.LoadStream(r, nil)
   if err != nil {
-    return nil, err
+    return err
   }
 
-  return UnmarshalDoc(doc)
+  return c.ParseDoc(doc)
 }
 
-func Unmarshal(data []byte) (*CCD, error) {
+func (c *CCD) Parse(data []byte) error {
   doc := xmlx.New()
   err := doc.LoadBytes(data, nil)
   if err != nil {
-    return nil, err
+    return err
   }
 
-  return UnmarshalDoc(doc)
+  return c.ParseDoc(doc)
 }
 
 type ParseType int
@@ -96,12 +142,6 @@ type ParseType int
 const (
   PARSE_DOC ParseType = iota
   PARSE_SECTION
-)
-
-var (
-  // Right now doc_parsers will only have one map entry "*"
-  doc_parsers     = make(map[string]Parsers)
-  section_parsers = make(map[string]Parsers)
 )
 
 type ParseFunc func(root *xmlx.Node, ccd *CCD) []error
@@ -116,56 +156,18 @@ type Parser struct {
 
 type Parsers []Parser
 
-func insertSortParser(p Parser, parsers Parsers) Parsers {
-  i := len(parsers) - 1
-  for ; i >= 0; i-- {
-    if p.Priority > parsers[i].Priority {
-      i += 1
-      break
-    }
-  }
-
-  if i < 0 {
-    i = 0
-  }
-
-  parsers = append(parsers, p) // this just expands storage.
-  copy(parsers[i+1:], parsers[i:])
-  parsers[i] = p
-
-  return parsers
-}
-
-func Register(p Parser) {
-  if p.Organization == "" {
-    p.Organization = "*"
-  }
-
-  p.Organization = strings.ToLower(p.Organization)
-
-  if p.Type == PARSE_DOC {
-    if p.Value == "" {
-      p.Value = "*"
-    }
-
-    doc_parsers[p.Value] = insertSortParser(p, doc_parsers[p.Value])
-  } else if p.Type == PARSE_SECTION {
-    if p.Value == "" {
-      panic("ccd: Section parser cannot have an empty Value.")
-    }
-
-    section_parsers[p.Value] = insertSortParser(p, section_parsers[p.Value])
-  } else {
-    panic("ccd: Unknown parser type.")
-  }
-}
-
-// Unmarshals a CCD into a CCD struct.
-func UnmarshalDoc(doc *xmlx.Document) (*CCD, error) {
+// Parses a CCD into a CCD struct.
+func (c *CCD) ParseDoc(doc *xmlx.Document) error {
   var errs_ []error
   // var errs []error
 
-  ccd := &CCD{}
+  // Reset any data retrieved from another parse
+  c.Patient = Patient{}
+  c.Medications = nil
+  c.Problems = nil
+  c.VitalSigns = nil
+  c.Immunizations = nil
+  c.Extra = nil
 
   org := Nget(doc.Root, "recordTarget", "providerOrganization", "name")
   orgName := "*"
@@ -173,9 +175,9 @@ func UnmarshalDoc(doc *xmlx.Document) (*CCD, error) {
     orgName = strings.ToLower(org.S("*", "name"))
   }
 
-  for _, p := range doc_parsers["*"] {
+  for _, p := range c.doc_parsers["*"] {
     if orgName == "*" || p.Organization == "*" || orgName == p.Organization {
-      errs_ = p.Func(doc.Root, ccd)
+      errs_ = p.Func(doc.Root, c)
       //errs = append(errs, errs_...)
     }
 
@@ -189,10 +191,10 @@ func UnmarshalDoc(doc *xmlx.Document) (*CCD, error) {
 
       tid := templateId(sectionNode)
 
-      if parsers, ok := section_parsers[tid]; ok {
+      if parsers, ok := c.section_parsers[tid]; ok {
         for _, p := range parsers {
           if orgName == "*" || p.Organization == "*" || orgName == p.Organization {
-            errs_ = p.Func(sectionNode, ccd)
+            errs_ = p.Func(sectionNode, c)
             //errs = append(errs, errs_...)
           }
         }
@@ -203,7 +205,7 @@ func UnmarshalDoc(doc *xmlx.Document) (*CCD, error) {
   // disabling errors for now. may return "warnings" or something
   _ = errs_
 
-  return ccd, nil
+  return nil
 }
 
 type Name struct {
@@ -628,41 +630,4 @@ func codeSystemToMedType(codeSystem string) (string, error) {
     return "RxNorm", nil
   }
   return "", fmt.Errorf(`Unknown med codeSystem value of "%s"`, codeSystem)
-}
-
-func init() {
-  Register(Parser{
-    Type:     PARSE_DOC,
-    Value:    "*",
-    Priority: 0,
-    Func:     parsePatient,
-  })
-
-  Register(Parser{
-    Type:     PARSE_SECTION,
-    Value:    "2.16.840.1.113883.10.20.1.6",
-    Priority: 0,
-    Func:     parseImmunizations,
-  })
-
-  Register(Parser{
-    Type:     PARSE_SECTION,
-    Value:    "2.16.840.1.113883.10.20.1.8",
-    Priority: 0,
-    Func:     parseMedications,
-  })
-
-  Register(Parser{
-    Type:     PARSE_SECTION,
-    Value:    "2.16.840.1.113883.10.20.1.11",
-    Priority: 0,
-    Func:     parseProblems,
-  })
-
-  Register(Parser{
-    Type:     PARSE_SECTION,
-    Value:    "2.16.840.1.113883.10.20.1.16",
-    Priority: 0,
-    Func:     parseVitalSigns,
-  })
 }
