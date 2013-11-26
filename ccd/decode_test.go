@@ -2,7 +2,6 @@ package ccd
 
 import (
 	"bytes"
-	"github.com/davecgh/go-spew/spew"
 	"runtime/debug"
 	"strings"
 	//"github.com/jteeuwen/go-pkg-xmlx"
@@ -56,17 +55,19 @@ func TestParseAllCCDs(t *testing.T) {
 	})
 }
 
-func TestNewStuff(t *testing.T) {
-	c := NewDefaultCCD()
-	err := unmarshalAndRecover(t, c, "testdata/private/2013-08-26T04_03_24 - 0b7fddbdc631aecc6c96090043f690204f7d0d9d.xml")
-	if err != nil {
-		t.Fatal(err)
-	}
+// func TestNewStuff(t *testing.T) {
+//   c := NewDefaultCCD()
+//   //err := unmarshalAndRecover(t, c, "testdata/private/2013-08-26T04_03_24 - 0b7fddbdc631aecc6c96090043f690204f7d0d9d.xml")
+//   // err := unmarshalAndRecover(t, c, "testdata/public/ToC_CCDA_CCD_CompGuideSample_FullXML_v01a.xml")
+//   err := unmarshalAndRecover(t, c, "testdata/public/sample_ccdas/NIST Samples/CCDA_CCD_b1_InPatient_v2.xml")
+//   if err != nil {
+//     t.Fatal(err)
+//   }
 
-	_ = spew.Dump
+//   _ = spew.Dump
 
-	spew.Dump(c.Medications)
-}
+//   //spew.Dump(c.Problems)
+// }
 
 func TestParse_Address(t *testing.T) {
 	c := NewDefaultCCD()
