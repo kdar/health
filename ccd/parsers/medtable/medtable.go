@@ -73,8 +73,8 @@ func parseMedTableMedications(node *xmlx.Node, cc *ccd.CCD) []error {
 func Parser() ccd.Parser {
 	return ccd.Parser{
 		Type:         ccd.PARSE_SECTION,
-		Organization: "Good Health Clinic",
-		Value:        "2.16.840.1.113883.10.20.1.8",
+		Organization: "*",
+		Values:       ccd.MedicationsTid,
 		Priority:     10,
 		Func:         parseMedTableMedications,
 	}
