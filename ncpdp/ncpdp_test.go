@@ -6,7 +6,7 @@ import (
 	//"github.com/kr/pretty"
 	"bytes"
 	//"reflect"
-	"rxmg/lib/edi/edifact"
+	"github.com/kdar/health/edifact"
 	"testing"
 	"time"
 )
@@ -70,8 +70,8 @@ var (
 					"",
 				},
 			},
-			PVD: edifact.Values{},
-			PTT: edifact.Values{},
+			PVD: nil,
+			PTT: nil,
 			COO: edifact.Values{
 				"COO",
 				edifact.Values{
@@ -124,7 +124,7 @@ var (
 					LocationQualifier: "",
 					Location:          "",
 				},
-				Phones: []*Phone{},
+				Phones: nil,
 			},
 		},
 		Response: &Response{
@@ -187,7 +187,7 @@ var unmarshalTests = []struct {
 }
 
 var unmarshalValuesTests = []struct {
-	in  edifact.Value
+	in  edifact.Values
 	out interface{}
 }{
 	{
@@ -210,7 +210,7 @@ func TestUnmarshal(t *testing.T) {
 		spew.Fprintf(b2, "%#v", tt.out)
 
 		if !bytes.Equal(b1.Bytes(), b2.Bytes()) {
-			t.Fatalf("#%d: mismatch\nhave: %s\nwant: %s", i, b1.String(), b2.String())
+			t.Fatalf("#%d: mismatch\nexpected: %s\ngot: %s", i, b2.String(), b1.String())
 		}
 
 		// Cannot deep equal because the data contains pointers which are

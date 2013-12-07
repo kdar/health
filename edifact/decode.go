@@ -9,7 +9,7 @@ import (
 func Unmarshal(data []byte) (Values, error) {
 	root, err := parse.Parse(string(data))
 	if err != nil {
-		return Values{}, err
+		return nil, err
 	}
 
 	s := &state{}
