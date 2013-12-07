@@ -14,7 +14,7 @@ build:
         code: |
           cd $WERCKER_SOURCE_DIR
           go version
-          go get ./...
+          go get -t ./...
     - script:
         name: go build
         code: |
@@ -22,5 +22,4 @@ build:
     - script:
         name: go test
         code: |
-          go get github.com/davecgh/go-spew/spew
           go test ./...
