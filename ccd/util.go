@@ -154,19 +154,6 @@ func insertSortParser(p Parser, parsers Parsers) Parsers {
 	return parsers
 }
 
-func templateId(node *xmlx.Node) string {
-	idNodes := node.SelectNodes("*", "templateId")
-	id := ""
-	for _, idNode := range idNodes {
-		id = idNode.As("*", "root")
-		if strings.HasPrefix(id, "2.16.840.1.113883.10.20.") {
-			return id
-		}
-	}
-
-	return id
-}
-
 func codeSystemToMedType(codeSystem string) (string, error) {
 	switch codeSystem {
 	case "2.16.840.1.113883.6.69": // NDC

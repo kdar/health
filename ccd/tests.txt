@@ -1,0 +1,288 @@
+
+
+{"0.00-0.00", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("0"),
+	High:    float64p("0"),
+	Text:    nil,
+},
+}},
+{"13.5 - 18", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("13.5"),
+	High:    float64p("18"),
+	Text:    nil,
+},
+}},
+{"(.0-100.0)", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("0"),
+	High:    float64p("100"),
+	Text:    nil,
+},
+}},
+{"(1.000-200.6)", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("1"),
+	High:    float64p("200.6"),
+	Text:    nil,
+},
+}},
+{"0.00-0.20 ng/mL", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("0"),
+	High:    float64p("0.2"),
+	Text:    nil,
+},
+}},
+{"27-32 uug", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("27"),
+	High:    float64p("32"),
+	Text:    nil,
+},
+}},
+{"80-95 um3", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("80"),
+	High:    float64p("95"),
+	Text:    nil,
+},
+}},
+{"11.5-14.5 %", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("11.5"),
+	High:    float64p("14.5"),
+	Text:    nil,
+},
+}},
+{"10-39 years: 55-110 mg/dL | 40-59 years: 70-150 mg/dL | >60 years: 80-150 mg/dL | Therapeutic Target: <100 mg/dL", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  float64p("10"),
+	AgeHigh: float64p("39"),
+	Low:     float64p("55"),
+	High:    float64p("110"),
+	Text:    stringp("10-39 years"),
+},{
+	Gender:  nil,
+	AgeLow:  float64p("40"),
+	AgeHigh: float64p("59"),
+	Low:     float64p("70"),
+	High:    float64p("150"),
+	Text:    stringp("40-59 years"),
+},{
+	Gender:  nil,
+	AgeLow:  float64p("60"),
+	AgeHigh: nil,
+	Low:     float64p("80"),
+	High:    float64p("150"),
+	Text:    stringp(">60 years"),
+},{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     nil,
+	High:    float64p("100"),
+	Text:    stringp("Therapeutic Target"),
+},
+}},
+{"<130 mg/dL (calc)", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     nil,
+	High:    float64p("130"),
+	Text:    nil,
+},
+}},
+{"<=534233", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     nil,
+	High:    float64p("534233"),
+	Text:    nil,
+},
+}},
+{">2.5 ng/mL", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("2.5"),
+	High:    nil,
+	Text:    nil,
+},
+}},
+{">=27.0", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("27"),
+	High:    nil,
+	Text:    nil,
+},
+}},
+{"M 13-18 g/dl; F 12-16 g/dl", ResultRanges{
+{
+	Gender:  stringp("M"),
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("13"),
+	High:    float64p("18"),
+	Text:    nil,
+},{
+	Gender:  stringp("F"),
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("12"),
+	High:    float64p("16"),
+	Text:    nil,
+},
+}},
+{"mg/dL", ResultRanges{
+
+}},
+{"NA", ResultRanges{
+
+}},
+{"No data", ResultRanges{
+
+}},
+{"(Clear-Mod Cloud)", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     nil,
+	High:    nil,
+	Text:    stringp("Clear-Mod Cloud"),
+},
+}},
+{"(Negative)", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     nil,
+	High:    nil,
+	Text:    stringp("Negative"),
+},
+}},
+{"(Negative-250)", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     nil,
+	High:    nil,
+	Text:    stringp("Negative-250"),
+},
+}},
+{"normal: 0.29–5.11 IU/ml", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("0.29"),
+	High:    float64p("5.11"),
+	Text:    stringp("normal"),
+},
+}},
+{"Normal (3.0-4.0 cm2), mild (1.5–2.0 cm2), moderate (1.0–1.5 cm2), severe (less than 1.0 cm2)", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("3"),
+	High:    float64p("4"),
+	Text:    stringp("Normal"),
+},{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("1.5"),
+	High:    float64p("2"),
+	Text:    stringp("mild"),
+},{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("1"),
+	High:    float64p("1.5"),
+	Text:    stringp("moderate"),
+},{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     nil,
+	High:    float64p("1"),
+	Text:    stringp("severe"),
+},
+}},
+{"normal: below 1.5 mg/dL", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     nil,
+	High:    float64p("1.5"),
+	Text:    stringp("normal"),
+},
+}},
+{"normal: above 1.5 mg/dL", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("1.5"),
+	High:    nil,
+	Text:    stringp("normal"),
+},
+}},
+{"Normal reference range 1.0-1.5; Targeted INR 2.0-3.0", ResultRanges{
+{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("1"),
+	High:    float64p("1.5"),
+	Text:    stringp("Normal reference range"),
+},{
+	Gender:  nil,
+	AgeLow:  nil,
+	AgeHigh: nil,
+	Low:     float64p("2"),
+	High:    float64p("3"),
+	Text:    stringp("Targeted INR"),
+},
+}},PASS
+ok  	github.com/kdar/health/ccd	0.008s
