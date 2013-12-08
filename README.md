@@ -1,5 +1,4 @@
-HEALTH
-------
+# HEALTH [![Build Status](https://travis-ci.org/kdar/health.png?branch=master)](https://travis-ci.org/kdar/health)
 
 A library for marshaling and unmarshaling various EDI formats (NCPDP, EDIFACT, ...) and CCDs.
 
