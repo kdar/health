@@ -161,8 +161,7 @@ func parseRangeMath(s string, text *string, low **float64, high **float64) error
 
 type ResultObservation struct {
 	Date                time.Time
-	DisplayName         string
-	Loinc               string
+	Code                Code
 	Value               ResultValue
 	InterpretationCodes []string
 	Ranges              []ResultRange
@@ -189,7 +188,7 @@ func parseResults(node *xmlx.Node, ccd *CCD) []error {
 		result := Result{}
 
 		effectiveTimeNode := Nget(organizerNode, "effectiveTime")
-		t := ParseTimeNode(effectiveTimeNode)
+		t := decodeTime(effectiveTimeNode)
 		result.Date = t.Value
 
 		for _, componentNode := range componentNodes {
@@ -201,13 +200,12 @@ func parseResults(node *xmlx.Node, ccd *CCD) []error {
 			observation := ResultObservation{}
 
 			effectiveTimeNode := Nget(obNode, "effectiveTime")
-			t = ParseTimeNode(effectiveTimeNode)
+			t = decodeTime(effectiveTimeNode)
 			observation.Date = t.Value
 
 			codeNode := Nget(obNode, "code")
 			if codeNode != nil {
-				observation.DisplayName = codeNode.As("*", "displayName")
-				observation.Loinc = codeNode.As("*", "code")
+				observation.Code.decode(codeNode)
 			}
 
 			valueNode := Nget(obNode, "value")
@@ -223,25 +221,6 @@ func parseResults(node *xmlx.Node, ccd *CCD) []error {
 					observation.InterpretationCodes = append(observation.InterpretationCodes, icodeNode.As("*", "code"))
 				}
 			}
-
-			// <referenceRange>
-			//      <observationRange>
-			//        <text>
-			//          <reference value="#TESTRANGE_3"/>
-			//        </text>
-			//        <value xsi:type="IVL_PQ">
-			//          <low value="150" unit="10+3/ul"/>
-			//          <high value="350" unit="10+3/ul"/>
-			//        </value>
-			//      </observationRange>
-			//    </referenceRange>
-
-			//    <referenceRange>
-			//     <observationRange>
-			//       <text>M 13-18 g/dl; F 12-16 g/dl<reference value="#TESTRANGE_1"/>
-			//       </text>
-			//     </observationRange>
-			//   </referenceRange>
 
 			obvRangeNode := Nget(obNode, "referenceRange", "observationRange")
 			if obvRangeNode != nil {

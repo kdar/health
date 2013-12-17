@@ -22,37 +22,54 @@ type VitalSignResult struct {
 	Unit  string
 }
 
-type VitalSign struct {
+type VitalSignObservation struct {
 	Name   string
-	Result VitalSignResult
 	Date   time.Time
+	Code   Code
+	Result VitalSignResult
+}
+
+type VitalSign struct {
+	Date         time.Time
+	Observations []VitalSignObservation
 }
 
 func parseVitalSigns(node *xmlx.Node, ccd *CCD) []error {
-	orgNode := Nget(node, "entry", "organizer")
-	if orgNode == nil {
-		return nil
-	}
-
-	componentNodes := orgNode.SelectNodes("*", "component")
-	for _, componentNode := range componentNodes {
-		vitalsign := VitalSign{}
-
-		codeNode := Nget(componentNode, "code")
-		vitalsign.Name = codeNode.As("*", "displayName")
-
-		effectiveTimeNode := Nget(componentNode, "effectiveTime")
-		t := ParseTimeNode(effectiveTimeNode)
-		vitalsign.Date = t.Value
-
-		valueNode := Nget(componentNode, "value")
-		vitalsign.Result = VitalSignResult{
-			Type:  valueNode.As("*", "type"),
-			Value: valueNode.As("*", "value"),
-			Unit:  valueNode.As("*", "unit"),
+	entryNodes := node.SelectNodes("*", "entry")
+	for _, entryNode := range entryNodes {
+		organizerNode := Nget(entryNode, "organizer")
+		if organizerNode == nil {
+			continue
 		}
 
-		ccd.VitalSigns = append(ccd.VitalSigns, vitalsign)
+		vitalSign := VitalSign{}
+
+		effectiveTimeNode := Nget(organizerNode, "effectiveTime")
+		t := decodeTime(effectiveTimeNode)
+		vitalSign.Date = t.Value
+
+		componentNodes := organizerNode.SelectNodes("*", "component")
+		for _, componentNode := range componentNodes {
+			observation := VitalSignObservation{}
+
+			codeNode := Nget(componentNode, "code")
+			observation.Code.decode(codeNode)
+
+			effectiveTimeNode := Nget(componentNode, "effectiveTime")
+			t := decodeTime(effectiveTimeNode)
+			observation.Date = t.Value
+
+			valueNode := Nget(componentNode, "value")
+			observation.Result = VitalSignResult{
+				Type:  valueNode.As("*", "type"),
+				Value: valueNode.As("*", "value"),
+				Unit:  valueNode.As("*", "unit"),
+			}
+
+			vitalSign.Observations = append(vitalSign.Observations, observation)
+		}
+
+		ccd.VitalSigns = append(ccd.VitalSigns, vitalSign)
 	}
 
 	return nil

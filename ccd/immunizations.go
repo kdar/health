@@ -31,14 +31,14 @@ func parseImmunizations(node *xmlx.Node, ccd *CCD) []error {
 		saNode := Nget(entryNode, "substanceAdministration")
 		immunization.Status = Nget(saNode, "statusCode").As("*", "code")
 
-		t := ParseTimeNode(Nget(saNode, "effectiveTime"))
+		t := decodeTime(Nget(saNode, "effectiveTime"))
 		immunization.Date = t.Value
 
 		routeCodeNode := Nget(saNode, "routeCode")
 		if routeCodeNode != nil {
-			if routeCodeNode.As("*", "codeSystemName") == "RouteOfAdministration" {
-				immunization.Administration = routeCodeNode.As("*", "displayName")
-			}
+			//if routeCodeNode.As("*", "codeSystemName") == "RouteOfAdministration" {
+			immunization.Administration = routeCodeNode.As("*", "displayName")
+			//}
 		}
 
 		codeNode := Nget(saNode, "manufacturedProduct", "manufacturedMaterial", "code")

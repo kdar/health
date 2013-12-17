@@ -76,19 +76,19 @@ func TestParseAllCCDs(t *testing.T) {
 	})
 }
 
-// func TestNewStuff(t *testing.T) {
-// 	c := NewDefaultCCD()
-// 	//err := unmarshalAndRecover(t, c, "testdata/private/2013-08-26T04_03_24 - 0b7fddbdc631aecc6c96090043f690204f7d0d9d.xml")
-// 	// err := unmarshalAndRecover(t, c, "testdata/public/ToC_CCDA_CCD_CompGuideSample_FullXML_v01a.xml")
-// 	err := parseAndRecover(t, c, "testdata/public/sample_ccdas/EMERGE/Patient-135.xml", nil)
-// 	if err != nil {
-// 		t.Fatal(err)
-// 	}
+func TestNewStuff(t *testing.T) {
+	c := NewDefaultCCD()
+	//err := unmarshalAndRecover(t, c, "testdata/private/2013-08-26T04_03_24 - 0b7fddbdc631aecc6c96090043f690204f7d0d9d.xml")
+	err := parseAndRecover(t, c, "testdata/public/ToC_CCDA_CCD_CompGuideSample_FullXML_v01a.xml", nil)
+	//err := parseAndRecover(t, c, "testdata/public/SampleCCDDocument.xml", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
 
-// 	//_ = spew.Dump
+	//_ = spew.Dump
 
-// 	//spew.Dump(c.Problems)
-// }
+	spew.Dump(c.Patient)
+}
 
 func TestParse_Address(t *testing.T) {
 	c := NewDefaultCCD()
@@ -105,11 +105,11 @@ func TestParse_Address(t *testing.T) {
 		State:   "ST",
 		Zip:     "12345",
 		Country: "Country",
-		Type:    "HP",
+		Use:     "HP",
 	}
 
-	if !reflect.DeepEqual(addr, c.Patient.Address) {
-		t.Fatalf("Expected:\n%#v, got:\n%#v", addr, c.Patient.Address)
+	if !reflect.DeepEqual(addr, c.Patient.Addresses[0]) {
+		t.Fatalf("Expected:\n%#v, got:\n%#v", addr, c.Patient.Addresses[0])
 	}
 
 	if !c.Patient.Name.IsZero() {

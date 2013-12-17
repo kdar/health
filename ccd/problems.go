@@ -36,7 +36,7 @@ func parseProblems(node *xmlx.Node, ccd *CCD) []error {
 		problem.Name = valueNode.As("*", "displayName")
 
 		effectiveTimeNode := Nget(observationNode, "effectiveTime")
-		t := ParseTimeNode(effectiveTimeNode)
+		t := decodeTime(effectiveTimeNode)
 		problem.Date = t.Value
 
 		// observationNode2 := Nget(observationNode, "entryRelationship", "observation")

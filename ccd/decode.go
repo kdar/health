@@ -10,9 +10,28 @@ var (
 	DefaultParsers = []Parser{
 		PatientParser, AllergiesParser, ImmunizationsParser,
 		MedicationsParser, ProblemsParser,
-		ResultsParser, VitalSignsParser,
+		ResultsParser, VitalSignsParser, SocialHistoryParser,
 	}
 )
+
+type Code struct {
+	CodeSystemName string
+	Type           string
+	CodeSystem     string
+	Code           string
+	DisplayName    string
+}
+
+func (c *Code) decode(n *xmlx.Node) {
+	if n == nil {
+		return
+	}
+	c.CodeSystem = n.As("*", "codeSystem")
+	// code.CodeSystemName, _ = codeSystemToName(code.CodeSystem)
+	c.Code = n.As("*", "code")
+	c.DisplayName = n.As("*", "displayName")
+	c.Type = n.As("*", "type")
+}
 
 type CCD struct {
 	Patient       Patient
@@ -22,7 +41,7 @@ type CCD struct {
 	Results       []Result
 	VitalSigns    []VitalSign
 	Allergies     []Allergy
-	Extra         interface{}
+	SocialHistory []SocialHistory
 
 	// Right now doc_parsers will only have one map entry "*"
 	doc_parsers     map[string]Parsers
@@ -132,11 +151,13 @@ func (c *CCD) ParseDoc(doc *xmlx.Document) error {
 
 	// Reset any data retrieved from another parse
 	c.Patient = Patient{}
+	c.Immunizations = nil
 	c.Medications = nil
 	c.Problems = nil
+	c.Results = nil
 	c.VitalSigns = nil
-	c.Immunizations = nil
-	c.Extra = nil
+	c.Allergies = nil
+	c.SocialHistory = nil
 
 	org := Nget(doc.Root, "recordTarget", "providerOrganization", "name")
 	orgName := "*"

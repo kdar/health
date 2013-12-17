@@ -1,7 +1,6 @@
 package ccd
 
 import (
-	"fmt"
 	"github.com/jteeuwen/go-pkg-xmlx"
 	"menteslibres.net/gosexy/to"
 	"strings"
@@ -44,7 +43,7 @@ func (t *Time) IsZero() bool {
 	return t.Value.IsZero() && t.Low.IsZero() && t.High.IsZero() && t.Period == 0
 }
 
-func ParseTimeNode(node *xmlx.Node) (t Time) {
+func decodeTime(node *xmlx.Node) (t Time) {
 	if node == nil {
 		return t
 	}
@@ -152,14 +151,4 @@ func insertSortParser(p Parser, parsers Parsers) Parsers {
 	parsers[i] = p
 
 	return parsers
-}
-
-func codeSystemToMedType(codeSystem string) (string, error) {
-	switch codeSystem {
-	case "2.16.840.1.113883.6.69": // NDC
-		return "NDC", nil
-	case "2.16.840.1.113883.6.88": // RxNorm
-		return "RxNorm", nil
-	}
-	return "", fmt.Errorf(`Unknown med codeSystem value of "%s"`, codeSystem)
 }

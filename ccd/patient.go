@@ -3,6 +3,7 @@ package ccd
 import (
 	"fmt"
 	"github.com/jteeuwen/go-pkg-xmlx"
+	"strings"
 	"time"
 )
 
@@ -36,53 +37,111 @@ type Address struct {
 	State   string
 	Zip     string
 	Country string
-	Type    string // H or HP = home, TMP = temporary, WP = work/office
+	Use     string // H or HP = home, TMP = temporary, WP = work/office
 }
 
 func (a Address) IsZero() bool {
 	return a == (Address{})
 }
 
+type Telecom struct {
+	Type          string
+	Use           string
+	Value         string
+	OriginalValue string
+}
+
+func decodeTelecom(n *xmlx.Node) (t Telecom) {
+	if n == nil {
+		return t
+	}
+
+	t.OriginalValue = n.As("*", "value")
+	t.Use = n.As("*", "use")
+
+	coloni := strings.Index(t.OriginalValue, ":")
+	if coloni > 0 {
+		switch t.OriginalValue[:coloni] {
+		case "tel":
+			t.Type = "phone"
+		case "http":
+			t.Type = "url"
+		case "mailto":
+			t.Type = "email"
+		}
+		t.Value = t.OriginalValue[coloni+1:]
+	}
+
+	return t
+}
+
 type Patient struct {
 	Name          Name
 	Dob           time.Time
-	Address       Address
-	Gender        string
-	MaritalStatus string
-	RaceCode      string
-	EthnicityCode string
+	Addresses     []Address
+	Telecoms      []Telecom
+	LanguageCode  string
+	Gender        Code
+	MaritalStatus Code
+	Race          Code
+	Ethnicity     Code
+	Religion      Code
 }
 
-func (p Patient) IsZero() bool {
-	return p == (Patient{})
-}
+// func (p Patient) IsZero() bool {
+// 	return p == (Patient{})
+// }
 
 // parses patient information from the CCD and returns
 // a Patient struct
 func parsePatient(root *xmlx.Node, ccd *CCD) []error {
-	anode := Nget(root, "ClinicalDocument", "recordTarget", "patientRole", "addr")
-	// address isn't always present
-	if anode != nil {
-		ccd.Patient.Address.Type = anode.As("*", "use")
-		lines := anode.SelectNodes("*", "streetAddressLine")
-		if len(lines) > 0 {
-			ccd.Patient.Address.Line1 = lines[0].GetValue()
+	prNode := Nget(root, "ClinicalDocument", "recordTarget", "patientRole")
+	if prNode == nil {
+		return []error{
+			fmt.Errorf("Could not find the node in CCD: ClinicalDocument/recordTarget/patientRole"),
 		}
-		if len(lines) > 1 {
-			ccd.Patient.Address.Line2 = lines[1].GetValue()
-		}
-		ccd.Patient.Address.City = anode.S("*", "city")
-		ccd.Patient.Address.County = anode.S("*", "county")
-		ccd.Patient.Address.State = anode.S("*", "state")
-		ccd.Patient.Address.Zip = anode.S("*", "postalCode")
-		ccd.Patient.Address.Country = anode.S("*", "country")
 	}
 
-	pnode := Nget(root, "ClinicalDocument", "recordTarget", "patientRole", "patient")
+	aNodes := prNode.SelectNodes("*", "addr")
+	if aNodes != nil {
+		for _, anode := range aNodes {
+			address := Address{}
+
+			address.Use = anode.As("*", "use")
+			lines := anode.SelectNodes("*", "streetAddressLine")
+			if len(lines) > 0 {
+				address.Line1 = lines[0].GetValue()
+			}
+			if len(lines) > 1 {
+				address.Line2 = lines[1].GetValue()
+			}
+			address.City = anode.S("*", "city")
+			address.County = anode.S("*", "county")
+			address.State = anode.S("*", "state")
+			address.Zip = anode.S("*", "postalCode")
+			address.Country = anode.S("*", "country")
+
+			ccd.Patient.Addresses = append(ccd.Patient.Addresses, address)
+		}
+	}
+
+	teleNodes := prNode.SelectNodes("*", "telecom")
+	if teleNodes != nil {
+		for _, tnode := range teleNodes {
+			ccd.Patient.Telecoms = append(ccd.Patient.Telecoms, decodeTelecom(tnode))
+		}
+	}
+
+	pnode := Nget(prNode, "patient")
 	if pnode == nil {
 		return []error{
 			fmt.Errorf("Could not find the node in CCD: ClinicalDocument/recordTarget/patientRole/patient"),
 		}
+	}
+
+	languageNode := Nget(pnode, "languageCommunication", "languageCode")
+	if languageNode != nil {
+		ccd.Patient.LanguageCode = languageNode.As("*", "code")
 	}
 
 	for n, nameNode := range pnode.SelectNodes("*", "name") {
@@ -121,32 +180,30 @@ func parsePatient(root *xmlx.Node, ccd *CCD) []error {
 
 	genderNode := pnode.SelectNode("*", "administrativeGenderCode")
 	if genderNode != nil && genderNode.As("*", "codeSystem") == "2.16.840.1.113883.5.1" {
-		switch genderNode.As("*", "code") {
-		case "M":
-			ccd.Patient.Gender = "Male"
-		case "F":
-			ccd.Patient.Gender = "Female"
-		case "UN":
-			ccd.Patient.Gender = "Undifferentiated"
-		default:
-			ccd.Patient.Gender = "Unknown"
-		}
+		ccd.Patient.Gender.decode(genderNode)
 	}
 
 	maritalNode := pnode.SelectNode("*", "maritalStatusCode")
 	if maritalNode != nil && maritalNode.As("*", "codeSystem") == "2.16.840.1.113883.5.2" {
-		ccd.Patient.MaritalStatus = maritalNode.As("*", "code")
+		ccd.Patient.MaritalStatus.decode(maritalNode)
 	}
 
 	raceNode := pnode.SelectNode("*", "raceCode")
 	if raceNode != nil && raceNode.As("*", "codeSystem") == "2.16.840.1.113883.6.238" {
-		ccd.Patient.RaceCode = raceNode.As("*", "code")
+		ccd.Patient.Race.decode(raceNode)
 	}
 
 	ethnicNode := pnode.SelectNode("*", "ethnicGroupCode")
 	if ethnicNode != nil && ethnicNode.As("*", "codeSystem") == "2.16.840.1.113883.6.238" {
-		ccd.Patient.EthnicityCode = ethnicNode.As("*", "code")
+		ccd.Patient.Ethnicity.decode(ethnicNode)
 	}
+
+	religionNode := pnode.SelectNode("*", "religiousAffiliationCode")
+	if religionNode != nil {
+		ccd.Patient.Religion.decode(religionNode)
+	}
+
+	// spew.Dump(ccd.Patient)
 
 	return nil
 }
