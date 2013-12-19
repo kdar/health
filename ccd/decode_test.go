@@ -77,6 +77,8 @@ func TestParseAllCCDs(t *testing.T) {
 }
 
 func TestNewStuff(t *testing.T) {
+	t.Skip("just for testing")
+
 	c := NewDefaultCCD()
 	//err := unmarshalAndRecover(t, c, "testdata/private/2013-08-26T04_03_24 - 0b7fddbdc631aecc6c96090043f690204f7d0d9d.xml")
 	err := parseAndRecover(t, c, "testdata/public/ToC_CCDA_CCD_CompGuideSample_FullXML_v01a.xml", nil)

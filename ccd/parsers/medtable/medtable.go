@@ -60,9 +60,11 @@ func parseMedTableMedications(node *xmlx.Node, cc *ccd.CCD) []error {
 				}
 			}
 
-			tds := entries[i].SelectNodes("*", "td")
-			if len(tds) > dateIndex {
-				cc.Medications[i].StartDate, _ = time.Parse(MedTableTimeFormat, tds[dateIndex].S("*", "td"))
+			if i < len(entries) {
+				tds := entries[i].SelectNodes("*", "td")
+				if len(tds) > dateIndex {
+					cc.Medications[i].StartDate, _ = time.Parse(MedTableTimeFormat, tds[dateIndex].S("*", "td"))
+				}
 			}
 		}
 	}
