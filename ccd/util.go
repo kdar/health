@@ -51,11 +51,11 @@ func decodeTime(node *xmlx.Node) (t Time) {
 	t.Type = TimeType(strings.ToUpper(node.As("*", "type")))
 
 	lowNode := Nget(node, "low")
-	if lowNode != nil {
+	if lowNode != nil && !lowNode.HasAttr("*", "nullFlavor") {
 		t.Low, _ = ParseHL7Time(lowNode.As("*", "value"))
 	}
 	highNode := Nget(node, "high")
-	if highNode != nil {
+	if highNode != nil && !highNode.HasAttr("*", "nullFlavor") {
 		t.High, _ = ParseHL7Time(highNode.As("*", "value"))
 	}
 
@@ -100,6 +100,10 @@ func decodeTime(node *xmlx.Node) (t Time) {
 //   2006, 200601, 20060102, etc...
 // This function helps us parse all cases.
 func ParseHL7Time(value string) (time.Time, error) {
+	if value == "" {
+		return time.Time{}, nil
+	}
+
 	l := len(value)
 	tmfmt := TimeFormat
 	if l > TimeDecidingIndex && value[TimeDecidingIndex] == '.' {
