@@ -66,7 +66,6 @@ type Medication struct {
 	Code      Code
 }
 
-// http://wiki.ihe.net/index.php?title=1.3.6.1.4.1.19376.1.5.3.1.4.7
 func parseMedications(node *xmlx.Node, ccd *CCD) []error {
 	var errs []error
 

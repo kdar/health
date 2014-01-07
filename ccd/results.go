@@ -31,12 +31,13 @@ type ResultValue struct {
 }
 
 type ResultRange struct {
-	Gender  *string // M or F
-	AgeLow  *float64
-	AgeHigh *float64
-	Low     *float64
-	High    *float64
-	Text    *string
+	Gender       *string // M or F
+	AgeLow       *float64
+	AgeHigh      *float64
+	Low          *float64
+	High         *float64
+	Text         *string
+	OriginalText string
 }
 
 func (r ResultRange) IsZero() bool {
@@ -54,6 +55,8 @@ func (r *ResultRanges) Parse(s string) {
 		}
 
 		rr := ResultRange{}
+
+		rr.OriginalText = s
 
 		if strings.HasPrefix(part, "M ") {
 			gender := "M"
@@ -134,7 +137,7 @@ func parseRange(s string, text *string, low **float64, high **float64) error {
 	return errors.New("Not a range")
 }
 
-// Find <>=[numbers]
+// Find <>=[numbers]. e.g. <5, >=6.5
 func parseRangeMath(s string, text *string, low **float64, high **float64) error {
 	data := RANGE_MATH_RE.FindStringSubmatch(s)
 	if len(data) == 4 {

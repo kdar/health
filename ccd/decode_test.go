@@ -1,10 +1,12 @@
-package ccd
+package ccd_test
 
 import (
 	"bytes"
 	"fmt"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/jteeuwen/go-pkg-xmlx"
+	"github.com/kdar/health/ccd"
+	"github.com/kdar/health/ccd/parsers/medtable"
 	"github.com/shurcooL/go-goon"
 	"os"
 	"path/filepath"
@@ -15,7 +17,7 @@ import (
 	"text/template"
 )
 
-func parseAndRecover(t *testing.T, c *CCD, path string, doc *xmlx.Document) (err error) {
+func parseAndRecover(t *testing.T, c *ccd.CCD, path string, doc *xmlx.Document) (err error) {
 	defer func() {
 		if e := recover(); e != nil {
 			lines := bytes.Split(debug.Stack(), []byte{'\n'})
@@ -64,7 +66,7 @@ func TestParseAllCCDs(t *testing.T) {
 			return nil
 		}
 
-		c := NewDefaultCCD()
+		c := ccd.NewDefaultCCD()
 		err = parseAndRecover(t, c, path, doc)
 		if shouldfail && err == nil {
 			t.Fatalf("%s: Expected failure, instead received success.", path)
@@ -77,29 +79,30 @@ func TestParseAllCCDs(t *testing.T) {
 }
 
 func TestNewStuff(t *testing.T) {
-	t.Skip("just for testing")
+	//t.Skip("just for testing")
 
-	c := NewDefaultCCD()
-	//err := unmarshalAndRecover(t, c, "testdata/private/2013-08-26T04_03_24 - 0b7fddbdc631aecc6c96090043f690204f7d0d9d.xml")
-	err := parseAndRecover(t, c, "testdata/public/ToC_CCDA_CCD_CompGuideSample_FullXML_v01a.xml", nil)
+	c := ccd.NewDefaultCCD()
+	c.AddParsers(medtable.Parser())
+	err := parseAndRecover(t, c, "testdata/private/2013-08-26T04_03_24 - 0b7fddbdc631aecc6c96090043f690204f7d0d9d.xml", nil)
+	//err := parseAndRecover(t, c, "testdata/public/ToC_CCDA_CCD_CompGuideSample_FullXML_v01a.xml", nil)
 	//err := parseAndRecover(t, c, "testdata/public/SampleCCDDocument.xml", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	//_ = spew.Dump
+	_ = spew.Dump
 
-	spew.Dump(c.Patient)
+	//spew.Dump(c.Patient)
 }
 
 func TestParse_Address(t *testing.T) {
-	c := NewDefaultCCD()
+	c := ccd.NewDefaultCCD()
 	err := parseAndRecover(t, c, "testdata/specific/address.xml", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	addr := Address{
+	addr := ccd.Address{
 		Line1:   "Line1",
 		Line2:   "Line2",
 		City:    "City",
@@ -120,13 +123,13 @@ func TestParse_Address(t *testing.T) {
 }
 
 func TestParse_Name(t *testing.T) {
-	c := NewDefaultCCD()
+	c := ccd.NewDefaultCCD()
 	err := parseAndRecover(t, c, "testdata/specific/name.xml", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	name := Name{
+	name := ccd.Name{
 		First:    "First",
 		Middle:   "Middle",
 		Last:     "Last",
@@ -145,9 +148,9 @@ func TestParse_Name(t *testing.T) {
 // Some are made up.
 var rangeTests = []struct {
 	In  string
-	Out ResultRanges
+	Out ccd.ResultRanges
 }{
-	{"0.00-0.00", ResultRanges{
+	{"0.00-0.00", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -157,7 +160,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{"13.5 - 18", ResultRanges{
+	{"13.5 - 18", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -167,7 +170,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{"(.0-100.0)", ResultRanges{
+	{"(.0-100.0)", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -177,7 +180,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{"(1.000-200.6)", ResultRanges{
+	{"(1.000-200.6)", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -187,7 +190,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{"0.00-0.20 ng/mL", ResultRanges{
+	{"0.00-0.20 ng/mL", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -197,7 +200,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{"27-32 uug", ResultRanges{
+	{"27-32 uug", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -207,7 +210,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{"80-95 um3", ResultRanges{
+	{"80-95 um3", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -217,7 +220,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{"11.5-14.5 %", ResultRanges{
+	{"11.5-14.5 %", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -227,7 +230,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{"10-39 years: 55-110 mg/dL | 40-59 years: 70-150 mg/dL | >60 years: 80-150 mg/dL | Therapeutic Target: <100 mg/dL", ResultRanges{
+	{"10-39 years: 55-110 mg/dL | 40-59 years: 70-150 mg/dL | >60 years: 80-150 mg/dL | Therapeutic Target: <100 mg/dL", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  float64p(10),
@@ -258,7 +261,7 @@ var rangeTests = []struct {
 			Text:    stringp("Therapeutic Target"),
 		},
 	}},
-	{"<130 mg/dL (calc)", ResultRanges{
+	{"<130 mg/dL (calc)", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -268,7 +271,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{"<=534233", ResultRanges{
+	{"<=534233", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -278,7 +281,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{">2.5 ng/mL", ResultRanges{
+	{">2.5 ng/mL", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -288,7 +291,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{">=27.0", ResultRanges{
+	{">=27.0", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -298,7 +301,7 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{"M 13-18 g/dl; F 12-16 g/dl", ResultRanges{
+	{"M 13-18 g/dl; F 12-16 g/dl", ccd.ResultRanges{
 		{
 			Gender:  stringp("M"),
 			AgeLow:  nil,
@@ -315,10 +318,10 @@ var rangeTests = []struct {
 			Text:    nil,
 		},
 	}},
-	{"mg/dL", ResultRanges{}},
-	{"NA", ResultRanges{}},
-	{"No data", ResultRanges{}},
-	{"(Clear-Mod Cloud)", ResultRanges{
+	{"mg/dL", ccd.ResultRanges{}},
+	{"NA", ccd.ResultRanges{}},
+	{"No data", ccd.ResultRanges{}},
+	{"(Clear-Mod Cloud)", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -328,7 +331,7 @@ var rangeTests = []struct {
 			Text:    stringp("Clear-Mod Cloud"),
 		},
 	}},
-	{"(Negative)", ResultRanges{
+	{"(Negative)", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -338,7 +341,7 @@ var rangeTests = []struct {
 			Text:    stringp("Negative"),
 		},
 	}},
-	{"(Negative-250)", ResultRanges{
+	{"(Negative-250)", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -348,7 +351,7 @@ var rangeTests = []struct {
 			Text:    stringp("Negative-250"),
 		},
 	}},
-	{"normal: 0.29–5.11 IU/ml", ResultRanges{
+	{"normal: 0.29–5.11 IU/ml", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -358,7 +361,7 @@ var rangeTests = []struct {
 			Text:    stringp("normal"),
 		},
 	}},
-	{"Normal (3.0-4.0 cm2), mild (1.5–2.0 cm2), moderate (1.0–1.5 cm2), severe (less than 1.0 cm2)", ResultRanges{
+	{"Normal (3.0-4.0 cm2), mild (1.5–2.0 cm2), moderate (1.0–1.5 cm2), severe (less than 1.0 cm2)", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -389,7 +392,7 @@ var rangeTests = []struct {
 			Text:    stringp("severe"),
 		},
 	}},
-	{"normal: below 1.5 mg/dL", ResultRanges{
+	{"normal: below 1.5 mg/dL", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -399,7 +402,7 @@ var rangeTests = []struct {
 			Text:    stringp("normal"),
 		},
 	}},
-	{"normal: above 1.5 mg/dL", ResultRanges{
+	{"normal: above 1.5 mg/dL", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -409,7 +412,7 @@ var rangeTests = []struct {
 			Text:    stringp("normal"),
 		},
 	}},
-	{"Normal reference range 1.0-1.5; Targeted INR 2.0-3.0", ResultRanges{
+	{"Normal reference range 1.0-1.5; Targeted INR 2.0-3.0", ccd.ResultRanges{
 		{
 			Gender:  nil,
 			AgeLow:  nil,
@@ -438,7 +441,7 @@ func stringp(s string) *string {
 
 func TestResultRange(t *testing.T) {
 	for _, rt := range rangeTests {
-		resultRanges := ResultRanges{}
+		resultRanges := ccd.ResultRanges{}
 		resultRanges.Parse(rt.In)
 
 		if !reflect.DeepEqual(rt.Out, resultRanges) {
@@ -475,7 +478,7 @@ func TestGenerateResultRangeTests(t *testing.T) {
 	}
 
 	for i, rt := range rangeTests {
-		resultRanges := ResultRanges{}
+		resultRanges := ccd.ResultRanges{}
 		resultRanges.Parse(rt.In)
 		rangeTests[i].Out = resultRanges
 	}

@@ -4,6 +4,7 @@
 package medtable
 
 import (
+	"fmt"
 	"github.com/jteeuwen/go-pkg-xmlx"
 	"github.com/kdar/health/ccd"
 	"time"
@@ -13,54 +14,59 @@ const (
 	MedTableTimeFormat = "Jan 02, 2006"
 )
 
-func medDateGetData(node *xmlx.Node) (entries []*xmlx.Node, dateIndex int) {
+func getDataPositions(node *xmlx.Node) (int, int) {
 	thead := ccd.Nget(node, "text", "table", "thead", "tr")
 	if thead == nil {
-		return nil, -1
+		return -1, -1
 	}
 
 	headers := thead.SelectNodes("*", "th")
 	if headers == nil {
-		return nil, -1
+		return -1, -1
 	}
 
-	dateIndex = -1
+	nameIndex := -1
+	dateIndex := -1
 	for i, n := range headers {
-		if n.S("*", "th") == "Start Date" {
+		switch n.S("*", "th") {
+		case "Start Date":
 			dateIndex = i
-			break
+		case "Medication":
+			nameIndex = i
 		}
 	}
 
-	if dateIndex == -1 {
-		return nil, -1
-	}
+	return nameIndex, dateIndex
+}
 
+func getData(node *xmlx.Node, nameIndex, dateIndex int) (entries []*xmlx.Node) {
 	tbody := ccd.Nget(node, "text", "table", "tbody")
-	if thead == nil {
-		return nil, -1
+	if tbody == nil {
+		return nil
 	}
 
 	entries = tbody.SelectNodes("*", "tr")
 	return
 }
 
+// FIXME: the HTML doesn't always have the same amountof nodes as in the <entry>'s
 func parseMedTableMedications(node *xmlx.Node, cc *ccd.CCD) []error {
 	var dateIndex int
-	var entries []*xmlx.Node
+
+	nameIndex, dateIndex := getDataPositions(node)
+	if nameIndex == -1 && dateIndex == -1 {
+		return nil
+	}
+
+	entries := getData(node, nameIndex, dateIndex)
+
+	fmt.Println(len(entries))
+	fmt.Println(len(cc.Medications))
 
 	// depends on meds not being modified or out of order
 	for i, med := range cc.Medications {
 		if med.StartDate.IsZero() {
-			// initalize stuff we need
-			if entries == nil {
-				entries, dateIndex = medDateGetData(node)
-				if dateIndex == -1 {
-					return nil
-				}
-			}
-
-			if i < len(entries) {
+			if dateIndex != -1 && i < len(entries) {
 				tds := entries[i].SelectNodes("*", "td")
 				if len(tds) > dateIndex {
 					cc.Medications[i].StartDate, _ = time.Parse(MedTableTimeFormat, tds[dateIndex].S("*", "td"))
