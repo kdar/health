@@ -79,7 +79,7 @@ func TestParseAllCCDs(t *testing.T) {
 }
 
 func TestNewStuff(t *testing.T) {
-	//t.Skip("just for testing")
+	t.Skip("just for my own needs")
 
 	c := ccd.NewDefaultCCD()
 	c.AddParsers(medtable.Parser())
@@ -444,8 +444,13 @@ func TestResultRange(t *testing.T) {
 		resultRanges := ccd.ResultRanges{}
 		resultRanges.Parse(rt.In)
 
+		// Just set the OriginalText since it will always be the input.
+		for i, _ := range rt.Out {
+			rt.Out[i].OriginalText = rt.In
+		}
+
 		if !reflect.DeepEqual(rt.Out, resultRanges) {
-			t.Fatal(spew.Printf("Expected:\n%v, got:\n%v", rt.Out, resultRanges))
+			t.Fatal(spew.Printf("\ninput:    %v\nexpected: %v\ngot:      %v\n", rt.In, rt.Out, resultRanges))
 		}
 
 		_ = spew.Dump
