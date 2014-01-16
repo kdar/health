@@ -33,6 +33,7 @@ var normalizeNDCTests = []struct {
 	in  string
 	out string
 }{
+	// Valid NDCs
 	{"000406-0522-05", "00406052205"},
 	{"054868-5338-*3", "54868533803"},
 	{"076564-7654-5", "76564765405"},
@@ -43,7 +44,17 @@ var normalizeNDCTests = []struct {
 	{"60951-700-85", "60951070085"},
 	{"0591-0933-01", "00591093301"},
 	{"000406052201", "00406052201"},
+
+	// Invalid NDCs (no results)
 	{"a000406052201", ""},
+	{"2353-3432-4343-54", ""},
+
+	// Invalid NDCs (produces results)
+	{"--34546456456", "00000000056"},
+	{"1-1-1", "00001000101"},
+	{"1-1-123456", "00001000156"},
+	{"******-****-**", "00000000000"},
+	{"2345656565553-346567567632-4365756743", "65553763243"},
 }
 
 func TestNormalizeNDC(t *testing.T) {
@@ -52,5 +63,14 @@ func TestNormalizeNDC(t *testing.T) {
 		if out != tt.out {
 			t.Fatalf("\ninput:    %v\noutput:   %v\nexpected: %v\nerror:    %v", tt.in, out, tt.out, err)
 		}
+	}
+}
+
+func BenchmarkNormalizeNDC(b *testing.B) {
+	y := 0
+	l := len(normalizeNDCTests)
+	for x := 0; x < b.N; x++ {
+		NormalizeNDC(normalizeNDCTests[y%l].in)
+		y++
 	}
 }
