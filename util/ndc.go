@@ -26,7 +26,7 @@ func IdentifyNDCFormat(ndc string) string {
 }
 
 // NormalizeNDC transforms a given NDC code to HIPAA 11-digit format
-// This functions is slightly optimized.
+// This function is slightly optimized.
 // www.nlm.nih.gov/research/umls/rxnorm/NDC_Normalization_Code.rtf‎
 func NormalizeNDC(ndc string) (string, error) {
 	var parts [3][]rune
