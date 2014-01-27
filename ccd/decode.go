@@ -1,9 +1,10 @@
 package ccd
 
 import (
-	"github.com/jteeuwen/go-pkg-xmlx"
 	"io"
 	"strings"
+
+	"github.com/jteeuwen/go-pkg-xmlx"
 )
 
 var (
