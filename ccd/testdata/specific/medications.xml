@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3">
+<component>
+      <structuredBody>
+          <!--start data for test-->
+
+          <component>
+            <section>
+               <templateId
+                  root="2.16.840.1.113883.10.20.22.2.1.1"/>
+               <code
+                  code="10160-0"
+                  codeSystem="2.16.840.1.113883.6.1"
+                  codeSystemName="LOINC"
+                  displayName="HISTORY OF MEDICATION USE"/>
+               <title>Medications</title>
+               <text>
+                  <table
+                     border="1"
+                     width="100%">
+                     <thead>
+                        <tr>
+                           <th>Medication</th>
+                           <th>Directions</th>
+                           <th>Start Date</th>
+                           <th>Status</th>
+                           <th>Indications</th>
+                           <th>Fill Instructions</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td><content
+                                 ID="Med1">Albuterol 0.09 MG/ACTUAT inhalant solution</content></td>
+                           <td>0.09 MG/ACTUAT inhalant solution, 2 puffs once</td>
+                           <td>20120806</td>
+                           <td>Active</td>
+                           <td>Pneumonia (233604007 SNOMED CT)</td>
+                           <td><content ID="FillIns">Generic Substitition Allowed</content></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </text>
+               <entry
+                  typeCode="DRIV">
+                  <substanceAdministration
+                     classCode="SBADM"
+                     moodCode="EVN">
+                     <templateId
+                        root="2.16.840.1.113883.10.20.22.4.16"/>
+                     <!-- ** MEDICATION ACTIVITY -->
+                     <id
+                        root="cdbd33f0-6cde-11db-9fe1-0800200c9a66"/>
+                     <text>
+                        <reference
+                           value="#Med1"/>0.09 MG/ACTUAT inhalant solution, 2 puffs </text>
+                     <statusCode
+                        code="completed"/>
+                     <effectiveTime
+                        xsi:type="IVL_TS">
+                        <low nullFlavor="UNK"/>
+                        <high
+                           value="20120806"/>
+                     </effectiveTime>
+                     <effectiveTime
+                        xsi:type="PIVL_TS"
+                        institutionSpecified="true"
+                        operator="A">
+                        <period
+                           value="12"
+                           unit="h"/>
+                     </effectiveTime>
+                     <routeCode
+                        code="C38216"
+                        codeSystem="2.16.840.1.113883.3.26.1.1"
+                        codeSystemName="NCI Thesaurus"
+                        displayName="RESPIRATORY (INHALATION)"/>
+                     <doseQuantity
+                        value="0.09"
+                        unit="mg/actuat"/>
+                     <rateQuantity
+                        value="90"
+                        unit="ml/min"/>
+                     <administrationUnitCode
+                        code="C42944"
+                        displayName="INHALANT"
+                        codeSystem="2.16.840.1.113883.3.26.1.1"
+                        codeSystemName="NCI Thesaurus"/>
+                     <consumable>
+                        <manufacturedProduct
+                           classCode="MANU">
+                           <templateId
+                              root="2.16.840.1.113883.10.20.22.4.23"/>
+                           <id
+                              root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+                           <manufacturedMaterial>
+                              <code
+                                 code="573621"
+                                 codeSystem="2.16.840.1.113883.6.88"
+                                 displayName="Albuterol 0.09 MG/ACTUAT inhalant solution">
+                                 <originalText><reference
+                                       value="#Med1"/></originalText>
+                                 <translation
+                                    code="573621"
+                                    displayName="Proventil 0.09 MG/ACTUAT inhalant solution"
+                                    codeSystem="2.16.840.1.113883.6.88"
+                                    codeSystemName="RxNorm"/>
+                              </code>
+                           </manufacturedMaterial>
+                           <manufacturerOrganization>
+                              <name>Medication Factory Inc.</name>
+                           </manufacturerOrganization>
+                        </manufacturedProduct>
+                     </consumable>
+                     <performer>
+                        <assignedEntity>
+                           <id
+                              nullFlavor="NI"/>
+                           <addr
+                              nullFlavor="UNK"/>
+                           <telecom
+                              nullFlavor="UNK"/>
+                           <representedOrganization>
+                              <id
+                                 root="2.16.840.1.113883.19.5.9999.1393"/>
+                              <name>Get Well Clinic</name>
+                              <telecom
+                                 nullFlavor="UNK"/>
+                              <addr
+                                 nullFlavor="UNK"/>
+                           </representedOrganization>
+                        </assignedEntity>
+                     </performer>
+                     <participant
+                        typeCode="CSM">
+                        <participantRole
+                           classCode="MANU">
+                           <templateId
+                              root="2.16.840.1.113883.10.20.22.4.24"/>
+                           <code
+                              code="412307009"
+                              displayName="drug vehicle"
+                              codeSystem="2.16.840.1.113883.6.96"/>
+                           <playingEntity
+                              classCode="MMAT">
+                              <code
+                                 code="324049"
+                                 displayName="Aerosol"
+                                 codeSystem="2.16.840.1.113883.6.88"
+                                 codeSystemName="RxNorm"/>
+                              <name>Aerosol</name>
+                           </playingEntity>
+                        </participantRole>
+                     </participant>
+                     <entryRelationship
+                        typeCode="RSON">
+                        <observation
+                           classCode="OBS"
+                           moodCode="EVN">
+                           <templateId
+                              root="2.16.840.1.113883.10.20.22.4.19"/>
+                           <id
+                              root="db734647-fc99-424c-a864-7e3cda82e703"
+                              extension="45665"/>
+                           <code
+                              code="404684003"
+                              displayName="Finding"
+                              codeSystem="2.16.840.1.113883.6.96"
+                              codeSystemName="SNOMED CT"/>
+                           <statusCode
+                              code="completed"/>
+                           <effectiveTime>
+                              <low nullFlavor="UNK" />
+                              <high value="20120806"/>
+                           </effectiveTime>
+                           <value
+                              xsi:type="CD"
+                              code="233604007"
+                              displayName="Pneumonia"
+                              codeSystem="2.16.840.1.113883.6.96"/>
+                        </observation>
+                     </entryRelationship>
+                     <entryRelationship
+                        typeCode="REFR">
+                        <supply
+                           classCode="SPLY"
+                           moodCode="INT">
+                           <templateId
+                              root="2.16.840.1.113883.10.20.22.4.17"/>
+                           <id
+                              nullFlavor="NI"/>
+                           <statusCode
+                              code="completed"/>
+                           <effectiveTime
+                              xsi:type="IVL_TS">
+                              <low nullFlavor="UNK"/>
+                              <high
+                                 value="20120806"/>
+                           </effectiveTime>
+                           <repeatNumber
+                              value="1"/>
+                           <quantity
+                              value="75"/>
+                           <product>
+                              <manufacturedProduct
+                                 classCode="MANU">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <id
+                                    root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+                                 <manufacturedMaterial>
+                                    <code
+                                       code="573621"
+                                       codeSystem="2.16.840.1.113883.6.88"
+                                       displayName="Albuterol 0.09 MG/ACTUAT inhalant solution">
+                                       <originalText><reference
+                                             value="#Med1"/></originalText>
+                                       <translation
+                                          code="573621"
+                                          displayName="Albuterol 0.09 MG/ACTUAT inhalant solution"
+                                          codeSystem="2.16.840.1.113883.6.88"
+                                          codeSystemName="RxNorm"/>
+                                    </code>
+                                 </manufacturedMaterial>
+                                 <manufacturerOrganization>
+                                    <name>Medication Factory Inc.</name>
+                                 </manufacturerOrganization>
+                              </manufacturedProduct>
+                           </product>
+                           <performer>
+                              <assignedEntity>
+                                 <id
+                                    extension="2981823"
+                                    root="2.16.840.1.113883.19.5.9999.456"/>
+                                 <addr>
+                                    <streetAddressLine>1002 Healthcare Dr</streetAddressLine>
+                                    <city>Portland</city>
+                                    <state>OR</state>
+                                    <postalCode>97266</postalCode>
+                                    <country>US</country>
+                                 </addr>
+                              </assignedEntity>
+                           </performer>
+                           <author>
+                              <time
+                                 nullFlavor="UNK"/>
+                              <assignedAuthor>
+                                 <id
+                                    root="2a620155-9d11-439e-92b3-5d9815fe4de8"/>
+                                 <addr
+                                    nullFlavor="UNK"/>
+                                 <telecom
+                                    nullFlavor="UNK"/>
+                                 <assignedPerson>
+                                    <name>
+                                       <prefix>Dr.</prefix>
+                                       <given>Henry</given>
+                                       <family>Seven</family>
+                                    </name>
+                                 </assignedPerson>
+                              </assignedAuthor>
+                           </author>
+                           <entryRelationship
+                              typeCode="SUBJ"
+                              inversionInd="true">
+                              <act
+                                 classCode="ACT"
+                                 moodCode="INT">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.20"/>
+                                 <!-- ** Instructions Template ** -->
+                                 <code xsi:type="CE"
+                                    code="409073007"
+                                    codeSystem="2.16.840.1.113883.6.96"
+                                    displayName="instruction"/>
+                                 <text><reference
+                                       value="#FillIns"/>label in spanish</text>
+                                 <statusCode
+                                    code="completed"/>
+                              </act>
+                           </entryRelationship>
+                        </supply>
+                     </entryRelationship>
+                     <entryRelationship
+                        typeCode="REFR">
+                        <supply
+                           classCode="SPLY"
+                           moodCode="EVN">
+                           <templateId
+                              root="2.16.840.1.113883.10.20.22.4.18"/>
+                           <!-- ** Medication Dispense Template ** -->
+                           <id
+                              root="1.2.3.4.56789.1"
+                              extension="cb734647-fc99-424c-a864-7e3cda82e704"/>
+                           <statusCode
+                              code="completed"/>
+                           <effectiveTime
+                              value="20120806"/>
+                           <repeatNumber
+                              value="1"/>
+                           <product>
+                              <manufacturedProduct
+                                 classCode="MANU">
+                                 <templateId
+                                    root="2.16.840.1.113883.10.20.22.4.23"/>
+                                 <id
+                                    root="2a620155-9d11-439e-92b3-5d9815ff4ee8"/>
+                                 <manufacturedMaterial>
+                                    <code
+                                       code="573621"
+                                       codeSystem="2.16.840.1.113883.6.88"
+                                       displayName="Albuterol 0.09 MG/ACTUAT inhalant solution">
+                                       <originalText><reference
+                                             value="#Med1"/></originalText>
+                                       <translation
+                                          code="573621"
+                                          displayName="Albuterol 0.09 MG/ACTUAT inhalant solution"
+                                          codeSystem="2.16.840.1.113883.6.88"
+                                          codeSystemName="RxNorm"/>
+                                    </code>
+                                 </manufacturedMaterial>
+                                 <manufacturerOrganization>
+                                    <name>Medication Factory Inc.</name>
+                                 </manufacturerOrganization>
+                              </manufacturedProduct>
+                           </product>
+                           <performer>
+                              <time
+                                 nullFlavor="UNK"/>
+                              <assignedEntity>
+                                 <id
+                                    root="2.16.840.1.113883.19.5.9999.456"
+                                    extension="2981823"/>
+                                 <addr>
+                                    <streetAddressLine>1002 Healthcare Dr</streetAddressLine>
+                                    <city>Portland</city>
+                                    <state>OR</state>
+                                    <postalCode>97266</postalCode>
+                                    <country>US</country>
+                                 </addr>
+                                 <telecom
+                                    nullFlavor="UNK"/>
+                                 <assignedPerson>
+                                    <name>
+                                       <prefix>Dr.</prefix>
+                                       <given>Henry</given>
+                                       <family>Seven</family>
+                                    </name>
+                                 </assignedPerson>
+                                 <representedOrganization>
+                                    <id
+                                       root="2.16.840.1.113883.19.5.9999.1393"/>
+                                    <name>Get Well Clinic</name>
+                                    <telecom
+                                       nullFlavor="UNK"/>
+                                    <addr
+                                       nullFlavor="UNK"/>
+                                 </representedOrganization>
+                              </assignedEntity>
+                           </performer>
+                        </supply>
+                     </entryRelationship>
+                     <precondition
+                        typeCode="PRCN">
+                        <templateId
+                           root="2.16.840.1.113883.10.20.22.4.25"/>
+                        <criterion>
+                           <code
+                              code="ASSERTION"
+                              codeSystem="2.16.840.1.113883.5.4"/>
+                           <value
+                              xsi:type="CE"
+                              code="56018004"
+                              codeSystem="2.16.840.1.113883.6.96"
+                              displayName="Wheezing"/>
+                        </criterion>
+                     </precondition>
+                  </substanceAdministration>
+               </entry>
+            </section>
+         </component>
+
+      <!--end data for test-->
+      </structuredBody>
+   </component>
+</ClinicalDocument>

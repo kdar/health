@@ -2,8 +2,9 @@ package ccd
 
 import (
 	"fmt"
-	"github.com/jteeuwen/go-pkg-xmlx"
 	"time"
+
+	"github.com/jteeuwen/go-pkg-xmlx"
 )
 
 var (
@@ -54,6 +55,11 @@ func (m MedicationDose) String() string {
 	return fmt.Sprintf("%s-%s%s", m.LowValue, m.HighValue, unit)
 }
 
+type MedicationReason struct {
+	Value Code
+	Date  time.Time
+}
+
 type Medication struct {
 	Name           string
 	Administration string
@@ -64,6 +70,7 @@ type Medication struct {
 	StopDate  time.Time
 	Period    time.Duration
 	Code      Code
+	Reason    *MedicationReason
 }
 
 func parseMedications(node *xmlx.Node, ccd *CCD) []error {
@@ -143,8 +150,36 @@ func parseMedications(node *xmlx.Node, ccd *CCD) []error {
 			}
 		}
 
+		entryRelationshipNodes := entryNode.SelectNodes("*", "entryRelationship")
+		if entryRelationshipNodes != nil {
+			for _, entryRelationshipNode := range entryRelationshipNodes {
+				switch entryRelationshipNode.As("*", "typeCode") {
+				case "RSON":
+					medication.Reason = parseMedicationReason(entryRelationshipNode)
+				}
+			}
+		}
+
 		ccd.Medications = append(ccd.Medications, medication)
 	}
 
 	return errs
+}
+
+func parseMedicationReason(node *xmlx.Node) *MedicationReason {
+	observationNode := Nget(node, "observation")
+	if observationNode == nil {
+		return nil
+	}
+
+	reason := &MedicationReason{}
+
+	effectiveTimeNode := Nget(observationNode, "effectiveTime")
+	t := decodeTime(effectiveTimeNode)
+	reason.Date = t.Value
+
+	valueNode := Nget(observationNode, "value")
+	reason.Value.decode(valueNode)
+
+	return reason
 }
