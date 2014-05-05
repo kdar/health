@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ClinicalDocument xmlns="urn:hl7-org:v3">
+   <recordTarget></recordTarget>
 <component>
       <structuredBody>
           <!--start data for test-->

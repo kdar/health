@@ -1,6 +1,7 @@
 package ccd
 
 import (
+	"errors"
 	"io"
 	"strings"
 
@@ -160,7 +161,12 @@ func (c *CCD) ParseDoc(doc *xmlx.Document) error {
 	c.Allergies = nil
 	c.SocialHistory = nil
 
-	org := Nget(doc.Root, "recordTarget", "providerOrganization", "name")
+	nRecordTarget := Nget(doc.Root, "recordTarget")
+	if nRecordTarget == nil {
+		return errors.New("invalid CCD")
+	}
+
+	org := Nget(nRecordTarget, "providerOrganization", "name")
 	orgName := "*"
 	if org != nil {
 		orgName = strings.ToLower(org.S("*", "name"))
