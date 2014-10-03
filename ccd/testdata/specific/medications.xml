@@ -376,6 +376,17 @@
                               displayName="Wheezing"/>
                         </criterion>
                      </precondition>
+                  
+                  <entryRelationship typeCode="REFR" inversionInd="false">
+<observation classCode="OBS" moodCode="EVN">
+<templateId root="2.16.840.1.113883.10.20.1.47"></templateId>
+<code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+<text />
+<statusCode code="completed" />
+<value xsi:type="CE" code="55561003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Active" />
+</observation>
+</entryRelationship>
+
                   </substanceAdministration>
                </entry>
             </section>

@@ -1,12 +1,12 @@
 package ccd_test
 
 import (
-	"github.com/shurcooL/go-goon"
 	"reflect"
 	"testing"
 	"time"
 
 	"github.com/kdar/health/ccd"
+	"github.com/shurcooL/go-goon"
 )
 
 func TestParse_Medications(t *testing.T) {
@@ -26,10 +26,11 @@ func TestParse_Medications(t *testing.T) {
 				HighValue: "",
 				HighUnit:  "",
 			},
-			Status:    "completed",
-			StartDate: time.Time{},
-			StopDate:  time.Date(2012, 8, 6, 0, 0, 0, 0, time.UTC),
-			Period:    time.Duration(43200000000000),
+			Status:     "Active",
+			StatusCode: "completed",
+			StartDate:  time.Time{},
+			StopDate:   time.Date(2012, 8, 6, 0, 0, 0, 0, time.UTC),
+			Period:     time.Duration(43200000000000),
 			Code: ccd.Code{
 				CodeSystemName: "",
 				Type:           "",
@@ -51,7 +52,6 @@ func TestParse_Medications(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(meds, c.Medications) {
-		goon.Dump(c.Medications)
-		t.Fatalf("Expected:\n%#v, got:\n%#v", meds, c.Medications)
+		t.Fatalf("Expected:\n%s, got:\n%s", goon.Sdump(meds), goon.Sdump(c.Medications))
 	}
 }

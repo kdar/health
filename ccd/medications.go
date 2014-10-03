@@ -63,14 +63,19 @@ type MedicationReason struct {
 type Medication struct {
 	Name           string
 	Administration string
+	Dose           MedicationDose
+	// Active, On Hold, Prior History, No Longer Active
+	// http://motorcycleguy.blogspot.com/2011/03/medication-status-in-ccd.html
+	Status string
+	// Document HL7 ActStatus: aborted / active / cancelled / completed / held / new / suspended
+	StatusCode string
+	StartDate  time.Time
+	StopDate   time.Time
+	Period     time.Duration
+	Code       Code
+	Reason     *MedicationReason
+
 	//Instructions   string // this is calulated and not specifically in the CCD
-	Dose      MedicationDose
-	Status    string
-	StartDate time.Time
-	StopDate  time.Time
-	Period    time.Duration
-	Code      Code
-	Reason    *MedicationReason
 }
 
 func parseMedications(node *xmlx.Node, ccd *CCD) []error {
@@ -114,7 +119,7 @@ func parseMedications(node *xmlx.Node, ccd *CCD) []error {
 			continue
 		}
 
-		medication.Status = Nsget(saNode, "statusCode").As("*", "code")
+		medication.StatusCode = Nsget(saNode, "statusCode").As("*", "code")
 
 		etimeNodes := saNode.SelectNodes("*", "effectiveTime")
 		for _, etimeNode := range etimeNodes {
@@ -150,12 +155,20 @@ func parseMedications(node *xmlx.Node, ccd *CCD) []error {
 			}
 		}
 
-		entryRelationshipNodes := entryNode.SelectNodes("*", "entryRelationship")
+		entryRelationshipNodes := saNode.SelectNodes("*", "entryRelationship")
 		if entryRelationshipNodes != nil {
 			for _, entryRelationshipNode := range entryRelationshipNodes {
 				switch entryRelationshipNode.As("*", "typeCode") {
 				case "RSON":
 					medication.Reason = parseMedicationReason(entryRelationshipNode)
+				case "REFR":
+					obvNode := Nget(entryRelationshipNode, "observation")
+					if obvNode != nil && Nget(obvNode, "statusCode") != nil {
+						valueNode := Nget(obvNode, "value")
+						if valueNode != nil {
+							medication.Status = valueNode.As("*", "displayName")
+						}
+					}
 				}
 			}
 		}
