@@ -161,10 +161,11 @@ func (c *CCD) ParseDoc(doc *xmlx.Document) error {
 	c.Allergies = nil
 	c.SocialHistory = nil
 
-	nRecordTarget := Nget(doc.Root, "recordTarget")
-	if nRecordTarget == nil {
+	if Nget(doc.Root, "ClinicalDocument") == nil {
 		return errors.New("invalid CCD")
 	}
+
+	nRecordTarget := Nget(doc.Root, "recordTarget")
 
 	org := Nget(nRecordTarget, "providerOrganization", "name")
 	orgName := "*"

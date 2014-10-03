@@ -76,6 +76,19 @@ func TestParseAllCCDs(t *testing.T) {
 	})
 }
 
+func TestInvalidCCD(t *testing.T) {
+	c := ccd.NewDefaultCCD()
+	err := parseAndRecover(t, c, "testdata/specific/invalid_ccd.xml", nil)
+	if err == nil {
+		t.Fatal("Expected parsing of CCD to fail and throw and error.")
+	}
+
+	err = parseAndRecover(t, c, "testdata/specific/valid_ccd.xml", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestNewStuff(t *testing.T) {
 	t.Skip("just for my own needs")
 
