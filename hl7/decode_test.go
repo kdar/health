@@ -73,6 +73,31 @@ func TestUnmarshalNoError(t *testing.T) {
 	}
 }
 
+func TestUnmarshalBadData(t *testing.T) {
+
+	baddata := []byte("")
+	_, err := Unmarshal(baddata)
+	if err != nil {
+
+		t.Fatal("unmarshalling an empty hl7 returned something")
+	}
+
+	//This causes a panic
+	badheader := []byte("BAD|^~\\&|stuff|things")
+	_, err = Unmarshal(badheader)
+	if err == nil {
+		t.Fatal("unmarshal did not error when given a bad header")
+	}
+
+	//this also panics
+	invalidheader := []byte("MSH|^~\\&|\rbadseg|field")
+	_, err = Unmarshal(invalidheader)
+	if err == nil {
+		t.Fatal("Did not error on a bad segment")
+	}
+
+}
+
 func TestMultiple(t *testing.T) {
 	data := []byte("MSH|^~\\&|||1^2^3^4^^^s1&s2&s3&&~r1~r2~r3~r4~~\rPV1|1^2^3\rPV2|1^2^3\r\r\r\n\r")
 	expected := []Segment{
