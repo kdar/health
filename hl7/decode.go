@@ -2,48 +2,28 @@ package hl7
 
 import (
 	"bytes"
-	"errors"
-	//"regexp"
 	"fmt"
+
+	"github.com/iNamik/go_lexer"
+	"github.com/iNamik/go_parser"
 )
 
-// unmarshals passed byte data
-func Unmarshal(data []byte) (values Values, err error) {
-	fmt.Println(string(data))
-	if !bytes.HasPrefix(data, []byte("MSH")) {
-		return Values{}, errors.New("Could not find MSH header")
+// Unmarshal takes the bytes passed and returns
+// the segments of the hl7 message.
+func Unmarshal(b []byte) ([]Segment, error) {
+	reader := bytes.NewReader(b)
+	lexState := newLexerState()
+	l := lexer.New(lexState.lexHeader, reader, 3)
+	parseState := newParserState(lexState)
+	p := parser.New(parseState.parse, l, 3)
+
+	val := p.Next()
+	switch t := val.(type) {
+	case error:
+		return nil, t
+	case []Segment:
+		return t, nil
 	}
 
-	segments := bytes.Split(data, []byte{0x0D})
-
-	if len(segments) < 2 {
-		return Values{}, errors.New("Not enough segments in hl7 data")
-	}
-
-	hdr := Header{}
-	hdr.CompositeDelimiter = data[3]
-	hdr.SubCompositeDelimiter = data[4]
-	hdr.SubSubCompositeDelimiter = data[5]
-	hdr.EscapeCharacter = data[6]
-	hdr.RepetitionDelimiter = data[7]
-	hdr.Values, err = unmarshalSegment(data[9:])
-	if err != nil {
-		return Values{}, err
-	}
-
-	values = append(values, hdr)
-
-	for _, segment := range segments {
-		svalues, err := unmarshalSegment(segment)
-		if err != nil {
-			return Values{}, err
-		}
-		values = append(values, svalues)
-	}
-
-	return values, nil
-}
-
-func unmarshalSegment(data []byte) (values Values, err error) {
-	return Values{data}, nil
+	return nil, fmt.Errorf("received unknown type")
 }

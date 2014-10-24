@@ -1,36 +1,242 @@
 package hl7
 
 import (
+	"bytes"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"os"
+	"path/filepath"
 	"reflect"
 	"testing"
-)
 
-const (
-	UM_IN1 = "MSH|^~\\&|EPIC|EPICADT|SMS|SMSADT|199912271408|CHARRIS|ADT^A04|1817457|D|2.5|\rPID||0493575^^^2^ID 1|454721||DOE^JOHN^^^^|DOE^JOHN^^^^|19480203|M||B|254 MYSTREET AVE^^MYTOWN^OH^44123^USA||(216)123-4567|||M|NON|400003403~1129086|\rNK1||ROE^MARIE^^^^|SPO||(216)123-4567||EC|||||||||||||||||||||||||||\rPV1||O|168 ~219~C~PMA^^^^^^^^^||||277^ALLEN MYLASTNAME^BONNIE^^^^|||||||||| ||2688684|||||||||||||||||||||||||199912271408||||||002376853"
-)
-
-var (
-	UM_OUT1 = Values{}
+	"github.com/iNamik/go_lexer"
+	"github.com/iNamik/go_parser"
 )
 
 var unmarshalTests = []struct {
-	in  []byte
-	out Values
+	file string
+	out  []Segment
 }{
-	{[]byte(UM_IN1), UM_OUT1},
+	{"simple.hl7", simple_hl7_output},
 }
 
 func TestUnmarshal(t *testing.T) {
-	t.Skip("not working yet")
-
 	for i, tt := range unmarshalTests {
-		out, err := Unmarshal(tt.in)
+		fp, err := os.Open("testdata/" + tt.file)
 		if err != nil {
-			t.Fatalf("%d. received error: %s", i, err)
+			t.Fatalf("#%d. received error: %s", i, err)
+		}
+		defer fp.Close()
+
+		data, err := ioutil.ReadAll(fp)
+		if err != nil {
+			t.Fatalf("#%d. received error: %s", i, err)
+		}
+
+		out, err := Unmarshal(data)
+		if err != nil {
+			t.Fatalf("#%d. received error: %s", i, err)
 		}
 
 		if !reflect.DeepEqual(out, tt.out) {
-			t.Fatalf("#%d: mismatch\nhave: %#+v\nwant: %#+v", i, out, tt.out)
+			t.Fatalf("#%d: mismatch\nhave: %s\nwant: %s", i, getValidGo(out), getValidGo(tt.out))
 		}
 	}
 }
+
+func TestUnmarshalNoError(t *testing.T) {
+	filenames, err := filepath.Glob("testdata/*.hl7")
+	if err != nil {
+		t.Fatalf("received error: %s", err)
+	}
+	for _, filename := range filenames {
+		fp, err := os.Open(filename)
+		if err != nil {
+			t.Fatalf("%s: received error: %s", filename, err)
+		}
+		defer fp.Close()
+
+		data, err := ioutil.ReadAll(fp)
+		if err != nil {
+			t.Fatalf("%s: received error: %s", filename, err)
+		}
+
+		out, err := Unmarshal(data)
+		if err != nil {
+			t.Fatalf("%s: received error: %s", filename, err)
+		}
+
+		if out == nil || len(out) == 0 {
+			t.Fatalf("%s: expected segments, got none", filename)
+		}
+	}
+}
+
+func TestMultiple(t *testing.T) {
+	data := []byte("MSH|^~\\&|||1^2^3^4^^^s1&s2&s3&&~r1~r2~r3~r4~~\rPV1|1^2^3\rPV2|1^2^3\r\r\r\n\r")
+	expected := []Segment{
+		Segment{
+			Field("MSH"),
+			Field("^~\\&"),
+			Field(nil),
+			Field(nil),
+			Repeated{
+				Component{
+					Field("1"),
+					Field("2"),
+					Field("3"),
+					Field("4"),
+					Field(nil),
+					Field(nil),
+					SubComponent{
+						Field("s1"),
+						Field("s2"),
+						Field("s3"),
+						Field(nil),
+						Field(nil),
+					},
+				},
+				Field("r1"),
+				Field("r2"),
+				Field("r3"),
+				Field("r4"),
+				Field(nil),
+				Field(nil),
+			},
+		},
+		Segment{
+			Field("PV1"),
+			Component{
+				Field("1"),
+				Field("2"),
+				Field("3"),
+			},
+		},
+		Segment{
+			Field("PV2"),
+			Component{
+				Field("1"),
+				Field("2"),
+				Field("3"),
+			},
+		},
+	}
+
+	out, err := Unmarshal(data)
+	if err != nil {
+		t.Fatalf("received error: %s", err)
+	}
+
+	if !reflect.DeepEqual(out, expected) {
+		t.Fatalf("mismatch\nhave: %s\nwant: %s", getValidGo(out), getValidGo(expected))
+	}
+}
+
+func BenchmarkParser(b *testing.B) {
+	fp, err := os.Open("testdata/simple.hl7")
+	if err != nil {
+		b.Fatalf("received error: %s", err)
+	}
+	defer fp.Close()
+
+	data, err := ioutil.ReadAll(fp)
+	if err != nil {
+		b.Fatalf("received error: %s", err)
+	}
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		reader := bytes.NewReader(data)
+		lexState := newLexerState()
+		l := lexer.New(lexState.lexHeader, reader, 3)
+		parseState := newParserState(lexState)
+		p := parser.New(parseState.parse, l, 3)
+		p.Next()
+	}
+}
+
+func getValidGo(segments []Segment) string {
+	b := &bytes.Buffer{}
+	printValidGo(b, segments)
+	return b.String()
+}
+
+func printValidGo(w io.Writer, segments []Segment) {
+	indent := "  "
+	fmt.Fprintln(w, "[]Segment{")
+	for _, segment := range segments {
+		printValidGo_(w, indent, segment)
+	}
+	fmt.Fprintln(w, "}")
+}
+
+func printValidGo_(w io.Writer, indent string, data Data) {
+	switch t := data.(type) {
+	case Segment:
+		fmt.Fprintln(w, indent+"Segment{")
+		for _, v := range t {
+			printValidGo_(w, indent+"  ", v)
+		}
+		fmt.Fprintln(w, indent+"},")
+	case Component:
+		fmt.Fprintln(w, indent+"Component{")
+		for _, v := range t {
+			printValidGo_(w, indent+"  ", v)
+		}
+		fmt.Fprintln(w, indent+"},")
+	case SubComponent:
+		fmt.Fprintln(w, indent+"SubComponent{")
+		for _, v := range t {
+			printValidGo_(w, indent+"  ", v)
+		}
+		fmt.Fprintln(w, indent+"},")
+	case Repeated:
+		fmt.Fprintln(w, indent+"Repeated{")
+		for _, v := range t {
+			printValidGo_(w, indent+"  ", v)
+		}
+		fmt.Fprintln(w, indent+"},")
+	case Field:
+		v := "nil"
+		if t != nil {
+			v = `"` + t.String() + `"`
+		}
+		fmt.Fprintf(w, indent+"Field(%s),\n", v)
+	}
+}
+
+var (
+	simple_hl7_output = []Segment{
+		Segment{
+			Field("MSH"),
+			Field(`^~\&`),
+			Field("field"),
+			Field(`\|~^&HEY`),
+			Component{
+				Field("component1"),
+				Field("component2"),
+			},
+			Component{
+				SubComponent{
+					Field("subcomponent1a"),
+					Field("subcomponent2a"),
+				},
+				SubComponent{
+					Field("subcomponent1b"),
+					Field("subcomponent2b"),
+				},
+			},
+			Repeated{
+				Component{
+					Field("component1a"),
+					Field("component2a"),
+				},
+				Component{
+					Field("component1b"),
+					Field("component2b"),
+				},
+			},
+		},
+	}
+)
