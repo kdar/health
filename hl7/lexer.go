@@ -29,7 +29,7 @@ const (
 	componentSeparatorPos
 	fieldRepeatSeparatorPos
 	escapeCharacterPos
-	subcomponentSeparatorPos
+	subComponentSeparatorPos
 )
 
 var (
@@ -114,10 +114,12 @@ func newLexerState() *lexerState {
 
 // lexHeader scans for the HL7 message header
 func (s *lexerState) lexHeader(l lexer.Lexer) lexer.StateFn {
-	if l.MatchEOF() {
-		l.EmitEOF()
-		return nil
-	}
+	l.MatchZeroOrMoreRunes([]rune{s.segmentTerminator, '\n'})
+
+	// if l.MatchEOF() {
+	// 	l.EmitEOF()
+	// 	return nil
+	// }
 
 	if matchRunes(l, []rune("MSH")) {
 		l.EmitTokenWithBytes(tokSegmentName)
@@ -133,10 +135,14 @@ func (s *lexerState) lexHeader(l lexer.Lexer) lexer.StateFn {
 // lexHeaderSeparators scans for the separators used to parse the
 // rest of the HL7 message.
 func (s *lexerState) lexHeaderSeparators(l lexer.Lexer) lexer.StateFn {
-	for i := 0; i <= subcomponentSeparatorPos-fieldSeparatorPos; i++ {
+	for i := 0; i <= subComponentSeparatorPos-fieldSeparatorPos; i++ {
 		r := l.NextRune()
 		if r == lexer.RuneEOF {
 			s.err = errors.New("found eof while reading message header")
+			l.EmitToken(tokError)
+			return nil
+		} else if i != fieldSeparatorPos && r == s.fieldSeparator {
+			s.err = fmt.Errorf("missing %d separators", 5-i)
 			l.EmitToken(tokError)
 			return nil
 		}
@@ -151,7 +157,7 @@ func (s *lexerState) lexHeaderSeparators(l lexer.Lexer) lexer.StateFn {
 			s.fieldRepeatSeparator = r
 		case escapeCharacterPos:
 			s.escapeCharacter = r
-		case subcomponentSeparatorPos:
+		case subComponentSeparatorPos:
 			s.subComponentSeparator = r
 		}
 	}

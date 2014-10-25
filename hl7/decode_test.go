@@ -73,29 +73,47 @@ func TestUnmarshalNoError(t *testing.T) {
 	}
 }
 
-func TestUnmarshalBadData(t *testing.T) {
+var simpleTests = []struct {
+	input     []byte
+	shouldErr bool
+	err       string
+}{
+	{[]byte(""), true, "did not error on empty HL7"},
+	{[]byte("BAD|^~\\&|stuff|things"), true, "did not error when given a bad header"},
+	{[]byte("MSH|^~\\&|\rbadseg|field"), true, "did not error on a bad segment"},
+	{[]byte("MSH\r|^~\\&"), true, "did not error on a bad header"},
+	{[]byte("MSH|hellothere|field"), true, "did not error on a bad header"},
+	{[]byte("\r\n\r\n\r\n\r\n\r\n"), true, "did not error on a bad HL7"},
+	{
+		[]byte("\x0bMSH|^~\\&|||||20071203173658|||20071203173658.98 \x0d`/usr/bin/whoami`|||XXX|\x0d\x1c\x0d"),
+		true,
+		"did not error on a bad HL7",
+	},
+	{[]byte("MSH|\r~\\&|field"), true, "did not error on invalid separator"},
 
-	baddata := []byte("")
-	_, err := Unmarshal(baddata)
-	if err != nil {
+	{[]byte("MSH|||||||||||||||||||"), true, "did not error on missing all separators"},
+	{[]byte(`MSH|@%\|||||||||`), true, "did not error on missing one separator"},
+	{[]byte(`MSH|@%\&$?!|||||||||`), true, "did not error on having too many separators"},
+	{
+		[]byte(`MSH|^&&^|SENDING APP|SENDING FAC|REC APP|REC FAC|20080115153000||ADT^A01^ADT_A01|0123456789|P|2.6||||AL\r`),
+		true,
+		"did not error on having duplicate separators",
+	},
 
-		t.Fatal("unmarshalling an empty hl7 returned something")
+	{[]byte(`MSH$%~\&$GHH LAB\rPID$$$555-44-4444$$EVERYWOMAN%EVE%E%%%L`), false, "should not error on non-standard separators"},
+	{[]byte("\r\n\r\r\r\n\r\nMSH|^~\\&|hey\r\n\n\r\n"), false, "should not error on multiple CR and NL"},
+}
+
+func TestUnmarshalSimple(t *testing.T) {
+	for _, tt := range simpleTests {
+		_, err := Unmarshal(tt.input)
+		if tt.shouldErr && err == nil {
+			t.Fatal(tt.err)
+		}
+		if !tt.shouldErr && err != nil {
+			t.Fatalf("%v: %v", tt.err, err)
+		}
 	}
-
-	//This causes a panic
-	badheader := []byte("BAD|^~\\&|stuff|things")
-	_, err = Unmarshal(badheader)
-	if err == nil {
-		t.Fatal("unmarshal did not error when given a bad header")
-	}
-
-	//this also panics
-	invalidheader := []byte("MSH|^~\\&|\rbadseg|field")
-	_, err = Unmarshal(invalidheader)
-	if err == nil {
-		t.Fatal("Did not error on a bad segment")
-	}
-
 }
 
 func TestMultiple(t *testing.T) {

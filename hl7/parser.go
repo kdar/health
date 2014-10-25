@@ -5,6 +5,7 @@ package hl7
 
 import (
 	"encoding/hex"
+	"errors"
 
 	"github.com/iNamik/go_lexer"
 	"github.com/iNamik/go_parser"
@@ -45,12 +46,27 @@ func (s *parserState) parse(p parser.Parser) parser.StateFn {
 func (s *parserState) parseSegments(p parser.Parser) ([]Segment, error) {
 	var stack []*lexer.Token
 	var result []*lexer.Token
+
+LOOP:
 	for {
 		tok := p.NextToken()
 		//fmt.Println(tokenTypeAsString(tok.Type()), string(tok.Bytes()))
-		if tok.Type() == tokEOF {
-			break
-		}
+
+		switch tok.Type() {
+		case tokEOF:
+			break LOOP
+
+		case tokError:
+			if s.lexState.err != nil {
+				return nil, s.lexState.err
+			}
+			return nil, errors.New(string(tok.Bytes()))
+
+		case tokSeparators:
+			err := s.validateSeparators()
+			if err != nil {
+				return nil, err
+			}
 
 		// This token is a special case because it occurs always at
 		// the end of a segment and always will have last priority.
@@ -59,14 +75,14 @@ func (s *parserState) parseSegments(p parser.Parser) ([]Segment, error) {
 		// When we encounter this, we just drain the rest of the stack
 		// to the result, add our segment token to the result, and continue
 		// with the next tokens.
-		if tok.Type() == tokSegmentTerminator {
+		case tokSegmentTerminator:
 			// drain stack to result
 			for len(stack) > 0 {
 				result = append(result, stack[len(stack)-1])
 				stack = stack[:len(stack)-1]
 			}
 			result = append(result, tok)
-			continue
+			continue LOOP
 		}
 
 		if prec1, isOp := opPrec[tok.Type()]; isOp {
@@ -151,6 +167,31 @@ func (s *parserState) process(input []*lexer.Token) ([]Segment, error) {
 	}
 
 	return segments, nil
+}
+
+// validateSeparators validates the separators from the lexer
+func (s *parserState) validateSeparators() error {
+	r := []rune{
+		s.lexState.fieldSeparator,
+		s.lexState.componentSeparator,
+		s.lexState.fieldRepeatSeparator,
+		s.lexState.escapeCharacter,
+		s.lexState.subComponentSeparator,
+	}
+
+	for i := 0; i < len(r); i++ {
+		if r[i] == '\r' || r[i] == '\n' {
+			return errors.New("found invalid separators")
+		}
+
+		for j := i + 1; j < len(r); j++ {
+			if r[i] == r[j] {
+				return errors.New("found duplicate separators")
+			}
+		}
+	}
+
+	return nil
 }
 
 // convertEscaped replaces escape sequences in the bytes passed
