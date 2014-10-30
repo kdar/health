@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"runtime"
 
 	"github.com/iNamik/go_lexer"
 	"github.com/iNamik/go_parser"
@@ -11,7 +12,16 @@ import (
 
 // Unmarshal takes the bytes passed and returns
 // the segments of the hl7 message.
-func Unmarshal(b []byte) ([]Segment, error) {
+func Unmarshal(b []byte) (segments []Segment, err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			if _, ok := r.(runtime.Error); ok {
+				panic(r)
+			}
+			err = r.(error)
+		}
+	}()
+
 	if len(b) == 0 {
 		return nil, errors.New("no data to unmarshal")
 	}
