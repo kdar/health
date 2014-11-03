@@ -121,6 +121,7 @@ func TestMultiple(t *testing.T) {
 	expected := []Segment{
 		Segment{
 			Field("MSH"),
+			Field("|"),
 			Field("^~\\&"),
 			Field(nil),
 			Field(nil),
@@ -253,6 +254,7 @@ var (
 	simple_hl7_output = []Segment{
 		Segment{
 			Field("MSH"),
+			Field("|"),
 			Field(`^~\&`),
 			Field("field"),
 			Field(`\|~^&HEY`),

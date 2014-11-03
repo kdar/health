@@ -150,7 +150,7 @@ func (s *lexerState) lexHeaderSeparators(l lexer.Lexer) lexer.StateFn {
 		switch i {
 		case fieldSeparatorPos:
 			s.fieldSeparator = r
-			l.EmitTokenWithBytes(tokFieldSeparator)
+			l.EmitTokenWithBytes(tokField)
 		case componentSeparatorPos:
 			s.componentSeparator = r
 		case fieldRepeatSeparatorPos:
