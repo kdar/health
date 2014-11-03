@@ -8,6 +8,7 @@ import (
 // is indexable.
 type Data interface {
 	Index(index int) (Data, bool)
+	Len() int
 }
 
 // Composer is an interface that represents a piece of data that
@@ -32,6 +33,10 @@ func (f Field) Index(index int) (Data, bool) {
 	return f, true
 }
 
+func (f Field) Len() int {
+	return 1
+}
+
 func (f Field) String() string {
 	return string(f)
 }
@@ -47,6 +52,10 @@ func (s SubComponent) Index(index int) (Data, bool) {
 	}
 
 	return s[index], true
+}
+
+func (s SubComponent) Len() int {
+	return len(s)
 }
 
 // Append appends Data to this SubComponent.
@@ -77,6 +86,10 @@ func (c Component) Index(index int) (Data, bool) {
 	}
 
 	return c[index], true
+}
+
+func (c Component) Len() int {
+	return len(c)
 }
 
 // Append appends Data to this Component.
@@ -110,6 +123,10 @@ func (r Repeated) Index(index int) (Data, bool) {
 	return r[index], true
 }
 
+func (r Repeated) Len() int {
+	return len(r)
+}
+
 // Append appends Data to this Repeated.
 func (r *Repeated) Append(values ...Data) error {
 	for _, v := range values {
@@ -139,6 +156,10 @@ func (s Segment) Index(index int) (Data, bool) {
 	}
 
 	return s[index], true
+}
+
+func (s Segment) Len() int {
+	return len(s)
 }
 
 // Append appends Data to this Segment.
