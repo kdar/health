@@ -1,0 +1,41 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5.1  - VXQ_V01
+    HL7® Version 2.5.1, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5.1 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE VXQ_V01
+    -->
+    <!-- .. groups used in message VXQ_V01 -->
+    <!-- .. message definition VXQ_V01 -->
+    <xsd:complexType name="VXQ_V01.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="QRD" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="QRF" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="VXQ_V01" type="VXQ_V01.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

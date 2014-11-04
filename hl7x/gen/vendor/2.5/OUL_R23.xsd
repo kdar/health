@@ -1,0 +1,102 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5  - OUL_R23
+    HL7® Version 2.5, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE OUL_R23
+    -->
+    <!-- .. groups used in message OUL_R23 -->
+    <xsd:complexType name="OUL_R23.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PD1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.PATIENT" type="OUL_R23.PATIENT.CONTENT"/>
+    <xsd:complexType name="OUL_R23.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PV1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.VISIT" type="OUL_R23.VISIT.CONTENT"/>
+    <xsd:complexType name="OUL_R23.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.TIMING_QTY" type="OUL_R23.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="OUL_R23.RESULT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBX" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TCD" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="SID" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.RESULT" type="OUL_R23.RESULT.CONTENT"/>
+    <xsd:complexType name="OUL_R23.ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBR" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="ORC" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OUL_R23.TIMING_QTY" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OUL_R23.RESULT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="CTI" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.ORDER" type="OUL_R23.ORDER.CONTENT"/>
+    <xsd:complexType name="OUL_R23.CONTAINER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="SAC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="INV" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OUL_R23.ORDER" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.CONTAINER" type="OUL_R23.CONTAINER.CONTENT"/>
+    <xsd:complexType name="OUL_R23.SPECIMEN.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="SPM" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OBX" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OUL_R23.CONTAINER" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23.SPECIMEN" type="OUL_R23.SPECIMEN.CONTENT"/>
+    <!-- .. message definition OUL_R23 -->
+    <xsd:complexType name="OUL_R23.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OUL_R23.PATIENT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OUL_R23.VISIT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OUL_R23.SPECIMEN" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="DSC" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OUL_R23" type="OUL_R23.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

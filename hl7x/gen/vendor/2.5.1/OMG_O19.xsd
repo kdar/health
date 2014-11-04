@@ -1,0 +1,164 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5.1  - OMG_O19
+    HL7® Version 2.5.1, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5.1 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE OMG_O19
+    -->
+    <!-- .. groups used in message OMG_O19 -->
+    <xsd:complexType name="OMG_O19.PATIENT_VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PV1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.PATIENT_VISIT" type="OMG_O19.PATIENT_VISIT.CONTENT"/>
+    <xsd:complexType name="OMG_O19.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="IN1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="IN2" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="IN3" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.INSURANCE" type="OMG_O19.INSURANCE.CONTENT"/>
+    <xsd:complexType name="OMG_O19.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PD1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="NK1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMG_O19.PATIENT_VISIT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OMG_O19.INSURANCE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="GT1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="AL1" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.PATIENT" type="OMG_O19.PATIENT.CONTENT"/>
+    <xsd:complexType name="OMG_O19.TIMING.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.TIMING" type="OMG_O19.TIMING.CONTENT"/>
+    <xsd:complexType name="OMG_O19.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBX" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.OBSERVATION" type="OMG_O19.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="OMG_O19.CONTAINER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="SAC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OBX" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.CONTAINER" type="OMG_O19.CONTAINER.CONTENT"/>
+    <xsd:complexType name="OMG_O19.SPECIMEN.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="SPM" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OBX" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMG_O19.CONTAINER" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.SPECIMEN" type="OMG_O19.SPECIMEN.CONTENT"/>
+    <xsd:complexType name="OMG_O19.PATIENT_PRIOR.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PD1" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.PATIENT_PRIOR" type="OMG_O19.PATIENT_PRIOR.CONTENT"/>
+    <xsd:complexType name="OMG_O19.PATIENT_VISIT_PRIOR.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PV1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.PATIENT_VISIT_PRIOR" type="OMG_O19.PATIENT_VISIT_PRIOR.CONTENT"/>
+    <xsd:complexType name="OMG_O19.TIMING_PRIOR.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.TIMING_PRIOR" type="OMG_O19.TIMING_PRIOR.CONTENT"/>
+    <xsd:complexType name="OMG_O19.OBSERVATION_PRIOR.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBX" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.OBSERVATION_PRIOR" type="OMG_O19.OBSERVATION_PRIOR.CONTENT"/>
+    <xsd:complexType name="OMG_O19.ORDER_PRIOR.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OBR" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OMG_O19.TIMING_PRIOR" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="CTD" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OMG_O19.OBSERVATION_PRIOR" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.ORDER_PRIOR" type="OMG_O19.ORDER_PRIOR.CONTENT"/>
+    <xsd:complexType name="OMG_O19.PRIOR_RESULT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OMG_O19.PATIENT_PRIOR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OMG_O19.PATIENT_VISIT_PRIOR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="AL1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMG_O19.ORDER_PRIOR" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.PRIOR_RESULT" type="OMG_O19.PRIOR_RESULT.CONTENT"/>
+    <xsd:complexType name="OMG_O19.ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OMG_O19.TIMING" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OBR" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="CTD" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="DG1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMG_O19.OBSERVATION" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMG_O19.SPECIMEN" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMG_O19.PRIOR_RESULT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="FT1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="CTI" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="BLG" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19.ORDER" type="OMG_O19.ORDER.CONTENT"/>
+    <!-- .. message definition OMG_O19 -->
+    <xsd:complexType name="OMG_O19.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMG_O19.PATIENT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OMG_O19.ORDER" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMG_O19" type="OMG_O19.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

@@ -1,0 +1,615 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5.1  - messages
+    HL7® Version 2.5.1, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    targetNamespace="urn:hl7-org:v2xml">
+    <!-- include message defintions for ACK -->
+    <xsd:include schemaLocation="ACK.xsd"/>
+    <!-- include message defintions for ADR_A19 -->
+    <xsd:include schemaLocation="ADR_A19.xsd"/>
+    <!-- include message defintions for ADT_A01 -->
+    <xsd:include schemaLocation="ADT_A01.xsd"/>
+    <!-- include message defintions for ADT_A02 -->
+    <xsd:include schemaLocation="ADT_A02.xsd"/>
+    <!-- include message defintions for ADT_A03 -->
+    <xsd:include schemaLocation="ADT_A03.xsd"/>
+    <!-- include message defintions for ADT_A05 -->
+    <xsd:include schemaLocation="ADT_A05.xsd"/>
+    <!-- include message defintions for ADT_A06 -->
+    <xsd:include schemaLocation="ADT_A06.xsd"/>
+    <!-- include message defintions for ADT_A09 -->
+    <xsd:include schemaLocation="ADT_A09.xsd"/>
+    <!-- include message defintions for ADT_A12 -->
+    <xsd:include schemaLocation="ADT_A12.xsd"/>
+    <!-- include message defintions for ADT_A15 -->
+    <xsd:include schemaLocation="ADT_A15.xsd"/>
+    <!-- include message defintions for ADT_A16 -->
+    <xsd:include schemaLocation="ADT_A16.xsd"/>
+    <!-- include message defintions for ADT_A17 -->
+    <xsd:include schemaLocation="ADT_A17.xsd"/>
+    <!-- include message defintions for ADT_A18 -->
+    <xsd:include schemaLocation="ADT_A18.xsd"/>
+    <!-- include message defintions for ADT_A20 -->
+    <xsd:include schemaLocation="ADT_A20.xsd"/>
+    <!-- include message defintions for ADT_A21 -->
+    <xsd:include schemaLocation="ADT_A21.xsd"/>
+    <!-- include message defintions for ADT_A24 -->
+    <xsd:include schemaLocation="ADT_A24.xsd"/>
+    <!-- include message defintions for ADT_A30 -->
+    <xsd:include schemaLocation="ADT_A30.xsd"/>
+    <!-- include message defintions for ADT_A37 -->
+    <xsd:include schemaLocation="ADT_A37.xsd"/>
+    <!-- include message defintions for ADT_A38 -->
+    <xsd:include schemaLocation="ADT_A38.xsd"/>
+    <!-- include message defintions for ADT_A39 -->
+    <xsd:include schemaLocation="ADT_A39.xsd"/>
+    <!-- include message defintions for ADT_A43 -->
+    <xsd:include schemaLocation="ADT_A43.xsd"/>
+    <!-- include message defintions for ADT_A45 -->
+    <xsd:include schemaLocation="ADT_A45.xsd"/>
+    <!-- include message defintions for ADT_A50 -->
+    <xsd:include schemaLocation="ADT_A50.xsd"/>
+    <!-- include message defintions for ADT_A52 -->
+    <xsd:include schemaLocation="ADT_A52.xsd"/>
+    <!-- include message defintions for ADT_A54 -->
+    <xsd:include schemaLocation="ADT_A54.xsd"/>
+    <!-- include message defintions for ADT_A60 -->
+    <xsd:include schemaLocation="ADT_A60.xsd"/>
+    <!-- include message defintions for ADT_A61 -->
+    <xsd:include schemaLocation="ADT_A61.xsd"/>
+    <!-- include message defintions for BAR_P01 -->
+    <xsd:include schemaLocation="BAR_P01.xsd"/>
+    <!-- include message defintions for BAR_P02 -->
+    <xsd:include schemaLocation="BAR_P02.xsd"/>
+    <!-- include message defintions for BAR_P05 -->
+    <xsd:include schemaLocation="BAR_P05.xsd"/>
+    <!-- include message defintions for BAR_P06 -->
+    <xsd:include schemaLocation="BAR_P06.xsd"/>
+    <!-- include message defintions for BAR_P10 -->
+    <xsd:include schemaLocation="BAR_P10.xsd"/>
+    <!-- include message defintions for BAR_P12 -->
+    <xsd:include schemaLocation="BAR_P12.xsd"/>
+    <!-- include message defintions for BPS_O29 -->
+    <xsd:include schemaLocation="BPS_O29.xsd"/>
+    <!-- include message defintions for BRP_O30 -->
+    <xsd:include schemaLocation="BRP_O30.xsd"/>
+    <!-- include message defintions for BRT_O32 -->
+    <xsd:include schemaLocation="BRT_O32.xsd"/>
+    <!-- include message defintions for BTS_O31 -->
+    <xsd:include schemaLocation="BTS_O31.xsd"/>
+    <!-- include message defintions for CRM_C01 -->
+    <xsd:include schemaLocation="CRM_C01.xsd"/>
+    <!-- include message defintions for CSU_C09 -->
+    <xsd:include schemaLocation="CSU_C09.xsd"/>
+    <!-- include message defintions for DFT_P03 -->
+    <xsd:include schemaLocation="DFT_P03.xsd"/>
+    <!-- include message defintions for DFT_P11 -->
+    <xsd:include schemaLocation="DFT_P11.xsd"/>
+    <!-- include message defintions for DOC_T12 -->
+    <xsd:include schemaLocation="DOC_T12.xsd"/>
+    <!-- include message defintions for DSR_Q01 -->
+    <xsd:include schemaLocation="DSR_Q01.xsd"/>
+    <!-- include message defintions for DSR_Q03 -->
+    <xsd:include schemaLocation="DSR_Q03.xsd"/>
+    <!-- include message defintions for EAC_U07 -->
+    <xsd:include schemaLocation="EAC_U07.xsd"/>
+    <!-- include message defintions for EAN_U09 -->
+    <xsd:include schemaLocation="EAN_U09.xsd"/>
+    <!-- include message defintions for EAR_U08 -->
+    <xsd:include schemaLocation="EAR_U08.xsd"/>
+    <!-- include message defintions for EDR_R07 -->
+    <xsd:include schemaLocation="EDR_R07.xsd"/>
+    <!-- include message defintions for EQQ_Q04 -->
+    <xsd:include schemaLocation="EQQ_Q04.xsd"/>
+    <!-- include message defintions for ERP_R09 -->
+    <xsd:include schemaLocation="ERP_R09.xsd"/>
+    <!-- include message defintions for ESR_U02 -->
+    <xsd:include schemaLocation="ESR_U02.xsd"/>
+    <!-- include message defintions for ESU_U01 -->
+    <xsd:include schemaLocation="ESU_U01.xsd"/>
+    <!-- include message defintions for INR_U06 -->
+    <xsd:include schemaLocation="INR_U06.xsd"/>
+    <!-- include message defintions for INU_U05 -->
+    <xsd:include schemaLocation="INU_U05.xsd"/>
+    <!-- include message defintions for LSU_U12 -->
+    <xsd:include schemaLocation="LSU_U12.xsd"/>
+    <!-- include message defintions for MDM_T01 -->
+    <xsd:include schemaLocation="MDM_T01.xsd"/>
+    <!-- include message defintions for MDM_T02 -->
+    <xsd:include schemaLocation="MDM_T02.xsd"/>
+    <!-- include message defintions for MFK_M01 -->
+    <xsd:include schemaLocation="MFK_M01.xsd"/>
+    <!-- include message defintions for MFN_M01 -->
+    <xsd:include schemaLocation="MFN_M01.xsd"/>
+    <!-- include message defintions for MFN_M02 -->
+    <xsd:include schemaLocation="MFN_M02.xsd"/>
+    <!-- include message defintions for MFN_M03 -->
+    <xsd:include schemaLocation="MFN_M03.xsd"/>
+    <!-- include message defintions for MFN_M04 -->
+    <xsd:include schemaLocation="MFN_M04.xsd"/>
+    <!-- include message defintions for MFN_M05 -->
+    <xsd:include schemaLocation="MFN_M05.xsd"/>
+    <!-- include message defintions for MFN_M06 -->
+    <xsd:include schemaLocation="MFN_M06.xsd"/>
+    <!-- include message defintions for MFN_M07 -->
+    <xsd:include schemaLocation="MFN_M07.xsd"/>
+    <!-- include message defintions for MFN_M08 -->
+    <xsd:include schemaLocation="MFN_M08.xsd"/>
+    <!-- include message defintions for MFN_M09 -->
+    <xsd:include schemaLocation="MFN_M09.xsd"/>
+    <!-- include message defintions for MFN_M10 -->
+    <xsd:include schemaLocation="MFN_M10.xsd"/>
+    <!-- include message defintions for MFN_M11 -->
+    <xsd:include schemaLocation="MFN_M11.xsd"/>
+    <!-- include message defintions for MFN_M12 -->
+    <xsd:include schemaLocation="MFN_M12.xsd"/>
+    <!-- include message defintions for MFN_M13 -->
+    <xsd:include schemaLocation="MFN_M13.xsd"/>
+    <!-- include message defintions for MFN_M15 -->
+    <xsd:include schemaLocation="MFN_M15.xsd"/>
+    <!-- include message defintions for MFN_Znn -->
+    <xsd:include schemaLocation="MFN_Znn.xsd"/>
+    <!-- include message defintions for MFQ_M01 -->
+    <xsd:include schemaLocation="MFQ_M01.xsd"/>
+    <!-- include message defintions for MFR_M01 -->
+    <xsd:include schemaLocation="MFR_M01.xsd"/>
+    <!-- include message defintions for MFR_M04 -->
+    <xsd:include schemaLocation="MFR_M04.xsd"/>
+    <!-- include message defintions for MFR_M05 -->
+    <xsd:include schemaLocation="MFR_M05.xsd"/>
+    <!-- include message defintions for MFR_M06 -->
+    <xsd:include schemaLocation="MFR_M06.xsd"/>
+    <!-- include message defintions for MFR_M07 -->
+    <xsd:include schemaLocation="MFR_M07.xsd"/>
+    <!-- include message defintions for NMD_N02 -->
+    <xsd:include schemaLocation="NMD_N02.xsd"/>
+    <!-- include message defintions for NMQ_N01 -->
+    <xsd:include schemaLocation="NMQ_N01.xsd"/>
+    <!-- include message defintions for NMR_N01 -->
+    <xsd:include schemaLocation="NMR_N01.xsd"/>
+    <!-- include message defintions for OMB_O27 -->
+    <xsd:include schemaLocation="OMB_O27.xsd"/>
+    <!-- include message defintions for OMD_O03 -->
+    <xsd:include schemaLocation="OMD_O03.xsd"/>
+    <!-- include message defintions for OMG_O19 -->
+    <xsd:include schemaLocation="OMG_O19.xsd"/>
+    <!-- include message defintions for OMI_O23 -->
+    <xsd:include schemaLocation="OMI_O23.xsd"/>
+    <!-- include message defintions for OML_O21 -->
+    <xsd:include schemaLocation="OML_O21.xsd"/>
+    <!-- include message defintions for OML_O33 -->
+    <xsd:include schemaLocation="OML_O33.xsd"/>
+    <!-- include message defintions for OML_O35 -->
+    <xsd:include schemaLocation="OML_O35.xsd"/>
+    <!-- include message defintions for OMN_O07 -->
+    <xsd:include schemaLocation="OMN_O07.xsd"/>
+    <!-- include message defintions for OMP_O09 -->
+    <xsd:include schemaLocation="OMP_O09.xsd"/>
+    <!-- include message defintions for OMS_O05 -->
+    <xsd:include schemaLocation="OMS_O05.xsd"/>
+    <!-- include message defintions for ORB_O28 -->
+    <xsd:include schemaLocation="ORB_O28.xsd"/>
+    <!-- include message defintions for ORD_O04 -->
+    <xsd:include schemaLocation="ORD_O04.xsd"/>
+    <!-- include message defintions for ORF_R04 -->
+    <xsd:include schemaLocation="ORF_R04.xsd"/>
+    <!-- include message defintions for ORG_O20 -->
+    <xsd:include schemaLocation="ORG_O20.xsd"/>
+    <!-- include message defintions for ORI_O24 -->
+    <xsd:include schemaLocation="ORI_O24.xsd"/>
+    <!-- include message defintions for ORL_O22 -->
+    <xsd:include schemaLocation="ORL_O22.xsd"/>
+    <!-- include message defintions for ORL_O34 -->
+    <xsd:include schemaLocation="ORL_O34.xsd"/>
+    <!-- include message defintions for ORL_O36 -->
+    <xsd:include schemaLocation="ORL_O36.xsd"/>
+    <!-- include message defintions for ORM_O01 -->
+    <xsd:include schemaLocation="ORM_O01.xsd"/>
+    <!-- include message defintions for ORN_O08 -->
+    <xsd:include schemaLocation="ORN_O08.xsd"/>
+    <!-- include message defintions for ORP_O10 -->
+    <xsd:include schemaLocation="ORP_O10.xsd"/>
+    <!-- include message defintions for ORR_O02 -->
+    <xsd:include schemaLocation="ORR_O02.xsd"/>
+    <!-- include message defintions for ORS_O06 -->
+    <xsd:include schemaLocation="ORS_O06.xsd"/>
+    <!-- include message defintions for ORU_R01 -->
+    <xsd:include schemaLocation="ORU_R01.xsd"/>
+    <!-- include message defintions for ORU_R30 -->
+    <xsd:include schemaLocation="ORU_R30.xsd"/>
+    <!-- include message defintions for OSQ_Q06 -->
+    <xsd:include schemaLocation="OSQ_Q06.xsd"/>
+    <!-- include message defintions for OSR_Q06 -->
+    <xsd:include schemaLocation="OSR_Q06.xsd"/>
+    <!-- include message defintions for OUL_R21 -->
+    <xsd:include schemaLocation="OUL_R21.xsd"/>
+    <!-- include message defintions for OUL_R22 -->
+    <xsd:include schemaLocation="OUL_R22.xsd"/>
+    <!-- include message defintions for OUL_R23 -->
+    <xsd:include schemaLocation="OUL_R23.xsd"/>
+    <!-- include message defintions for OUL_R24 -->
+    <xsd:include schemaLocation="OUL_R24.xsd"/>
+    <!-- include message defintions for PEX_P07 -->
+    <xsd:include schemaLocation="PEX_P07.xsd"/>
+    <!-- include message defintions for PGL_PC6 -->
+    <xsd:include schemaLocation="PGL_PC6.xsd"/>
+    <!-- include message defintions for PMU_B01 -->
+    <xsd:include schemaLocation="PMU_B01.xsd"/>
+    <!-- include message defintions for PMU_B03 -->
+    <xsd:include schemaLocation="PMU_B03.xsd"/>
+    <!-- include message defintions for PMU_B04 -->
+    <xsd:include schemaLocation="PMU_B04.xsd"/>
+    <!-- include message defintions for PMU_B07 -->
+    <xsd:include schemaLocation="PMU_B07.xsd"/>
+    <!-- include message defintions for PMU_B08 -->
+    <xsd:include schemaLocation="PMU_B08.xsd"/>
+    <!-- include message defintions for PPG_PCG -->
+    <xsd:include schemaLocation="PPG_PCG.xsd"/>
+    <!-- include message defintions for PPP_PCB -->
+    <xsd:include schemaLocation="PPP_PCB.xsd"/>
+    <!-- include message defintions for PPR_PC1 -->
+    <xsd:include schemaLocation="PPR_PC1.xsd"/>
+    <!-- include message defintions for PPT_PCL -->
+    <xsd:include schemaLocation="PPT_PCL.xsd"/>
+    <!-- include message defintions for PPV_PCA -->
+    <xsd:include schemaLocation="PPV_PCA.xsd"/>
+    <!-- include message defintions for PRR_PC5 -->
+    <xsd:include schemaLocation="PRR_PC5.xsd"/>
+    <!-- include message defintions for PTR_PCF -->
+    <xsd:include schemaLocation="PTR_PCF.xsd"/>
+    <!-- include message defintions for QBP_Q11 -->
+    <xsd:include schemaLocation="QBP_Q11.xsd"/>
+    <!-- include message defintions for QBP_Q13 -->
+    <xsd:include schemaLocation="QBP_Q13.xsd"/>
+    <!-- include message defintions for QBP_Q15 -->
+    <xsd:include schemaLocation="QBP_Q15.xsd"/>
+    <!-- include message defintions for QBP_Q21 -->
+    <xsd:include schemaLocation="QBP_Q21.xsd"/>
+    <!-- include message defintions for QBP_Qnn -->
+    <xsd:include schemaLocation="QBP_Qnn.xsd"/>
+    <!-- include message defintions for QBP_Z73 -->
+    <xsd:include schemaLocation="QBP_Z73.xsd"/>
+    <!-- include message defintions for QCK_Q02 -->
+    <xsd:include schemaLocation="QCK_Q02.xsd"/>
+    <!-- include message defintions for QCN_J01 -->
+    <xsd:include schemaLocation="QCN_J01.xsd"/>
+    <!-- include message defintions for QRY -->
+    <xsd:include schemaLocation="QRY.xsd"/>
+    <!-- include message defintions for QRY_A19 -->
+    <xsd:include schemaLocation="QRY_A19.xsd"/>
+    <!-- include message defintions for QRY_PC4 -->
+    <xsd:include schemaLocation="QRY_PC4.xsd"/>
+    <!-- include message defintions for QRY_Q01 -->
+    <xsd:include schemaLocation="QRY_Q01.xsd"/>
+    <!-- include message defintions for QRY_R02 -->
+    <xsd:include schemaLocation="QRY_R02.xsd"/>
+    <!-- include message defintions for QSB_Q16 -->
+    <xsd:include schemaLocation="QSB_Q16.xsd"/>
+    <!-- include message defintions for QVR_Q17 -->
+    <xsd:include schemaLocation="QVR_Q17.xsd"/>
+    <!-- include message defintions for RAR_RAR -->
+    <xsd:include schemaLocation="RAR_RAR.xsd"/>
+    <!-- include message defintions for RAS_O17 -->
+    <xsd:include schemaLocation="RAS_O17.xsd"/>
+    <!-- include message defintions for RCI_I05 -->
+    <xsd:include schemaLocation="RCI_I05.xsd"/>
+    <!-- include message defintions for RCL_I06 -->
+    <xsd:include schemaLocation="RCL_I06.xsd"/>
+    <!-- include message defintions for RDE_O11 -->
+    <xsd:include schemaLocation="RDE_O11.xsd"/>
+    <!-- include message defintions for RDR_RDR -->
+    <xsd:include schemaLocation="RDR_RDR.xsd"/>
+    <!-- include message defintions for RDS_O13 -->
+    <xsd:include schemaLocation="RDS_O13.xsd"/>
+    <!-- include message defintions for RDY_K15 -->
+    <xsd:include schemaLocation="RDY_K15.xsd"/>
+    <!-- include message defintions for REF_I12 -->
+    <xsd:include schemaLocation="REF_I12.xsd"/>
+    <!-- include message defintions for RER_RER -->
+    <xsd:include schemaLocation="RER_RER.xsd"/>
+    <!-- include message defintions for RGR_RGR -->
+    <xsd:include schemaLocation="RGR_RGR.xsd"/>
+    <!-- include message defintions for RGV_O15 -->
+    <xsd:include schemaLocation="RGV_O15.xsd"/>
+    <!-- include message defintions for ROR_ROR -->
+    <xsd:include schemaLocation="ROR_ROR.xsd"/>
+    <!-- include message defintions for RPA_I08 -->
+    <xsd:include schemaLocation="RPA_I08.xsd"/>
+    <!-- include message defintions for RPI_I01 -->
+    <xsd:include schemaLocation="RPI_I01.xsd"/>
+    <!-- include message defintions for RPI_I04 -->
+    <xsd:include schemaLocation="RPI_I04.xsd"/>
+    <!-- include message defintions for RPL_I02 -->
+    <xsd:include schemaLocation="RPL_I02.xsd"/>
+    <!-- include message defintions for RPR_I03 -->
+    <xsd:include schemaLocation="RPR_I03.xsd"/>
+    <!-- include message defintions for RQA_I08 -->
+    <xsd:include schemaLocation="RQA_I08.xsd"/>
+    <!-- include message defintions for RQC_I05 -->
+    <xsd:include schemaLocation="RQC_I05.xsd"/>
+    <!-- include message defintions for RQI_I01 -->
+    <xsd:include schemaLocation="RQI_I01.xsd"/>
+    <!-- include message defintions for RQP_I04 -->
+    <xsd:include schemaLocation="RQP_I04.xsd"/>
+    <!-- include message defintions for RQQ_Q09 -->
+    <xsd:include schemaLocation="RQQ_Q09.xsd"/>
+    <!-- include message defintions for RRA_O18 -->
+    <xsd:include schemaLocation="RRA_O18.xsd"/>
+    <!-- include message defintions for RRD_O14 -->
+    <xsd:include schemaLocation="RRD_O14.xsd"/>
+    <!-- include message defintions for RRE_O12 -->
+    <xsd:include schemaLocation="RRE_O12.xsd"/>
+    <!-- include message defintions for RRG_O16 -->
+    <xsd:include schemaLocation="RRG_O16.xsd"/>
+    <!-- include message defintions for RRI_I12 -->
+    <xsd:include schemaLocation="RRI_I12.xsd"/>
+    <!-- include message defintions for RSP_K11 -->
+    <xsd:include schemaLocation="RSP_K11.xsd"/>
+    <!-- include message defintions for RSP_K21 -->
+    <xsd:include schemaLocation="RSP_K21.xsd"/>
+    <!-- include message defintions for RSP_K23 -->
+    <xsd:include schemaLocation="RSP_K23.xsd"/>
+    <!-- include message defintions for RSP_K25 -->
+    <xsd:include schemaLocation="RSP_K25.xsd"/>
+    <!-- include message defintions for RSP_K31 -->
+    <xsd:include schemaLocation="RSP_K31.xsd"/>
+    <!-- include message defintions for RSP_Q11 -->
+    <xsd:include schemaLocation="RSP_Q11.xsd"/>
+    <!-- include message defintions for RSP_Z82 -->
+    <xsd:include schemaLocation="RSP_Z82.xsd"/>
+    <!-- include message defintions for RSP_Z86 -->
+    <xsd:include schemaLocation="RSP_Z86.xsd"/>
+    <!-- include message defintions for RSP_Z88 -->
+    <xsd:include schemaLocation="RSP_Z88.xsd"/>
+    <!-- include message defintions for RSP_Z90 -->
+    <xsd:include schemaLocation="RSP_Z90.xsd"/>
+    <!-- include message defintions for RTB_K13 -->
+    <xsd:include schemaLocation="RTB_K13.xsd"/>
+    <!-- include message defintions for RTB_Knn -->
+    <xsd:include schemaLocation="RTB_Knn.xsd"/>
+    <!-- include message defintions for RTB_Z74 -->
+    <xsd:include schemaLocation="RTB_Z74.xsd"/>
+    <!-- include message defintions for SIU_S12 -->
+    <xsd:include schemaLocation="SIU_S12.xsd"/>
+    <!-- include message defintions for SPQ_Q08 -->
+    <xsd:include schemaLocation="SPQ_Q08.xsd"/>
+    <!-- include message defintions for SQM_S25 -->
+    <xsd:include schemaLocation="SQM_S25.xsd"/>
+    <!-- include message defintions for SQR_S25 -->
+    <xsd:include schemaLocation="SQR_S25.xsd"/>
+    <!-- include message defintions for SRM_S01 -->
+    <xsd:include schemaLocation="SRM_S01.xsd"/>
+    <!-- include message defintions for SRR_S01 -->
+    <xsd:include schemaLocation="SRR_S01.xsd"/>
+    <!-- include message defintions for SSR_U04 -->
+    <xsd:include schemaLocation="SSR_U04.xsd"/>
+    <!-- include message defintions for SSU_U03 -->
+    <xsd:include schemaLocation="SSU_U03.xsd"/>
+    <!-- include message defintions for SUR_P09 -->
+    <xsd:include schemaLocation="SUR_P09.xsd"/>
+    <!-- include message defintions for TBR_R08 -->
+    <xsd:include schemaLocation="TBR_R08.xsd"/>
+    <!-- include message defintions for TCU_U10 -->
+    <xsd:include schemaLocation="TCU_U10.xsd"/>
+    <!-- include message defintions for UDM_Q05 -->
+    <xsd:include schemaLocation="UDM_Q05.xsd"/>
+    <!-- include message defintions for VQQ_Q07 -->
+    <xsd:include schemaLocation="VQQ_Q07.xsd"/>
+    <!-- include message defintions for VXQ_V01 -->
+    <xsd:include schemaLocation="VXQ_V01.xsd"/>
+    <!-- include message defintions for VXR_V03 -->
+    <xsd:include schemaLocation="VXR_V03.xsd"/>
+    <!-- include message defintions for VXU_V04 -->
+    <xsd:include schemaLocation="VXU_V04.xsd"/>
+    <!-- include message defintions for VXX_V02 -->
+    <xsd:include schemaLocation="VXX_V02.xsd"/>
+    <!-- .. all message definitions -->
+    <xsd:group name="ALLMESSAGES.CONTENT">
+	<xsd:choice>
+	    <xsd:element ref="ACK" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADR_A19" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A05" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A06" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A09" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A12" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A15" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A16" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A17" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A18" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A20" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A21" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A24" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A30" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A37" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A38" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A39" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A43" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A45" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A50" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A52" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A54" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A60" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A61" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BAR_P01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BAR_P02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BAR_P05" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BAR_P06" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BAR_P10" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BAR_P12" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BPS_O29" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BRP_O30" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BRT_O32" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BTS_O31" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="CRM_C01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="CSU_C09" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="DFT_P03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="DFT_P11" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="DOC_T12" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="DSR_Q01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="DSR_Q03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="EAC_U07" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="EAN_U09" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="EAR_U08" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="EDR_R07" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="EQQ_Q04" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ERP_R09" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ESR_U02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ESU_U01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="INR_U06" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="INU_U05" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="LSU_U12" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MDM_T01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MDM_T02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFK_M01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M04" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M05" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M06" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M07" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M08" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M09" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M10" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M11" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M12" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M13" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_M15" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFN_Znn" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFQ_M01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFR_M01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFR_M04" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFR_M05" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFR_M06" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MFR_M07" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="NMD_N02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="NMQ_N01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="NMR_N01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OMB_O27" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OMD_O03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OMG_O19" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OMI_O23" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OML_O21" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OML_O33" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OML_O35" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OMN_O07" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OMP_O09" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OMS_O05" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORB_O28" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORD_O04" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORF_R04" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORG_O20" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORI_O24" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORL_O22" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORL_O34" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORL_O36" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORM_O01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORN_O08" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORP_O10" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORR_O02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORS_O06" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORU_R01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORU_R30" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OSQ_Q06" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OSR_Q06" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OUL_R21" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OUL_R22" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OUL_R23" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="OUL_R24" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PEX_P07" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PGL_PC6" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PMU_B01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PMU_B03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PMU_B04" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PMU_B07" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PMU_B08" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PPG_PCG" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PPP_PCB" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PPR_PC1" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PPT_PCL" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PPV_PCA" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PRR_PC5" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="PTR_PCF" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QBP_Q11" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QBP_Q13" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QBP_Q15" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QBP_Q21" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QBP_Qnn" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QBP_Z73" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QCK_Q02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QCN_J01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QRY" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QRY_A19" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QRY_PC4" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QRY_Q01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QRY_R02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QSB_Q16" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QVR_Q17" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RAR_RAR" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RAS_O17" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RCI_I05" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RCL_I06" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RDE_O11" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RDR_RDR" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RDS_O13" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RDY_K15" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="REF_I12" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RER_RER" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RGR_RGR" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RGV_O15" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ROR_ROR" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RPA_I08" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RPI_I01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RPI_I04" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RPL_I02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RPR_I03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RQA_I08" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RQC_I05" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RQI_I01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RQP_I04" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RQQ_Q09" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RRA_O18" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RRD_O14" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RRE_O12" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RRG_O16" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RRI_I12" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RSP_K11" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RSP_K21" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RSP_K23" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RSP_K25" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RSP_K31" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RSP_Q11" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RSP_Z82" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RSP_Z86" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RSP_Z88" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RSP_Z90" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RTB_K13" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RTB_Knn" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="RTB_Z74" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="SIU_S12" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="SPQ_Q08" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="SQM_S25" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="SQR_S25" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="SRM_S01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="SRR_S01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="SSR_U04" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="SSU_U03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="SUR_P09" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="TBR_R08" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="TCU_U10" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="UDM_Q05" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="VQQ_Q07" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="VXQ_V01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="VXR_V03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="VXU_V04" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="VXX_V02" minOccurs="0" maxOccurs="unbounded" />
+	</xsd:choice>
+    </xsd:group>
+</xsd:schema>

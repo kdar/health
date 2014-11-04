@@ -1,0 +1,140 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5  - PEX_P07
+    HL7® Version 2.5, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE PEX_P07
+    -->
+    <!-- .. groups used in message PEX_P07 -->
+    <xsd:complexType name="PEX_P07.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PV1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.VISIT" type="PEX_P07.VISIT.CONTENT"/>
+    <xsd:complexType name="PEX_P07.TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.TIMING_QTY" type="PEX_P07.TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="PEX_P07.RX_ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RXE" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PEX_P07.TIMING_QTY" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="RXR" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.RX_ORDER" type="PEX_P07.RX_ORDER.CONTENT"/>
+    <xsd:complexType name="PEX_P07.RX_ADMINISTRATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RXA" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RXR" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.RX_ADMINISTRATION" type="PEX_P07.RX_ADMINISTRATION.CONTENT"/>
+    <xsd:complexType name="PEX_P07.NK1_TIMING_QTY.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.NK1_TIMING_QTY" type="PEX_P07.NK1_TIMING_QTY.CONTENT"/>
+    <xsd:complexType name="PEX_P07.ASSOCIATED_RX_ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RXE" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PEX_P07.NK1_TIMING_QTY" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="RXR" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.ASSOCIATED_RX_ORDER" type="PEX_P07.ASSOCIATED_RX_ORDER.CONTENT"/>
+    <xsd:complexType name="PEX_P07.ASSOCIATED_RX_ADMIN.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RXA" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RXR" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.ASSOCIATED_RX_ADMIN" type="PEX_P07.ASSOCIATED_RX_ADMIN.CONTENT"/>
+    <xsd:complexType name="PEX_P07.ASSOCIATED_PERSON.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="NK1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PEX_P07.ASSOCIATED_RX_ORDER" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="PEX_P07.ASSOCIATED_RX_ADMIN" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="PRB" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OBX" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.ASSOCIATED_PERSON" type="PEX_P07.ASSOCIATED_PERSON.CONTENT"/>
+    <xsd:complexType name="PEX_P07.STUDY.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="CSR" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="CSP" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.STUDY" type="PEX_P07.STUDY.CONTENT"/>
+    <xsd:complexType name="PEX_P07.PEX_CAUSE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PCR" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PEX_P07.RX_ORDER" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="PEX_P07.RX_ADMINISTRATION" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="PRB" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OBX" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="PEX_P07.ASSOCIATED_PERSON" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="PEX_P07.STUDY" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.PEX_CAUSE" type="PEX_P07.PEX_CAUSE.CONTENT"/>
+    <xsd:complexType name="PEX_P07.PEX_OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PEO" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PEX_P07.PEX_CAUSE" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.PEX_OBSERVATION" type="PEX_P07.PEX_OBSERVATION.CONTENT"/>
+    <xsd:complexType name="PEX_P07.EXPERIENCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PES" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PEX_P07.PEX_OBSERVATION" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07.EXPERIENCE" type="PEX_P07.EXPERIENCE.CONTENT"/>
+    <!-- .. message definition PEX_P07 -->
+    <xsd:complexType name="PEX_P07.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="EVN" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PD1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="PEX_P07.VISIT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="PEX_P07.EXPERIENCE" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="PEX_P07" type="PEX_P07.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

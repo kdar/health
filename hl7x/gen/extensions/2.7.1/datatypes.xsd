@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v2xml" xmlns:hl7="urn:hl7-org:v2xml" targetNamespace="urn:hl7-org:v2xml">
+<xsd:simpleType name="ST">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="IS">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="ID">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="DTM">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="NM">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="TX">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="SI">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="ST">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="DT">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="SNM">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="FT">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="GTS">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+<xsd:simpleType name="TM">
+  <xsd:restriction base="xsd:string"/>
+</xsd:simpleType>
+</xsd:schema>

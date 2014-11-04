@@ -1,0 +1,68 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.4  - NMD_N02
+    HL7® Version 2.4, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.4 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE NMD_N02
+    -->
+    <!-- .. groups used in message NMD_N02 -->
+    <xsd:complexType name="NMD_N02.CLOCK.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="NCK" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="NMD_N02.CLOCK" type="NMD_N02.CLOCK.CONTENT"/>
+    <xsd:complexType name="NMD_N02.APP_STATS.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="NST" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="NMD_N02.APP_STATS" type="NMD_N02.APP_STATS.CONTENT"/>
+    <xsd:complexType name="NMD_N02.APP_STATUS.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="NSC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="NMD_N02.APP_STATUS" type="NMD_N02.APP_STATUS.CONTENT"/>
+    <xsd:complexType name="NMD_N02.CLOCK_AND_STATS_WITH_NOTES.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="NMD_N02.CLOCK" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NMD_N02.APP_STATS" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NMD_N02.APP_STATUS" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="NMD_N02.CLOCK_AND_STATS_WITH_NOTES" type="NMD_N02.CLOCK_AND_STATS_WITH_NOTES.CONTENT"/>
+    <!-- .. message definition NMD_N02 -->
+    <xsd:complexType name="NMD_N02.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NMD_N02.CLOCK_AND_STATS_WITH_NOTES" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="NMD_N02" type="NMD_N02.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

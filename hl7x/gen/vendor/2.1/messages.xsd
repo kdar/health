@@ -1,0 +1,132 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.1  - messages
+    HL7® Version 2.1, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    targetNamespace="urn:hl7-org:v2xml">
+    <!-- include message defintions for ACK -->
+    <xsd:include schemaLocation="ACK.xsd"/>
+    <!-- include message defintions for ADR_A19 -->
+    <xsd:include schemaLocation="ADR_A19.xsd"/>
+    <!-- include message defintions for ADT_A01 -->
+    <xsd:include schemaLocation="ADT_A01.xsd"/>
+    <!-- include message defintions for ADT_A02 -->
+    <xsd:include schemaLocation="ADT_A02.xsd"/>
+    <!-- include message defintions for ADT_A03 -->
+    <xsd:include schemaLocation="ADT_A03.xsd"/>
+    <!-- include message defintions for ADT_A04 -->
+    <xsd:include schemaLocation="ADT_A04.xsd"/>
+    <!-- include message defintions for ADT_A05 -->
+    <xsd:include schemaLocation="ADT_A05.xsd"/>
+    <!-- include message defintions for ADT_A06 -->
+    <xsd:include schemaLocation="ADT_A06.xsd"/>
+    <!-- include message defintions for ADT_A07 -->
+    <xsd:include schemaLocation="ADT_A07.xsd"/>
+    <!-- include message defintions for ADT_A08 -->
+    <xsd:include schemaLocation="ADT_A08.xsd"/>
+    <!-- include message defintions for ADT_A09 -->
+    <xsd:include schemaLocation="ADT_A09.xsd"/>
+    <!-- include message defintions for ADT_A10 -->
+    <xsd:include schemaLocation="ADT_A10.xsd"/>
+    <!-- include message defintions for ADT_A11 -->
+    <xsd:include schemaLocation="ADT_A11.xsd"/>
+    <!-- include message defintions for ADT_A12 -->
+    <xsd:include schemaLocation="ADT_A12.xsd"/>
+    <!-- include message defintions for ADT_A13 -->
+    <xsd:include schemaLocation="ADT_A13.xsd"/>
+    <!-- include message defintions for ADT_A14 -->
+    <xsd:include schemaLocation="ADT_A14.xsd"/>
+    <!-- include message defintions for ADT_A15 -->
+    <xsd:include schemaLocation="ADT_A15.xsd"/>
+    <!-- include message defintions for ADT_A16 -->
+    <xsd:include schemaLocation="ADT_A16.xsd"/>
+    <!-- include message defintions for ADT_A17 -->
+    <xsd:include schemaLocation="ADT_A17.xsd"/>
+    <!-- include message defintions for ADT_A18 -->
+    <xsd:include schemaLocation="ADT_A18.xsd"/>
+    <!-- include message defintions for ADT_A20 -->
+    <xsd:include schemaLocation="ADT_A20.xsd"/>
+    <!-- include message defintions for ADT_A21 -->
+    <xsd:include schemaLocation="ADT_A21.xsd"/>
+    <!-- include message defintions for ADT_A22 -->
+    <xsd:include schemaLocation="ADT_A22.xsd"/>
+    <!-- include message defintions for ADT_A23 -->
+    <xsd:include schemaLocation="ADT_A23.xsd"/>
+    <!-- include message defintions for ADT_A24 -->
+    <xsd:include schemaLocation="ADT_A24.xsd"/>
+    <!-- include message defintions for BAR_P01 -->
+    <xsd:include schemaLocation="BAR_P01.xsd"/>
+    <!-- include message defintions for BAR_P02 -->
+    <xsd:include schemaLocation="BAR_P02.xsd"/>
+    <!-- include message defintions for DFT_P03 -->
+    <xsd:include schemaLocation="DFT_P03.xsd"/>
+    <!-- include message defintions for DSR_Q01 -->
+    <xsd:include schemaLocation="DSR_Q01.xsd"/>
+    <!-- include message defintions for DSR_Q03 -->
+    <xsd:include schemaLocation="DSR_Q03.xsd"/>
+    <!-- include message defintions for MCF_Q02 -->
+    <xsd:include schemaLocation="MCF_Q02.xsd"/>
+    <!-- include message defintions for ORM_O01 -->
+    <xsd:include schemaLocation="ORM_O01.xsd"/>
+    <!-- include message defintions for ORR_O02 -->
+    <xsd:include schemaLocation="ORR_O02.xsd"/>
+    <!-- include message defintions for ORU_R01 -->
+    <xsd:include schemaLocation="ORU_R01.xsd"/>
+    <!-- include message defintions for ORU_R03 -->
+    <xsd:include schemaLocation="ORU_R03.xsd"/>
+    <!-- include message defintions for QRY_A19 -->
+    <xsd:include schemaLocation="QRY_A19.xsd"/>
+    <!-- include message defintions for QRY_Q01 -->
+    <xsd:include schemaLocation="QRY_Q01.xsd"/>
+    <!-- include message defintions for QRY_Q02 -->
+    <xsd:include schemaLocation="QRY_Q02.xsd"/>
+    <!-- include message defintions for UDM_Q05 -->
+    <xsd:include schemaLocation="UDM_Q05.xsd"/>
+    <!-- .. all message definitions -->
+    <xsd:group name="ALLMESSAGES.CONTENT">
+	<xsd:choice>
+	    <xsd:element ref="ACK" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADR_A19" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A04" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A05" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A06" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A07" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A08" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A09" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A10" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A11" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A12" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A13" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A14" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A15" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A16" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A17" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A18" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A20" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A21" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A22" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A23" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ADT_A24" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BAR_P01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="BAR_P02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="DFT_P03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="DSR_Q01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="DSR_Q03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="MCF_Q02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORM_O01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORR_O02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORU_R01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="ORU_R03" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QRY_A19" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QRY_Q01" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="QRY_Q02" minOccurs="0" maxOccurs="unbounded" />
+	    <xsd:element ref="UDM_Q05" minOccurs="0" maxOccurs="unbounded" />
+	</xsd:choice>
+    </xsd:group>
+</xsd:schema>

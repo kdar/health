@@ -1,0 +1,95 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.3  - SRM_S01
+    HL7® Version 2.3, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.3 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE SRM_S01
+    -->
+    <!-- .. groups used in message SRM_S01 -->
+    <xsd:complexType name="SRM_S01.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OBX" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="DG1" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.PATIENT" type="SRM_S01.PATIENT.CONTENT"/>
+    <xsd:complexType name="SRM_S01.SERVICE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIS" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="APR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.SERVICE" type="SRM_S01.SERVICE.CONTENT"/>
+    <xsd:complexType name="SRM_S01.GENERAL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIG" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="APR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.GENERAL_RESOURCE" type="SRM_S01.GENERAL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SRM_S01.LOCATION_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIL" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="APR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.LOCATION_RESOURCE" type="SRM_S01.LOCATION_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SRM_S01.PERSONNEL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIP" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="APR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.PERSONNEL_RESOURCE" type="SRM_S01.PERSONNEL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SRM_S01.RESOURCES.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RGS" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SRM_S01.SERVICE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SRM_S01.GENERAL_RESOURCE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SRM_S01.LOCATION_RESOURCE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SRM_S01.PERSONNEL_RESOURCE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01.RESOURCES" type="SRM_S01.RESOURCES.CONTENT"/>
+    <!-- .. message definition SRM_S01 -->
+    <xsd:complexType name="SRM_S01.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="ARQ" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="APR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SRM_S01.PATIENT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SRM_S01.RESOURCES" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRM_S01" type="SRM_S01.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

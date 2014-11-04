@@ -1,0 +1,118 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5  - RQA_I08
+    HL7® Version 2.5, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE RQA_I08
+    -->
+    <!-- .. groups used in message RQA_I08 -->
+    <xsd:complexType name="RQA_I08.AUTHORIZATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AUT" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="CTD" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.AUTHORIZATION" type="RQA_I08.AUTHORIZATION.CONTENT"/>
+    <xsd:complexType name="RQA_I08.PROVIDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PRD" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="CTD" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.PROVIDER" type="RQA_I08.PROVIDER.CONTENT"/>
+    <xsd:complexType name="RQA_I08.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="IN1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="IN2" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="IN3" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.INSURANCE" type="RQA_I08.INSURANCE.CONTENT"/>
+    <xsd:complexType name="RQA_I08.GUARANTOR_INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="GT1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="RQA_I08.INSURANCE" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.GUARANTOR_INSURANCE" type="RQA_I08.GUARANTOR_INSURANCE.CONTENT"/>
+    <xsd:complexType name="RQA_I08.AUTCTD_SUPPGRP2.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AUT" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="CTD" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.AUTCTD_SUPPGRP2" type="RQA_I08.AUTCTD_SUPPGRP2.CONTENT"/>
+    <xsd:complexType name="RQA_I08.PROCEDURE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PR1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RQA_I08.AUTCTD_SUPPGRP2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.PROCEDURE" type="RQA_I08.PROCEDURE.CONTENT"/>
+    <xsd:complexType name="RQA_I08.RESULTS.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBX" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.RESULTS" type="RQA_I08.RESULTS.CONTENT"/>
+    <xsd:complexType name="RQA_I08.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBR" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="RQA_I08.RESULTS" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.OBSERVATION" type="RQA_I08.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="RQA_I08.VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PV1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08.VISIT" type="RQA_I08.VISIT.CONTENT"/>
+    <!-- .. message definition RQA_I08 -->
+    <xsd:complexType name="RQA_I08.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="RF1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="RQA_I08.AUTHORIZATION" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="RQA_I08.PROVIDER" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NK1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="RQA_I08.GUARANTOR_INSURANCE" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="ACC" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="DG1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="DRG" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="AL1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="RQA_I08.PROCEDURE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="RQA_I08.OBSERVATION" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="RQA_I08.VISIT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RQA_I08" type="RQA_I08.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

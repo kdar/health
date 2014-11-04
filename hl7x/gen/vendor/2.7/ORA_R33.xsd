@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!--   v2.xml Message Definitions for Version 2.7 - here: ORA_R33-->
+<!--   Copyright (c) 1999-2011, Health Level Seven. All rights reserved.   -->
+<!--   (generated on 20/06/2011 by HL7-Database 6.0)-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v2xml" xmlns:hl7="urn:hl7-org:v2xml" targetNamespace="urn:hl7-org:v2xml"><!-- import segment definition for version --><xsd:include schemaLocation="segments.xsd"/><!-- MESSAGE ORA_R33 --><!-- .. message definition ORA_R33 --><xsd:complexType name="ORA_R33.CONTENT"><xsd:sequence><xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/><xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/><xsd:element ref="UAC" minOccurs="0" maxOccurs="1"/><xsd:element ref="MSA" minOccurs="1" maxOccurs="1"/><xsd:element ref="ERR" minOccurs="0" maxOccurs="unbounded"/><xsd:element ref="ORC" minOccurs="0" maxOccurs="1"/></xsd:sequence></xsd:complexType><xsd:element name="ORA_R33" type="ORA_R33.CONTENT"/></xsd:schema>

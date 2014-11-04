@@ -1,0 +1,54 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5  - RSP_K21
+    HL7® Version 2.5, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE RSP_K21
+    -->
+    <!-- .. groups used in message RSP_K21 -->
+    <xsd:complexType name="RSP_K21.QUERY_RESPONSE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PD1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NK1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="QRI" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RSP_K21.QUERY_RESPONSE" type="RSP_K21.QUERY_RESPONSE.CONTENT"/>
+    <!-- .. message definition RSP_K21 -->
+    <xsd:complexType name="RSP_K21.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="MSA" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="ERR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="QAK" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="QPD" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RSP_K21.QUERY_RESPONSE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="DSC" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RSP_K21" type="RSP_K21.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

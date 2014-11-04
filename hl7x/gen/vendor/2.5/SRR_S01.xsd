@@ -1,0 +1,98 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5  - SRR_S01
+    HL7® Version 2.5, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE SRR_S01
+    -->
+    <!-- .. groups used in message SRR_S01 -->
+    <xsd:complexType name="SRR_S01.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="DG1" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.PATIENT" type="SRR_S01.PATIENT.CONTENT"/>
+    <xsd:complexType name="SRR_S01.SERVICE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIS" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.SERVICE" type="SRR_S01.SERVICE.CONTENT"/>
+    <xsd:complexType name="SRR_S01.GENERAL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIG" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.GENERAL_RESOURCE" type="SRR_S01.GENERAL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SRR_S01.LOCATION_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIL" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.LOCATION_RESOURCE" type="SRR_S01.LOCATION_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SRR_S01.PERSONNEL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIP" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.PERSONNEL_RESOURCE" type="SRR_S01.PERSONNEL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SRR_S01.RESOURCES.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RGS" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SRR_S01.SERVICE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SRR_S01.GENERAL_RESOURCE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SRR_S01.LOCATION_RESOURCE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SRR_S01.PERSONNEL_RESOURCE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.RESOURCES" type="SRR_S01.RESOURCES.CONTENT"/>
+    <xsd:complexType name="SRR_S01.SCHEDULE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="SCH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SRR_S01.PATIENT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SRR_S01.RESOURCES" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01.SCHEDULE" type="SRR_S01.SCHEDULE.CONTENT"/>
+    <!-- .. message definition SRR_S01 -->
+    <xsd:complexType name="SRR_S01.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="MSA" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="ERR" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SRR_S01.SCHEDULE" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SRR_S01" type="SRR_S01.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!--   v2.xml Message Definitions for Version 2.7.1 - here: QBP_Qnn-->
+<!--   Copyright (c) 1999-2013, Health Level Seven. All rights reserved.   -->
+<!--   (generated on 04/10/2013 by HL7-Database 6.0)-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v2xml" xmlns:hl7="urn:hl7-org:v2xml" targetNamespace="urn:hl7-org:v2xml"><!-- import segment definition for version --><xsd:include schemaLocation="segments.xsd"/><!-- MESSAGE QBP_Qnn --><!-- .. message definition QBP_Qnn --><xsd:complexType name="QBP_Qnn.CONTENT"><xsd:sequence><xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/><xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/><xsd:element ref="UAC" minOccurs="0" maxOccurs="1"/><xsd:element ref="QPD" minOccurs="1" maxOccurs="1"/><xsd:element ref="RDF" minOccurs="0" maxOccurs="1"/><xsd:element ref="RCP" minOccurs="1" maxOccurs="1"/><xsd:element ref="DSC" minOccurs="0" maxOccurs="1"/></xsd:sequence></xsd:complexType><xsd:element name="QBP_Qnn" type="QBP_Qnn.CONTENT"/></xsd:schema>

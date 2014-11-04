@@ -1,0 +1,116 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5  - OMD_O03
+    HL7® Version 2.5, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE OMD_O03
+    -->
+    <!-- .. groups used in message OMD_O03 -->
+    <xsd:complexType name="OMD_O03.PATIENT_VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PV1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMD_O03.PATIENT_VISIT" type="OMD_O03.PATIENT_VISIT.CONTENT"/>
+    <xsd:complexType name="OMD_O03.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="IN1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="IN2" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="IN3" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMD_O03.INSURANCE" type="OMD_O03.INSURANCE.CONTENT"/>
+    <xsd:complexType name="OMD_O03.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PD1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMD_O03.PATIENT_VISIT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OMD_O03.INSURANCE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="GT1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="AL1" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMD_O03.PATIENT" type="OMD_O03.PATIENT.CONTENT"/>
+    <xsd:complexType name="OMD_O03.TIMING_DIET.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMD_O03.TIMING_DIET" type="OMD_O03.TIMING_DIET.CONTENT"/>
+    <xsd:complexType name="OMD_O03.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBX" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMD_O03.OBSERVATION" type="OMD_O03.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="OMD_O03.DIET.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ODS" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMD_O03.OBSERVATION" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMD_O03.DIET" type="OMD_O03.DIET.CONTENT"/>
+    <xsd:complexType name="OMD_O03.ORDER_DIET.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OMD_O03.TIMING_DIET" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMD_O03.DIET" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMD_O03.ORDER_DIET" type="OMD_O03.ORDER_DIET.CONTENT"/>
+    <xsd:complexType name="OMD_O03.TIMING_TRAY.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMD_O03.TIMING_TRAY" type="OMD_O03.TIMING_TRAY.CONTENT"/>
+    <xsd:complexType name="OMD_O03.ORDER_TRAY.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OMD_O03.TIMING_TRAY" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="ODT" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMD_O03.ORDER_TRAY" type="OMD_O03.ORDER_TRAY.CONTENT"/>
+    <!-- .. message definition OMD_O03 -->
+    <xsd:complexType name="OMD_O03.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMD_O03.PATIENT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OMD_O03.ORDER_DIET" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="OMD_O03.ORDER_TRAY" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMD_O03" type="OMD_O03.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

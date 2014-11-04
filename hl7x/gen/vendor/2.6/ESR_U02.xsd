@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!--   v2.xml Message Definitions for Version 2.6 - here: ESR_U02-->
+<!--   Copyright (c) 1999-2008, Health Level Seven. All rights reserved.   -->
+<!--   (generated on 28.02.2008 by HL7-Database)-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:hl7-org:v2xml" xmlns:hl7="urn:hl7-org:v2xml" targetNamespace="urn:hl7-org:v2xml"><!-- import segment definition for version --><xsd:include schemaLocation="segments.xsd"/><!-- MESSAGE ESR_U02 --><!-- .. message definition ESR_U02 --><xsd:complexType name="ESR_U02.CONTENT"><xsd:sequence><xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/><xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/><xsd:element ref="UAC" minOccurs="0" maxOccurs="1"/><xsd:element ref="EQU" minOccurs="1" maxOccurs="1"/><xsd:element ref="ROL" minOccurs="0" maxOccurs="1"/></xsd:sequence></xsd:complexType><xsd:element name="ESR_U02" type="ESR_U02.CONTENT"/></xsd:schema>

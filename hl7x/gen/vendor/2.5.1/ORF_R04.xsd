@@ -1,0 +1,86 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5.1  - ORF_R04
+    HL7® Version 2.5.1, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5.1 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE ORF_R04
+    -->
+    <!-- .. groups used in message ORF_R04 -->
+    <xsd:complexType name="ORF_R04.PIDNTE_SUPPGRP.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORF_R04.PIDNTE_SUPPGRP" type="ORF_R04.PIDNTE_SUPPGRP.CONTENT"/>
+    <xsd:complexType name="ORF_R04.TQ1TQ2_SUPPGRP.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORF_R04.TQ1TQ2_SUPPGRP" type="ORF_R04.TQ1TQ2_SUPPGRP.CONTENT"/>
+    <xsd:complexType name="ORF_R04.OBXNTE_SUPPGRP.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBX" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORF_R04.OBXNTE_SUPPGRP" type="ORF_R04.OBXNTE_SUPPGRP.CONTENT"/>
+    <xsd:complexType name="ORF_R04.ORCOBRNTETQ1TQ2CTDOBXNTECTI_SUPPGRP.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OBR" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="ORF_R04.TQ1TQ2_SUPPGRP" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="CTD" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="ORF_R04.OBXNTE_SUPPGRP" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="CTI" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORF_R04.ORCOBRNTETQ1TQ2CTDOBXNTECTI_SUPPGRP" type="ORF_R04.ORCOBRNTETQ1TQ2CTDOBXNTECTI_SUPPGRP.CONTENT"/>
+    <xsd:complexType name="ORF_R04.PIDNTEORCOBRNTETQ1TQ2CTDOBXNTECTI_SUPPGRP.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORF_R04.PIDNTE_SUPPGRP" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="ORF_R04.ORCOBRNTETQ1TQ2CTDOBXNTECTI_SUPPGRP" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORF_R04.PIDNTEORCOBRNTETQ1TQ2CTDOBXNTECTI_SUPPGRP" type="ORF_R04.PIDNTEORCOBRNTETQ1TQ2CTDOBXNTECTI_SUPPGRP.CONTENT"/>
+    <!-- .. message definition ORF_R04 -->
+    <xsd:complexType name="ORF_R04.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="MSA" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="QRD" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="QRF" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="ORF_R04.PIDNTEORCOBRNTETQ1TQ2CTDOBXNTECTI_SUPPGRP" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="ERR" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="QAK" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="DSC" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ORF_R04" type="ORF_R04.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

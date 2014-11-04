@@ -1,0 +1,79 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.3.1  - OSR_Q06
+    HL7® Version 2.3.1, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.3.1 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE OSR_Q06
+    -->
+    <!-- .. groups used in message OSR_Q06 -->
+    <xsd:complexType name="OSR_Q06.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OSR_Q06.PATIENT" type="OSR_Q06.PATIENT.CONTENT"/>
+    <xsd:complexType name="OSR_Q06.CHOICE.CONTENT">
+        <xsd:choice>
+            <xsd:element ref="OBR" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RXO" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RQD" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="ODS" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="ODT" minOccurs="1" maxOccurs="1"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:element name="OSR_Q06.CHOICE" type="OSR_Q06.CHOICE.CONTENT"/>
+    <xsd:complexType name="OSR_Q06.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OSR_Q06.CHOICE" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="CTI" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OSR_Q06.OBSERVATION" type="OSR_Q06.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="OSR_Q06.RESPONSE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OSR_Q06.PATIENT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OSR_Q06.OBSERVATION" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OSR_Q06.RESPONSE" type="OSR_Q06.RESPONSE.CONTENT"/>
+    <!-- .. message definition OSR_Q06 -->
+    <xsd:complexType name="OSR_Q06.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="MSA" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="ERR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="QRD" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="QRF" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OSR_Q06.RESPONSE" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="DSC" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OSR_Q06" type="OSR_Q06.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

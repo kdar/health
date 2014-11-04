@@ -1,0 +1,300 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.1  - data types
+    HL7® Version 2.1, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <xsd:annotation>
+        <xsd:appinfo source="urn:com.sun:encoder">
+            <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+        </xsd:appinfo>
+    </xsd:annotation>
+
+    <xsd:complexType name="escapeType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="V" type="xsd:string"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <!--
+        PRIMITIVE DATATYPE AD
+    -->
+    <xsd:simpleType name="AD">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        COMPOSITE DATATYPE CE
+    -->
+    <xsd:complexType name="CE">
+        <xsd:sequence>
+            <xsd:element ref="CE.1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="CE.2" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="CE.3" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="CE.4" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="CE.5" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="CE.6" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!--
+        PRIMITIVE DATATYPE CK
+    -->
+    <xsd:simpleType name="CK">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE CM
+    -->
+    <xsd:simpleType name="CM">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE CM_UNDEFINED
+    -->
+    <xsd:simpleType name="CM_UNDEFINED">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE CN
+    -->
+    <xsd:simpleType name="CN">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE COMP_ID_DIGIT
+    -->
+    <xsd:simpleType name="COMP_ID_DIGIT">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE COMP_ID_NAME
+    -->
+    <xsd:simpleType name="COMP_ID_NAME">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE COMP_QUANT
+    -->
+    <xsd:simpleType name="COMP_QUANT">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE CQ
+    -->
+    <xsd:simpleType name="CQ">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE DT
+    -->
+    <xsd:simpleType name="DT">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE FT
+    -->
+    <xsd:complexType name="FT" mixed="true">
+        <xsd:sequence>
+            <xsd:element name="escape" minOccurs="0" maxOccurs="unbounded" type="escapeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!--
+        PRIMITIVE DATATYPE ID
+    -->
+    <xsd:simpleType name="ID">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE NM
+    -->
+    <xsd:simpleType name="NM">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE PN
+    -->
+    <xsd:simpleType name="PN">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE SET_ID
+    -->
+    <xsd:simpleType name="SET_ID">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE SI
+    -->
+    <xsd:simpleType name="SI">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE ST
+    -->
+    <xsd:simpleType name="ST">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE TM
+    -->
+    <xsd:simpleType name="TM">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE TN
+    -->
+    <xsd:simpleType name="TN">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE TS
+    -->
+    <xsd:simpleType name="TS">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <!--
+        PRIMITIVE DATATYPE TX
+    -->
+    <xsd:complexType name="TX" mixed="true">
+        <xsd:sequence>
+            <xsd:element name="escape" minOccurs="0" maxOccurs="unbounded" type="escapeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!--
+        COMPONENT CE.1
+    -->
+    <xsd:attributeGroup name="CE.1.ATTRIBUTES">
+        <xsd:attribute name="Type" type="xsd:string" fixed="ID"/>
+        <xsd:attribute name="LongName" type="xsd:string" fixed="identifier"/>
+    </xsd:attributeGroup>
+    <xsd:complexType name="CE.1.CONTENT">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">identifier</xsd:documentation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <hl7:Type>ID</hl7:Type>
+                <hl7:LongName>identifier</hl7:LongName>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="ID">
+                <xsd:attributeGroup ref="CE.1.ATTRIBUTES"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:element name="CE.1" type="CE.1.CONTENT"/>
+    <!--
+        COMPONENT CE.2
+    -->
+    <xsd:attributeGroup name="CE.2.ATTRIBUTES">
+        <xsd:attribute name="Type" type="xsd:string" fixed="ST"/>
+        <xsd:attribute name="LongName" type="xsd:string" fixed="text"/>
+    </xsd:attributeGroup>
+    <xsd:complexType name="CE.2.CONTENT">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">text</xsd:documentation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <hl7:Type>ST</hl7:Type>
+                <hl7:LongName>text</hl7:LongName>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="ST">
+                <xsd:attributeGroup ref="CE.2.ATTRIBUTES"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:element name="CE.2" type="CE.2.CONTENT"/>
+    <!--
+        COMPONENT CE.3
+    -->
+    <xsd:attributeGroup name="CE.3.ATTRIBUTES">
+        <xsd:attribute name="Type" type="xsd:string" fixed="ST"/>
+        <xsd:attribute name="LongName" type="xsd:string" fixed="name of coding system"/>
+    </xsd:attributeGroup>
+    <xsd:complexType name="CE.3.CONTENT">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">name of coding system</xsd:documentation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <hl7:Type>ST</hl7:Type>
+                <hl7:LongName>name of coding system</hl7:LongName>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="ST">
+                <xsd:attributeGroup ref="CE.3.ATTRIBUTES"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:element name="CE.3" type="CE.3.CONTENT"/>
+    <!--
+        COMPONENT CE.4
+    -->
+    <xsd:attributeGroup name="CE.4.ATTRIBUTES">
+        <xsd:attribute name="Type" type="xsd:string" fixed="ST"/>
+        <xsd:attribute name="LongName" type="xsd:string" fixed="alternate identifier"/>
+    </xsd:attributeGroup>
+    <xsd:complexType name="CE.4.CONTENT">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">alternate identifier</xsd:documentation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <hl7:Type>ST</hl7:Type>
+                <hl7:LongName>alternate identifier</hl7:LongName>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="ST">
+                <xsd:attributeGroup ref="CE.4.ATTRIBUTES"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:element name="CE.4" type="CE.4.CONTENT"/>
+    <!--
+        COMPONENT CE.5
+    -->
+    <xsd:attributeGroup name="CE.5.ATTRIBUTES">
+        <xsd:attribute name="Type" type="xsd:string" fixed="ST"/>
+        <xsd:attribute name="LongName" type="xsd:string" fixed="alternate text"/>
+    </xsd:attributeGroup>
+    <xsd:complexType name="CE.5.CONTENT">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">alternate text</xsd:documentation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <hl7:Type>ST</hl7:Type>
+                <hl7:LongName>alternate text</hl7:LongName>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="ST">
+                <xsd:attributeGroup ref="CE.5.ATTRIBUTES"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:element name="CE.5" type="CE.5.CONTENT"/>
+    <!--
+        COMPONENT CE.6
+    -->
+    <xsd:attributeGroup name="CE.6.ATTRIBUTES">
+        <xsd:attribute name="Type" type="xsd:string" fixed="ST"/>
+        <xsd:attribute name="LongName" type="xsd:string" fixed="name of alternate coding system"/>
+    </xsd:attributeGroup>
+    <xsd:complexType name="CE.6.CONTENT">
+        <xsd:annotation>
+            <xsd:documentation xml:lang="en">name of alternate coding system</xsd:documentation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <hl7:Type>ST</hl7:Type>
+                <hl7:LongName>name of alternate coding system</hl7:LongName>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="ST">
+                <xsd:attributeGroup ref="CE.6.ATTRIBUTES"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:element name="CE.6" type="CE.6.CONTENT"/>
+</xsd:schema>

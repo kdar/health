@@ -1,0 +1,95 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.4  - OMP_O09
+    HL7® Version 2.4, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.4 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE OMP_O09
+    -->
+    <!-- .. groups used in message OMP_O09 -->
+    <xsd:complexType name="OMP_O09.PATIENT_VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PV1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMP_O09.PATIENT_VISIT" type="OMP_O09.PATIENT_VISIT.CONTENT"/>
+    <xsd:complexType name="OMP_O09.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="IN1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="IN2" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="IN3" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMP_O09.INSURANCE" type="OMP_O09.INSURANCE.CONTENT"/>
+    <xsd:complexType name="OMP_O09.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PD1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMP_O09.PATIENT_VISIT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OMP_O09.INSURANCE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="GT1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="AL1" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMP_O09.PATIENT" type="OMP_O09.PATIENT.CONTENT"/>
+    <xsd:complexType name="OMP_O09.COMPONENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RXC" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMP_O09.COMPONENT" type="OMP_O09.COMPONENT.CONTENT"/>
+    <xsd:complexType name="OMP_O09.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBX" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMP_O09.OBSERVATION" type="OMP_O09.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="OMP_O09.ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RXO" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="RXR" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="OMP_O09.COMPONENT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OMP_O09.OBSERVATION" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="FT1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="BLG" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMP_O09.ORDER" type="OMP_O09.ORDER.CONTENT"/>
+    <!-- .. message definition OMP_O09 -->
+    <xsd:complexType name="OMP_O09.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OMP_O09.PATIENT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OMP_O09.ORDER" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OMP_O09" type="OMP_O09.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

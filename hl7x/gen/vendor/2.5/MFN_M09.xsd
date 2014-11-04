@@ -1,0 +1,56 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5  - MFN_M09
+    HL7® Version 2.5, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE MFN_M09
+    -->
+    <!-- .. groups used in message MFN_M09 -->
+    <xsd:complexType name="MFN_M09.MF_TEST_CAT_DETAIL.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OM3" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OM4" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M09.MF_TEST_CAT_DETAIL" type="MFN_M09.MF_TEST_CAT_DETAIL.CONTENT"/>
+    <xsd:complexType name="MFN_M09.MF_TEST_CATEGORICAL.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MFE" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OM1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="MFN_M09.MF_TEST_CAT_DETAIL" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M09.MF_TEST_CATEGORICAL" type="MFN_M09.MF_TEST_CATEGORICAL.CONTENT"/>
+    <!-- .. message definition MFN_M09 -->
+    <xsd:complexType name="MFN_M09.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="MFI" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="MFN_M09.MF_TEST_CATEGORICAL" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MFN_M09" type="MFN_M09.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

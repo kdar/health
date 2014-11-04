@@ -1,0 +1,163 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5.1  - OML_O33
+    HL7® Version 2.5.1, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5.1 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE OML_O33
+    -->
+    <!-- .. groups used in message OML_O33 -->
+    <xsd:complexType name="OML_O33.PATIENT_VISIT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PV1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.PATIENT_VISIT" type="OML_O33.PATIENT_VISIT.CONTENT"/>
+    <xsd:complexType name="OML_O33.INSURANCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="IN1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="IN2" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="IN3" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.INSURANCE" type="OML_O33.INSURANCE.CONTENT"/>
+    <xsd:complexType name="OML_O33.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PD1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="NK1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OML_O33.PATIENT_VISIT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OML_O33.INSURANCE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="GT1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="AL1" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.PATIENT" type="OML_O33.PATIENT.CONTENT"/>
+    <xsd:complexType name="OML_O33.TIMING.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.TIMING" type="OML_O33.TIMING.CONTENT"/>
+    <xsd:complexType name="OML_O33.OBSERVATION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBX" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TCD" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.OBSERVATION" type="OML_O33.OBSERVATION.CONTENT"/>
+    <xsd:complexType name="OML_O33.PATIENT_PRIOR.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PD1" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.PATIENT_PRIOR" type="OML_O33.PATIENT_PRIOR.CONTENT"/>
+    <xsd:complexType name="OML_O33.PATIENT_VISIT_PRIOR.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PV1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.PATIENT_VISIT_PRIOR" type="OML_O33.PATIENT_VISIT_PRIOR.CONTENT"/>
+    <xsd:complexType name="OML_O33.TIMING_PRIOR.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.TIMING_PRIOR" type="OML_O33.TIMING_PRIOR.CONTENT"/>
+    <xsd:complexType name="OML_O33.OBSERVATION_PRIOR.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBX" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.OBSERVATION_PRIOR" type="OML_O33.OBSERVATION_PRIOR.CONTENT"/>
+    <xsd:complexType name="OML_O33.ORDER_PRIOR.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OBR" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OML_O33.TIMING_PRIOR" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OML_O33.OBSERVATION_PRIOR" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.ORDER_PRIOR" type="OML_O33.ORDER_PRIOR.CONTENT"/>
+    <xsd:complexType name="OML_O33.PRIOR_RESULT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OML_O33.PATIENT_PRIOR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OML_O33.PATIENT_VISIT_PRIOR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="AL1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OML_O33.ORDER_PRIOR" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.PRIOR_RESULT" type="OML_O33.PRIOR_RESULT.CONTENT"/>
+    <xsd:complexType name="OML_O33.OBSERVATION_REQUEST.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="OBR" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TCD" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="DG1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OML_O33.OBSERVATION" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OML_O33.PRIOR_RESULT" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.OBSERVATION_REQUEST" type="OML_O33.OBSERVATION_REQUEST.CONTENT"/>
+    <xsd:complexType name="OML_O33.ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OML_O33.TIMING" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OML_O33.OBSERVATION_REQUEST" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="FT1" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="CTI" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="BLG" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.ORDER" type="OML_O33.ORDER.CONTENT"/>
+    <xsd:complexType name="OML_O33.SPECIMEN.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="SPM" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="OBX" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SAC" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OML_O33.ORDER" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33.SPECIMEN" type="OML_O33.SPECIMEN.CONTENT"/>
+    <!-- .. message definition OML_O33 -->
+    <xsd:complexType name="OML_O33.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="OML_O33.PATIENT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OML_O33.SPECIMEN" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="OML_O33" type="OML_O33.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

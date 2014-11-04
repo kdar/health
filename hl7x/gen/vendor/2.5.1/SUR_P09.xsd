@@ -1,0 +1,64 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5.1  - SUR_P09
+    HL7® Version 2.5.1, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5.1 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE SUR_P09
+    -->
+    <!-- .. groups used in message SUR_P09 -->
+    <xsd:complexType name="SUR_P09.PSHPDC_SUPPGRP.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PDC" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SUR_P09.PSHPDC_SUPPGRP" type="SUR_P09.PSHPDC_SUPPGRP.CONTENT"/>
+    <xsd:complexType name="SUR_P09.FACPDCNTE_SUPPGRP.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="FAC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PDC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SUR_P09.FACPDCNTE_SUPPGRP" type="SUR_P09.FACPDCNTE_SUPPGRP.CONTENT"/>
+    <xsd:complexType name="SUR_P09.FACPSHPDCPSHFACPDCNTEED_SUPPGRP.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="FAC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SUR_P09.PSHPDC_SUPPGRP" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="PSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SUR_P09.FACPDCNTE_SUPPGRP" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="ED" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SUR_P09.FACPSHPDCPSHFACPDCNTEED_SUPPGRP" type="SUR_P09.FACPSHPDCPSHFACPDCNTEED_SUPPGRP.CONTENT"/>
+    <!-- .. message definition SUR_P09 -->
+    <xsd:complexType name="SUR_P09.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SUR_P09.FACPSHPDCPSHFACPDCNTEED_SUPPGRP" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SUR_P09" type="SUR_P09.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

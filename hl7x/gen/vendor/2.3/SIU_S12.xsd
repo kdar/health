@@ -1,0 +1,90 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.3  - SIU_S12
+    HL7® Version 2.3, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.3 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE SIU_S12
+    -->
+    <!-- .. groups used in message SIU_S12 -->
+    <xsd:complexType name="SIU_S12.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="PV1" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="PV2" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="OBX" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="DG1" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.PATIENT" type="SIU_S12.PATIENT.CONTENT"/>
+    <xsd:complexType name="SIU_S12.SERVICE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIS" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.SERVICE" type="SIU_S12.SERVICE.CONTENT"/>
+    <xsd:complexType name="SIU_S12.GENERAL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIG" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.GENERAL_RESOURCE" type="SIU_S12.GENERAL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SIU_S12.LOCATION_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIL" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.LOCATION_RESOURCE" type="SIU_S12.LOCATION_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SIU_S12.PERSONNEL_RESOURCE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="AIP" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.PERSONNEL_RESOURCE" type="SIU_S12.PERSONNEL_RESOURCE.CONTENT"/>
+    <xsd:complexType name="SIU_S12.RESOURCES.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RGS" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SIU_S12.SERVICE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SIU_S12.GENERAL_RESOURCE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SIU_S12.LOCATION_RESOURCE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SIU_S12.PERSONNEL_RESOURCE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12.RESOURCES" type="SIU_S12.RESOURCES.CONTENT"/>
+    <!-- .. message definition SIU_S12 -->
+    <xsd:complexType name="SIU_S12.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="SCH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SIU_S12.PATIENT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SIU_S12.RESOURCES" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="SIU_S12" type="SIU_S12.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

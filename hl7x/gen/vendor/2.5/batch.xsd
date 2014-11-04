@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5  - messages
+    HL7® Version 2.5, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    targetNamespace="urn:hl7-org:v2xml">
+
+    <!-- include segment definitions for version v2.5 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <!-- .. definitions used in batch message -->
+    <xsd:element name="MESSAGEBATCH">
+	<xsd:complexType>
+	    <xsd:sequence>
+		<xsd:element ref="BHS" minOccurs="0" maxOccurs="1" />
+		<xsd:element ref="QRD" minOccurs="0" maxOccurs="1" />
+		<xsd:element ref="QRF"  minOccurs="0" maxOccurs="1" />
+		<xsd:element ref="MESSAGES" minOccurs="0" maxOccurs="unbounded" />
+		<xsd:element ref="BTS" minOccurs="0" maxOccurs="1" />
+	    </xsd:sequence>
+	</xsd:complexType>
+    </xsd:element>
+    <xsd:element name="MESSAGES" type="xsd:string"/>
+    <!-- .. batch message definition -->
+    <xsd:element name="BATCH" type="BATCH.CONTENT"/>
+    <xsd:complexType name="BATCH.CONTENT">
+	<xsd:sequence>
+	    <xsd:element ref="FHS" minOccurs="0" maxOccurs="1" />
+	    <xsd:element ref="MESSAGEBATCH" minOccurs="1" maxOccurs="unbounded" />
+	    <xsd:element ref="FTS" minOccurs="0" maxOccurs="1" />
+	</xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

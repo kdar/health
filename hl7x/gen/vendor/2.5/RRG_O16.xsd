@@ -1,0 +1,88 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.5  - RRG_O16
+    HL7® Version 2.5, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.5 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE RRG_O16
+    -->
+    <!-- .. groups used in message RRG_O16 -->
+    <xsd:complexType name="RRG_O16.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRG_O16.PATIENT" type="RRG_O16.PATIENT.CONTENT"/>
+    <xsd:complexType name="RRG_O16.TIMING.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRG_O16.TIMING" type="RRG_O16.TIMING.CONTENT"/>
+    <xsd:complexType name="RRG_O16.TIMING_GIVE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="TQ1" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="TQ2" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRG_O16.TIMING_GIVE" type="RRG_O16.TIMING_GIVE.CONTENT"/>
+    <xsd:complexType name="RRG_O16.GIVE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RXG" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RRG_O16.TIMING_GIVE" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="RXR" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="RXC" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRG_O16.GIVE" type="RRG_O16.GIVE.CONTENT"/>
+    <xsd:complexType name="RRG_O16.ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RRG_O16.TIMING" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="RRG_O16.GIVE" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRG_O16.ORDER" type="RRG_O16.ORDER.CONTENT"/>
+    <xsd:complexType name="RRG_O16.RESPONSE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RRG_O16.PATIENT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="RRG_O16.ORDER" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRG_O16.RESPONSE" type="RRG_O16.RESPONSE.CONTENT"/>
+    <!-- .. message definition RRG_O16 -->
+    <xsd:complexType name="RRG_O16.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="MSA" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="ERR" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="SFT" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="RRG_O16.RESPONSE" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RRG_O16" type="RRG_O16.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>

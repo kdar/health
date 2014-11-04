@@ -1,0 +1,82 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!--
+    v2.xml Message Definitions Version v2.3.1  - RDR_RDR
+    HL7® Version 2.3.1, © Health Level Seven, Inc.  All rights reserved.  HL7 and Health Level Seven are registered trademarks of Health Level Seven, Inc.
+-->
+<xsd:schema
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="urn:hl7-org:v2xml"
+    xmlns:hl7="urn:com.sun:encoder-hl7-1.0"
+    targetNamespace="urn:hl7-org:v2xml" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" jaxb:version="2.0">
+
+    <!-- include segment definitions for version v2.3.1 -->
+    <xsd:include schemaLocation="segments.xsd"/>
+
+    <xsd:annotation>
+	<xsd:appinfo source="urn:com.sun:encoder">
+	    <encoding xmlns="urn:com.sun:encoder" name="HL7 v2 Encoding" namespace="urn:com.sun:encoder-hl7-1.0" style="hl7encoder-1.0"/>
+	</xsd:appinfo>
+    </xsd:annotation>
+
+    <!--
+	MESSAGE RDR_RDR
+    -->
+    <!-- .. groups used in message RDR_RDR -->
+    <xsd:complexType name="RDR_RDR.PATIENT.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="PID" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="NTE" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RDR_RDR.PATIENT" type="RDR_RDR.PATIENT.CONTENT"/>
+    <xsd:complexType name="RDR_RDR.ENCODING.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RXE" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RXR" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="RXC" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RDR_RDR.ENCODING" type="RDR_RDR.ENCODING.CONTENT"/>
+    <xsd:complexType name="RDR_RDR.DISPENSE.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="RXD" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RXR" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="RXC" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RDR_RDR.DISPENSE" type="RDR_RDR.DISPENSE.CONTENT"/>
+    <xsd:complexType name="RDR_RDR.ORDER.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="ORC" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="RDR_RDR.ENCODING" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="RDR_RDR.DISPENSE" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RDR_RDR.ORDER" type="RDR_RDR.ORDER.CONTENT"/>
+    <xsd:complexType name="RDR_RDR.DEFINITION.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="QRD" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="QRF" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="RDR_RDR.PATIENT" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="RDR_RDR.ORDER" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RDR_RDR.DEFINITION" type="RDR_RDR.DEFINITION.CONTENT"/>
+    <!-- .. message definition RDR_RDR -->
+    <xsd:complexType name="RDR_RDR.CONTENT">
+        <xsd:sequence>
+            <xsd:element ref="MSH" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="MSA" minOccurs="1" maxOccurs="1"/>
+            <xsd:element ref="ERR" minOccurs="0" maxOccurs="1"/>
+            <xsd:element ref="RDR_RDR.DEFINITION" minOccurs="1" maxOccurs="unbounded"/>
+            <xsd:element ref="DSC" minOccurs="0" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="RDR_RDR" type="RDR_RDR.CONTENT">
+        <xsd:annotation>
+            <xsd:appinfo source="urn:com.sun:encoder">
+                <top xmlns="urn:com.sun:encoder">true</top>
+            </xsd:appinfo>
+        </xsd:annotation>
+    </xsd:element>
+</xsd:schema>
