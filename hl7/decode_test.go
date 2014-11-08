@@ -21,7 +21,7 @@ var unmarshalTests = []struct {
 	{"simple.hl7", simple_hl7_output},
 }
 
-func TestUnmarshal(t *testing.T) {
+func TestUnmarshalFiles(t *testing.T) {
 	for i, tt := range unmarshalTests {
 		fp, err := os.Open("testdata/" + tt.file)
 		if err != nil {
