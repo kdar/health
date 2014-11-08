@@ -117,7 +117,7 @@ func TestUnmarshalSimple(t *testing.T) {
 }
 
 func TestMultiple(t *testing.T) {
-	data := []byte("MSH|^~\\&|||1^2^3^4^^^s1&s2&s3&&~r1~r2~r3~r4~~\rPV1|1^2^3\rPV2|1^2^3\r\r\r\n\r")
+	data := []byte("MSH|^~\\&|||1^2^3^4^^^s1&s2&s3&&~r1~r2~r3~r4~~\r\n\nPV1|1^2^3\rPV2|1^2^3\r\r\r\n\r")
 	expected := []Segment{
 		Segment{
 			Field("MSH"),
