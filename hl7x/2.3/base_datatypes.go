@@ -1,12 +1,16 @@
 package hl7v2_3
 
+import (
+	"strings"
+)
+
 // it really should be []interface{}, but for now
 // just doing string until I run into something
 // that breaks
-type Varies string
+type Varies []string
 
 func (v Varies) String() string {
-	return string(v)
+	return strings.Join(v, "")
 }
 
 // Is
