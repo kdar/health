@@ -5,6 +5,10 @@ package hl7v2_3
 // that breaks
 type Varies string
 
+func (v Varies) String() string {
+	return string(v)
+}
+
 // Is
 // Id
 // St
@@ -14,3 +18,7 @@ type Varies string
 // Tn
 // Dt
 type String string
+
+func (s String) String() string {
+	return string(s)
+}
