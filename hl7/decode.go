@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"io"
 	"runtime"
 
 	"github.com/iNamik/go_lexer"
@@ -13,6 +14,23 @@ import (
 // Unmarshal takes the bytes passed and returns
 // the segments of the hl7 message.
 func Unmarshal(b []byte) (segments []Segment, err error) {
+	if len(b) == 0 {
+		return nil, errors.New("no data to unmarshal")
+	}
+
+	reader := bytes.NewReader(b)
+	return NewDecoder(reader).Decode()
+}
+
+type Decoder struct {
+	r io.Reader
+}
+
+func NewDecoder(r io.Reader) *Decoder {
+	return &Decoder{r: r}
+}
+
+func (d *Decoder) Decode() (segments []Segment, err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			if _, ok := r.(runtime.Error); ok {
@@ -22,13 +40,8 @@ func Unmarshal(b []byte) (segments []Segment, err error) {
 		}
 	}()
 
-	if len(b) == 0 {
-		return nil, errors.New("no data to unmarshal")
-	}
-
-	reader := bytes.NewReader(b)
 	lexState := newLexerState()
-	l := lexer.New(lexState.lexHeader, reader, 3)
+	l := lexer.New(lexState.lexHeader, d.r, 3)
 	parseState := newParserState(lexState)
 	p := parser.New(parseState.parse, l, 3)
 
