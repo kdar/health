@@ -14,6 +14,16 @@ import (
 	"github.com/iNamik/go_parser"
 )
 
+func stringIndex(data Data, n int) string {
+	if v, ok := data.Index(n); ok {
+		if v2, ok2 := v.(Field); ok2 {
+			return string(v2)
+		}
+	}
+
+	return ""
+}
+
 var unmarshalTests = []struct {
 	file string
 	out  []Segment
@@ -113,6 +123,19 @@ func TestUnmarshalSimple(t *testing.T) {
 		if !tt.shouldErr && err != nil {
 			t.Fatalf("%v: %v", tt.err, err)
 		}
+	}
+}
+
+func TestNewlineSegmentTerminator(t *testing.T) {
+	data := []byte("MSH|^~\\&|SomeCompany|SomeCompany|External|External|20110822091808||ORU^R01|20110922091804|P|2.3\nPID|||PID1222222||Khan^Mogul^||19551101|F||Caucasian||||||||||||Caucasian")
+	out, err := Unmarshal(data)
+	if err != nil {
+		t.Fatalf("received error: %s", err)
+	}
+	version := stringIndex(out[0], 12)
+
+	if version != "2.3" {
+		t.Fatalf("Error parsing version because of segment terminator\nExpected: %#+v\nGot:      %#+v", "2.3", version)
 	}
 }
 

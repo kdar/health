@@ -231,7 +231,7 @@ func (s *lexerState) lexField(l lexer.Lexer) lexer.StateFn {
 			l.BackupRune()
 			l.EmitTokenWithBytes(tokField)
 			return s.lexSubComponentSeparator
-		case r == s.segmentTerminator:
+		case r == s.segmentTerminator || r == '\n':
 			l.BackupRune()
 			l.EmitTokenWithBytes(tokField)
 			l.NewLine()
