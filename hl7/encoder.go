@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"io"
 )
 
 var (
@@ -15,16 +16,24 @@ var (
 	c_ESC_SUBCOMPONENT_SEP = []byte(`\T\`)
 )
 
+// Marshal converts a slice of Segment structs to a byte array containing an HL7
+// message in "pipehat" format.
 func Marshal(segments []Segment) ([]byte, error) {
 	if len(segments) == 0 {
 		return nil, errors.New("no data to marshal")
 	}
 
-	return NewEncoder(segments).Encode()
+	buf := bytes.Buffer{}
+	encoder := NewEncoder(&buf)
+	if err := encoder.Encode(segments); err != nil {
+		return nil, err
+	}
+
+	return buf.Bytes(), nil
 }
 
 type Encoder struct {
-	segments        []Segment
+	Writer          io.Writer
 	segmentSep      []byte
 	charsToEscape   string
 	fieldSep        []byte
@@ -34,59 +43,80 @@ type Encoder struct {
 	subcomponentSep []byte
 }
 
-// NewEncoder creates and initializes an Encoder for the provided slice of
-// Segment objects.  The slice must contain a valid message header (MSH) segment
-// with fields 1 and 2 populated with the field separator and separator characters;
-// if this segment is not present, the Encoder will not output a valid HL7 message.
-func NewEncoder(segments []Segment) *Encoder {
-	result := &Encoder{segments: segments}
+// NewEncoder creates and initializes an Encoder which will write an encoded HL7
+// message to the provided io.Writer.
+func NewEncoder(w io.Writer) *Encoder {
+	return &Encoder{
+		Writer:     w,
+		segmentSep: c_SEGMENT_SEPARATOR,
+	}
+}
 
-	result.segmentSep = c_SEGMENT_SEPARATOR
+// Encode converts the provided slice of Segments stored in the Encoder to an
+// HL7 "pipehat" encoded message and writes it to the io.Writer set in its
+// Writer field.  The Segment slice must contain a valid message header (MSH) segment
+// with fields 1 and 2 populated with the field separator and escape characters;
+// if this segment is not present, Encode will return an error.
+func (e *Encoder) Encode(segments []Segment) (err error) {
+	// TODO find MSH
+	var msh_segment *Segment
 
 	// find MSH segment and get delimiters
 	for _, s := range segments {
-		name, _ := result.fieldDataAt(s, 0)
+		name, _ := e.fieldDataAt(s, 0)
 		if string(name) == "MSH" {
-			fs, _ := result.fieldDataAt(s, 1)
-			if len(fs) >= 1 {
-				result.fieldSep = []byte{fs[0]}
-			}
-
-			delims, _ := result.fieldDataAt(s, 2)
-			if len(delims) >= 4 {
-				result.componentSep = []byte{delims[0]}
-				result.repetitionSep = []byte{delims[1]}
-				result.escapeChar = []byte{delims[2]}
-				result.subcomponentSep = []byte{delims[3]}
-			}
-
-			// need to escape everything in the separator chars field plus the
-			// field separator character.
-			result.charsToEscape = fmt.Sprintf("%s%s", string(delims), string(fs))
-
+			msh_segment = &s
 			break
 		}
 	}
 
-	return result
-}
+	if msh_segment == nil {
+		return errors.New("Missing required MSH segment")
+	}
 
-// Encode converts the slice of Segments stored in the Encoder to a byte slice
-// containing an encoded HL7 message.
-func (e *Encoder) Encode() (buf []byte, err error) {
-	for _, s := range e.segments {
+	if err = e.extractSeparators(*msh_segment); err != nil {
+		return err
+	}
+
+	for _, s := range segments {
 		enc, err := e.encodeSegment(s)
 		if err != nil {
-			return nil, err
+			return err
 		}
 		// each segment must end in segmentSep, which is slightly different than
 		// other delimiters which do not appear at the end of a series (e.g.
 		// component1^component2).
-		buf = append(buf, enc...)
-		buf = append(buf, e.segmentSep...)
+		e.Writer.Write(enc)
+		e.Writer.Write(e.segmentSep)
 	}
 
-	return buf, nil
+	return nil
+}
+
+func (e *Encoder) extractSeparators(s Segment) error {
+	fs, _ := e.fieldDataAt(s, 1)
+	if len(fs) >= 1 {
+		e.fieldSep = []byte{fs[0]}
+	} else {
+		return errors.New("missing MSH-1 Field Separator")
+	}
+
+	delims, _ := e.fieldDataAt(s, 2)
+	if len(delims) >= 4 {
+		e.componentSep = []byte{delims[0]}
+		e.repetitionSep = []byte{delims[1]}
+		e.escapeChar = []byte{delims[2]}
+		e.subcomponentSep = []byte{delims[3]}
+	} else {
+		return errors.New("Missing or truncated MSH-2 Encoding Characters")
+	}
+
+	// need to escape everything in the separator chars field plus the
+	// field separator character.
+	e.charsToEscape = fmt.Sprintf("%s%s", string(delims), string(fs))
+
+	return nil
+
 }
 
 func (e *Encoder) fieldDataAt(segment Segment, index int) ([]byte, error) {
