@@ -55,3 +55,25 @@ func TestParse_Name(t *testing.T) {
 		t.Fatalf("Expected:\n%#v, got:\n%#v", name, c.Patient.Name)
 	}
 }
+
+func TestParse_MissingName(t *testing.T) {
+	c := ccd.NewDefaultCCD()
+	err := parseAndRecover(t, c, "testdata/specific/name_missing.xml", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	name := ccd.Name{
+		First:    "",
+		Middle:   "",
+		Last:     "",
+		Suffix:   "",
+		Prefix:   "",
+		Type:     "",
+		NickName: "",
+	}
+
+	if !reflect.DeepEqual(name, c.Patient.Name) {
+		t.Fatalf("Expected:\n%#v, got:\n%#v", name, c.Patient.Name)
+	}
+}

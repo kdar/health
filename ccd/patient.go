@@ -2,9 +2,10 @@ package ccd
 
 import (
 	"fmt"
-	"github.com/jteeuwen/go-pkg-xmlx"
 	"strings"
 	"time"
+
+	"github.com/jteeuwen/go-pkg-xmlx"
 )
 
 var (
@@ -144,8 +145,8 @@ func parsePatient(root *xmlx.Node, ccd *CCD) []error {
 		ccd.Patient.LanguageCode = languageNode.As("*", "code")
 	}
 
-	for n, nameNode := range pnode.SelectNodes("*", "name") {
-		given := nameNode.SelectNodes("*", "given")
+	for n, nameNode := range pnode.SelectNodesDirect("*", "name") {
+		given := nameNode.SelectNodesDirect("*", "given")
 		// This is a NickName if it's the second <name><given> tag block or the
 		// given tag has the qualifier CM.
 		if n == 1 || (len(given) > 0 && given[0].As("*", "qualifier") == "CM") {
