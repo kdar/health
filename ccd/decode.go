@@ -5,6 +5,8 @@ import (
 	"io"
 	"strings"
 
+	"golang.org/x/net/html/charset"
+
 	"github.com/jteeuwen/go-pkg-xmlx"
 )
 
@@ -99,7 +101,7 @@ func (c *CCD) AddParsers(parsers ...Parser) {
 
 func (c *CCD) ParseFile(filename string) error {
 	doc := xmlx.New()
-	err := doc.LoadFile(filename, nil)
+	err := doc.LoadFile(filename, charset.NewReaderLabel)
 	if err != nil {
 		return err
 	}
@@ -109,7 +111,7 @@ func (c *CCD) ParseFile(filename string) error {
 
 func (c *CCD) ParseStream(r io.Reader) error {
 	doc := xmlx.New()
-	err := doc.LoadStream(r, nil)
+	err := doc.LoadStream(r, charset.NewReaderLabel)
 	if err != nil {
 		return err
 	}
@@ -119,7 +121,7 @@ func (c *CCD) ParseStream(r io.Reader) error {
 
 func (c *CCD) Parse(data []byte) error {
 	doc := xmlx.New()
-	err := doc.LoadBytes(data, nil)
+	err := doc.LoadBytes(data, charset.NewReaderLabel)
 	if err != nil {
 		return err
 	}
