@@ -9,6 +9,8 @@ import (
 	"sync/atomic"
 	"testing"
 
+	"golang.org/x/net/html/charset"
+
 	"github.com/davecgh/go-spew/spew"
 	"github.com/jteeuwen/go-pkg-xmlx"
 	"github.com/kdar/health/ccd"
@@ -62,7 +64,7 @@ func TestParseAllCCDs(t *testing.T) {
 		shouldfail := strings.HasPrefix(info.Name(), "fail_")
 
 		doc := xmlx.New()
-		err = doc.LoadFile(path, nil)
+		err = doc.LoadFile(path, charset.NewReaderLabel)
 		if shouldfail && err != nil {
 			return nil
 		}

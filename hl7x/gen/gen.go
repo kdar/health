@@ -6,6 +6,8 @@ import (
 	"os"
 	"strings"
 
+	"golang.org/x/net/html/charset"
+
 	"bitbucket.org/pkg/inflect"
 
 	"github.com/jteeuwen/go-pkg-xmlx"
@@ -19,7 +21,7 @@ func main() {
 	defer fp.Close()
 
 	doc := xmlx.New()
-	err = doc.LoadStream(fp, nil)
+	err = doc.LoadStream(fp, charset.NewReaderLabel)
 	if err != nil {
 		log.Fatal(err)
 	}
