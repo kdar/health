@@ -54,7 +54,6 @@ func walkAllCCDs(f filepath.WalkFunc) {
 }
 
 func TestParseAllCCDs(t *testing.T) {
-	t.Skip("REMOVE THIS SKIP")
 	walkAllCCDs(func(path string, info os.FileInfo, err error) error {
 		shouldfail := strings.HasPrefix(info.Name(), "fail_")
 
