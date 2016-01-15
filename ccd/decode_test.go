@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"runtime/debug"
 	"strings"
+	"sync/atomic"
 	"testing"
 
 	"github.com/davecgh/go-spew/spew"
@@ -14,16 +15,19 @@ import (
 	"github.com/kdar/health/ccd/parsers/medtable"
 )
 
+var successfulCCDs int64   //Keeps track of how many CCDs we successfully parsed
+var unsuccessfulCCDs int64 //And the ones that do not.
+
 func parseAndRecover(t *testing.T, c *ccd.CCD, path string, doc *xmlx.Document) (err error) {
 	defer func() {
 		if e := recover(); e != nil {
 			lines := bytes.Split(debug.Stack(), []byte{'\n'})
 			for i, _ := range lines {
-				if lines[i][0] == '\t' {
+				if len(lines[i]) >= 1 && lines[i][0] == '\t' {
 					lines[i] = lines[i][1:]
 				}
 			}
-			t.Fatalf("Error processing: %s\n\n%s", path, bytes.Join(lines, []byte{'\n'}))
+			t.Errorf("Error processing: %s\n\n%s", path, bytes.Join(lines, []byte{'\n'}))
 		}
 	}()
 
@@ -54,7 +58,6 @@ func walkAllCCDs(f filepath.WalkFunc) {
 }
 
 func TestParseAllCCDs(t *testing.T) {
-	t.Skip("REMOVE THIS SKIP")
 	walkAllCCDs(func(path string, info os.FileInfo, err error) error {
 		shouldfail := strings.HasPrefix(info.Name(), "fail_")
 
@@ -67,13 +70,19 @@ func TestParseAllCCDs(t *testing.T) {
 		c := ccd.NewDefaultCCD()
 		err = parseAndRecover(t, c, path, doc)
 		if shouldfail && err == nil {
-			t.Fatalf("%s: Expected failure, instead received success.", path)
+			t.Errorf("%s: Expected failure, instead received success.", path)
+			atomic.AddInt64(&unsuccessfulCCDs, 1)
 		} else if !shouldfail && err != nil {
-			t.Fatalf("%s: Failed: %v", path, err)
+			t.Errorf("%s: Failed: %v", path, err)
+			atomic.AddInt64(&unsuccessfulCCDs, 1)
+		} else {
+			atomic.AddInt64(&successfulCCDs, 1)
 		}
 
 		return nil
 	})
+	//successful here means that it only failed if the name started with fail_
+	t.Logf("parsed %d CCDS. %d successful, %d unsuccessful\n", (successfulCCDs + unsuccessfulCCDs), successfulCCDs, unsuccessfulCCDs)
 }
 
 func TestInvalidCCD(t *testing.T) {
