@@ -2,11 +2,12 @@ package ccd
 
 import (
 	"errors"
-	"github.com/jteeuwen/go-pkg-xmlx"
 	"regexp"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/jteeuwen/go-pkg-xmlx"
 )
 
 var (
@@ -233,7 +234,9 @@ func parseResults(node *xmlx.Node, ccd *CCD) []error {
 				if valueNode != nil {
 					lowNode := Nget(valueNode, "low")
 					highNode := Nget(valueNode, "high")
-
+					if lowNode == nil || highNode == nil {
+						continue
+					}
 					lowf, _ := strconv.ParseFloat(lowNode.As("*", "value"), 64)
 					highf, _ := strconv.ParseFloat(highNode.As("*", "value"), 64)
 
