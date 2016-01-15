@@ -81,7 +81,7 @@ func TestParseAllCCDs(t *testing.T) {
 
 		return nil
 	})
-	//Note that by successful, failing counts as success if the ccd is named _fail
+	//successful here means that it only failed if the name started with fail_
 	t.Logf("parsed %d CCDS. %d successful, %d unsuccessful\n", (successfulCCDs + unsuccessfulCCDs), successfulCCDs, unsuccessfulCCDs)
 }
 
