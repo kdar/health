@@ -19,11 +19,11 @@ func parseAndRecover(t *testing.T, c *ccd.CCD, path string, doc *xmlx.Document) 
 		if e := recover(); e != nil {
 			lines := bytes.Split(debug.Stack(), []byte{'\n'})
 			for i, _ := range lines {
-				if lines[i][0] == '\t' {
+				if len(lines[i]) >= 1 && lines[i][0] == '\t' {
 					lines[i] = lines[i][1:]
 				}
 			}
-			t.Fatalf("Error processing: %s\n\n%s", path, bytes.Join(lines, []byte{'\n'}))
+			t.Errorf("Error processing: %s\n\n%s", path, bytes.Join(lines, []byte{'\n'}))
 		}
 	}()
 
@@ -66,9 +66,9 @@ func TestParseAllCCDs(t *testing.T) {
 		c := ccd.NewDefaultCCD()
 		err = parseAndRecover(t, c, path, doc)
 		if shouldfail && err == nil {
-			t.Fatalf("%s: Expected failure, instead received success.", path)
+			t.Errorf("%s: Expected failure, instead received success.", path)
 		} else if !shouldfail && err != nil {
-			t.Fatalf("%s: Failed: %v", path, err)
+			t.Errorf("%s: Failed: %v", path, err)
 		}
 
 		return nil
