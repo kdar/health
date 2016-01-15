@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 	"runtime/debug"
 	"strings"
+	"sync/atomic"
 	"testing"
 
 	"github.com/davecgh/go-spew/spew"
@@ -13,6 +14,9 @@ import (
 	"github.com/kdar/health/ccd"
 	"github.com/kdar/health/ccd/parsers/medtable"
 )
+
+var successfulCCDs int64   //Keeps track of how many CCDs we successfully parsed
+var unsuccessfulCCDs int64 //And the ones that do not.
 
 func parseAndRecover(t *testing.T, c *ccd.CCD, path string, doc *xmlx.Document) (err error) {
 	defer func() {
@@ -67,12 +71,18 @@ func TestParseAllCCDs(t *testing.T) {
 		err = parseAndRecover(t, c, path, doc)
 		if shouldfail && err == nil {
 			t.Errorf("%s: Expected failure, instead received success.", path)
+			atomic.AddInt64(&unsuccessfulCCDs, 1)
 		} else if !shouldfail && err != nil {
 			t.Errorf("%s: Failed: %v", path, err)
+			atomic.AddInt64(&unsuccessfulCCDs, 1)
+		} else {
+			atomic.AddInt64(&successfulCCDs, 1)
 		}
 
 		return nil
 	})
+	//Note that by successful, failing counts as success if the ccd is named _fail
+	t.Logf("parsed %d CCDS. %d successful, %d unsuccessful\n", (successfulCCDs + unsuccessfulCCDs), successfulCCDs, unsuccessfulCCDs)
 }
 
 func TestInvalidCCD(t *testing.T) {
