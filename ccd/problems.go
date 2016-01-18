@@ -1,8 +1,9 @@
 package ccd
 
 import (
-	"github.com/jteeuwen/go-pkg-xmlx"
 	"time"
+
+	"github.com/jteeuwen/go-pkg-xmlx"
 )
 
 var (
@@ -21,6 +22,7 @@ type Problem struct {
 	Date time.Time
 	// Duration time.Duration
 	Status string
+	Code   Code
 }
 
 func parseProblems(node *xmlx.Node, ccd *CCD) []error {
@@ -34,6 +36,15 @@ func parseProblems(node *xmlx.Node, ccd *CCD) []error {
 			continue
 		}
 		problem.Name = valueNode.As("*", "displayName")
+
+		translation := Nget(valueNode, "translation")
+		if translation != nil {
+			problem.Code.decode(translation)
+			//if the value node didnt have a displayName, try the translation node.
+			if problem.Name == "" && problem.Code.DisplayName != "" {
+				problem.Name = problem.Code.DisplayName
+			}
+		}
 
 		effectiveTimeNode := Nget(observationNode, "effectiveTime")
 		t := decodeTime(effectiveTimeNode)
