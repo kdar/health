@@ -14,7 +14,7 @@ var (
 	DefaultParsers = []Parser{
 		PatientParser, AllergiesParser, ImmunizationsParser,
 		MedicationsParser, ProblemsParser,
-		ResultsParser, VitalSignsParser, SocialHistoryParser,
+		ResultsParser, VitalSignsParser, SocialHistoryParser, EncountersParser,
 	}
 )
 
@@ -46,6 +46,7 @@ type CCD struct {
 	VitalSigns    []VitalSign
 	Allergies     []Allergy
 	SocialHistory []SocialHistory
+	Encounters    []Encounter
 
 	// Right now doc_parsers will only have one map entry "*"
 	doc_parsers     map[string]Parsers

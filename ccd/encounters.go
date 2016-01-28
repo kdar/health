@@ -54,7 +54,7 @@ func parseEncounters(node *xmlx.Node, ccd *CCD) []error {
 		templates := entryNode.SelectNodes("*", "templateId")
 		for _, t := range templates {
 			if t.As("*", "root") == SDLTid {
-				encounter.Location = parseLocation(t.Parent)
+				encounter.Location = decodeLocation(t.Parent)
 			}
 		}
 
@@ -64,7 +64,7 @@ func parseEncounters(node *xmlx.Node, ccd *CCD) []error {
 	return nil
 }
 
-func parseLocation(node *xmlx.Node) Location {
+func decodeLocation(node *xmlx.Node) Location {
 	l := Location{}
 	if code := Nget(node, "code"); code != nil {
 		l.Code.decode(code)
@@ -72,6 +72,9 @@ func parseLocation(node *xmlx.Node) Location {
 
 	if aNode := node.SelectNode("*", "addr"); aNode != nil {
 		l.Address = decodeAddress(aNode)
+	}
+	if tNode := node.SelectNode("*", "telecom"); tNode != nil {
+		l.Telecom = decodeTelecom(tNode)
 	}
 
 	return l
