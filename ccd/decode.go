@@ -31,7 +31,7 @@ func (c *Code) decode(n *xmlx.Node) {
 		return
 	}
 	c.CodeSystem = n.As("*", "codeSystem")
-	// code.CodeSystemName, _ = codeSystemToName(code.CodeSystem)
+	c.CodeSystemName = n.As("*", "codeSystemName")
 	c.Code = n.As("*", "code")
 	c.DisplayName = n.As("*", "displayName")
 	c.Type = n.As("*", "type")
