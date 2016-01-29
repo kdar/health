@@ -1,10 +1,6 @@
 package ccd
 
-import (
-	"time"
-
-	"github.com/jteeuwen/go-pkg-xmlx"
-)
+import "github.com/jteeuwen/go-pkg-xmlx"
 
 var (
 	TidEncounters    = []string{"2.16.840.1.113883.10.20.22.2.22.1", "2.16.840.1.113883.10.20.22.4.49"}
@@ -22,7 +18,7 @@ var (
 type Encounter struct {
 	Performers []Performer
 	Code       Code
-	Date       time.Time
+	Time       Time
 	Location   Location
 	Diagnosis  Diagnosis
 	Complaint  string //todo: this, look for 'RSON'
@@ -40,7 +36,13 @@ type Diagnosis struct {
 	Problem Problem
 	//TODO: add support for EffectiveTime
 }
-type Performer struct{}
+
+type Performer struct {
+	Address Address
+	Telecom Telecom
+	Name    Name
+	Code    Code
+}
 
 func parseEncounters(node *xmlx.Node, ccd *CCD) []error {
 	entryNodes := node.SelectNodes("*", "entry")
@@ -51,8 +53,7 @@ func parseEncounters(node *xmlx.Node, ccd *CCD) []error {
 		}
 
 		if effectiveTimeNode := Nget(entryNode, "effectiveTime"); effectiveTimeNode != nil {
-			t := decodeTime(effectiveTimeNode)
-			encounter.Date = t.Value
+			encounter.Time = decodeTime(effectiveTimeNode)
 		}
 
 		//we loop through anything with a templateID inside of our main entry node
@@ -67,10 +68,64 @@ func parseEncounters(node *xmlx.Node, ccd *CCD) []error {
 			}
 		}
 
+		performers := entryNode.SelectNodes("*", "performer")
+		for _, p := range performers {
+			performer := decodePerformer(p)
+			encounter.Performers = append(encounter.Performers, performer)
+		}
+
 		ccd.Encounters = append(ccd.Encounters, encounter)
 	}
 
 	return nil
+}
+
+func decodePerformer(node *xmlx.Node) Performer {
+	p := Performer{}
+	if code := Nget(node, "assignedEntity", "code"); code != nil {
+		p.Code.decode(code)
+	}
+	if aNode := node.SelectNode("*", "addr"); aNode != nil {
+		p.Address = decodeAddress(aNode)
+	}
+	if tNode := node.SelectNode("*", "telecom"); tNode != nil {
+		p.Telecom = decodeTelecom(tNode)
+	}
+
+	//Parse name -- lifted from our patient parsing code.  Might refactor this into its own function later.
+
+	if peNode := node.SelectNode("*", "assignedPerson"); peNode != nil {
+		for n, nameNode := range peNode.SelectNodesDirect("*", "name") {
+			given := nameNode.SelectNodesDirect("*", "given")
+			// This is a NickName if it's the second <name><given> tag block or the
+			// given tag has the qualifier CM.
+			if n == 1 || (len(given) > 0 && given[0].As("*", "qualifier") == "CM") {
+				p.Name.NickName = given[0].GetValue()
+				continue
+			}
+
+			p.Name.Type = nameNode.As("*", "use")
+			if len(given) > 0 {
+				p.Name.First = given[0].GetValue()
+			}
+			if len(given) > 1 {
+				p.Name.Middle = given[1].GetValue()
+			}
+			p.Name.Last = nameNode.S("*", "family")
+			p.Name.Prefix = nameNode.S("*", "prefix")
+			suffixes := nameNode.SelectNodes("*", "suffix")
+			for n, suffix := range suffixes {
+				// if it's the second suffix, or it has the qualifier TITLE
+				if n == 1 || (len(p.Name.Prefix) == 0 && suffix.As("*", "qualifier") == "TITLE") {
+					p.Name.Prefix = suffix.GetValue()
+				} else {
+					p.Name.Suffix = suffix.GetValue()
+				}
+			}
+		}
+
+	}
+	return p
 }
 
 func decodeDiagnosis(node *xmlx.Node) Diagnosis {
@@ -92,7 +147,6 @@ func decodeLocation(node *xmlx.Node) Location {
 	if code := Nget(node, "code"); code != nil {
 		l.Code.decode(code)
 	}
-
 	if aNode := node.SelectNode("*", "addr"); aNode != nil {
 		l.Address = decodeAddress(aNode)
 	}
