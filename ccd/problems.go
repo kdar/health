@@ -1,10 +1,6 @@
 package ccd
 
-import (
-	"time"
-
-	"github.com/jteeuwen/go-pkg-xmlx"
-)
+import "github.com/jteeuwen/go-pkg-xmlx"
 
 var (
 	ProblemsTid = []string{"2.16.840.1.113883.10.20.1.11", "2.16.840.1.113883.10.20.22.2.5.1"}
@@ -20,7 +16,7 @@ var (
 //Problem represents an Observation Problem  (templateId: 2.16.840.1.113883.10.20.22.4.4)
 type Problem struct {
 	Name string
-	Date time.Time
+	Time Time
 	// Duration time.Duration
 	Status      string
 	ProblemType string
@@ -50,7 +46,6 @@ func decodeProblem(node *xmlx.Node) Problem {
 	problem.Name = valueNode.As("*", "displayName")
 
 	//The spec seems to imply we should look at translation when value's nullFlavor is OTH
-	//in my testing, it appears we should always check for it.
 
 	//This current implementation decodes the value node to Code, then replaces it with its translation if it exists.
 	//This does not seem right, but seems to lead to the best results in our samples.
@@ -72,9 +67,9 @@ func decodeProblem(node *xmlx.Node) Problem {
 		problem.ProblemType = name
 	}
 
-	effectiveTimeNode := Nget(node, "effectiveTime")
-	t := decodeTime(effectiveTimeNode)
-	problem.Date = t.Value
+	if effectiveTimeNode := Nget(node, "effectiveTime"); effectiveTimeNode != nil {
+		problem.Time = decodeTime(effectiveTimeNode)
+	}
 
 	// observationNode2 := Nget(observationNode, "entryRelationship", "observation")
 	// if observationNode2 != nil {

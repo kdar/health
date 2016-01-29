@@ -18,7 +18,6 @@ func parseTime(in string) time.Time {
 }
 
 //TestParse_Problems parses a specific ccd with many different types of problems and compares it to a pre-made output.
-//This pre-made output may not be 100% correct, but this will let us know if something has changed.
 func TestParse_Problems(t *testing.T) {
 	c := ccd.NewDefaultCCD()
 	err := parseAndRecover(t, c, "testdata/specific/problems.xml", nil)
@@ -29,7 +28,7 @@ func TestParse_Problems(t *testing.T) {
 	problems := []ccd.Problem{
 		ccd.Problem{
 			Name:        "Pneumonia",
-			Date:        parseTime("2012-08-06"),
+			Time:        ccd.Time{Low: parseTime("2012-08-06"), Value: parseTime("2012-08-06")},
 			Status:      "Active",
 			ProblemType: "Complaint",
 			Code: ccd.Code{
@@ -42,7 +41,7 @@ func TestParse_Problems(t *testing.T) {
 		},
 		ccd.Problem{
 			Name:        "CEREBRAL ARTERY OCCLUSION, UNSPECIFIED, WITH CEREBRAL INFARCTION",
-			Date:        parseTime("2009-07-09"),
+			Time:        ccd.Time{Low: parseTime("2009-07-09"), Value: parseTime("2009-07-09")},
 			Status:      "Active",
 			ProblemType: "Problem",
 			Code: ccd.Code{
@@ -55,7 +54,7 @@ func TestParse_Problems(t *testing.T) {
 		},
 		ccd.Problem{
 			Name:        "Body mass index 30+ - obesity",
-			Date:        parseTime("2011-01-18"),
+			Time:        ccd.Time{Low: parseTime("2011-01-18"), Value: parseTime("2011-01-18")},
 			Status:      "Active",
 			ProblemType: "",
 			Code: ccd.Code{
@@ -68,7 +67,7 @@ func TestParse_Problems(t *testing.T) {
 		},
 		ccd.Problem{
 			Name:        "GERD (gastroesophageal reflux disease)",
-			Date:        parseTime("01-01-01"),
+			Time:        ccd.Time{},
 			Status:      "Active",
 			ProblemType: "Problem",
 			Code: ccd.Code{
@@ -81,7 +80,7 @@ func TestParse_Problems(t *testing.T) {
 		},
 		ccd.Problem{
 			Name:        "JOINT PAIN PELVIS",
-			Date:        parseTime("01-01-01"),
+			Time:        ccd.Time{},
 			Status:      "Active",
 			ProblemType: "ASSERTION",
 			Code: ccd.Code{
