@@ -34,7 +34,6 @@ type Diagnosis struct {
 	Code    Code
 	Status  string
 	Problem Problem
-	//TODO: add support for EffectiveTime
 }
 
 type Performer struct {
