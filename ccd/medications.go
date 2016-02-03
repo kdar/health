@@ -137,12 +137,6 @@ func parseMedications(node *xmlx.Node, ccd *CCD) []error {
 		codeNode := Nget(manNode, "code")
 		if codeNode != nil {
 			medication.Code.decode(codeNode)
-			if medication.Code.Code == "" {
-				// Sometimes the attributes for "code" are completely missing.
-				// try to see if there is a translation node and get it from there
-				transNode := codeNode.SelectNode("*", "translation")
-				medication.Code.decode(transNode)
-			}
 		}
 
 		medication.Name = medication.Code.DisplayName
