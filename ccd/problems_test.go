@@ -50,6 +50,17 @@ func TestParse_Problems(t *testing.T) {
 				CodeSystem:     "2.16.840.1.113883.6.104",
 				Code:           "434.91",
 				DisplayName:    "CEREBRAL ARTERY OCCLUSION, UNSPECIFIED, WITH CEREBRAL INFARCTION",
+				Translations: []ccd.Code{
+					ccd.Code{
+						CodeSystemName: "ICD-9-CM",
+						Type:           "",
+						CodeSystem:     "2.16.840.1.113883.6.104",
+						Code:           "434.91",
+						DisplayName:    "CEREBRAL ARTERY OCCLUSION, UNSPECIFIED, WITH CEREBRAL INFARCTION",
+						OriginalText:   "",
+						Translations:   []ccd.Code{},
+						Qualifiers:     []ccd.Code{},
+					}},
 			},
 		},
 		ccd.Problem{
