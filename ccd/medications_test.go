@@ -1,12 +1,13 @@
 package ccd_test
 
 import (
+	"fmt"
 	"reflect"
 	"testing"
 	"time"
 
 	"github.com/kdar/health/ccd"
-	"github.com/shurcooL/go-goon"
+	"github.com/kylelemons/godebug/pretty"
 )
 
 func TestParse_Medications(t *testing.T) {
@@ -37,6 +38,17 @@ func TestParse_Medications(t *testing.T) {
 				CodeSystem:     "2.16.840.1.113883.6.88",
 				Code:           "573621",
 				DisplayName:    "Albuterol 0.09 MG/ACTUAT inhalant solution",
+				Translations: []ccd.Code{ccd.Code{
+					CodeSystemName: "RxNorm",
+					Type:           "",
+					CodeSystem:     "2.16.840.1.113883.6.88",
+					Code:           "573621",
+					DisplayName:    "Proventil 0.09 MG/ACTUAT inhalant solution",
+					OriginalText:   "",
+					Translations:   []ccd.Code{},
+					Qualifiers:     []ccd.Code{},
+				}},
+				Qualifiers: []ccd.Code{},
 			},
 			Reason: &ccd.MedicationReason{
 				Value: ccd.Code{
@@ -51,7 +63,16 @@ func TestParse_Medications(t *testing.T) {
 		},
 	}
 
-	if !reflect.DeepEqual(meds, c.Medications) {
-		t.Fatalf("Expected:\n%s, got:\n%s", goon.Sdump(meds), goon.Sdump(c.Medications))
+	if len(meds) != len(c.Medications) {
+		t.Fatalf("Expected %d medications. Got %d", len(meds), len(c.Medications))
 	}
+
+	for i, _ := range meds {
+		if !reflect.DeepEqual(meds[i], c.Medications[i]) {
+			fmt.Println(pretty.Compare(meds[i], c.Medications[i]))
+			t.Fatal()
+		}
+
+	}
+
 }
