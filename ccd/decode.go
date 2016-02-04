@@ -61,6 +61,7 @@ func (c *Code) decode(n *xmlx.Node) {
 				//Note: we used to just .decode the translation to replace the parent code
 				//but that would remove any other translations present.
 				c.Code = t.Code
+				c.CodeSystem = t.CodeSystem
 				c.CodeSystemName = t.CodeSystemName
 				c.DisplayName = t.DisplayName
 				c.Type = t.Type
