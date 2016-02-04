@@ -43,10 +43,13 @@ func decodeProblem(node *xmlx.Node) Problem {
 		//the spec says there must be a value, but better to be safe than to panic.
 		return Problem{}
 	}
-	problem.Name = valueNode.As("*", "displayName")
 
 	//The Value node is a ConceptDescriptor, so we decode it as a Code.
 	problem.Code.decode(valueNode)
+
+	//Problems dont really inherently have a Name. When this was first written we just grabbed any matching DisplayName
+	//To not break API compatibility and because its easier to work with, we just copy the Code's displayname
+	problem.Name = problem.Code.DisplayName
 
 	//get the problem type from the highest level code node
 	if topCode := Nget(node, "code"); topCode != nil {
