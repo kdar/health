@@ -13,15 +13,24 @@ var (
 	//The following TemplateID constants are used to find specific sections inside of an encounter.
 	TidSDL         = "2.16.840.1.113883.10.20.22.4.32" //TemplateID of the Service Delivery Location
 	TidEncounterDx = "2.16.840.1.113883.10.20.22.4.80" //TemplateID of the Encounter Diagnosis
+	TidIndication  = "2.16.840.1.113883.10.20.22.4.19"
 )
 
+//Encounter describes any interaction with the patient and healthcare provider.
+//See: http://www.cdatools.org/infocenter/index.jsp?topic=%2Forg.openhealthtools.mdht.uml.cda.consol.doc%2Fclasses%2FEncounterDiagnosis.html
 type Encounter struct {
 	Performers []Performer
 	Code       Code
 	Time       Time
-	Location   Location
-	Diagnosis  Diagnosis
-	Complaint  string //todo: this, look for 'RSON'
+
+	//CCD calls this a 'participant', but we only use it for Service Delivery Locations
+	Locations []Location
+
+	/*List of problems found as a result of this visit*/
+	Diagnosis []Diagnosis
+
+	/*List of problems that caused the visit to happen*/
+	Indications []Problem
 }
 
 type Location struct {
@@ -30,6 +39,7 @@ type Location struct {
 	Address Address
 	Telecom Telecom
 }
+
 type Diagnosis struct {
 	Code    Code
 	Status  string
@@ -61,9 +71,12 @@ func parseEncounters(node *xmlx.Node, ccd *CCD) []error {
 
 			switch t.As("*", "root") {
 			case TidSDL:
-				encounter.Location = decodeLocation(t.Parent)
+				encounter.Locations = append(encounter.Locations, decodeLocation(t.Parent))
 			case TidEncounterDx:
-				encounter.Diagnosis = decodeDiagnosis(t.Parent)
+				encounter.Diagnosis = append(encounter.Diagnosis, decodeDiagnosis(t.Parent))
+			case TidIndication:
+				//TODO: should we check for @typeCode="RSON"?
+				encounter.Indications = append(encounter.Indications, decodeProblem(t.Parent))
 			}
 		}
 
