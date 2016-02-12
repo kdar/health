@@ -43,20 +43,13 @@ func decodeProblem(node *xmlx.Node) Problem {
 		//the spec says there must be a value, but better to be safe than to panic.
 		return Problem{}
 	}
-	problem.Name = valueNode.As("*", "displayName")
 
-	//The spec seems to imply we should look at translation when value's nullFlavor is OTH
-
-	//This current implementation decodes the value node to Code, then replaces it with its translation if it exists.
-	//This does not seem right, but seems to lead to the best results in our samples.
+	//The Value node is a ConceptDescriptor, so we decode it as a Code.
 	problem.Code.decode(valueNode)
-	if translation := Nget(valueNode, "translation"); translation != nil {
-		problem.Code.decode(translation)
-		if problem.Name == "" {
-			problem.Name = problem.Code.DisplayName
-		}
 
-	}
+	//Problems dont really inherently have a Name. When this was first written we just grabbed any matching DisplayName
+	//To not break API compatibility and because its easier to work with, we just copy the Code's displayname
+	problem.Name = problem.Code.DisplayName
 
 	//get the problem type from the highest level code node
 	if topCode := Nget(node, "code"); topCode != nil {

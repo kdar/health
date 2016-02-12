@@ -18,12 +18,18 @@ var (
 	}
 )
 
+//Code is a "Coded With Equivalents Value"
+//there are many similar types that inherit from "Concept Descriptor", this tries to support all of them.
+//See https://www.hl7.org/documentcenter/public_temp_950A80AE-1C23-BA17-0C003CDA0019BD2E/wg/inm/datatypes-its-xml20050714.htm#dtimpl-CE
 type Code struct {
 	CodeSystemName string
 	Type           string
 	CodeSystem     string
 	Code           string
 	DisplayName    string
+	OriginalText   string
+	Translations   []Code
+	Qualifiers     []Code
 }
 
 func (c *Code) decode(n *xmlx.Node) {
@@ -35,6 +41,35 @@ func (c *Code) decode(n *xmlx.Node) {
 	c.Code = n.As("*", "code")
 	c.DisplayName = n.As("*", "displayName")
 	c.Type = n.As("*", "type")
+	c.OriginalText = n.As("*", "originalText")
+	for _, t := range n.SelectNodesDirect("*", "translation") {
+		trans := Code{}
+		trans.decode(t)
+		c.Translations = append(c.Translations, trans)
+	}
+	for _, q := range n.SelectNodesDirect("*", "qualifier") {
+		qual := Code{}
+		qual.decode(q)
+		c.Qualifiers = append(c.Qualifiers, qual)
+	}
+
+	//Sometimes the attributes for "code" are completely missing, relying on the translations to convey the codes.
+	//So if we have a <code> thats missing its code, we copy the first translation that does have a Code
+	if c.Code == "" && len(c.Translations) > 0 {
+		for _, t := range c.Translations {
+			if t.Code != "" {
+				//Note: we used to just .decode the translation to replace the parent code
+				//but that would remove any other translations present.
+				c.Code = t.Code
+				c.CodeSystem = t.CodeSystem
+				c.CodeSystemName = t.CodeSystemName
+				c.DisplayName = t.DisplayName
+				c.Type = t.Type
+				c.OriginalText = t.OriginalText
+			}
+
+		}
+	}
 }
 
 type CCD struct {
