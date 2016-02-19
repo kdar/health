@@ -31,6 +31,53 @@ type ResultValue struct {
 	Unit  string
 }
 
+//decodeResultValue decodes the <value> in an Observation Result
+func decodeResultValue(n *xmlx.Node) ResultValue {
+	//reference: http://www.cdapro.com/know/25047
+	var rv ResultValue
+	if n == nil {
+		return rv
+	}
+
+	rv.Type = n.As("*", "type")
+	switch rv.Type {
+
+	case "PQ": //PhysicalQuantity(PQ) types contain a "unit" and a "value" attribute
+		rv.Value = n.As("*", "value")
+		rv.Unit = n.As("*", "unit")
+	case "ST": //Character String (ST) types contain their value as the content of their node
+		rv.Value = n.GetValue()
+
+		//some EMRs use ST for data that should be a PQ, so we check for that.
+		if strings.Count(rv.Value, " ") == 1 {
+			parts := strings.Split(rv.Value, " ")
+			value, unit := parts[0], parts[1]
+
+			//values must be real numbers
+			if _, err := strconv.ParseFloat(value, 64); err != nil {
+				//probably a normal ST segment, don't do anything special.
+				break
+			}
+			rv.Unit = unit
+			rv.Value = value
+		}
+
+		/*NYI: "ED"(Encapsulated Data) which is kind of a 'catch all' for any arbitrary data
+		it can refer to elements anywhere in the document, and it could have any format, so we cant really support it
+		*/
+	case "CV", "CD": //Coded Value(CV) and ConceptDiscriptor(CD) are both similar.
+
+		//two of our sample ccdas use CV, but they both are nullflavor so we can't test this.
+		//A lot more use "CD", often for simple things like "positive" or "negative" results.
+
+		//Some use CD but don't have a displayName, those are all nulls so not much we can do with them.
+		rv.Value = n.As("*", "displayName")
+	}
+
+	return rv
+
+}
+
 type ResultRange struct {
 	Gender       *string // M or F
 	AgeLow       *float64
@@ -212,12 +259,7 @@ func parseResults(node *xmlx.Node, ccd *CCD) []error {
 				observation.Code.decode(codeNode)
 			}
 
-			valueNode := Nget(obNode, "value")
-			if valueNode != nil {
-				observation.Value.Type = valueNode.As("*", "type")
-				observation.Value.Value = valueNode.As("*", "value")
-				observation.Value.Unit = valueNode.As("*", "unit")
-			}
+			observation.Value = decodeResultValue(Nget(obNode, "value"))
 
 			icodeNodes := obNode.SelectNodes("*", "interpretationCode")
 			if icodeNodes != nil {
