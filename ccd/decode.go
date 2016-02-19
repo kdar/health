@@ -42,6 +42,7 @@ func (c *Code) decode(n *xmlx.Node) {
 	c.DisplayName = n.As("*", "displayName")
 	c.Type = n.As("*", "type")
 	c.OriginalText = n.As("*", "originalText")
+	nullflavor := n.As("*", "nullFlavor")
 	for _, t := range n.SelectNodesDirect("*", "translation") {
 		trans := Code{}
 		trans.decode(t)
@@ -53,9 +54,8 @@ func (c *Code) decode(n *xmlx.Node) {
 		c.Qualifiers = append(c.Qualifiers, qual)
 	}
 
-	//Sometimes the attributes for "code" are completely missing, relying on the translations to convey the codes.
-	//So if we have a <code> thats missing its code, we copy the first translation that does have a Code
-	if c.Code == "" && len(c.Translations) > 0 {
+	//if the code itself was null(nullflavor indicated), we copy the data from the first translation to it for convenience.
+	if nullflavor != "" && len(c.Translations) > 0 {
 		for _, t := range c.Translations {
 			if t.Code != "" {
 				//Note: we used to just .decode the translation to replace the parent code
