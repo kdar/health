@@ -45,10 +45,7 @@ func TestParse_Medications(t *testing.T) {
 					Code:           "573621",
 					DisplayName:    "Proventil 0.09 MG/ACTUAT inhalant solution",
 					OriginalText:   "",
-					Translations:   []ccd.Code{},
-					Qualifiers:     []ccd.Code{},
 				}},
-				Qualifiers: []ccd.Code{},
 			},
 			Reason: &ccd.MedicationReason{
 				Value: ccd.Code{
