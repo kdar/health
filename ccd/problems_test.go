@@ -8,6 +8,7 @@ import (
 
 	"github.com/kdar/health/ccd"
 	"github.com/kylelemons/godebug/pretty"
+	"github.com/shurcooL/go-goon"
 )
 
 //parseTime returns a time.Time based on a premade layout
@@ -58,8 +59,6 @@ func TestParse_Problems(t *testing.T) {
 						Code:           "434.91",
 						DisplayName:    "CEREBRAL ARTERY OCCLUSION, UNSPECIFIED, WITH CEREBRAL INFARCTION",
 						OriginalText:   "",
-						Translations:   []ccd.Code{},
-						Qualifiers:     []ccd.Code{},
 					}},
 			},
 		},
@@ -69,11 +68,21 @@ func TestParse_Problems(t *testing.T) {
 			Status:      "Active",
 			ProblemType: "",
 			Code: ccd.Code{
-				CodeSystemName: "SNOMED CT",
-				Type:           "",
-				CodeSystem:     "2.16.840.1.113883.6.96",
-				Code:           "162864005",
-				DisplayName:    "",
+				CodeSystemName: "",
+				Type:           "CD",
+				CodeSystem:     "",
+				Code:           "",
+				DisplayName:    "Body mass index 30+ - obesity",
+				Translations: []ccd.Code{
+					{
+						CodeSystemName: "SNOMED CT",
+						Type:           "",
+						CodeSystem:     "2.16.840.1.113883.6.96",
+						Code:           "162864005",
+						DisplayName:    "",
+						OriginalText:   "",
+					},
+				},
 			},
 		},
 		ccd.Problem{
@@ -87,6 +96,15 @@ func TestParse_Problems(t *testing.T) {
 				CodeSystem:     "2.16.840.1.113883.6.103",
 				Code:           "530.81",
 				DisplayName:    "GERD (gastroesophageal reflux disease)",
+				Translations: []ccd.Code{ccd.Code{
+					CodeSystemName: "ICD-9 CM",
+					Type:           "",
+					CodeSystem:     "2.16.840.1.113883.6.103",
+					Code:           "530.81",
+					DisplayName:    "GERD (gastroesophageal reflux disease)",
+					OriginalText:   "",
+				},
+				},
 			},
 		},
 		ccd.Problem{
@@ -109,8 +127,7 @@ func TestParse_Problems(t *testing.T) {
 	for i, _ := range problems {
 		if !reflect.DeepEqual(problems[i], c.Problems[i]) {
 			fmt.Println(pretty.Compare(problems[i], c.Problems[i]))
-			t.Fatal()
-			//		t.Fatalf("Expected:\n%s, got:\n%s", goon.Sdump(problems), goon.Sdump(c.Problems))
+			t.Fatalf("Expected:\n%s, got:\n%s", goon.Sdump(problems[i]), goon.Sdump(c.Problems[i]))
 		}
 
 	}
