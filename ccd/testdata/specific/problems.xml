@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3">
+  <recordTarget></recordTarget>
+  <component>
+    <structuredBody>
+      <!--start data for test
+      This file complains Problems from multiple ccds
+      I have stripped any identifying info if the source is not one of our sample_ccdas
+    -->
+
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.5.1"/>
+          <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="PROBLEM LIST"/>
+          <title>PROBLEMS</title>
+          <text>
+            <marquee>if this were a real ccd, there would probably be useful info here not represented elsewhere</marquee>
+          </text>
+
+          <!-- This entry is from NIST Samples/CCDA_CCD_b1_InPatient_v2.xml, aka kitchensink_ccd.xml-->
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <!-- Problem act template -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.3"/>
+              <id root="ec8a6ff8-ed4b-4f7e-82c3-e98e58b45de7"/>
+              <code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern"/>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20120806"/>
+                <high value="20120806"/>
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- Problem observation template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                  <id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+                  <code code="409586006" codeSystem="2.16.840.1.113883.6.96" displayName="Complaint"/>
+                  <text>
+                    <reference value="#problem1"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="20120806"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" code="233604007" codeSystem="2.16.840.1.113883.6.96" displayName="Pneumonia"/>
+                  <entryRelationship typeCode="REFR">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <!-- Problem observation template -->
+                      <templateId root="2.16.840.1.113883.10.20.22.4.68"/>
+                      <id root="ab1791b0-5c71-11db-b0de-0800200c9a66"/>
+                      <code code="409586006" codeSystem="2.16.840.1.113883.6.96" displayName="Complaint"/>
+                      <text>
+                        <reference value="#problem1"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <effectiveTime>
+                        <low value="20120806"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" code="233604007" codeSystem="2.16.840.1.113883.6.96" displayName="Pneumonia"/>
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.31"/>
+                      <!--    Age observation template   -->
+                      <code code="445518008" codeSystem="2.16.840.1.113883.6.96" displayName="Age At Onset"/>
+                      <statusCode code="completed"/>
+                      <value xsi:type="PQ" value="65" unit="a"/>
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="REFR">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.5"/>
+                      <!-- Health status observation template -->
+                      <code xsi:type="CE" code="11323-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Health status"/>
+                      <text><reference value="#problems"/></text>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CD" code="271593001" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Severly Ill"/>
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="REFR">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <!-- Status observation template -->
+                      <templateId root="2.16.840.1.113883.10.20.22.4.6"/>
+                      <code xsi:type="CE" code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status"/>
+                      <text><reference value="#problem1"/></text>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CD" code="55561003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Active"/>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+
+          <!--This entry is from 'Cerner Samples/problems-and-medications.xml'-->
+          <entry typeCode="DRIV" contextConductionInd="true">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.3"/>
+              <id root="CFA98865-0D16-4045-9C25-D45B9751C101"/>
+              <code nullFlavor="NA"/>
+              <statusCode code="active"/>
+              <effectiveTime>
+                <low value="20090709"/>
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="false">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.4"/>
+                  <id root="DD1E8337-0006-4E75-B244-36EB26D18971"/>
+                  <code code="55607006" displayName="Problem" codeSystem="2.16.840.1.113883.6.96"/>
+                  <text>
+                    <reference value="#PROB1369198"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="20090709"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" nullFlavor="OTH">
+                    <originalText>
+                      <reference value="#PROB1369198"/>
+                    </originalText>
+                    <translation code="434.91" displayName="CEREBRAL ARTERY OCCLUSION, UNSPECIFIED, WITH CEREBRAL INFARCTION" codeSystem="2.16.840.1.113883.6.104" codeSystemName="ICD-9-CM"/>
+                  </value>
+                  <entryRelationship typeCode="REFR">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.6"/>
+                      <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status"/>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CD" code="55561003" displayName="Active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+
+          <!-- this entry is from a file seen in the wild.-->
+
+          <entry contextConductionInd="true" typeCode="COMP">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.27"/>
+              <templateId assigningAuthorityName="HITSP/C83" root="2.16.840.1.113883.3.88.11.83.7"/>
+              <templateId assigningAuthorityName="IHE" root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1"/>
+              <templateId assigningAuthorityName="IHE" root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2"/>
+              <id/>
+              <code nullFlavor="NA"/>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20110118000000"/>
+                <high nullFlavor="UNK"/>
+              </effectiveTime>
+              <entryRelationship contextConductionInd="true" inversionInd="false" typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.28"/>
+                  <templateId assigningAuthorityName="IHE" root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/>
+                  <id root="patientproblem14"/>
+                  <code nullFlavor="UNK"/>
+                  <text>
+                    <reference value="#problem-14"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="20110118000000"/>
+                    <high nullFlavor="UNK"/>
+                  </effectiveTime>
+                  <value displayName="Body mass index 30+ - obesity" xsi:type="CD">
+                    <translation code="162864005" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                  </value>
+                  <informant contextControlCode="OP" typeCode="INF">
+                    <assignedEntity classCode="ASSIGNED">
+                      <id/>
+                      <addr nullFlavor="NI"/>
+                      <telecom nullFlavor="NI"/>
+                      <assignedPerson classCode="PSN" determinerCode="INSTANCE">
+                        <name nullFlavor="UNK"/>
+                      </assignedPerson>
+                      <representedOrganization classCode="ORG" determinerCode="INSTANCE">
+                        <name>Some MedicalCenter</name>
+                        <telecom nullFlavor="NI"/>
+                        <addr nullFlavor="NI"/>
+                      </representedOrganization>
+                    </assignedEntity>
+                  </informant>
+                  <entryRelationship contextConductionInd="true" inversionInd="false" typeCode="REFR">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.50"/>
+                      <templateId assigningAuthorityName="CCD" root="2.16.840.1.113883.10.20.1.57"/>
+                      <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status"/>
+                      <statusCode code="completed"/>
+                      <value code="55561003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Active" xsi:type="CD"/>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+
+
+      <!-- this file also seen in the wild from a different dataset -->
+      <entry typeCode="DRIV">
+        <act classCode="ACT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.27"/>
+          <templateId root="2.16.840.1.113883.3.88.11.83.7"/>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2"/>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1"/>
+          <id root="changedthis"/>
+          <code nullFlavor="NA"/>
+          <statusCode code="active"/>
+          <effectiveTime>
+            <low nullFlavor="UNK"/>
+          </effectiveTime>
+          <entryRelationship inversionInd="false" typeCode="SUBJ">
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.28"/>
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/>
+              <id root="andthis"/>
+              <code code="55607006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Problem"/>
+              <text>
+                <reference value="#prob1"/>
+              </text>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low nullFlavor="UNK"/>
+              </effectiveTime>
+              <value nullFlavor="UNK" xsi:type="CD">
+                <translation code="530.81" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9 CM" displayName="GERD (gastroesophageal reflux disease)"/>
+              </value>
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.50"/>
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="STATUS"/>
+                  <statusCode code="completed"/>
+                  <value code="55561003" codeSystem="2.16.840.1.113883.6.103" codeSystemName="SNOMED CT" displayName="Active" xsi:type="CE"/>
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entryRelationship>
+        </act>
+      </entry>
+
+      <!-- this file is from a third set of data seen in the wild -->
+      <entry typeCode="DRIV">
+        <act classCode="ACT" moodCode="EVN">
+          <templateId root='2.16.840.1.113883.10.20.1.27'/>
+          <!-- Problem act template -->
+          <id root="Problem-01-ID"/>
+          <code nullFlavor="NA"/>
+          <entryRelationship typeCode="SUBJ">
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root='2.16.840.1.113883.10.20.1.28'/>
+              <!-- Problem observation template -->
+              <id root="Problem-02"/>
+              <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+              <statusCode code="completed"/>
+              <value xsi:type="CD" code="719.45" codeSystem="2.16.840.1.113883.6.103" displayName="JOINT PAIN PELVIS"/>
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root='2.16.840.1.113883.10.20.1.50'/>
+                  <!-- Problem status observation template -->
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" displayName="Status"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CE" code="55561003" codeSystem="2.16.840.1.113883.6.96" displayName="Active"/>
+                </observation>
+              </entryRelationship>
+            </observation>
+          </entryRelationship>
+        </act>
+      </entry>
+
+      <!--end data for test-->
+    </section>
+  </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>

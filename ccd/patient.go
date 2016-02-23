@@ -76,6 +76,26 @@ func decodeTelecom(n *xmlx.Node) (t Telecom) {
 	return t
 }
 
+func decodeAddress(n *xmlx.Node) Address {
+	address := Address{}
+
+	address.Use = n.As("*", "use")
+	lines := n.SelectNodes("*", "streetAddressLine")
+	if len(lines) > 0 {
+		address.Line1 = lines[0].GetValue()
+	}
+	if len(lines) > 1 {
+		address.Line2 = lines[1].GetValue()
+	}
+	address.City = n.S("*", "city")
+	address.County = n.S("*", "county")
+	address.State = n.S("*", "state")
+	address.Zip = n.S("*", "postalCode")
+	address.Country = n.S("*", "country")
+
+	return address
+}
+
 type Patient struct {
 	Name          Name
 	Dob           time.Time
@@ -106,23 +126,7 @@ func parsePatient(root *xmlx.Node, ccd *CCD) []error {
 	aNodes := prNode.SelectNodes("*", "addr")
 	if aNodes != nil {
 		for _, anode := range aNodes {
-			address := Address{}
-
-			address.Use = anode.As("*", "use")
-			lines := anode.SelectNodes("*", "streetAddressLine")
-			if len(lines) > 0 {
-				address.Line1 = lines[0].GetValue()
-			}
-			if len(lines) > 1 {
-				address.Line2 = lines[1].GetValue()
-			}
-			address.City = anode.S("*", "city")
-			address.County = anode.S("*", "county")
-			address.State = anode.S("*", "state")
-			address.Zip = anode.S("*", "postalCode")
-			address.Country = anode.S("*", "country")
-
-			ccd.Patient.Addresses = append(ccd.Patient.Addresses, address)
+			ccd.Patient.Addresses = append(ccd.Patient.Addresses, decodeAddress(anode))
 		}
 	}
 

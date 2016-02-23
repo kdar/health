@@ -14,16 +14,22 @@ var (
 	DefaultParsers = []Parser{
 		PatientParser, AllergiesParser, ImmunizationsParser,
 		MedicationsParser, ProblemsParser,
-		ResultsParser, VitalSignsParser, SocialHistoryParser,
+		ResultsParser, VitalSignsParser, SocialHistoryParser, EncountersParser,
 	}
 )
 
+//Code is a "Coded With Equivalents Value"
+//there are many similar types that inherit from "Concept Descriptor", this tries to support all of them.
+//See https://www.hl7.org/documentcenter/public_temp_950A80AE-1C23-BA17-0C003CDA0019BD2E/wg/inm/datatypes-its-xml20050714.htm#dtimpl-CE
 type Code struct {
 	CodeSystemName string
 	Type           string
 	CodeSystem     string
 	Code           string
 	DisplayName    string
+	OriginalText   string
+	Translations   []Code
+	Qualifiers     []Code
 }
 
 func (c *Code) decode(n *xmlx.Node) {
@@ -31,10 +37,39 @@ func (c *Code) decode(n *xmlx.Node) {
 		return
 	}
 	c.CodeSystem = n.As("*", "codeSystem")
-	// code.CodeSystemName, _ = codeSystemToName(code.CodeSystem)
+	c.CodeSystemName = n.As("*", "codeSystemName")
 	c.Code = n.As("*", "code")
 	c.DisplayName = n.As("*", "displayName")
 	c.Type = n.As("*", "type")
+	c.OriginalText = n.As("*", "originalText")
+	nullflavor := n.As("*", "nullFlavor")
+	for _, t := range n.SelectNodesDirect("*", "translation") {
+		trans := Code{}
+		trans.decode(t)
+		c.Translations = append(c.Translations, trans)
+	}
+	for _, q := range n.SelectNodesDirect("*", "qualifier") {
+		qual := Code{}
+		qual.decode(q)
+		c.Qualifiers = append(c.Qualifiers, qual)
+	}
+
+	//if the code itself was null(nullflavor indicated), we copy the data from the first translation to it for convenience.
+	if nullflavor != "" && len(c.Translations) > 0 {
+		for _, t := range c.Translations {
+			if t.Code != "" {
+				//Note: we used to just .decode the translation to replace the parent code
+				//but that would remove any other translations present.
+				c.Code = t.Code
+				c.CodeSystem = t.CodeSystem
+				c.CodeSystemName = t.CodeSystemName
+				c.DisplayName = t.DisplayName
+				c.Type = t.Type
+				c.OriginalText = t.OriginalText
+			}
+
+		}
+	}
 }
 
 type CCD struct {
@@ -46,6 +81,7 @@ type CCD struct {
 	VitalSigns    []VitalSign
 	Allergies     []Allergy
 	SocialHistory []SocialHistory
+	Encounters    []Encounter
 
 	// Right now doc_parsers will only have one map entry "*"
 	doc_parsers     map[string]Parsers
