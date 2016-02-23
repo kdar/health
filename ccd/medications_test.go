@@ -1,7 +1,6 @@
 package ccd_test
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 	"time"
@@ -66,10 +65,7 @@ func TestParse_Medications(t *testing.T) {
 
 	for i, _ := range meds {
 		if !reflect.DeepEqual(meds[i], c.Medications[i]) {
-			fmt.Println(pretty.Compare(meds[i], c.Medications[i]))
-			t.Fatal()
+			t.Fatalf("Differences in medication %d: %v", i, pretty.Compare(meds[i], c.Medications[i]))
 		}
-
 	}
-
 }
