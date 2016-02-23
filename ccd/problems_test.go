@@ -1,14 +1,12 @@
 package ccd_test
 
 import (
-	"fmt"
 	"reflect"
 	"testing"
 	"time"
 
 	"github.com/kdar/health/ccd"
 	"github.com/kylelemons/godebug/pretty"
-	"github.com/shurcooL/go-goon"
 )
 
 //parseTime returns a time.Time based on a premade layout
@@ -126,9 +124,7 @@ func TestParse_Problems(t *testing.T) {
 	}
 	for i, _ := range problems {
 		if !reflect.DeepEqual(problems[i], c.Problems[i]) {
-			fmt.Println(pretty.Compare(problems[i], c.Problems[i]))
-			t.Fatalf("Expected:\n%s, got:\n%s", goon.Sdump(problems[i]), goon.Sdump(c.Problems[i]))
+			t.Fatalf("Problem #%d differed: %v", pretty.Compare(problems[i], c.Problems[i]))
 		}
-
 	}
 }
