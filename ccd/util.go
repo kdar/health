@@ -2,7 +2,7 @@ package ccd
 
 import (
 	"github.com/jteeuwen/go-pkg-xmlx"
-	"menteslibres.net/gosexy/to"
+	"github.com/gosexy/to"
 	"strings"
 	"time"
 )
