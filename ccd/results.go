@@ -60,22 +60,21 @@ func decodeResultValue(n *xmlx.Node) ResultValue {
 			}
 			rv.Unit = unit
 			rv.Value = value
+			//TODO:  since we're essentially turning this ST into a PQ, should we change type to PQ?
+			//as it is, if something is checking our result's Type and handling it specially, it wouldn't expect a ST result to have a .Unit
 		}
 
 		/*NYI: "ED"(Encapsulated Data) which is kind of a 'catch all' for any arbitrary data
 		it can refer to elements anywhere in the document, and it could have any format, so we cant really support it
 		*/
 	case "CV", "CD": //Coded Value(CV) and ConceptDiscriptor(CD) are both similar.
-
-		//two of our sample ccdas use CV, but they both are nullflavor so we can't test this.
-		//A lot more use "CD", often for simple things like "positive" or "negative" results.
-
-		//Some use CD but don't have a displayName, those are all nulls so not much we can do with them.
+		//this is a rather simplistic decoding, ignoring the codesystem and translations, but it works with our samples.
+		//two of our sample ccdas use CV, but they both are nullflavor so we can't test them.
+		//A lot more use "CD", when they aren't null our samples all use them for "positive" "negative" "normal" etc.
 		rv.Value = n.As("*", "displayName")
 	}
 
 	return rv
-
 }
 
 type ResultRange struct {
