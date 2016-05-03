@@ -1,10 +1,11 @@
 package ccd
 
 import (
-	"github.com/jteeuwen/go-pkg-xmlx"
-	"github.com/gosexy/to"
+	"strconv"
 	"strings"
 	"time"
+
+	"github.com/jteeuwen/go-pkg-xmlx"
 )
 
 const (
@@ -75,7 +76,7 @@ func decodeTime(node *xmlx.Node) (t Time) {
 
 	period := Nget(node, "period")
 	if period != nil {
-		value := time.Duration(to.Int64(period.As("*", "value")))
+		value := time.Duration(toInt64(period.As("*", "value")))
 		unit := period.As("*", "unit")
 		switch strings.ToLower(unit) {
 		case "s":
@@ -155,4 +156,43 @@ func insertSortParser(p Parser, parsers Parsers) Parsers {
 	parsers[i] = p
 
 	return parsers
+}
+
+func toInt64(val interface{}) int64 {
+	switch t := val.(type) {
+	case int:
+		return int64(t)
+	case int8:
+		return int64(t)
+	case int16:
+		return int64(t)
+	case int32:
+		return int64(t)
+	case int64:
+		return int64(t)
+	case uint:
+		return int64(t)
+	case uint8:
+		return int64(t)
+	case uint16:
+		return int64(t)
+	case uint32:
+		return int64(t)
+	case uint64:
+		return int64(t)
+	case bool:
+		if t == true {
+			return int64(1)
+		}
+		return int64(0)
+	case float32:
+		return int64(t)
+	case float64:
+		return int64(t)
+	case string:
+		i, _ := strconv.ParseInt(t, 10, 64)
+		return i
+	}
+
+	return 0
 }
