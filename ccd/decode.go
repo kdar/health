@@ -18,6 +18,8 @@ var (
 	}
 )
 
+type Parsers []Parser
+
 //Code is a "Coded With Equivalents Value"
 //there are many similar types that inherit from "Concept Descriptor", this tries to support all of them.
 //See https://www.hl7.org/documentcenter/public_temp_950A80AE-1C23-BA17-0C003CDA0019BD2E/wg/inm/datatypes-its-xml20050714.htm#dtimpl-CE
@@ -181,8 +183,6 @@ type Parser struct {
 	Priority     int
 	Func         ParseFunc
 }
-
-type Parsers []Parser
 
 // Parses a CCD into a CCD struct.
 func (c *CCD) ParseDoc(doc *xmlx.Document) error {

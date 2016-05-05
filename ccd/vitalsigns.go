@@ -1,8 +1,9 @@
 package ccd
 
 import (
-	"github.com/jteeuwen/go-pkg-xmlx"
 	"time"
+
+	"github.com/jteeuwen/go-pkg-xmlx"
 )
 
 var (
@@ -53,6 +54,9 @@ func parseVitalSigns(node *xmlx.Node, ccd *CCD) []error {
 			observation := VitalSignObservation{}
 
 			codeNode := Nget(componentNode, "code")
+			if codeNode == nil {
+				continue
+			}
 			observation.Code.decode(codeNode)
 
 			effectiveTimeNode := Nget(componentNode, "effectiveTime")
@@ -60,6 +64,8 @@ func parseVitalSigns(node *xmlx.Node, ccd *CCD) []error {
 			observation.Date = t.Value
 
 			valueNode := Nget(componentNode, "value")
+			// fmt.Println(valueNode)
+
 			observation.Result = VitalSignResult{
 				Type:  valueNode.As("*", "type"),
 				Value: valueNode.As("*", "value"),
