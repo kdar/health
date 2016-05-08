@@ -24,7 +24,6 @@ type VitalSignResult struct {
 }
 
 type VitalSignObservation struct {
-	Name   string
 	Date   time.Time
 	Code   Code
 	Result VitalSignResult
