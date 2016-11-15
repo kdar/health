@@ -1,8 +1,6 @@
 package ccd
 
-import (
-	"github.com/jteeuwen/go-pkg-xmlx"
-)
+import "github.com/jteeuwen/go-pkg-xmlx"
 
 var (
 	AllergiesTid = []string{"2.16.840.1.113883.10.20.1.2", "2.16.840.1.113883.10.20.22.2.6.1"}
@@ -57,6 +55,12 @@ func parseAllergies(node *xmlx.Node, ccd *CCD) []error {
 					}
 				}
 			}
+		}
+
+		// If we still don't have a name, just continue because there's no
+		// point in processing this allergy without a name.
+		if len(allergy.Name) == 0 {
+			continue
 		}
 
 		erNodes := obvNode.SelectNodes("*", "entryRelationship")

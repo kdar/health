@@ -14,7 +14,6 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	"github.com/jteeuwen/go-pkg-xmlx"
 	"github.com/kdar/health/ccd"
-	"github.com/kdar/health/ccd/parsers/medtable"
 )
 
 var successfulCCDs int64   //Keeps track of how many CCDs we successfully parsed
@@ -100,19 +99,43 @@ func TestInvalidCCD(t *testing.T) {
 	}
 }
 
+func TestNulls(t *testing.T) {
+	c := ccd.NewDefaultCCD()
+	err := parseAndRecover(t, c, "testdata/specific/nulls.xml", nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if c.Allergies != nil {
+		t.Fatal("expected allergies to be nil")
+	}
+	if c.Encounters != nil {
+		t.Fatal("expected encounters to be nil")
+	}
+	if c.Immunizations != nil {
+		t.Fatal("expected immunizations to be nil")
+	}
+	if c.Medications != nil {
+		t.Fatal("expected medications to be nil")
+	}
+	if c.Problems != nil {
+		t.Fatal("expected problems to be nil")
+	}
+	if c.Results != nil {
+		t.Fatal("expected results to be nil")
+	}
+}
+
 func TestNewStuff(t *testing.T) {
 	t.Skip("just for my own needs")
 
 	c := ccd.NewDefaultCCD()
-	c.AddParsers(medtable.Parser())
-	err := parseAndRecover(t, c, "testdata/private/2013-08-26T04_03_24 - 0b7fddbdc631aecc6c96090043f690204f7d0d9d.xml", nil)
-	//err := parseAndRecover(t, c, "testdata/public/ToC_CCDA_CCD_CompGuideSample_FullXML_v01a.xml", nil)
-	//err := parseAndRecover(t, c, "testdata/public/SampleCCDDocument.xml", nil)
+	err := parseAndRecover(t, c, "testdata/specific/nulls.xml", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	_ = spew.Dump
 
-	//spew.Dump(c.Patient)
+	spew.Dump(c)
 }

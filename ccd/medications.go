@@ -149,6 +149,12 @@ func parseMedications(node *xmlx.Node, ccd *CCD) []error {
 			}
 		}
 
+		// If we still don't have a name, just continue because there's no
+		// point in processing this medication without a name.
+		if len(medication.Name) == 0 {
+			continue
+		}
+
 		entryRelationshipNodes := saNode.SelectNodes("*", "entryRelationship")
 		if entryRelationshipNodes != nil {
 			for _, entryRelationshipNode := range entryRelationshipNodes {

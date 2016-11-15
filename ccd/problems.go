@@ -28,28 +28,36 @@ func parseProblems(node *xmlx.Node, ccd *CCD) []error {
 	for _, entryNode := range entryNodes {
 		observationNode := Nget(entryNode, "act", "entryRelationship", "observation")
 		problem := decodeProblem(observationNode)
+		if problem == nil {
+			continue
+		}
 
-		ccd.Problems = append(ccd.Problems, problem)
+		ccd.Problems = append(ccd.Problems, *problem)
 	}
 
 	return nil
 }
 
-func decodeProblem(node *xmlx.Node) Problem {
-	problem := Problem{}
-
+func decodeProblem(node *xmlx.Node) *Problem {
 	valueNode := Nget(node, "value")
 	if valueNode == nil {
-		//the spec says there must be a value, but better to be safe than to panic.
-		return Problem{}
+		return nil
 	}
+
+	problem := Problem{}
 
 	//The Value node is a ConceptDescriptor, so we decode it as a Code.
 	problem.Code.decode(valueNode)
 
-	//Problems dont really inherently have a Name. When this was first written we just grabbed any matching DisplayName
-	//To not break API compatibility and because its easier to work with, we just copy the Code's displayname
+	// Problems dont really inherently have a Name. When this was first written we just grabbed any matching DisplayName
+	// To not break API compatibility and because its easier to work with, we just copy the Code's displayname
 	problem.Name = problem.Code.DisplayName
+
+	// If we still don't have a name, just return because there's no
+	// point in processing this problem without a name.
+	if len(problem.Name) == 0 {
+		return nil
+	}
 
 	//get the problem type from the highest level code node
 	if topCode := Nget(node, "code"); topCode != nil {
@@ -83,5 +91,6 @@ func decodeProblem(node *xmlx.Node) Problem {
 			problem.Status = valueNode.As("*", "displayName")
 		}
 	}
-	return problem
+
+	return &problem
 }

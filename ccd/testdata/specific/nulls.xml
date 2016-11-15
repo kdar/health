@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:sdtc="urn:hl7-org:sdtc" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fn="http://www.w3.org/2005/xpath-functions">
+    <realmCode code="US" />
+    <typeId root="2.16.840.1.113883.1.3" extension="POCD_HD000040" />
+    <templateId root="2.16.840.1.113883.10.20.22.1.1" />
+    <templateId root="2.16.840.1.113883.10.20.22.1.2" />
+    <id root="2.16.840.1.113883.3.3388.1.1.1.600264" extension="8ebd3f01-3879-4b9b-9a89-022a654d3a83" /><code code="34133-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Summarization of episode note" />
+    <title>Clinical Summary</title>
+    <effectiveTime value="20161113110547" />
+    <confidentialityCode code="R" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidentiality" displayName="Restricted" />
+    <languageCode code="en-US" />
+    <recordTarget>
+        <patientRole>
+            <id root="2.16.840.1.113883.3.3388.1.1.1.600264.3" extension="38A923AF-ACDF-425B-921E-5C30E6EA3486" />
+            <addr use="H">
+                <streetAddressLine>NO STREET ADDRESS INDICATED</streetAddressLine>
+                <city>NO CITY INDICATED</city>
+                <state>NO STATE INDICATED</state>
+                <postalCode>99999</postalCode>
+                <country>United States of America</country>
+            </addr>
+            <telecom nullFlavor="NI" />
+            <patient>
+                <name use="L">
+                    <given>First</given>
+                    <given>Middle</given>
+                    <family>Last</family>
+                </name>
+                <administrativeGenderCode codeSystem="2.16.840.1.113883.5.1" code="M" displayName="Male" />
+                <birthTime value="20161101" />
+                <raceCode nullFlavor="NI" />
+                <ethnicGroupCode nullFlavor="NI" />
+                <languageCommunication>
+                    <languageCode nullFlavor="NI" />
+                </languageCommunication>
+            </patient>
+            <providerOrganization>
+                <id root="2.16.840.1.113883.3.3388.1.1.1.600264" />
+                <name>Test Practice</name>
+                <telecom use="WP" value="tel:(888)459-2222" />
+                <addr use="WP">
+                    <streetAddressLine>1234</streetAddressLine>
+                    <city>New York City</city>
+                    <state>NY</state>
+                    <postalCode>10101</postalCode>
+                    <country>United States of America</country>
+                </addr>
+            </providerOrganization>
+        </patientRole>
+    </recordTarget>
+    <author><time value="20161113110547" />
+        <assignedAuthor>
+            <id root="2.16.840.1.113883.3.3388.1.1.1.600264.1.3" extension="1321444" /><code codeSystem="2.16.840.1.113883.6.101" codeSystemName="Provider Codes" code="260000000X" displayName="Ambulatory Health Care Facilities" />
+            <addr use="WP">
+                <streetAddressLine>Practice Facility</streetAddressLine>
+                <streetAddressLine>1234</streetAddressLine>
+                <city>New York City</city>
+                <state>NY</state>
+                <postalCode>10101</postalCode>
+                <country>United States of America</country>
+            </addr>
+            <telecom use="WP" value="tel:(888)459-2222" />
+            <assignedPerson>
+                <name>
+                    <given>John</given>
+                    <family>Doe</family>
+                </name>
+            </assignedPerson>
+            <representedOrganization>
+                <id root="2.16.840.1.113883.3.3388.1.1.1.600264" />
+                <name>Test Practice</name>
+                <addr use="WP">
+                    <streetAddressLine>1234</streetAddressLine>
+                    <city>New York City</city>
+                    <state>NY</state>
+                    <postalCode>10101</postalCode>
+                    <country>United States of America</country>
+                </addr>
+            </representedOrganization>
+        </assignedAuthor>
+    </author>
+    <dataEnterer>
+        <assignedEntity>
+            <id root="2.16.840.1.113883.3.3388.1.1.1.600264.1.1.3" extension="1321444" />
+            <addr use="WP">
+                <streetAddressLine>1234</streetAddressLine>
+                <city>New York City</city>
+                <state>NY</state>
+                <postalCode>10101</postalCode>
+                <country>United States of America</country>
+            </addr>
+            <telecom use="WP" value="tel:(888)459-2222" />
+            <assignedPerson>
+                <name>
+                    <given>John</given>
+                    <family>Doe</family>
+                </name>
+            </assignedPerson>
+        </assignedEntity>
+    </dataEnterer>
+    <custodian>
+        <assignedCustodian>
+            <representedCustodianOrganization>
+                <id root="2.16.840.1.113883.3.3388.1.1.1.600264" extension="POCD_HD000040" />
+                <name>Practice Facility</name>
+                <telecom use="WP" value="tel:(888)459-2222" />
+                <addr use="WP">
+                    <streetAddressLine>1234</streetAddressLine>
+                    <city>New York City</city>
+                    <state>NY</state>
+                    <postalCode>10101</postalCode>
+                    <country>United States of America</country>
+                </addr>
+            </representedCustodianOrganization>
+        </assignedCustodian>
+    </custodian>
+    <legalAuthenticator><time value="20161113110547" />
+        <signatureCode code="S" />
+        <assignedEntity>
+            <id root="2.16.840.1.113883.3.3388.1.1.1.600264.1.1.3" extension="1321444" />
+            <addr use="WP">
+                <streetAddressLine>1234</streetAddressLine>
+                <city>New York City</city>
+                <state>NY</state>
+                <postalCode>10101</postalCode>
+                <country>United States of America</country>
+            </addr>
+            <telecom use="WP" value="tel:(888)459-2222" />
+            <assignedPerson>
+                <name>
+                    <given>John</given>
+                    <family>Doe</family>
+                </name>
+            </assignedPerson>
+        </assignedEntity>
+    </legalAuthenticator>
+    <documentationOf>
+        <serviceEvent classCode="PCPR" moodCode="EVN">
+            <id root="2.16.840.1.113883.3.3388.1.1.1.600264.1.1" extension="1321444" />
+            <effectiveTime xsi:type="IVL_TS">
+                <low nullFlavor="NI" />
+                <high nullFlavor="NI" />
+            </effectiveTime>
+            <performer typeCode="PRF">
+                <templateId root="2.16.840.1.113883.10.20.6.2.1" />
+                <functionCode codeSystemName="Provider Role" codeSystem="2.16.840.1.113883.6.101" code="PP" displayName="Primary Care Provider" />
+                <assignedEntity>
+                    <id root="2.16.840.1.113883.3.3388.1.1.1.600264.1.1" /><code codeSystem="2.16.840.1.113883.6.101" codeSystemName="Provider Codes" code="260000000X" displayName="Ambulatory Health Care Facilities" />
+                    <addr use="WP">
+                        <streetAddressLine>1234</streetAddressLine>
+                        <city>New York City</city>
+                        <state>NY</state>
+                        <postalCode>10101</postalCode>
+                        <country>United States of America</country>
+                    </addr>
+                    <telecom use="WP" value="tel:(888)459-2222" />
+                    <assignedPerson>
+                        <name>
+                            <given>John</given>
+                            <family>Doe</family>
+                        </name>
+                    </assignedPerson>
+                    <representedOrganization>
+                        <id root="2.16.840.1.113883.3.3388.1.1.1.600264" />
+                        <name>Test Practice</name>
+                        <addr use="WP">
+                            <streetAddressLine>1234</streetAddressLine>
+                            <city>New York City</city>
+                            <state>NY</state>
+                            <postalCode>10101</postalCode>
+                            <country>United States of America</country>
+                        </addr>
+                    </representedOrganization>
+                </assignedEntity>
+            </performer>
+        </serviceEvent>
+    </documentationOf>
+    <componentOf>
+        <encompassingEncounter>
+            <id root="2.16.840.1.113883.3.3388.1.1.1.600264.4.1.4" extension="147332961" />
+            <effectiveTime xsi:type="IVL_TS">
+                <low nullFlavor="NI" />
+                <high nullFlavor="NI" />
+            </effectiveTime>
+        </encompassingEncounter>
+    </componentOf>
+    <component>
+        <structuredBody>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.6.1" /><code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies, Adverse Reactions, Alerts" />
+                    <title>Allergies</title><text><table width="95%" border="1"><thead><tr><th>Allergy</th><th>Date</th><th>Reaction Status</th><th>Severity Status</th></tr></thead><tbody><tr ID="allergy1"><td>No Allergies Indicated</td><td>Not Applicable</td><td>Not Applicable</td><td>Not Applicable</td></tr></tbody></table></text>
+                    <entry
+                        typeCode="DRIV">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.10.20.22.4.30" />
+                            <id root="2.16.840.1.113883.3.3388.1.1.1.600264.3" extension="147332961" /><code xsi:type="CE" code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies, adverse reactions, alerts" />
+                            <statusCode code="completed" />
+                            <effectiveTime>
+                                <low nullFlavor="NI" />
+                                <high nullFlavor="NI" />
+                            </effectiveTime>
+                            <entryRelationship typeCode="SUBJ" inversionInd="true">
+                                <observation classCode="OBS" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.10.20.22.4.7" />
+                                    <id root="2.16.840.1.113883.3.3388.1.1.1.40324.3" extension="552931" /><code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" />
+                                    <statusCode code="completed" />
+                                    <effectiveTime nullFlavor="NI" />
+                                    <value xsi:type="CE" nullFlavor="NI" />
+                                </observation>
+                            </entryRelationship>
+                        </act>
+                        </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.9" /><code code="51847-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Assessment and Plan" />
+                    <title>Assessment and Plan</title><text><table><thead><tr><th>Assessment and Plan</th></tr></thead><tbody><tr ID="APNULL1"><td>No Plans indicated</td></tr></tbody></table></text></section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.13" /><code code="46239-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Chief Complaint and Reason For Visit" />
+                    <title>Chief Complaint and Reason For Visit</title><text><table><thead><tr><th>Chief Complaint or Reason for Visit</th></tr></thead><tbody><tr ID="ChiefComplaint_1"><td>Chief Complaint or Reason for Visit Not Indicated</td></tr></tbody></table></text></section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.22.1" /><code code="46240-8" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Encounters" />
+                    <title>Encounters</title><text><table border="1" width="95%"><thead><tr><th>Encounter Type </th><th>Location Name</th><th>Performer</th><th>Date of Service</th></tr></thead><tbody><tr ID="Encounter1"><td>No Encounters Indicated</td><td/><td/><td/></tr></tbody></table></text>
+                    <entry
+                        typeCode="DRIV">
+                        <encounter classCode="ENC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.10.20.22.4.49" />
+                            <id root="2.16.840.1.113883.3.3388.1.1.1.600264.3.147332961.1.3.2" extension="147332961" /><code xsi:type="CE" nullFlavor="UNK" /><text><reference value="#Encounter1"/></text>
+                            <effectiveTime>
+                                <low nullFlavor="NI" />
+                                <high nullFlavor="NI" />
+                            </effectiveTime>
+                        </encounter>
+                        </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.2.1" /><code code="11369-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Immunizations" />
+                    <title>Immunizations</title><text><table border="1" width="95%"><thead><tr><th>Vaccine</th><th>Date</th><th>Delivery Status</th></tr></thead><tbody><tr ID="immun1"><td>No immunizations administered during visit</td><td>Not Applicable</td><td>Not Applicable</td></tr></tbody></table></text>
+                    <entry>
+                        <substanceAdministration classCode="SBADM" moodCode="EVN" negationInd="true">
+                            <templateId root="2.16.840.1.113883.10.20.22.4.52" />
+                            <id nullFlavor="NA" /><text><reference value="#immun1"/></text>
+                            <statusCode code="completed" />
+                            <effectiveTime xsi:type="IVL_TS">
+                                <low value="20161113110547" />
+                                <high value="20161113110547" />
+                            </effectiveTime>
+                            <doseQuantity value="0" />
+                            <consumable>
+                                <manufacturedProduct classCode="MANU">
+                                    <templateId root="2.16.840.1.113883.10.20.22.4.54" />
+                                    <manufacturedMaterial><code nullFlavor="NA" /></manufacturedMaterial>
+                                </manufacturedProduct>
+                            </consumable>
+                        </substanceAdministration>
+                    </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.45" /><code code="69730-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Instructions" />
+                    <title>Instructions</title><text><table><thead><tr><th>Instructions</th></tr></thead><tbody><tr ID="Section921503"><td>No Education resources were given to the patient during the visit</td></tr></tbody></table></text>
+                    <entry typeCode="DRIV">
+                        <act classCode="ACT" moodCode="INT">
+                            <templateId root="2.16.840.1.113883.10.20.22.4.20" /><code xsi:type="CE" nullFlavor="NI" /><text><reference value="#Section921503"/></text>
+                            <statusCode code="completed" />
+                        </act>
+                    </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.1.1" /><code code="10160-0" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Medication Use" />
+                    <title>Medications</title><text><table border="1" width="95%"><thead><tr><th>Material</th><th>RXnormCode</th><th>GenericName</th><th>ProductStrength</th><th>StartDate</th><th>StopDate</th><th>SIG</th></tr></thead><tbody><tr ID="Med1"><td>No Medications Indicated</td><td>Not Applicable</td><td>Not Applicable</td><td>Not Applicable</td><td>Not Applicable</td><td>Not Applicable</td><td>Not Applicable</td></tr></tbody></table></text>
+                    <entry
+                        typeCode="DRIV">
+                        <substanceAdministration classCode="SBADM" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.10.20.22.4.16" />
+                            <id root="2.16.840.1.113883.3.3388.1.1.1.600264.3.147332961.1.4.1" extension="0" /><text><reference value="#Med1"/></text>
+                            <statusCode code="completed" />
+                            <effectiveTime xsi:type="IVL_TS">
+                                <low nullFlavor="NI" />
+                                <high nullFlavor="NI" />
+                            </effectiveTime>
+                            <consumable>
+                                <manufacturedProduct classCode="MANU">
+                                    <templateId root="2.16.840.1.113883.10.20.22.4.23" />
+                                    <id root="2.16.840.1.113883.3.3388.1.1.1.600264.3.147332961.1.4.1" extension="0" />
+                                    <manufacturedMaterial><code nullFlavor="NI" /></manufacturedMaterial>
+                                </manufacturedProduct>
+                            </consumable>
+                        </substanceAdministration>
+                        </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.5.1" /><code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem List" />
+                    <title>Problem List</title><text><table border="1" width="95%"><thead><tr><th>Problem Description</th><th>Problem StartDate</th><th>Status</th></tr></thead><tbody><tr ID="problem1"><td>No Problems indicated</td><td/><td/></tr></tbody></table></text>
+                    <entry
+                        typeCode="DRIV">
+                        <act classCode="ACT" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.10.20.22.4.3" />
+                            <id root="2.16.840.1.113883.3.3388.1.1.1.600264.3" extension="147332961" /><code code="CONC" codeSystem="2.16.840.1.113883.5.6" displayName="Concern" xsi:type="CE" />
+                            <statusCode code="completed" />
+                            <effectiveTime xsi:type="IVL_TS">
+                                <low nullFlavor="NI" />
+                                <high nullFlavor="NI" />
+                            </effectiveTime>
+                            <entryRelationship typeCode="SUBJ">
+                                <observation classCode="OBS" moodCode="EVN" negationInd="true">
+                                    <templateId root="2.16.840.1.113883.10.20.22.4.4" />
+                                    <id root="2.16.840.1.113883.3.3388.1.1.1.600264.3.147332961.2.1" /><code nullFlavor="NI" /><text><reference value="#problem1"/></text>
+                                    <statusCode nullFlavor="NA" />
+                                    <value xsi:type="CD" nullFlavor="NI" />
+                                </observation>
+                            </entryRelationship>
+                        </act>
+                        </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.7.1" /><code code="47519-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Procedures" />
+                    <title>Procedures</title><text><table width="95%" border="1"><thead><tr><th>Procedure</th><th>Date</th></tr></thead><tbody><tr><td>No Procedures Indicated</td><td>Not Applicable</td></tr></tbody></table></text>
+                    <entry typeCode="DRIV">
+                        <procedure classCode="PROC" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.10.20.22.4.14" />
+                            <id root="2.16.840.1.113883.3.3388.1.1.1.600264.3.147332961.1.9" /><code xsi:type="CE" nullFlavor="NI" />
+                            <statusCode code="completed" />
+                            <effectiveTime nullFlavor="NI" />
+                            <priorityCode nullFlavor="NI" />
+                            <methodCode nullFlavor="NI" />
+                            <targetSiteCode nullFlavor="NI" />
+                        </procedure>
+                    </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.3.1" /><code code="30954-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Results" />
+                    <title>Results</title><text>Not indicated</text>
+                    <entry typeCode="DRIV">
+                        <organizer classCode="BATTERY" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.10.20.22.4.1" />
+                            <id nullFlavor="UNK" /><code xsi:type="CE" nullFlavor="UNK" />
+                            <statusCode nullFlavor="UNK" />
+                            <effectiveTime nullFlavor="UNK" />
+                            <component>
+                                <observation classCode="OBS" moodCode="EVN">
+                                    <templateId root="2.16.840.1.113883.10.20.22.4.2" />
+                                    <id nullFlavor="NI" /><code xsi:type="CE" nullFlavor="NI" />
+                                    <statusCode code="completed" />
+                                    <effectiveTime nullFlavor="NI" />
+                                    <value xsi:type="PQ" nullFlavor="NI" />
+                                </observation>
+                            </component>
+                        </organizer>
+                    </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.17" /><code code="29762-2" codeSystem="2.16.840.1.113883.6.1" displayName="Social History" />
+                    <title>Social History</title><text>Not indicated</text>
+                    <entry typeCode="DRIV">
+                        <observation classCode="OBS" moodCode="EVN">
+                            <templateId root="2.16.840.1.113883.10.20.22.4.78" /><code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4" xsi:type="CE" />
+                            <statusCode code="completed" />
+                            <effectiveTime nullFlavor="NI" />
+                            <value xsi:type="CD" nullFlavor="NI" />
+                        </observation>
+                    </entry>
+                </section>
+            </component>
+            <component>
+                <section>
+                    <templateId root="2.16.840.1.113883.10.20.22.2.4" /><code code="8716-3" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Vital Signs" />
+                    <title>Vital Signs</title><text>Not indicated</text></section>
+            </component>
+        </structuredBody>
+    </component>
+</ClinicalDocument>

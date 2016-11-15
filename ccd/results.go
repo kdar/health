@@ -258,6 +258,10 @@ func parseResults(node *xmlx.Node, ccd *CCD) []error {
 				observation.Code.decode(codeNode)
 			}
 
+			if len(observation.Code.DisplayName) == 0 {
+				continue
+			}
+
 			observation.Value = decodeResultValue(Nget(obNode, "value"))
 
 			icodeNodes := obNode.SelectNodes("*", "interpretationCode")
@@ -298,7 +302,9 @@ func parseResults(node *xmlx.Node, ccd *CCD) []error {
 			result.Observations = append(result.Observations, observation)
 		}
 
-		ccd.Results = append(ccd.Results, result)
+		if result.Observations != nil {
+			ccd.Results = append(ccd.Results, result)
+		}
 	}
 
 	return nil

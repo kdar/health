@@ -61,6 +61,11 @@ func parseEncounters(node *xmlx.Node, ccd *CCD) []error {
 			encounter.Code.decode(code)
 		}
 
+		// Continue if this has no display name.
+		if len(encounter.Code.DisplayName) == 0 {
+			continue
+		}
+
 		if effectiveTimeNode := Nget(entryNode, "effectiveTime"); effectiveTimeNode != nil {
 			encounter.Time = decodeTime(effectiveTimeNode)
 		}
@@ -76,7 +81,10 @@ func parseEncounters(node *xmlx.Node, ccd *CCD) []error {
 				encounter.Diagnosis = append(encounter.Diagnosis, decodeDiagnosis(t.Parent))
 			case TidIndication:
 				//TODO: should we check for @typeCode="RSON"?
-				encounter.Indications = append(encounter.Indications, decodeProblem(t.Parent))
+				problem := decodeProblem(t.Parent)
+				if problem != nil {
+					encounter.Indications = append(encounter.Indications, *problem)
+				}
 			}
 		}
 
@@ -148,7 +156,10 @@ func decodeDiagnosis(node *xmlx.Node) Diagnosis {
 	d.Status = Nget(node, "statusCode").As("*", "code")
 
 	if problem := Nget(node, "observation"); problem != nil {
-		d.Problem = decodeProblem(problem)
+		problem := decodeProblem(problem)
+		if problem != nil {
+			d.Problem = *problem
+		}
 	}
 
 	return d
