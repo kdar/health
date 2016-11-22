@@ -219,6 +219,7 @@ type ResultObservation struct {
 
 type Result struct {
 	Date         time.Time
+	Code         Code
 	Observations []ResultObservation
 }
 
@@ -236,6 +237,15 @@ func parseResults(node *xmlx.Node, ccd *CCD) []error {
 		}
 
 		result := Result{}
+
+		codeNode := Nget(organizerNode, "code")
+		if codeNode != nil {
+			result.Code.decode(codeNode)
+		}
+
+		if len(result.Code.DisplayName) == 0 {
+			continue
+		}
 
 		effectiveTimeNode := Nget(organizerNode, "effectiveTime")
 		t := decodeTime(effectiveTimeNode)
@@ -302,9 +312,7 @@ func parseResults(node *xmlx.Node, ccd *CCD) []error {
 			result.Observations = append(result.Observations, observation)
 		}
 
-		if result.Observations != nil {
-			ccd.Results = append(ccd.Results, result)
-		}
+		ccd.Results = append(ccd.Results, result)
 	}
 
 	return nil

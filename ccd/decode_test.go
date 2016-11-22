@@ -130,12 +130,12 @@ func TestNewStuff(t *testing.T) {
 	t.Skip("just for my own needs")
 
 	c := ccd.NewDefaultCCD()
-	err := parseAndRecover(t, c, "testdata/specific/nulls.xml", nil)
+	err := parseAndRecover(t, c, "testdata/public/sample_ccdas/Allscripts Samples/Professional EHR/Encounter Based C-CDA CCD - 08-06-2012 [Jones, Isabella - 170314E2].xml", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	_ = spew.Dump
 
-	spew.Dump(c)
+	spew.Dump(c.Results)
 }
