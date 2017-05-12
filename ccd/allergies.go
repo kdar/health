@@ -19,6 +19,7 @@ type Allergy struct {
 	Status       string
 	SeverityCode string
 	SeverityText string
+	Code         Code
 }
 
 func parseAllergies(node *xmlx.Node, ccd *CCD) []error {
@@ -32,6 +33,7 @@ func parseAllergies(node *xmlx.Node, ccd *CCD) []error {
 		}
 
 		allergy := Allergy{}
+		allergy.Code.decode(Nget(obvNode, "code"))
 
 		// Sometimes the substance is represented here
 		valueNode := Nget(obvNode, "value")
