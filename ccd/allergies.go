@@ -1,6 +1,8 @@
 package ccd
 
-import "github.com/jteeuwen/go-pkg-xmlx"
+import (
+	"github.com/jteeuwen/go-pkg-xmlx"
+)
 
 var (
 	AllergiesTid = []string{"2.16.840.1.113883.10.20.1.2", "2.16.840.1.113883.10.20.22.2.6.1"}
@@ -19,7 +21,10 @@ type Allergy struct {
 	Status       string
 	SeverityCode string
 	SeverityText string
-	Code         Code
+
+	Type      Code
+	Substance Code
+	Severity  Code
 }
 
 func parseAllergies(node *xmlx.Node, ccd *CCD) []error {
@@ -33,12 +38,13 @@ func parseAllergies(node *xmlx.Node, ccd *CCD) []error {
 		}
 
 		allergy := Allergy{}
-		allergy.Code.decode(Nget(obvNode, "code"))
+		allergy.Type.decode(Nget(obvNode, "value"))
 
 		// Sometimes the substance is represented here
 		valueNode := Nget(obvNode, "value")
 		if valueNode != nil && valueNode.As("*", "codeSystem") == "2.16.840.1.113883.6.88" {
-			allergy.Name = valueNode.As("*", "displayName")
+			allergy.Name = valueNode.As("*", "displayName") //TODO: should string format a name later instead of just using the substance name
+			allergy.Substance.decode(valueNode)
 		}
 
 		// Try to get substance another way
@@ -48,6 +54,7 @@ func parseAllergies(node *xmlx.Node, ccd *CCD) []error {
 				codeNode := Nget(playNode, "code")
 				if codeNode != nil {
 					allergy.Name = codeNode.As("*", "displayName")
+					allergy.Substance.decode(codeNode)
 				}
 
 				if len(allergy.Name) == 0 {
@@ -82,6 +89,7 @@ func parseAllergies(node *xmlx.Node, ccd *CCD) []error {
 					subValueNode := Nget(suboNode, "value")
 					allergy.SeverityCode = subValueNode.As("*", "code")
 					allergy.SeverityText = subValueNode.As("*", "displayName")
+					allergy.Severity.decode(valueNode)
 				}
 
 			// Could be a Status or Severity -- Subject
@@ -92,6 +100,7 @@ func parseAllergies(node *xmlx.Node, ccd *CCD) []error {
 					} else if codeNode.As("*", "code") == "SEV" { // Severity
 						allergy.SeverityCode = valueNode.As("*", "code")
 						allergy.SeverityText = valueNode.As("*", "displayName")
+						allergy.Severity.decode(valueNode)
 					}
 				}
 			}

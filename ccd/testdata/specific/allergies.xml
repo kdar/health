@@ -1,0 +1,979 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ClinicalDocument xmlns="urn:hl7-org:v3">
+  <recordTarget/>
+  <component>
+    <structuredBody>
+      <!--start data for test
+      This file complains Allergies from kitchensink. Might update with more later
+    -->
+      <component>
+        <section>
+          <templateId root="2.16.840.1.113883.10.20.22.2.6.1"/>
+          <!-- Alerts section template -->
+          <code code="48765-2" codeSystem="2.16.840.1.113883.6.1"/>
+          <title>ALLERGIES, ADVERSE REACTIONS, ALERTS</title>
+          <text>
+           Text was omitted and I'm sure I broke some #references
+          </text>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30"/>
+              <!-- ** Allergy problem act ** -->
+              <id root="36e3e930-7b14-11db-9fe1-0800200c9a66"/>
+              <code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies, adverse reactions, alerts"/>
+              <statusCode code="completed"/>
+              <effectiveTime value="20070501">
+                <low value="20070501"/>
+                <high value="20120806"/>
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- allergy observation template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
+                  <id root="4adc1020-7b14-11db-9fe1-0800200c9a66"/>
+                  <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low nullFlavor="UNK"/>
+                    <high value="20120806"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" code="419511003" displayName="Propensity to adverse reaction to drug" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+                    <originalText>
+                      <reference value="#reaction1"/>
+                    </originalText>
+                  </value>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="7982" displayName="Penicillin G benzathine" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+                          <originalText>
+                            <reference value="#reaction1"/>
+                          </originalText>
+                        </code>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.28"/>
+                      <!-- Allergy status observation template -->
+                      <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status"/>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CE" code="73425007" codeSystem="2.16.840.1.113883.6.96" displayName="Inactive"/>
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
+                      <!-- Reaction observation template -->
+                      <id root="4adc1020-7b14-11db-9fe1-0800200c9a64"/>
+                      <code nullFlavor="NA"/>
+                      <text>
+                        <reference value="#reaction1"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <effectiveTime>
+                        <low value="20070501"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" code="247472004" codeSystem="2.16.840.1.113883.6.96" displayName="Hives"/>
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
+                      <!-- ** Severity observation template ** -->
+                      <code xsi:type="CE" code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+                      <text>
+                        <reference value="#severity1"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CD" code="371924009" displayName="Moderate to severe" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30"/>
+              <!-- ** Allergy problem act ** -->
+              <id root="36e3e930-7b14-11db-9fe1-0800200c9a66"/>
+              <code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies, adverse reactions, alerts"/>
+              <statusCode code="completed"/>
+              <effectiveTime value="20060501">
+                <low value="20060501"/>
+                <high value="20120806"/>
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- allergy observation template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
+                  <id root="4adc1020-7b14-11db-9fe1-0800200c9a66"/>
+                  <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="20060501"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" code="419511003" displayName="Propensity to adverse reaction to drug" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+                    <originalText>
+                      <reference value="#reaction2"/>
+                    </originalText>
+                  </value>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="2670" displayName="Codeine" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+                          <originalText>
+                            <reference value="#reaction2"/>
+                          </originalText>
+                        </code>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.28"/>
+                      <!-- Allergy status observation template -->
+                      <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status"/>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CE" code="55561003" codeSystem="2.16.840.1.113883.6.96" displayName="Active"/>
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
+                      <!-- Reaction observation template -->
+                      <id root="4adc1020-7b14-11db-9fe1-0800200c9a64"/>
+                      <code nullFlavor="NA"/>
+                      <text>
+                        <reference value="#reaction2"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <effectiveTime>
+                        <low value="20060501"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" code="267036007" codeSystem="2.16.840.1.113883.6.96" displayName="Shortness of Breath"/>
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
+                      <!-- ** Severity observation template ** -->
+                      <code xsi:type="CE" code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+                      <text>
+                        <reference value="#severity2"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CD" code="6736007" displayName="Moderate" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30"/>
+              <!-- ** Allergy problem act ** -->
+              <id root="36e3e930-7b14-11db-9fe1-0800200c9a66"/>
+              <code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies, adverse reactions, alerts"/>
+              <statusCode code="completed"/>
+              <effectiveTime value="20080501">
+                <low value="20080501"/>
+                <high value="20120806"/>
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- allergy observation template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
+                  <id root="4adc1020-7b14-11db-9fe1-0800200c9a66"/>
+                  <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="20080501"/>
+                    <high value="20120806"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" code="419511003" displayName="Propensity to adverse reaction to drug" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+                    <originalText>
+                      <reference value="#reaction3"/>
+                    </originalText>
+                  </value>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="1191" displayName="Aspirin" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+                          <originalText>
+                            <reference value="#reaction3"/>
+                          </originalText>
+                        </code>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.28"/>
+                      <!-- Allergy status observation template -->
+                      <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Status"/>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CE" code="55561003" codeSystem="2.16.840.1.113883.6.96" displayName="Active"/>
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
+                      <!-- Reaction observation template -->
+                      <id root="4adc1020-7b14-11db-9fe1-0800200c9a64"/>
+                      <code nullFlavor="NA"/>
+                      <text>
+                        <reference value="#reaction3"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <effectiveTime>
+                        <low value="20080501"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" code="247472004" codeSystem="2.16.840.1.113883.6.96" displayName="Hives"/>
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
+                      <!-- ** Severity observation template ** -->
+                      <code xsi:type="CE" code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+                      <text>
+                        <reference value="#severity3"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CD" code="371923003" displayName="Mild to moderate" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <!-- Allergy Problem Act template -->
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30"/>
+              <id root="36e3e930-7b14-11db-9fe1-0800200c9a66"/>
+              <code xsi:type="CE" code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies, adverse reactions, alerts"/>
+              <statusCode code="active"/>
+              <effectiveTime>
+                <low value="20100626100000"/>
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <!--Allergy - Intolerance Observation -->
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
+                  <id root="4adc1020-7b14-11db-9fe1-0800200c9a66"/>
+                  <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low nullFlavor="UNK"/>
+                  </effectiveTime>
+                  <!-- The following XML tag, <value>, states whether patient is allergic to DRUG, FOOD or SUBSTANCE.
+In EMERGE db, patients have records with allergies to:
+(a) DRUG (in EMERGE db, encoded in RxNorm or NDF-RT)
+(b) FOOD (in EMERGE db 'Eggs', encoded in UNII) and
+CCDA impementation guide distinguishes between "allergy" amd "propensity to allergy". In EMERGE, all patients have "allergy".
+Depending on allergen, appropriate value must be selected from Table 117: Allergy/Adverse Event Type Value Set (See CCDA Implementation Guide, pg 311)
+    (1) If EMERGE patient has allergy to DRUG (RxNorm or NDF-RT), then the code is:
+        <value code="416098002" displayName="Drug allergy (disorder)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT"/>
+(2) If EMERGE patient has allergy to FOOD (e.g. Eggs, UNII), then the code is:
+    <value code="414285001" displayName="Food allergy (disorder)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT"/>
+-->
+                  <value xsi:type="CD" code="416098002" displayName="Drug allergy (disorder)" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED-CT">
+                    <originalText>
+                      Neomycin + Neomycin Sulfate 500 MG
+                      <reference value="#Allergy1"/>
+                    </originalText>
+                  </value>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <!-- 
+This section displays the ACTUAL name of drug/ingredient/food to which person is allergic to.
+Please note that FOUR (4) different values sets for documenting Allergies: Brand Names, Clinical Drug Names, Medication Drug Class, and Ingredient name,
+encoded in RxNorm, RxNorm, NDF-RT and UNII respectively.
+-->
+                        <code code="866041" displayName="Neomycin Sulfate 500 MG" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+                          <originalText>
+                                             Neomycin + Neomycin Sulfate 500 MG
+                                             <reference value="#Allergy3"/>
+                                          </originalText>
+                          <!-- <translation> XML tag, if it exist should be placed HERE. In EMERGE db,
+    Only alergy to "eggs" will contain <translation> xml code with ICD-9 codes system:
+      <translation code="V15.03" codeSystem="2.16.840.1.113883.6.2"
+         displayName="Allergy to Eggs" codeSystemName="ICD-9-CM"/>
+   NOTE: <translation> code can also be used for other codes, such as LOCAL (e..g local hospital) codes.
+-->
+                        </code>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <!-- In reality, severity should be documented for allergy.
+    In EMERGE db, severity information for allergy is not documented for any patient. -->
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <!-- ** Severity observation template ** -->
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
+                      <code code="SEV" displayName="Severity Observation" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+                      <text>
+                        <reference value="#severity3"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <value xsi:type="CD" nullFlavor="NI"/>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <!-- ** Allergy problem act ** -->
+              <templateId root="2.16.840.1.113883.10.20.22.4.30"/>
+              <id root="2.16.840.1.113883.3.3297.1.1.1.6.1.11" extension="2"/>
+              <code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies, adverse reactions, alerts"/>
+              <statusCode code="active"/>
+              <effectiveTime>
+                <low value="20130701"/>
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- allergy observation template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
+                  <id root="4a51d40f-db9f-414a-b7cf-d3c40c00835a"/>
+                  <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low nullFlavor="UNK"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" code="419199007" displayName="allergy to substance" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT"/>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="1564HD0N96" displayName="cat hair" codeSystem="2.2.16.840.1.113883.4.9" codeSystemName="UNII"/>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <!-- Reaction Observation template -->
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
+                      <id root="0506c036-adfb-4e6e-b9e1-eea76177ead5"/>
+                      <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                      <statusCode code="completed"/>
+                      <effectiveTime>
+                        <low value="19600101"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" code="64144002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Rash"/>
+                      <entryRelationship typeCode="SUBJ" inversionInd="true">
+                        <observation classCode="OBS" moodCode="EVN">
+                          <!-- Severity Observation template -->
+                          <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
+                          <code code="SEV" xsi:type="CE" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+                          <statusCode code="completed"/>
+                          <value xsi:type="CD" code="255604002" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="mild"/>
+                        </observation>
+                      </entryRelationship>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30"/>
+              <!-- ** Allergy problem act ** -->
+              <id root="1857d9c8-b58f-43ef-adef-7b2999c92f5e"/>
+              <code code="48765-2" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Allergies, adverse reactions, alerts"/>
+              <statusCode code="active"/>
+              <effectiveTime>
+                <low value="19400101"/>
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <observation classCode="OBS" moodCode="EVN">
+                  <!-- allergy observation template -->
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7"/>
+                  <id root="6af77782-e02b-41b5-b81f-9699432a3e1b"/>
+                  <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low nullFlavor="UNK"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" code="419199007" displayName="allergy to substance" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT">
+                    <originalText>
+                      <reference value="#allergy2"/>
+                    </originalText>
+                  </value>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="3729L8MA2C" displayName="Bee Pollen" codeSystem="2.16.840.1.113883.4.9" codeSystemName="UNII">
+                          <originalText>
+                            <reference value="#allergy2"/>
+                          </originalText>
+                        </code>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <!-- Reaction Observation template -->
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9"/>
+                      <id root="8a07406a-78e7-4484-b0f6-f8ad522cb36e"/>
+                      <code code="ASSERTION" codeSystem="2.16.840.1.113883.5.4"/>
+                      <text>
+                        <reference value="#allergy2"/>
+                      </text>
+                      <statusCode code="completed"/>
+                      <effectiveTime>
+                        <low value="19400101"/>
+                      </effectiveTime>
+                      <value xsi:type="CD" code="417516000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Anaphylaxis due to substance"/>
+                      <entryRelationship typeCode="SUBJ" inversionInd="true">
+                        <observation classCode="OBS" moodCode="EVN">
+                          <!-- Severity Observation template -->
+                          <templateId root="2.16.840.1.113883.10.20.22.4.8"/>
+                          <code code="SEV" xsi:type="CE" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode"/>
+                          <text>
+                            <reference value="#allergy2"/>
+                          </text>
+                          <statusCode code="completed"/>
+                          <value xsi:type="CD" code="24484000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="severe"/>
+                        </observation>
+                      </entryRelationship>
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+           <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30" assigningAuthorityName="CCDA Allergy Problem Act" />
+              <id root="2.16.840.1.113883.3.140.1.0.6.10.6" extension="109-RAG" />
+              <code code="48765-2" displayName="Allergies, adverse reactions, alerts" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20090108" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="false">
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7" assigningAuthorityName="CCDA Allergy Observation" />
+                  <id root="275e228d-979a-49cf-a866-6ea33c82d0c8" />
+                  <code code="ASSERTION" displayName="Assertion" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode">
+                    <originalText>
+                      <reference value="#allergyDescriptionID0" />
+                    </originalText>
+                  </code>
+                  <text>
+                    <reference value="#" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="19700204" />
+                  </effectiveTime>
+                  <value code="419199007" displayName="Allergy to substance" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CD" />
+                  <informant>
+                    <assignedEntity>
+                      <id root="1f27f926-2b54-40bc-8e3d-d658800a31bd" />
+                      <addr>
+                        <streetAddressLine>99 Sycamore Street</streetAddressLine>
+                        <streetAddressLine>Suite 3</streetAddressLine>
+                        <city>Gainesville</city>
+                        <state>FL</state>
+                        <country>US</country>
+                        <postalCode>32608</postalCode>
+                      </addr>
+                      <telecom value="tel:+1-916-555-7654" use="WP" />
+                      <assignedPerson>
+                        <name nullFlavor="UNK" />
+                      </assignedPerson>
+                      <representedOrganization>
+                        <id root="2.16.840.1.113883.3.140.1.0.6" extension="MMC" />
+                        <name>Madison Medical Center P. A.</name>
+                        <telecom value="tel:+1-916-555-7654" use="WP" />
+                        <telecom value="tel:+1-916-555-7657" use="WP" />
+                        <addr>
+                          <streetAddressLine>99 Sycamore Street</streetAddressLine>
+                          <streetAddressLine>Suite 3</streetAddressLine>
+                          <city>Gainesville</city>
+                          <state>FL</state>
+                          <country>US</country>
+                          <postalCode>32608</postalCode>
+                        </addr>
+                      </representedOrganization>
+                    </assignedEntity>
+                  </informant>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="Unknown" displayName="Ragweed" codeSystem="2.16.840.1.113883.4.9" codeSystemName="UNII">
+                          <originalText>
+                            <reference value="#allergyDescriptionID0" />
+                          </originalText>
+                        </code>
+                        <name />
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9" assigningAuthorityName="CCDA Allergy Reaction Observation" />
+                      <id root="5f93143d-d1f4-4c77-858f-86c15b2ba06e" />
+                      <code code="55607006" displayName="Problem" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                      <text>
+                        <reference value="#allergyReactionID0" />
+                      </text>
+                      <statusCode code="completed" />
+                      <effectiveTime>
+                        <low nullFlavor="UNK" />
+                      </effectiveTime>
+                      <value code="NI" displayName="Itchy eyes and nasal congestion" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CD" />
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.28" assigningAuthorityName="CCDA Allergy Status Observation" />
+                      <code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+                      <text>
+                        <reference value="#allergyStatusID0" />
+                      </text>
+                      <statusCode code="completed" />
+                      <value code="55561003" displayName="Active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CE" />
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30" assigningAuthorityName="CCDA Allergy Problem Act" />
+              <id root="2.16.840.1.113883.3.140.1.0.6.10.6" extension="109-LAT" />
+              <code code="48765-2" displayName="Allergies, adverse reactions, alerts" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20061207" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="false">
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7" assigningAuthorityName="CCDA Allergy Observation" />
+                  <id root="4303fc93-6feb-4646-967b-6be3f65315e0" />
+                  <code code="ASSERTION" displayName="Assertion" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode">
+                    <originalText>
+                      <reference value="#allergyDescriptionID1" />
+                    </originalText>
+                  </code>
+                  <text>
+                    <reference value="#" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20020307" />
+                  </effectiveTime>
+                  <value code="419199007" displayName="Allergy to substance" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CD" />
+                  <informant>
+                    <assignedEntity>
+                      <id root="75214420-ca98-4672-9c36-aed8cb79d21f" />
+                      <addr>
+                        <streetAddressLine>99 Sycamore Street</streetAddressLine>
+                        <streetAddressLine>Suite 3</streetAddressLine>
+                        <city>Gainesville</city>
+                        <state>FL</state>
+                        <country>US</country>
+                        <postalCode>32608</postalCode>
+                      </addr>
+                      <telecom value="tel:+1-916-555-7654" use="WP" />
+                      <assignedPerson>
+                        <name nullFlavor="UNK" />
+                      </assignedPerson>
+                      <representedOrganization>
+                        <id root="2.16.840.1.113883.3.140.1.0.6" extension="MMC" />
+                        <name>Madison Medical Center P. A.</name>
+                        <telecom value="tel:+1-916-555-7654" use="WP" />
+                        <telecom value="tel:+1-916-555-7657" use="WP" />
+                        <addr>
+                          <streetAddressLine>99 Sycamore Street</streetAddressLine>
+                          <streetAddressLine>Suite 3</streetAddressLine>
+                          <city>Gainesville</city>
+                          <state>FL</state>
+                          <country>US</country>
+                          <postalCode>32608</postalCode>
+                        </addr>
+                      </representedOrganization>
+                    </assignedEntity>
+                  </informant>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="Unknown" displayName="Latex" codeSystem="2.16.840.1.113883.4.9" codeSystemName="UNII">
+                          <originalText>
+                            <reference value="#allergyDescriptionID1" />
+                          </originalText>
+                        </code>
+                        <name />
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9" assigningAuthorityName="CCDA Allergy Reaction Observation" />
+                      <id root="56080184-40dd-405c-82fc-12d293dafcb9" />
+                      <code code="55607006" displayName="Problem" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                      <text>
+                        <reference value="#allergyReactionID1" />
+                      </text>
+                      <statusCode code="completed" />
+                      <effectiveTime>
+                        <low nullFlavor="UNK" />
+                      </effectiveTime>
+                      <value code="64144002" displayName="Skin Rashes/Hives" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CD" />
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.28" assigningAuthorityName="CCDA Allergy Status Observation" />
+                      <code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+                      <text>
+                        <reference value="#allergyStatusID1" />
+                      </text>
+                      <statusCode code="completed" />
+                      <value code="55561003" displayName="Active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CE" />
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30" assigningAuthorityName="CCDA Allergy Problem Act" />
+              <id root="2.16.840.1.113883.3.140.1.0.6.10.6" extension="109-2" />
+              <code code="48765-2" displayName="Allergies, adverse reactions, alerts" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20080108" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="false">
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7" assigningAuthorityName="CCDA Allergy Observation" />
+                  <id root="00efa5d9-ba3d-4ec6-867f-220093c9a44a" />
+                  <code code="ASSERTION" displayName="Assertion" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode">
+                    <originalText>
+                      <reference value="#allergyDescriptionID2" />
+                    </originalText>
+                  </code>
+                  <text>
+                    <reference value="#" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20070905" />
+                  </effectiveTime>
+                  <value code="59037007" displayName="Drug intolerance" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CD" />
+                  <informant>
+                    <assignedEntity>
+                      <id root="3b98e97f-d0ef-4679-88ca-c85f18d548be" />
+                      <addr>
+                        <streetAddressLine>99 Sycamore Street</streetAddressLine>
+                        <streetAddressLine>Suite 3</streetAddressLine>
+                        <city>Gainesville</city>
+                        <state>FL</state>
+                        <country>US</country>
+                        <postalCode>32608</postalCode>
+                      </addr>
+                      <telecom value="tel:+1-916-555-7654" use="WP" />
+                      <assignedPerson>
+                        <name nullFlavor="UNK" />
+                      </assignedPerson>
+                      <representedOrganization>
+                        <id root="2.16.840.1.113883.3.140.1.0.6" extension="MMC" />
+                        <name>Madison Medical Center P. A.</name>
+                        <telecom value="tel:+1-916-555-7654" use="WP" />
+                        <telecom value="tel:+1-916-555-7657" use="WP" />
+                        <addr>
+                          <streetAddressLine>99 Sycamore Street</streetAddressLine>
+                          <streetAddressLine>Suite 3</streetAddressLine>
+                          <city>Gainesville</city>
+                          <state>FL</state>
+                          <country>US</country>
+                          <postalCode>32608</postalCode>
+                        </addr>
+                      </representedOrganization>
+                    </assignedEntity>
+                  </informant>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="309471" displayName="Aspirin 325 MG / butalbital 50 MG / Caffeine 40 MG / Codeine 30 MG Oral Capsule" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm">
+                          <originalText>
+                            <reference value="#allergyDescriptionID2" />
+                          </originalText>
+                          <translation code="8430" displayName="Fiorinal/Codeine #3" codeSystem="2.16.840.1.113883.6.253" codeSystemName="MediSpan DDID" />
+                        </code>
+                        <name>Aspirin 325 MG / butalbital 50 MG / Caffeine 40 MG / Codeine 30 MG Oral Capsule</name>
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9" assigningAuthorityName="CCDA Allergy Reaction Observation" />
+                      <id root="792b489d-6caa-4805-9bff-56ae2d2a2e56" />
+                      <code code="55607006" displayName="Problem" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                      <text>
+                        <reference value="#allergyReactionID2" />
+                      </text>
+                      <statusCode code="completed" />
+                      <effectiveTime>
+                        <low nullFlavor="UNK" />
+                      </effectiveTime>
+                      <value code="2919008" displayName="Nausea/Vomiting/Diarrhea" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CD" />
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.28" assigningAuthorityName="CCDA Allergy Status Observation" />
+                      <code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+                      <text>
+                        <reference value="#allergyStatusID2" />
+                      </text>
+                      <statusCode code="completed" />
+                      <value code="55561003" displayName="Active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CE" />
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="SUBJ" inversionInd="true">
+                <act classCode="ACT" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.64" assigningAuthorityName="CCDA Comment Activity" />
+                  <code code="48767-8" displayName="Annotation comment" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+                  <text>
+                    <reference value="#allergyCommentsID2" />
+                  </text>
+                  <statusCode code="completed" />
+                </act>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30" assigningAuthorityName="CCDA Allergy Problem Act" />
+              <id root="2.16.840.1.113883.3.140.1.0.6.10.6" extension="109-cheese" />
+              <code code="48765-2" displayName="Allergies, adverse reactions, alerts" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20061207" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="false">
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7" assigningAuthorityName="CCDA Allergy Observation" />
+                  <id root="2313453e-0d88-4180-8039-ab93716c9afd" />
+                  <code code="ASSERTION" displayName="Assertion" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode">
+                    <originalText>
+                      <reference value="#allergyDescriptionID3" />
+                    </originalText>
+                  </code>
+                  <text>
+                    <reference value="#" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20020307" />
+                  </effectiveTime>
+                  <value code="419199007" displayName="Allergy to substance" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CD" />
+                  <informant>
+                    <assignedEntity>
+                      <id root="10a7fa48-bc53-4c1e-9fb8-f526ae9f16e4" />
+                      <addr>
+                        <streetAddressLine>99 Sycamore Street</streetAddressLine>
+                        <streetAddressLine>Suite 3</streetAddressLine>
+                        <city>Gainesville</city>
+                        <state>FL</state>
+                        <country>US</country>
+                        <postalCode>32608</postalCode>
+                      </addr>
+                      <telecom value="tel:+1-916-555-7654" use="WP" />
+                      <assignedPerson>
+                        <name nullFlavor="UNK" />
+                      </assignedPerson>
+                      <representedOrganization>
+                        <id root="2.16.840.1.113883.3.140.1.0.6" extension="MMC" />
+                        <name>Madison Medical Center P. A.</name>
+                        <telecom value="tel:+1-916-555-7654" use="WP" />
+                        <telecom value="tel:+1-916-555-7657" use="WP" />
+                        <addr>
+                          <streetAddressLine>99 Sycamore Street</streetAddressLine>
+                          <streetAddressLine>Suite 3</streetAddressLine>
+                          <city>Gainesville</city>
+                          <state>FL</state>
+                          <country>US</country>
+                          <postalCode>32608</postalCode>
+                        </addr>
+                      </representedOrganization>
+                    </assignedEntity>
+                  </informant>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="Unknown" displayName="Cheese" codeSystem="2.16.840.1.113883.4.9" codeSystemName="UNII">
+                          <originalText>
+                            <reference value="#allergyDescriptionID3" />
+                          </originalText>
+                        </code>
+                        <name />
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9" assigningAuthorityName="CCDA Allergy Reaction Observation" />
+                      <id root="df811906-b3c9-45d8-8767-c9b4f6649c62" />
+                      <code code="55607006" displayName="Problem" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                      <text>
+                        <reference value="#allergyReactionID3" />
+                      </text>
+                      <statusCode code="completed" />
+                      <effectiveTime>
+                        <low nullFlavor="UNK" />
+                      </effectiveTime>
+                      <value code="2919008" displayName="Nausea/Vomiting/Diarrhea" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CD" />
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.28" assigningAuthorityName="CCDA Allergy Status Observation" />
+                      <code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+                      <text>
+                        <reference value="#allergyStatusID3" />
+                      </text>
+                      <statusCode code="completed" />
+                      <value code="55561003" displayName="Active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CE" />
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+          <entry typeCode="DRIV">
+            <act classCode="ACT" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.22.4.30" assigningAuthorityName="CCDA Allergy Problem Act" />
+              <id root="2.16.840.1.113883.3.140.1.0.6.10.6" extension="109-bird" />
+              <code code="48765-2" displayName="Allergies, adverse reactions, alerts" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+              <statusCode code="active" />
+              <effectiveTime>
+                <low value="20091105" />
+              </effectiveTime>
+              <entryRelationship typeCode="SUBJ" inversionInd="false">
+                <observation classCode="OBS" moodCode="EVN" negationInd="false">
+                  <templateId root="2.16.840.1.113883.10.20.22.4.7" assigningAuthorityName="CCDA Allergy Observation" />
+                  <id root="d91b7e5e-bc47-4e4f-ac10-dcb8b6dfe80b" />
+                  <code code="ASSERTION" displayName="Assertion" codeSystem="2.16.840.1.113883.5.4" codeSystemName="ActCode">
+                    <originalText>
+                      <reference value="#allergyDescriptionID4" />
+                    </originalText>
+                  </code>
+                  <text>
+                    <reference value="#" />
+                  </text>
+                  <statusCode code="completed" />
+                  <effectiveTime>
+                    <low value="20091105" />
+                  </effectiveTime>
+                  <value code="419199007" displayName="Allergy to substance" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CD" />
+                  <informant>
+                    <assignedEntity>
+                      <id root="fba4ae70-38da-4671-87f1-8996c81a6922" />
+                      <addr>
+                        <streetAddressLine>99 Sycamore Street</streetAddressLine>
+                        <streetAddressLine>Suite 3</streetAddressLine>
+                        <city>Gainesville</city>
+                        <state>FL</state>
+                        <country>US</country>
+                        <postalCode>32608</postalCode>
+                      </addr>
+                      <telecom value="tel:+1-916-555-7654" use="WP" />
+                      <assignedPerson>
+                        <name nullFlavor="UNK" />
+                      </assignedPerson>
+                      <representedOrganization>
+                        <id root="2.16.840.1.113883.3.140.1.0.6" extension="MMC" />
+                        <name>Madison Medical Center P. A.</name>
+                        <telecom value="tel:+1-916-555-7654" use="WP" />
+                        <telecom value="tel:+1-916-555-7657" use="WP" />
+                        <addr>
+                          <streetAddressLine>99 Sycamore Street</streetAddressLine>
+                          <streetAddressLine>Suite 3</streetAddressLine>
+                          <city>Gainesville</city>
+                          <state>FL</state>
+                          <country>US</country>
+                          <postalCode>32608</postalCode>
+                        </addr>
+                      </representedOrganization>
+                    </assignedEntity>
+                  </informant>
+                  <participant typeCode="CSM">
+                    <participantRole classCode="MANU">
+                      <playingEntity classCode="MMAT">
+                        <code code="Unknown" displayName="Birds" codeSystem="2.16.840.1.113883.4.9" codeSystemName="UNII">
+                          <originalText>
+                            <reference value="#allergyDescriptionID4" />
+                          </originalText>
+                        </code>
+                        <name />
+                      </playingEntity>
+                    </participantRole>
+                  </participant>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9" assigningAuthorityName="CCDA Allergy Reaction Observation" />
+                      <id root="caf25d83-e4c2-4397-b25a-09cacc209182" />
+                      <code code="55607006" displayName="Problem" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                      <text>
+                        <reference value="#allergyReactionID4" />
+                      </text>
+                      <statusCode code="completed" />
+                      <effectiveTime>
+                        <low nullFlavor="UNK" />
+                      </effectiveTime>
+                      <value code="64144002" displayName="Skin Rashes/Hives" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CD" />
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="MFST" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.9" assigningAuthorityName="CCDA Allergy Reaction Observation" />
+                      <id root="2c1a2c69-a39c-4eba-8575-36b04d55bd9d" />
+                      <code code="55607006" displayName="Problem" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" />
+                      <text>
+                        <reference value="#allergyReactionID4" />
+                      </text>
+                      <statusCode code="completed" />
+                      <effectiveTime>
+                        <low nullFlavor="UNK" />
+                      </effectiveTime>
+                      <value code="2919008" displayName="Nausea/Vomiting/Diarrhea" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CD" />
+                    </observation>
+                  </entryRelationship>
+                  <entryRelationship typeCode="SUBJ" inversionInd="true">
+                    <observation classCode="OBS" moodCode="EVN">
+                      <templateId root="2.16.840.1.113883.10.20.22.4.28" assigningAuthorityName="CCDA Allergy Status Observation" />
+                      <code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" />
+                      <text>
+                        <reference value="#allergyStatusID4" />
+                      </text>
+                      <statusCode code="completed" />
+                      <value code="55561003" displayName="Active" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" xsi:type="CE" />
+                    </observation>
+                  </entryRelationship>
+                </observation>
+              </entryRelationship>
+            </act>
+          </entry>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</ClinicalDocument>
