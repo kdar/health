@@ -7,7 +7,7 @@ import (
 
 	"golang.org/x/net/html/charset"
 
-	"github.com/jteeuwen/go-pkg-xmlx"
+	"github.com/mattn/go-pkg-xmlx"
 )
 
 var (

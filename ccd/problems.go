@@ -1,6 +1,6 @@
 package ccd
 
-import "github.com/jteeuwen/go-pkg-xmlx"
+import "github.com/mattn/go-pkg-xmlx"
 
 var (
 	ProblemsTid = []string{"2.16.840.1.113883.10.20.1.11", "2.16.840.1.113883.10.20.22.2.5.1"}

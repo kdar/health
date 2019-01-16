@@ -5,7 +5,7 @@ package medtable
 
 import (
 	"fmt"
-	"github.com/jteeuwen/go-pkg-xmlx"
+	"github.com/mattn/go-pkg-xmlx"
 	"github.com/kdar/health/ccd"
 	"time"
 )
