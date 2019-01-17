@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/jteeuwen/go-pkg-xmlx"
+	"github.com/mattn/go-pkg-xmlx"
 )
 
 type Node struct {

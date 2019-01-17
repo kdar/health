@@ -3,7 +3,7 @@ package ccd
 import (
 	"time"
 
-	"github.com/jteeuwen/go-pkg-xmlx"
+	"github.com/mattn/go-pkg-xmlx"
 )
 
 var (

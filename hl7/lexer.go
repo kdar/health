@@ -10,8 +10,8 @@ import (
 )
 
 const (
-	tokEOF lexer.TokenType = lexer.TokenTypeEOF
-	tokNIL                 = lexer.TokenTypeEOF + iota
+	tokEOF lexer.TokenType = lexer.T_EOF
+	tokNIL                 = lexer.T_EOF + iota
 	tokError
 	tokSegmentName
 	tokSeparators

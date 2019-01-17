@@ -12,7 +12,7 @@ import (
 	"golang.org/x/net/html/charset"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/jteeuwen/go-pkg-xmlx"
+	"github.com/mattn/go-pkg-xmlx"
 	"github.com/kdar/health/ccd"
 )
 

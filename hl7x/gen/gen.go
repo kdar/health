@@ -10,7 +10,7 @@ import (
 
 	"bitbucket.org/pkg/inflect"
 
-	"github.com/jteeuwen/go-pkg-xmlx"
+	"github.com/mattn/go-pkg-xmlx"
 )
 
 func main() {
